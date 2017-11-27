@@ -98,9 +98,6 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
                 $scope.kelamin          =  $scope.people.jenis_kelamin;
                
                 
-                // console.log($scope.people);
-                // console.log("NAMA ORANG "+$scope.people.name);
-                
             }, function (response) {
                 
                 // on error
@@ -109,6 +106,31 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
             });
         
     };
+
+
+    $scope.deleteForm = function(x) {
+       // console.log("This Is delete x value "+x);
+        $http({
+            
+            method: 'POST',
+            url:  'dbdata/delete.php',
+            data: { recordId : x }
+            
+        }).then(function (response) {
+      
+           $route.reload();  
+      
+        }, function (response) {
+            
+            console.log(response.data,response.status);
+            
+        });
+      };
+
+
+
+  
+
 
     $scope.cancelForm = function() {
         
