@@ -177,3 +177,11 @@ app.controller("BodyCtrl", function ($scope,$cookies,$window) {
     };
 
 });
+
+
+app.controller("ApotikCtrl", function ($scope,$cookies,$window) {
+    
+     
+   
+ 
+ });

@@ -17,6 +17,10 @@
             templateUrl : "pasien.html",
             controller  : "PasienCtrl",
         })
+        .when("/apotik", {
+          templateUrl : "apotik.html",
+          controller  : "ApotikCtrl",
+        })
         .otherwise({
             templateUrl : "dashboard.html",
             controller  : "HomeCtrl",
