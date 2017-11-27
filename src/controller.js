@@ -14,7 +14,8 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
     $scope.shForm   = false;
     $scope.id ="";
 
-    $http.get("config/daftar_pasien.php").then(function (response) {
+   // $http.get("config/daftar_pasien.php").then(function (response) {
+   $http.get("apidb/pasien/list_data.php").then(function (response) {
         $scope.myData = response.data.event;
         console.log(response.data.event);
     });
@@ -33,7 +34,7 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
             $http({
                 
                  method: 'POST',
-                 url:  'dbdata/postedit.php',
+                 url:  'apidb/pasien/postedit.php',
                  data: {newId: $scope.id, newName: $scope.name, newPhone: $scope.phone  , newKelamin: $scope.kelamin}
                  
             }).then(function (response) {
@@ -51,7 +52,7 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
             $http({
                 
                  method: 'POST',
-                 url:  'dbdata/post.php',
+                 url:  'apidb/pasien/post.php',
                  data: {newName: $scope.name, newPhone: $scope.phone  , newKelamin: $scope.kelamin}
                  
             }).then(function (response) {
@@ -86,7 +87,7 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
 
             $http({
                 method: 'POST',    
-                url: 'dbdata/get.php',
+                url: 'apidb/pasien/get.php',
                 data: {newId: x}
             }).then(function (response) {
                 
@@ -113,7 +114,7 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
         $http({
             
             method: 'POST',
-            url:  'dbdata/delete.php',
+            url:  'apidb/pasien/delete.php',
             data: { recordId : x }
             
         }).then(function (response) {
