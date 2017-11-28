@@ -21,6 +21,14 @@
           templateUrl : "apotik.html",
           controller  : "ApotikCtrl",
         })
+        .when("/obat", {
+          templateUrl : "obat.html",
+          controller  : "ObatCtrl",
+        })
+        .when("/dokter", {
+          templateUrl : "dokter.html",
+          controller  : "DokterCtrl",
+        })
         .otherwise({
             templateUrl : "dashboard.html",
             controller  : "HomeCtrl",

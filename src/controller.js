@@ -8,6 +8,8 @@ app.controller("HomeCtrl", function ($scope,$window) {
     console.log("I AM AT HOME CONTROLLER");
 
 });
+
+
 app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
    
     $scope.shTable  = true;
@@ -63,28 +65,19 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
             });
 
         }
-
-            
-
     };
 
 
 
     $scope.showForm = function() {
-
         $scope.shTable  = false;
         $scope.shForm   = true;
-
     };
 
     $scope.editForm = function(x) {
-        
             $scope.shTable  = false;
             $scope.shForm   = true;
-
             console.log("This Is x value "+x);
-
-
             $http({
                 method: 'POST',    
                 url: 'apidb/pasien/get.php',
@@ -128,11 +121,6 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
         });
       };
 
-
-
-  
-
-
     $scope.cancelForm = function() {
         
         $scope.shTable  = true;
@@ -159,6 +147,7 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
         }, 4000);
 
 });
+
 app.controller("BodyCtrl", function ($scope,$cookies,$window) {
    
     
@@ -182,6 +171,50 @@ app.controller("BodyCtrl", function ($scope,$cookies,$window) {
 app.controller("ApotikCtrl", function ($scope,$cookies,$window) {
     
      
+   
+ 
+ });
+ app.controller("DokterCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
+    
+    $scope.shTable  = true;
+    $scope.shForm   = false;
+    $scope.id ="";
+
+    // $http.get("config/daftar_pasien.php").then(function (response) {
+    $http.get("apidb/dokter/list_data.php").then(function (response) {
+        $scope.myData = response.data.event;
+        console.log(response.data.event);
+    });
+
+});
+
+app.controller("ObatCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
+    
+    $scope.shTable  = true;
+    $scope.shForm   = false;
+    $scope.id ="";
+
+   // $http.get("config/daftar_pasien.php").then(function (response) {
+   $http.get("apidb/obat/list_data.php").then(function (response) {
+        $scope.myData = response.data.event;
+        console.log(response.data.event);
+   });
+   
+
+
+   setTimeout(function(){
+    $('#mytableObat').dataTable({
+        "bPaginate": true,
+        "bLengthChange": true,
+        "aLengthMenu": [ 30, 50, 100 ],
+        "bFilter": true,
+        "bSort": true,
+        "bInfo": true,
+        "bRetrieve": true,
+        "bAutoWidth": false,
+        "sEmptyTable": "",
+    });
+    }, 4000);
    
  
  });
