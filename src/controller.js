@@ -297,6 +297,20 @@ app.controller("ApotikCtrl", function ($scope,$cookies,$window) {
         };
 
 
+        setTimeout(function(){
+            $('#mytableDokter').dataTable({
+                "bPaginate": true,
+                "bLengthChange": true,
+                "aLengthMenu": [ 30, 50, 100 ],
+                "bFilter": true,
+                "bSort": true,
+                "bInfo": true,
+                "bRetrieve": true,
+                "bAutoWidth": false,
+                "sEmptyTable": "",
+            });
+            }, 4000);
+
 });
 
 app.controller("ObatCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
