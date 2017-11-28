@@ -11,7 +11,7 @@ if(isset($postdata) && !empty($postdata))
 
     $id  = (int)$request->recordId;
 
-    $sql = "DELETE FROM `data_pasien` WHERE `id` = '$id' LIMIT 1";
+    $sql = "DELETE FROM `data_dokter` WHERE `id` = '$id' LIMIT 1";
 
     mysqli_query($connect,$sql);
 }

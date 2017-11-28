@@ -18,7 +18,7 @@ if(isset($postdata) && !empty($postdata))
     $newName  = mysqli_real_escape_string($connect,$newName);
     $newPhone = mysqli_real_escape_string($connect,$newPhone);
 
-    $sql = "INSERT INTO `data_pasien` (`id`, `nama`, `jenis_kelamin`, `nomor_hp`) VALUES (NULL, '$newName', '$newKelamin', '$newPhone')";
+    $sql = "INSERT INTO `data_dokter` (`id`, `nama`, `jenis_kelamin`, `nomor_hp`) VALUES (NULL, '$newName', '$newKelamin', '$newPhone')";
 
     mysqli_query($connect,$sql);
     

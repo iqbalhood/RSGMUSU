@@ -18,7 +18,7 @@ if(isset($postdata) && !empty($postdata))
     $newName  = mysqli_real_escape_string($connect,$newName);
     $newPhone = mysqli_real_escape_string($connect,$newPhone);
 
-    $sql = "UPDATE `data_pasien` SET `nama` = '$newName', `jenis_kelamin` = '$newKelamin', `nomor_hp` = '$newPhone' WHERE `data_pasien`.`id` = $newId;";
+    $sql = "UPDATE `data_dokter` SET `nama` = '$newName', `jenis_kelamin` = '$newKelamin', `nomor_hp` = '$newPhone' WHERE `data_dokter`.`id` = $newId;";
 
     mysqli_query($connect,$sql);
 
