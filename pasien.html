@@ -26,7 +26,7 @@
                       <td>{{ x.nama }}</td>
                       <td><div ng-if="x.jenis_kelamin == 1">Laki-Laki</div> <div ng-if="x.jenis_kelamin == 2">  Perempuan</div></td>
                       <td>{{ x.phone }}</td>
-                      <td><button class='btn btn-primary' ng-click="editForm(x.id)" >Edit</button>  <button class='btn btn-warning' ng-click="deleteForm(x.id)" >Delete</button></td>
+                      <td> <a href="#!/detail-users"><button class='btn btn-success'>View</button></a> <button class='btn btn-primary' ng-click="editForm(x.id)" >Edit</button>  <button class='btn btn-warning' ng-click="deleteForm(x.id)" >Delete</button></td>
                     </tr>
               </tbody>
             </table>
@@ -100,6 +100,121 @@
             </div>
         </datepicker> -->
 
+
+        <div class="panel hbox hbox-auto-xs no-border">
+
+            <div class="col wrapper-lg w-lg bg-light dk r-r">
+                <h4 class="font-thin m-t-none m-b">Basic Info</h4>
+                <div class="">
+                 
+                 
+                        <a href="" class="thumb-sm m-r">
+                          <img src="img/a1.jpg" class="r r-2x">
+                        </a>
+                        <a href="">Mohammad Iqbal</a>
+                        <div class="clear">&nbsp;</div>
+                        <div class="">
+                            <span class="pull-right text-info">23 Years Old</span>
+                            <span>Age</span>
+                        </div>
+                        <div class="clear">&nbsp;</div>                        
+                        <div class="">
+                            <span class="pull-right text-info">Male</span>
+                            <span>Gender</span>
+                        </div>
+                        <div class="clear">&nbsp;</div>                        
+                        <div class="">
+                            <span class="pull-right text-info">164 cm</span>
+                            <span>Height</span>
+                        </div>
+                        <div class="clear">&nbsp;</div>                        
+                        <div class="">
+                            <span class="pull-right text-info">50 Kg</span>
+                            <span>Weight</span>
+                        </div>
+                        <div class="clear">&nbsp;</div>                        
+                        <div class="">
+                            <span class="pull-right text-info">B</span>
+                            <span>Blood Type</span>
+                        </div>
+
+                 
+                </div>
+                <div class="clear">&nbsp;</div>  
+                <div class="clear">&nbsp;</div>  
+                <!-- <button class="btn m-b-xs btn-sm btn-info btn-addon"><i class="fa fa-trash-o"></i>Info</button>
+                <button class="btn m-b-xs btn-sm btn-info btn-addon"><i class="fa fa-trash-o"></i>Info</button> -->
+                <div class="m-b-sm">
+                    <div class="btn-group btn-group-justified">
+                      <a href="" class="btn btn-danger">Tutup Dialog</a>
+                      <a href="" class="btn btn-success">Go to Klinik</a>
+                    </div>
+                  </div>
+              </div>
+
+          <div class="col wrapper">
+            <i class="fa fa-circle-o text-info m-r-sm pull-right"></i>
+            <h4 class="font-thin m-t-none m-b-none text-primary-lt">Rekam Medis</h4>
+            <div class="clear">&nbsp;</div>                                    
+            <div class="panel panel-default">
+                <div class="panel-heading">Daftar Rekam Medis</div>
+                <table class="table table-striped m-b-none">
+                  <thead>
+                    <tr>
+                      <th style="width:170px;" class="text-center">Tanggal</th>
+                      <th>Nama Dokter</th>                    
+                      <th style="width:150px;">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>                    
+                      <td>
+                        12 Desember 2017
+                      </td>
+                      <td>dr. H. Boyke Dian Nugraha, SpOG </td>
+                      <td class="text-success">
+                          <button class="btn m-b-xs btn-sm btn-success btn-addon">
+                            <i class="icon-size-fullscreen icon pull-right"></i>View Data</button>
+                      </td>
+                    </tr>
+                    <tr>                    
+                        <td>
+                          12 Desember 2017
+                        </td>
+                        <td>dr. H. Boyke Dian Nugraha, SpOG </td>
+                        <td class="text-success">
+                            <button class="btn m-b-xs btn-sm btn-success btn-addon">
+                              <i class="icon-size-fullscreen icon pull-right"></i>View Data</button>
+                        </td>
+                    </tr>
+
+                    <tr>                    
+                        <td>
+                          12 Desember 2017
+                        </td>
+                        <td>dr. H. Boyke Dian Nugraha, SpOG </td>
+                        <td class="text-success">
+                            <button class="btn m-b-xs btn-sm btn-success btn-addon">
+                              <i class="icon-size-fullscreen icon pull-right"></i>View Data</button>
+                        </td>
+                    </tr>
+
+                    <tr>                    
+                        <td>
+                          12 Desember 2017
+                        </td>
+                        <td>dr. H. Boyke Dian Nugraha, SpOG </td>
+                        <td class="text-success">
+                            <button class="btn m-b-xs btn-sm btn-success btn-addon">
+                              <i class="icon-size-fullscreen icon pull-right"></i>View Data</button>
+                        </td>
+                    </tr>
+                   
+                  </tbody>
+                </table>
+            </div>
+
+          </div>
 
 
       </div>

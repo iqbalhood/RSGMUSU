@@ -23,10 +23,8 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
     });
 
     $scope.no = Math.floor((Math.random() * 10000) + 1);
-
     $scope.submitForm = function() {
         
-
         if($scope.id){
             console.log(" ID YANG DIEDIT "+ $scope.id);
             console.log($scope.id);
@@ -47,8 +45,6 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
                     $route.reload();    
                 }
             });
-
-
         }else{
 
             $http({
@@ -66,8 +62,6 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
 
         }
     };
-
-
 
     $scope.showForm = function() {
         $scope.shTable  = false;
@@ -343,3 +337,39 @@ app.controller("ObatCtrl", function ($scope,$interval,$http, $route,$timeout, $r
    
  
  });
+
+ app.controller("UsersCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
+    
+    $scope.shTable  = true;
+    $scope.shForm   = false;
+    $scope.id ="";
+
+   // $http.get("config/daftar_pasien.php").then(function (response) {
+   $http.get("apidb/users/list_data.php").then(function (response) {
+        $scope.myData = response.data.event;
+        console.log(response.data.event);
+   });
+   
+   
+
+   setTimeout(function(){
+    $('#mytableUsers').dataTable({
+        "bPaginate": true,
+        "bLengthChange": true,
+        "aLengthMenu": [ 30, 50, 100 ],
+        "bFilter": true,
+        "bSort": true,
+        "bInfo": true,
+        "bRetrieve": true,
+        "bAutoWidth": false,
+        "sEmptyTable": "",
+    });
+    }, 4000);
+   
+ 
+ });
+
+app.controller("DetailUsersCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
+    
+
+});

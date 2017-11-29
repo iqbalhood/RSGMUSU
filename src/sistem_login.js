@@ -2,7 +2,7 @@ $(document).ready(function() {
 // check_login();
 $("#alert").attr('class', '');
 $("#alert").hide();
-
+$("#do_logout").hide();
 console.log("COOOKIE APPS ->"+document.cookie);
 
 
@@ -71,6 +71,7 @@ console.log("COOOKIE APPS ->"+document.cookie);
                         var obj = JSON.parse(this.responseText);
 
                         if(obj.status=="correct"){
+                                $("#do_logout").hide();
                                 console.log("LOGIN BERHASIl");
                                 document.cookie = "username="+username+";"
                                 document.cookie = "akses="+obj.akses+";";
