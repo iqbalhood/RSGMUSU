@@ -170,6 +170,25 @@ app.controller("ApotikCtrl", function ($scope,$cookies,$window) {
 });
 
 
+app.controller("KlinikCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
+   
+    $scope.shTable  = true;
+    $scope.shForm   = false;
+      
+   $http.get("apidb/kunjungan/list_data.php?id="+$routeParams.id).then(function (response) {
+    $scope.myData = response.data.event;
+    console.log(response.data.event);
+   });
+
+   console.log("Controller Works");
+
+
+
+   
+ 
+});
+
+
 
  app.controller("DokterCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
     
@@ -375,15 +394,18 @@ app.controller("ObatCtrl", function ($scope,$interval,$http, $route,$timeout, $r
 app.controller("DetailUsersCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
   
         $scope.klinikForm = false;
+        $scope.id_pasien = $routeParams.id;
 
         var d = new Date();
         var n = d.getTime();
 
-        $scope.id = n;
+        $scope.id_kunjungan = n;
+
+       
 
     
 
-     // $http.get("config/daftar_pasien.php").then(function (response) {
+         // $http.get("config/daftar_pasien.php").then(function (response) {
         $http.get("apidb/dokter/list_data.php").then(function (response) {
             $scope.dataDokter = response.data.event;
             console.log(response.data.event);
@@ -396,6 +418,21 @@ app.controller("DetailUsersCtrl", function ($scope,$interval,$http, $route,$time
 
         $scope.cancelFormKlinik= function(){
             $scope.klinikForm = false;
+        };
+
+        $scope.submitForm= function(){
+            $http({
+                
+                 method: 'POST',
+                 url:  'apidb/datapasien/submit_ke_klinik.php',
+                 data: {idKunjungan: $scope.id_kunjungan, idKlinik: $scope.klinik  , dokterPendamping: $scope.dokterpendamping, dokterPendamping: $scope.dokterpendamping, idDokter: $scope.dokterpraktisi, idPasien: $scope.id_pasien }
+                 
+            }).then(function (response) {
+                // on success
+                if(response.status==200){
+                    $route.reload();    
+                }
+            });
         };
 
 });

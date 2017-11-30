@@ -55,7 +55,7 @@
                 </div>
                 <!-- # End Panel Kiri -->
     
-                <!-- # Panel Kanan -->    
+                <!-- # Panel Kanan Berisi Informasi Data List Rekam Medis -->    
                 <div class="col wrapper">
                     <i class="fa fa-circle-o text-info m-r-sm pull-right"></i>
                     <h4 class="font-thin m-t-none m-b-none text-primary-lt">Rekam Medis</h4>
@@ -137,9 +137,16 @@
             <form class="form-horizontal">
 
                 <div class="form-group">
+                            <label class="col-sm-2 control-label" >ID Pasien</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="id_pasien">
+                            </div>
+                </div>
+
+                <div class="form-group">
                         <label class="col-sm-2 control-label" >ID KUNJUNGAN</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" ng-model="id">
+                            <input type="text" class="form-control" ng-model="id_kunjungan">
                         </div>
                 </div>
                 
@@ -165,7 +172,7 @@
                     <div class="form-group">
                             <label class="col-sm-2 control-label" >Dokter Pendamping</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" ng-model="dokterPendamping">                                
+                                <input type="text" class="form-control" ng-model="dokterpendamping">                                
                             </div>
                     </div>
 

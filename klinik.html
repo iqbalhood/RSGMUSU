@@ -1,0 +1,38 @@
+<div class="bg-light lter b-b wrapper-md">
+        <h1 class="m-n font-thin h3">   Data Antrian Klinik</h1>
+      </div>
+      <div class="wrapper-md">
+        <div class="panel panel-default" ng-show="shTable">
+              <div class="panel-heading">
+                Data Antrian Klinik
+              <br>
+            </div>
+          <div class="table-responsive" >
+              <table ui-jq="dataTable" class="table  table-striped b-t b-b" >
+              <thead>
+                <tr>
+                  <th  style="width:5%">No </th>
+                  <th  style="width:10%">ID Kunjungan</th>
+                  <th  style="width:15%">Nama Pasien</th>
+                  <th  style="width:15%">Nama Pendamping</th>            
+                  <th  style="width:15%">Nama Dokter</th>          
+                  <th  style="width:25%">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr ng-repeat="x in myData">
+                      <td>{{ $index + 1 }}</td>                      
+                      <td>{{ x.id_kunjungan }}</td>
+                      <td>{{ x.pasien }}</td>
+                      <td>{{ x.dokter_pendamping }}</td>
+                      <td>{{ x.dokter }}</td>
+                      <td> <a href="#!/detail-users"><button class='btn btn-success'>View</button></a> <button class='btn btn-primary' ng-click="editForm(x.id)" >Edit</button>  <button class='btn btn-warning' ng-click="deleteForm(x.id)" >Delete</button></td>
+                    </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
+
+       

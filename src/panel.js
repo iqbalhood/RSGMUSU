@@ -33,13 +33,17 @@
           templateUrl : "users.html",
           controller  : "UsersCtrl",
         })
-        .when("/detail-users", {
+        .when("/detail-users/:id", {
           templateUrl : "data-pasien.html",
           controller  : "DetailUsersCtrl",
         })
         .when("/rekam-medis", {
           templateUrl : "rekam-medis.html",
           controller  : "RekamMedisCtrl",
+        })
+        .when("/klinik/:id", {
+          templateUrl : "klinik.html",
+          controller  : "KlinikCtrl",
         })
         .otherwise({
             templateUrl : "dashboard.html",
