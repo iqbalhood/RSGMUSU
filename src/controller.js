@@ -167,7 +167,10 @@ app.controller("ApotikCtrl", function ($scope,$cookies,$window) {
      
    
  
- });
+});
+
+
+
  app.controller("DokterCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
     
     $scope.shTable  = true;
@@ -370,6 +373,29 @@ app.controller("ObatCtrl", function ($scope,$interval,$http, $route,$timeout, $r
  });
 
 app.controller("DetailUsersCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
+  
+        $scope.klinikForm = false;
+
+        var d = new Date();
+        var n = d.getTime();
+
+        $scope.id = n;
+
     
+
+     // $http.get("config/daftar_pasien.php").then(function (response) {
+        $http.get("apidb/dokter/list_data.php").then(function (response) {
+            $scope.dataDokter = response.data.event;
+            console.log(response.data.event);
+        });
+
+
+        $scope.showKlinik = function() {
+            $scope.klinikForm = true;
+        };
+
+        $scope.cancelFormKlinik= function(){
+            $scope.klinikForm = false;
+        };
 
 });

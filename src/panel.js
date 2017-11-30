@@ -37,6 +37,10 @@
           templateUrl : "data-pasien.html",
           controller  : "DetailUsersCtrl",
         })
+        .when("/rekam-medis", {
+          templateUrl : "rekam-medis.html",
+          controller  : "RekamMedisCtrl",
+        })
         .otherwise({
             templateUrl : "dashboard.html",
             controller  : "HomeCtrl",
