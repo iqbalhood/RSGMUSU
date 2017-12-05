@@ -15,80 +15,77 @@
 
 </head>
 <body>
-        <div class="app app-header-fixed ">
-                <div class="container w-xxl w-auto-xs" >
-                  <center><img src="img/rsgmlogo.png" width="200px"></center>
-                  <center><h3>RSGM USU</h3></center>
-                  
-                  <div class="m-b-lg">
-                    <div class="text-center" style="padding: 5px;">
-                      <strong>Sign in</strong>
-                    </div>
-                    <div id='alert' class='alert'></div>
-                    <div name="form" class="form-validation">
-                      <div class="text-danger wrapper text-center" >
-            
-                      </div>
+<div class="app app-header-fixed bg-black">
 
-                      <div class="list-group list-group-sm">
+  <div class="container w-xxl w-auto-xs" >
+    <center><img src="img/rsgmlogo.png" width="200px"></center>
+    <center><h3>RSGM USU</h3></center>
+  </div>
 
-                          <div class="list-group-item">
-                              
-                             <select name="account" class="form-control no-border">
-                                <option>Hak Akses</option>
-                                <option>Dokter</option>
-                                <option>Apoteker</option>
-                                <option>Kasir</option>
-                                <option>Administrasi</option>
-                            </select>                            
-                          </div>  
-
-                      </div>
+  <div class="clear">&nbsp;</div>  
+  <div class="clear">&nbsp;</div> 
 
 
-                      <div class="list-group list-group-sm">
-                          
-                        <div class="list-group-item">
-                                                        
-                          <select name="account" class="form-control no-border">
-                            <option>Klinik</option>
-                            <option value="1">IKGP/IKGM</option>
-                            <option value="2">PERIDONSIA</option>
-                            <option value="3">ILMU PENYAKIT MULUT</option>
-                            <option value="4">ILMU KEDOKTERAN GIGI ANAK</option>
-                            <option value="5">KONSERVASI</option>
-                            <option value="6">PROSTODONSIA</option>
-                            <option value="7">ILMU BEDAH MULUT</option>
-                            <option value="8">ORTODONSIA</option>
-                            <option value="9">RADIOLOGI KEDOKTERAN GIGI</option>                            
-                           </select>   
-
-                        </div>  
-                          
-                      </div>
-
-                      <div class="list-group list-group-sm">
-                        
-                        <div class="list-group-item">
-                          <input type="username" id='username' placeholder="Username" class="form-control no-border" required>
-                        </div>
-                        <div class="list-group-item">
-                           <input type="password" id='password' placeholder="Password" class="form-control no-border" required>
-                        </div>
-                      </div>
-                      <button type="submit" id='do_login' class="btn btn-lg btn-primary btn-block">Log in</button>
-                      <button id='do_logout' class='btn btn-success btn-block'> Logout </button>
-                    </div>
-                  </div>
-                  <div class="text-center">
-                    <p>
-                        <small class="text-muted">Code Dojo Development Team<br>&copy; 2017</small>
-                    </p>
-                  </div>
-                 
-            
-                </div>
+<!-- / main header -->
+<div class="wrapper-md" >
+  <!-- stats -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row row-sm text-center">
+        
+        <div class="col-xs-3">
+          <a href class="block panel padder-v item">
+            <div class="h1 text-info font-thin h1">Klinik</div>
+            <span class="text-muted text-xs">Klik Untuk Login</span>
+            <span class="top">
+              <i class="fa fa-hospital-o text-warning m-l-sm m-r-sm"></i>
+            </span>
+          </a>
         </div>
+        <div class="col-xs-3">
+          <a href="admin" class="block panel padder-v bg-primary item">
+            <span class="text-white font-thin h1 block">Admin</span>
+            <span class="text-muted text-xs">Klik Untuk Login</span>
+            <span class="top">
+              <i class="fa fa-hospital-o text-warning m-l-sm m-r-sm"></i>
+            </span>
+          </a>
+        </div>
+        <div class="col-xs-3">
+          <a href class="block panel padder-v bg-info item">
+            <span class="text-white font-thin h1 block">Apotek</span>
+            <span class="text-muted text-xs">Klik Untuk Login</span>
+            <span class="top">
+              <i class="fa fa-hospital-o text-warning m-l-sm m-r-sm"></i>
+            </span>
+          </a>
+        </div>
+        <div class="col-xs-3">
+          <a class="block panel padder-v bg-success item">
+            <div class="text-white font-thin h1 block">Kasir</div>
+            <span class="text-muted text-xs">Klik Untuk Login</span>
+            <span class="top">
+              <i class="fa fa-hospital-o text-warning m-l-sm m-r-sm"></i>
+            </span>
+          </a>
+        </div>
+        
+       
+        
+      </div>
+    </div>
+    
+  </div>
+  <!-- / stats -->
+
+
+  
+
+ 
+</div>
+
+
+</div>
 
 <script src="libs/jquery/jquery/dist/jquery.js"></script>
 <script src="libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
@@ -98,8 +95,6 @@
 <script src="js/ui-nav.js"></script>
 <script src="js/ui-toggle.js"></script>
 <script src="js/ui-client.js"></script>
-<script src="js/ui-client.js"></script>
-<script src="src/sistem_login.js"></script>
 
 </body>
 </html>
