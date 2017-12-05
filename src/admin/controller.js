@@ -335,18 +335,13 @@ app.controller("ObatCtrl", function ($scope,$interval,$http, $route,$timeout, $r
     $scope.shForm   = false;
     $scope.id ="";
 
-<<<<<<< Updated upstream
   
-=======
-   
->>>>>>> Stashed changes
    $http.get("../apidb/obat/list_data.php").then(function (response) {
         $scope.myData = response.data.event;
         console.log(response.data.event);
    });
    
    $scope.showForm = function() {
-<<<<<<< Updated upstream
             $scope.shTable  = false;
             $scope.shForm   = true;
         };
@@ -446,12 +441,6 @@ app.controller("ObatCtrl", function ($scope,$interval,$http, $route,$timeout, $r
 		};
 		
 	
-=======
-    $scope.shTable  = false;
-    $scope.shForm   = true;
-};
-   
->>>>>>> Stashed changes
 
    setTimeout(function(){
     $('#mytableObat').dataTable({
