@@ -1,0 +1,52 @@
+
+<div class="hbox hbox-auto-xs hbox-auto-sm" >
+<!-- main -->
+<div class="col">
+<!-- main header -->
+<div class="bg-light lter b-b wrapper-md">
+  <div class="row">
+    <div class="col-sm-6 col-xs-12">
+      <h1 class="m-n font-thin h3 text-black">Dashboard Klinik</h1>
+      <small class="text-muted">Antrian Pasien</small>
+    </div>
+    <div class="col-sm-6 text-c hidden-xs">
+      
+    </div>
+  </div>
+</div>
+<!-- / main header -->
+<div class="wrapper-md" >
+  
+  <div class="table-responsive" >
+      <table ui-jq="dataTable" class="table  table-striped b-t b-b" id="mytablePasien" >
+      <thead>
+        <tr>
+          <th  style="width:5%">No </th>
+          <th  style="width:10%">ID Kunjungan</th>
+          <th  style="width:15%">Nama Pasien</th>
+          <th  style="width:15%">Nama Pendamping</th>            
+          <th  style="width:15%">Nama Dokter</th>          
+          <th  style="width:25%">Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr ng-repeat="x in myData">
+              <td>{{ $index + 1 }}</td>                      
+              <td>{{ x.id_kunjungan }}</td>
+              <td>{{ x.pasien }}</td>
+              <td>{{ x.dokter_pendamping }}</td>
+              <td>{{ x.dokter }}</td>
+              <td> <a href="#!/data-pasien/{{x.id_pasien}}"><button class='btn btn-success'>Rekam Medis</button></a> <button class='btn btn-primary' >Perawatan</button> </td>
+            </tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+
+ 
+</div>
+</div>
+<!-- / main -->
+
+</div>

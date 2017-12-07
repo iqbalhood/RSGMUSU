@@ -2,23 +2,29 @@
 var app = angular.module('myApp.controller', []);
 
 
-app.controller("HomeCtrl", function ($scope, $cookies, $interval,$http, $route,$timeout, $routeParams, $window) {
-    
-    
-
-});
-
-app.controller("LayananMedisCtrl", function ($scope, $cookies, $interval,$http, $route,$timeout, $routeParams, $window) {
-    $scope.shTable = true;
-   
+app.controller("HomeCtrl", function ($scope,$window) {
+    var klinikCookie = $cookies.get('klinik');
+    $scope.tipeKlinik = klinikCookie;
 
 
-    $http.get("../apidb/tindakan_medis/list_data.php").then(function (response) {
+    $http.get("../apidb/kunjungan/list_data.php?id="+klinikCookie).then(function (response) {
         $scope.myData = response.data.event;
         console.log(response.data.event);
        });
 
-     
+       setTimeout(function(){
+        $('#mytablePasien').dataTable({
+            "bPaginate": true,
+            "bLengthChange": true,
+            "aLengthMenu": [ 30, 50, 100 ],
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "bRetrieve": true,
+            "bAutoWidth": false,
+            "sEmptyTable": "",
+        });
+        }, 4000);
 
 });
 
@@ -157,15 +163,19 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
 
 app.controller("BodyCtrl", function ($scope,$cookies,$window) {
    
-    
+   
+
     var usernameCookie = $cookies.get('username');
     var aksesCookie = $cookies.get('akses');
+    var klinikCookie = $cookies.get('klinik');
 
     console.log("COOKIES GET USRE" + usernameCookie);
     console.log("COOKIES GET AKSES" + aksesCookie);
+    console.log("COOKIES GET Klinik" + klinikCookie);
 
     $scope.user  = usernameCookie;
     $scope.akses = aksesCookie;
+    $scope.akses_klinik = klinikCookie;
 
 
     $scope.logout = function(){   
@@ -503,7 +513,7 @@ app.controller("ObatCtrl", function ($scope,$interval,$http, $route,$timeout, $r
  
  });
 
-app.controller("DataPasienCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
+app.controller("DetailUsersCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
   
         $scope.klinikForm = false;
         $scope.id_pasien = $routeParams.id;

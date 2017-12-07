@@ -32,17 +32,13 @@
           templateUrl : "users.html",
           controller  : "UsersCtrl",
         })
-        .when("/data-pasien/:id", {
+        .when("/detail-users/:id", {
           templateUrl : "data-pasien.html",
-          controller  : "DataPasienCtrl",
+          controller  : "DetailUsersCtrl",
         })
         .when("/rekam-medis", {
           templateUrl : "rekam-medis.html",
           controller  : "RekamMedisCtrl",
-        })
-        .when("/layanan-medis", {
-          templateUrl : "layanan.html",
-          controller  : "LayananMedisCtrl",
         })
         .when("/klinik/:id", {
           templateUrl : "klinik.html",

@@ -1,0 +1,103 @@
+<div class="bg-light lter b-b wrapper-md">
+        <h1 class="m-n font-thin h3"> Daftar Data Dokter</h1>
+      </div>
+      <div class="wrapper-md">
+        <div class="panel panel-default" ng-show="shTable">
+              <div class="panel-heading">
+                Data Dokter
+              <br>
+            </div>
+          <div class="table-responsive" >
+              <table ui-jq="dataTable" class="table  table-striped b-t b-b"   id="mytableDokter">
+              <thead>
+                <tr>
+                  <th  style="width:5%">No </th>            
+                  <th  style="width:25%">Nama Dokter</th>
+                  <th  style="width:25%">Jenis Kelamin</th>            
+                  <th  style="width:10%">Phone</th>            
+                  <th  style="width:25%">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr ng-repeat="x in myData">
+                      <td>{{ $index + 1 }}</td>  
+                      <td>{{ x.nama }}</td>
+                      <td><div ng-if="x.jenis_kelamin == 1">Laki-Laki</div> <div ng-if="x.jenis_kelamin == 2">  Perempuan</div></td>
+                      <td>{{ x.phone }}</td>
+                      <td><button class='btn btn-primary' ng-click="editForm(x.id)" >Edit</button>  <button class='btn btn-warning' ng-click="deleteForm(x.id)" >Delete</button></td>
+                    </tr>
+              </tbody>
+            </table>
+             <button  class='btn btn-black' style="margin:20px;" ng-click="showForm()" > + Add Dokter</button>            
+          </div>
+        </div>
+
+        
+
+        <div class="panel panel-default" ng-show="shForm">
+            <div class="panel-heading font-bold">
+              Form Data Dokter
+            </div>
+            <div class="panel-body">
+
+        <form class="form-horizontal">
+            <input type="hidden" class="form-control" ng-model="id">
+            
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-id-1">No</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" ng-model="no">
+                </div>
+              </div>
+             
+              <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-id-1">Name</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="name">
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-id-1">Nomor HP</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="phone">
+                  </div>
+              </div>
+        
+              <div class="form-group">
+                  <label class="col-sm-2 control-label" >Jenis Kelamin</label>
+                  <div class="col-sm-10">
+                    <select name="account" class="form-control m-b"  ng-model="kelamin">
+                      <option value="1">Laki - Laki</option>
+                      <option value="2">Perempuan</option>
+                    </select>
+                  </div>
+                </div>
+
+              <div class="line line-dashed b-b line-lg pull-in"></div>
+              <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-2">
+                  <button type="submit" ng-click="cancelForm()" class="btn btn-default">Cancel</button>
+                  <button ng-click="submitForm()" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+
+        </form>
+
+        </div>
+    </div>
+
+
+
+        <!-- <datepicker date-format="yyyy-MM-dd" selector="form-control">
+            <div class="input-group">
+                <input class="form-control" placeholder="Choose a date"/>
+                <span class="input-group-addon" style="cursor: pointer">
+                <i class="fa fa-lg fa-calendar"></i>
+                </span>
+            </div>
+        </datepicker> -->
+
+
+
+      </div>
