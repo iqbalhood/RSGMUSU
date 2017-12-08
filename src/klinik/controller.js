@@ -2,23 +2,29 @@
 var app = angular.module('myApp.controller', []);
 
 
-app.controller("HomeCtrl", function ($scope, $cookies, $interval,$http, $route,$timeout, $routeParams, $window) {
-    
-    
-
-});
-
-app.controller("LayananMedisCtrl", function ($scope, $cookies, $interval,$http, $route,$timeout, $routeParams, $window) {
-    $scope.shTable = true;
-   
+app.controller("HomeCtrl", function ($scope,$window) {
+    var klinikCookie = $cookies.get('klinik');
+    $scope.tipeKlinik = klinikCookie;
 
 
-    $http.get("../apidb/tindakan_medis/list_data.php").then(function (response) {
+    $http.get("../apidb/kunjungan/list_data.php?id="+klinikCookie).then(function (response) {
         $scope.myData = response.data.event;
         console.log(response.data.event);
        });
 
-     
+       setTimeout(function(){
+        $('#mytablePasien').dataTable({
+            "bPaginate": true,
+            "bLengthChange": true,
+            "aLengthMenu": [ 30, 50, 100 ],
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "bRetrieve": true,
+            "bAutoWidth": false,
+            "sEmptyTable": "",
+        });
+        }, 4000);
 
 });
 
@@ -157,15 +163,19 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
 
 app.controller("BodyCtrl", function ($scope,$cookies,$window) {
    
-    
+   
+
     var usernameCookie = $cookies.get('username');
     var aksesCookie = $cookies.get('akses');
+    var klinikCookie = $cookies.get('klinik');
 
     console.log("COOKIES GET USRE" + usernameCookie);
     console.log("COOKIES GET AKSES" + aksesCookie);
+    console.log("COOKIES GET Klinik" + klinikCookie);
 
     $scope.user  = usernameCookie;
     $scope.akses = aksesCookie;
+    $scope.akses_klinik = klinikCookie;
 
 
     $scope.logout = function(){   
@@ -503,7 +513,7 @@ app.controller("ObatCtrl", function ($scope,$interval,$http, $route,$timeout, $r
  
  });
 
-app.controller("DataPasienCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
+app.controller("DetailUsersCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
   
         $scope.klinikForm = false;
         $scope.id_pasien = $routeParams.id;
@@ -548,130 +558,3 @@ app.controller("DataPasienCtrl", function ($scope,$interval,$http, $route,$timeo
         };
 
 });
-
-app.controller("LayananCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
-    
-    $scope.shTable  = true;
-    $scope.shForm   = false;
-    $scope.id ="";
-
-  
-   $http.get("../apidb/layanan/list_data.php").then(function (response) {
-        $scope.myData = response.data.event;
-        console.log(response.data.event);
-   });
-   
-   $scope.showForm = function() {
-            $scope.shTable  = false;
-            $scope.shForm   = true;
-        };
-		
-		$scope.editForm = function(x) {
-            $scope.shTable  = false;
-            $scope.shForm   = true;
-			$scope.id = x;
-			$http({
-                method: 'POST',    
-                url: '../apidb/layanan/get.php',
-                data: {newId: x}
-            }).then(function (response) {
-                console.log(response);
-                // on success
-                $scope.people           = response.data;
-                $scope.id               =  $scope.people.id;
-                $scope.name             =  $scope.people.layanan;            
-                $scope.harga          =  $scope.people.harga;
-                
-            }, function (response) {
-                
-                // on error
-                console.log(response.data,response.status);
-                
-            });
-        };
-		
-		$scope.deleteForm = function(x) {
-       // console.log("This Is delete x value "+x);
-        $http({
-            
-            method: 'POST',
-            url:  '../apidb/layanan/delete.php',
-            data: { recordId : x }
-            
-        }).then(function (response) {
-      
-           $route.reload();  
-      
-        }, function (response) {
-            
-            console.log(response.data,response.status);
-            
-        });
-      };
-
-    $scope.cancelForm = function() {
-        
-        $scope.shTable  = true;
-        $scope.shForm   = false;
-        $scope.id               =  "";
-        $scope.name             =  "";
-        $scope.quantity            =  "";
-        $scope.satuan          =  "";
-		$scope.harga          =  "";
-        
-    };
-		
-		$scope.submitForm = function(){
-			if($scope.id){
-            console.log(" ID YANG DIEDIT "+ $scope.id);
-            console.log($scope.id);
-            console.log($scope.name);
-            console.log($scope.harga);
-            $http({
-                
-                 method: 'POST',
-                 url:  '../apidb/layanan/postedit.php',
-                 data: {newId: $scope.id, newName: $scope.name, newHarga: $scope.harga}
-                 
-            }).then(function (response) {
-
-                console.log(response);
-                // on success
-                if(response.status==200){
-                    $route.reload();    
-                }
-            });
-        }else{
-			$http({
-                
-                 method: 'POST',
-                 url:  '../apidb/layanan/post.php',
-                 data: {newName: $scope.name, newHarga: $scope.harga}
-                 
-            }).then(function (response) {
-                // on success
-                if(response.status==200){
-                    $route.reload();    
-                }
-            });
-		}
-		};
-		
-	
-
-   setTimeout(function(){
-    $('#mytableObat').dataTable({
-        "bPaginate": true,
-        "bLengthChange": true,
-        "aLengthMenu": [ 30, 50, 100 ],
-        "bFilter": true,
-        "bSort": true,
-        "bInfo": true,
-        "bRetrieve": true,
-        "bAutoWidth": false,
-        "sEmptyTable": "",
-    });
-    }, 4000);
-   
- 
- });
