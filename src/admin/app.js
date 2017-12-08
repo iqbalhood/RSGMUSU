@@ -16,9 +16,9 @@
             templateUrl : "pasien.html",
             controller  : "PasienCtrl",
         })
-        .when("/apotik", {
-          templateUrl : "apotik.html",
-          controller  : "ApotikCtrl",
+        .when("/layanan", {
+          templateUrl : "layanan.html",
+          controller  : "LayananCtrl",
         })
         .when("/obat", {
           templateUrl : "obat.html",
