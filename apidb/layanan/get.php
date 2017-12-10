@@ -10,7 +10,7 @@ $newId = preg_replace('/[^0-9 ]/','',$request->newId);
 // Get the data
 $people = array();
 
-$sql = "SELECT id, layanan, harga FROM data_layanan WHERE `id` = $newId";
+$sql = "SELECT * FROM data_layanan WHERE `id` = $newId";
 
 if($result = mysqli_query($connect,$sql))
 {
@@ -19,7 +19,11 @@ if($result = mysqli_query($connect,$sql))
   {
       $people['id']             = $row['id'];
       $people['layanan']           = $row['layanan'];        
-	  $people['harga']  = $row['harga']; 	  
+	  $people['bahan']  = $row['bahan']; 
+	  $people['harga_bahan']  = $row['harga_bahan']; 	
+	  $people['harga_koas']  = $row['harga_koas']; 
+	  $people['harga_drg']  = $row['harga_drg']; 
+	  $people['harga_drgsp']  = $row['harga_drgsp']; 
   }
 }
 

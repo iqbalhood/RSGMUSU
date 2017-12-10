@@ -556,7 +556,7 @@ app.controller("LayananCtrl", function ($scope,$interval,$http, $route,$timeout,
     $scope.id ="";
 
   
-   $http.get("../apidb/layanan/list_data.php").then(function (response) {
+   $http.get("../apidb/layanan/list_data.php?id="+$routeParams.id).then(function (response) {
         $scope.myData = response.data.event;
         console.log(response.data.event);
    });
@@ -580,7 +580,11 @@ app.controller("LayananCtrl", function ($scope,$interval,$http, $route,$timeout,
                 $scope.people           = response.data;
                 $scope.id               =  $scope.people.id;
                 $scope.name             =  $scope.people.layanan;            
-                $scope.harga          =  $scope.people.harga;
+                $scope.bahan          =  $scope.people.bahan;
+				$scope.harga_bahan         =  $scope.people.harga_bahan;
+				$scope.harga_koas          =  $scope.people.harga_koas;
+				$scope.harga_drg          =  $scope.people.harga_drg;
+				$scope.harga_drgsp          =  $scope.people.harga_drgsp;
                 
             }, function (response) {
                 
@@ -626,12 +630,12 @@ app.controller("LayananCtrl", function ($scope,$interval,$http, $route,$timeout,
             console.log(" ID YANG DIEDIT "+ $scope.id);
             console.log($scope.id);
             console.log($scope.name);
-            console.log($scope.harga);
+            console.log($scope.harga_bahan);
             $http({
                 
                  method: 'POST',
                  url:  '../apidb/layanan/postedit.php',
-                 data: {newId: $scope.id, newName: $scope.name, newHarga: $scope.harga}
+                 data: {newId: $scope.id, newName: $scope.name,newBahan: $scope.bahan, newHargabahan: $scope.harga_bahan, newHargakoas: $scope.harga_koas, newHargadrg: $scope.harga_drg,newHargadrgsp: $scope.harga_drgsp}
                  
             }).then(function (response) {
 
@@ -645,8 +649,8 @@ app.controller("LayananCtrl", function ($scope,$interval,$http, $route,$timeout,
 			$http({
                 
                  method: 'POST',
-                 url:  '../apidb/layanan/post.php',
-                 data: {newName: $scope.name, newHarga: $scope.harga}
+                 url:  '../apidb/layanan/post.php?id='+$routeParams.id,
+                 data: {newName: $scope.name, newBahan: $scope.bahan, newHargabahan: $scope.harga_bahan, newHargakoas: $scope.harga_koas, newHargadrg: $scope.harga_drg, newHargadrgsp: $scope.harga_drgsp}
                  
             }).then(function (response) {
                 // on success

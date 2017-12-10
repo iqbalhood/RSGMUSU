@@ -5,7 +5,7 @@
 
 $response = array();
 
-
+$id = $_GET['id'];
 // include db connect class
 require_once '../../config/db_connect.php';
 
@@ -13,7 +13,7 @@ require_once '../../config/db_connect.php';
 $db = new DB_CONNECT();
 	 
 	//  get by event
-	$result = mysql_query("SELECT * FROM data_layanan") or die(mysql_error());
+	$result = mysql_query("SELECT * FROM data_layanan where idklinik = $id") or die(mysql_error());
 		// cek
 		if (mysql_num_rows($result) > 0) {
 		    // looping hasil
@@ -24,7 +24,11 @@ $db = new DB_CONNECT();
 			$event 							    = array();			
 			$event["id"] 						= $row["id"];
 			$event["layanan"] 					= $row["layanan"];
-			$event["harga"] 					= $row["harga"];
+			$event["bahan"] 					= $row["bahan"];
+			$event["harga_bahan"] 					= $row["harga_bahan"];
+			$event["harga_koas"] 					= $row["harga_koas"];
+			$event["harga_drg"] 					= $row["harga_drg"];
+			$event["harga_drgsp"] 					= $row["harga_drgsp"];
 			
 			
 			array_push($response["event"], $event);

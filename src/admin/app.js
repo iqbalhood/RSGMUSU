@@ -16,7 +16,7 @@
             templateUrl : "pasien.html",
             controller  : "PasienCtrl",
         })
-        .when("/layanan", {
+        .when("/layanan/:id", {
           templateUrl : "layanan.html",
           controller  : "LayananCtrl",
         })
