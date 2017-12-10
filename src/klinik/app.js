@@ -32,17 +32,21 @@
           templateUrl : "users.html",
           controller  : "UsersCtrl",
         })
-        .when("/detail-users/:id", {
+        .when("/data-pasien/:id", {
           templateUrl : "data-pasien.html",
           controller  : "DetailUsersCtrl",
         })
-        .when("/rekam-medis", {
+        .when("/perawatan/:id", {
+          templateUrl : "perawatan.html",
+          controller  : "PerawatanCtrl",
+        })
+        .when("/rekam-medis/:id", {
           templateUrl : "rekam-medis.html",
           controller  : "RekamMedisCtrl",
         })
-        .when("/klinik/:id", {
-          templateUrl : "klinik.html",
-          controller  : "KlinikCtrl",
+        .when("/perawatan/:id", {
+          templateUrl : "perawatan.html",
+          controller  : "PerawatanCtrl",
         })
         .otherwise({
             templateUrl : "dashboard.html",

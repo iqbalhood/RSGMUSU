@@ -36,7 +36,7 @@
               <td>{{ x.pasien }}</td>
               <td>{{ x.dokter_pendamping }}</td>
               <td>{{ x.dokter }}</td>
-              <td> <a href="#!/data-pasien/{{x.id_pasien}}"><button class='btn btn-success'>Rekam Medis</button></a> <button class='btn btn-primary' >Perawatan</button> </td>
+              <td> <a href="#!/data-pasien/{{x.id_pasien}}"><button class='btn btn-success'>Rekam Medis {{x.id_pasien}}</button></a> <a href="#!/perawatan/{{x.id_pasien}}"><button class='btn btn-primary' >Perawatan</button></a> </td>
             </tr>
       </tbody>
     </table>
