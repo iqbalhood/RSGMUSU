@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 08, 2017 at 06:11 
+-- Generation Time: Dec 11, 2017 at 05:12 
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `data_dokter` (
   `jenis_kelamin` varchar(1) NOT NULL,
   `nomor_hp` varchar(24) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `data_dokter`
@@ -41,7 +41,8 @@ INSERT INTO `data_dokter` (`id`, `nama`, `jenis_kelamin`, `nomor_hp`) VALUES
 (1, 'dr H Boyke Dian Nugraha SpOG MARS', '1', '081285000336'),
 (2, 'Teuku Adifitrian', '1', '081285000335'),
 (3, 'Ryan Thamrin', '1', '082368008555'),
-(4, 'Dr Farah Quiinn', '1', '082368008333');
+(4, 'Dr Farah Quinn', '2', '082368008333'),
+(5, 'Dr Jamin Ginting', '1', '081265558638');
 
 -- --------------------------------------------------------
 
@@ -52,7 +53,12 @@ INSERT INTO `data_dokter` (`id`, `nama`, `jenis_kelamin`, `nomor_hp`) VALUES
 CREATE TABLE IF NOT EXISTS `data_layanan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `layanan` varchar(300) NOT NULL,
-  `harga` int(255) NOT NULL,
+  `bahan` text NOT NULL,
+  `harga_bahan` int(255) NOT NULL,
+  `idklinik` int(11) NOT NULL,
+  `harga_koas` int(11) NOT NULL,
+  `harga_drg` int(11) NOT NULL,
+  `harga_drgsp` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
@@ -60,9 +66,6 @@ CREATE TABLE IF NOT EXISTS `data_layanan` (
 -- Dumping data for table `data_layanan`
 --
 
-INSERT INTO `data_layanan` (`id`, `layanan`, `harga`) VALUES
-(1, 'operasi bibir sumbing', 2000000),
-(2, 'suntik bius', 50000);
 
 -- --------------------------------------------------------
 
@@ -77,16 +80,16 @@ CREATE TABLE IF NOT EXISTS `data_obat` (
   `satuan` varchar(300) NOT NULL,
   `harga` int(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `data_obat`
 --
 
 INSERT INTO `data_obat` (`id`, `nama`, `quantity`, `satuan`, `harga`) VALUES
-(1, 'Paracetamol', '20', 'Papan', 2000000),
+(1, 'Paracetamol', '20', 'Papanw', 2000000),
 (2, 'Panadol', '15', 'Botol 500 Ml', 300000),
-(5, 'bodrex', '2', 'pack', 3000);
+(6, 'liquid', '12', 'sachet', 500000);
 
 -- --------------------------------------------------------
 
@@ -120,21 +123,23 @@ INSERT INTO `data_pasien` (`id`, `nama`, `jenis_kelamin`, `nomor_hp`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `dca_users` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL,
   `akses` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `dca_users`
 --
 
 INSERT INTO `dca_users` (`id`, `username`, `password`, `akses`) VALUES
-(1, 'iqbal', 'password', 'admin'),
-(2, 'joni', 'joni', 'perawat'),
-(3, 'dokter', 'dokter', 'dokter');
+(1, 'iqbal', 'password', '1'),
+(2, 'joni', 'joni', '3'),
+(4, 'wa', 'gue', '5'),
+(5, 'santi', 'santi', '4'),
+(6, 'boyke', 'boyke', '2');
 
 -- --------------------------------------------------------
 
@@ -179,4 +184,5 @@ INSERT INTO `tabel_kunjugan` (`id_kunjungan`, `id_klinik`, `dokter_pendamping`, 
 ('1512363665534', 3, 'CR RONALDO', 1, 18),
 ('1512364739492', 2, 'Eko Surya', 3, 18),
 ('1512382606557', 5, 'Martin halawa', 1, 18),
+('1512965300851', 1, 'Dr Wisnu', 4, 18),
 ('2147483647', 1, 'Wini Putri Lubis', 1, 18);
