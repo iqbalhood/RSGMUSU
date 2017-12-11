@@ -21,7 +21,7 @@
               <tr ng-repeat="x in myData">
                   <td>{{ $index + 1 }}</td>  
                   <td>{{ x.username }}</td>
-                  <td>{{ x.akses }}</td>
+                  <td><div ng-if="x.akses == 1">admin</div> <div ng-if="x.akses == 2">  dokter</div><div ng-if="x.akses == 3">perawat</div><div ng-if="x.akses == 4">apotik</div><div ng-if="x.akses == 5">kasir</div></td>
                   <td><button class='btn btn-primary' ng-click="editForm(x.id)" >Edit</button>  <button class='btn btn-warning' ng-click="deleteForm(x.id)" >Delete</button></td>
                 </tr>
           </tbody>
@@ -98,4 +98,59 @@
 
 
 
-  </div>
+   <div class="panel panel-default" ng-show="shForm">
+            <div class="panel-heading font-bold">
+              Form elements
+            </div>
+            <div class="panel-body">
+
+        <form class="form-horizontal">
+            <input type="hidden" class="form-control" ng-model="id">
+            
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-id-1">No</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" ng-model="no">
+                </div>
+              </div>
+             
+              <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-id-1">Username</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="username">
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-id-1">Pasword</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="password">
+                  </div>
+              </div>
+        
+              <div class="form-group">
+                  <label class="col-sm-2 control-label" >Akses</label>
+                  <div class="col-sm-10">
+                    <select name="account" class="form-control m-b"  ng-model="akses">
+                      <option value="1">admin</option>
+                      <option value="2">dokter</option>
+					  <option value="3">perawat</option>
+					  <option value="4">apotik</option>
+					  <option value="5">kasir</option>
+                    </select>
+                  </div>
+                </div>
+
+              <div class="line line-dashed b-b line-lg pull-in"></div>
+              <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-2">
+                  <button type="submit" ng-click="cancelForm()" class="btn btn-default">Cancel</button>
+                  <button ng-click="submitForm()" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+
+        </form>
+
+        </div>
+    </div>
+	</div>
