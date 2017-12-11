@@ -573,8 +573,28 @@ app.controller("RekamMedisCtrl", function ($scope,$interval,$http, $route,$timeo
 
 app.controller("PerawatanCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
     
-     //   $scope.idPasien = $routeParams.id;
-    
+     
+        $http.get("../apidb/obat/list_data.php").then(function (response) {
+            $scope.dataObat = response.data.event;
+            console.log(response.data.event);
+        });
         
+
+
+
+   setTimeout(function(){
+    $('#mytableObat').dataTable({
+        "bPaginate": true,
+        "bLengthChange": true,
+        "aLengthMenu": [ 30, 50, 100 ],
+        "bFilter": true,
+        "bSort": true,
+        "bInfo": true,
+        "bRetrieve": true,
+        "bAutoWidth": false,
+        "sEmptyTable": "",
+    });
+    }, 4000);
+   
         
 });

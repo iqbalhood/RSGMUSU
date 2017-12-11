@@ -59,7 +59,7 @@
                         <div class="panel-body">
                         <form class="form-horizontal" method="get">
                           <div class="form-group">
-                            <label class="col-sm-12">Alergi Terhadap</label>
+                            <label class="col-sm-12 panel-heading">Alergi Terhadap</label>
                             <div class="col-sm-12">
                                 <textarea class="form-control"></textarea>                      
                             </div>  
@@ -67,22 +67,82 @@
                             <div class="clear">&nbsp;</div>
                             <div class="clear">&nbsp;</div>
 
-                            <label class="col-sm-12">Anamnese</label>
+                            <label class="col-sm-12 panel-heading">Anamnese</label>
                             <div class="col-sm-12">
                                 <textarea class="form-control"></textarea>                      
                             </div>
 
                             <div class="clear">&nbsp;</div>
                             
-                            <label class="col-sm-12">Diagnosa</label>
+                            <label class="col-sm-12 panel-heading">Diagnosa</label>
                             <div class="col-sm-12">
                                 <textarea class="form-control"></textarea>                      
                             </div>
 
-                            <label class="col-sm-12">Tindakan Medis</label>
+                            <label class="col-sm-12 panel-heading">Tindakan Medis</label>
 
-                            
 
+
+                            <label class="col-sm-12">Pengobatan</label>
+                            <div class="col-sm-12">
+                                    <div class="panel panel-default">
+                                      <div class="panel-heading">Stats</div>
+                                      <table class="table table-striped m-b-none">
+                                        <thead>
+                                          <tr>
+                                            <th style="width:60px;" class="text-center">No</th>
+                                            <th>Item</th>                    
+                                            <th style="width:70px;"></th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>                    
+                                            <td>
+                                              <div class="sparkline inline">1</div>
+                                            </td>
+                                            <td>App downloads</td>
+                                            <td class="text-success">
+                                              <i class="fa fa-level-up"></i> 40%
+                                            </td>
+                                          </tr>
+                                          
+                                         
+                                         
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+
+
+
+
+
+
+
+
+                            <label class="col-sm-12">Daftar Obat</label>
+                            <div class="col-sm-12">
+                                <div class="table-responsive" >
+                                        <table ui-jq="dataTable"  class="table  table-striped b-t b-b"   id="mytableObat">
+                                        <thead>
+                                        <tr>
+                                            <th  style="width:5%">No </th>
+                                            <th  style="width:90%">Nama Obat</th>          
+                                            <th  style="width:5%">Aksi</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="x in dataObat">
+                                                <td>{{ $index + 1 }}</td> 
+                                                <td>{{ x.nama }}</td>
+                                                <td>
+                                                    <a href class="active" ui-toggle-class><i class="fa fa-check text-success text-active"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </div>
 
 
                           </div>
