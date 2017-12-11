@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 11, 2017 at 05:12 
+-- Generation Time: Dec 11, 2017 at 05:57 
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -60,12 +60,30 @@ CREATE TABLE IF NOT EXISTS `data_layanan` (
   `harga_drg` int(11) NOT NULL,
   `harga_drgsp` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `data_layanan`
 --
 
+INSERT INTO `data_layanan` (`id`, `layanan`, `bahan`, `harga_bahan`, `idklinik`, `harga_koas`, `harga_drg`, `harga_drgsp`) VALUES
+(3, 'Ekstraksi gigi', 'Povidone Iodine needle syringe anastesi tampon kassa masker handschoen hemostatika', 25000, 7, 10000, 150000, 200000),
+(4, 'Ekstraksi komplikasi', 'Povidone Iodine needle syringe anastesimata bur tulang tampon kassa masker handschoen hemostatika', 25000, 7, 25000, 200000, 300000),
+(5, 'Pemolesan tindakan setelah skeling', 'Masker Spuit  Povidone iodine Gelas Kumur PolibibCelemek pasien obat kumur Strerilization Solution Alkohol Kasa Tissue Saliva Ejector', 10000, 2, 15000, 20000, 20000),
+(6, 'Pemeriksaan dan Penskeleran Rahang Atas  Rahang Bawah', 'Sarung tangan Masker Disclosing  Solution Spuit  Povidone iodine Gelas Kumur', 32000, 2, 30000, 100000, 200000),
+(7, 'Oral Diagnosa Dental Health Education  Oral Profilaxis', 'dacrcpppbrhvas', 0, 4, 40000, 100000, 150000),
+(8, 'ANESTESI TOPIKAL', 'crcpceaibtn', 0, 4, 16000, 0, 0),
+(9, 'GTP Akrilik RARB', 'alginate elastomer wax merah gips dental stone green kerr resin akrilik swapolimerisasi anasir', 1500000, 6, 650000, 3000000, 3500000),
+(10, 'GTSL Akrilik Per rahang', 'alginate elastomer wax merah gips dental stone green kerr shellac resin akrilik anasir klamer', 500000, 6, 350000, 900000, 1000000),
+(11, 'kasus', 'kassa steril spatula masker handscoon celemek dettol antiseptik dettol hand wash', 15000, 3, 25000, 100000, 150000),
+(12, 'kontrol', 'kassa steril spatula masker handscoon celemek dettol antiseptik dettol hand wash', 15000, 3, 10000, 50000, 100000),
+(13, 'Topikal Aplikasi FlourAF RA dan RB', 'none', 0, 1, 25000, 0, 0),
+(14, 'KONSULTASI  DIAGNOSA', 'none', 0, 5, 10000, 30000, 50000),
+(15, 'KONTROLRECALLPOLISH', 'none', 0, 5, 10000, 30000, 50000),
+(16, 'Foto Periapikal', 'none', 0, 9, 15000, 35000, 35000),
+(17, 'Foto Oklusal', 'none', 0, 9, 25000, 40000, 40000),
+(18, 'Pencetakan Fixed', 'alginate aroma gips stone', 500000, 8, 0, 125000, 0),
+(19, 'Perawatan Fungsional', 'kertas tracing gips stone alginate aroma tip suction  saliva ejector', 1000000, 8, 0, 250000, 0);
 
 -- --------------------------------------------------------
 
