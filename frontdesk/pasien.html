@@ -26,7 +26,7 @@
                       <td>{{ x.nama }}</td>
                       <td><div ng-if="x.jenis_kelamin == 1">Laki-Laki</div> <div ng-if="x.jenis_kelamin == 2">  Perempuan</div></td>
                       <td>{{ x.phone }}</td>
-                      <td> <a href="#!/detail-users/{{x.id}}"><button class='btn btn-success'>View</button></a> <button class='btn btn-primary' ng-click="editForm(x.id)" >Edit</button>  <button class='btn btn-warning' ng-click="deleteForm(x.id)" >Delete</button></td>
+                      <td> <a href="#!/data-pasien/{{x.id}}"><button class='btn btn-success'>View</button></a> <button class='btn btn-primary' ng-click="editForm(x.id)" >Edit</button>  <button class='btn btn-warning' ng-click="deleteForm(x.id)" >Delete</button></td>
                     </tr>
               </tbody>
             </table>
