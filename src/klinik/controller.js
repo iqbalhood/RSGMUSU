@@ -573,8 +573,68 @@ app.controller("RekamMedisCtrl", function ($scope,$interval,$http, $route,$timeo
 
 app.controller("PerawatanCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
     
-     //   $scope.idPasien = $routeParams.id;
-    
+     
+        $http.get("../apidb/obat/list_data.php").then(function (response) {
+            $scope.dataObat = response.data.event;
+            console.log(response.data.event);
+        });
+
+
+
+        $scope.FormObat = function(x) {
+            $scope.shTable  = false;
+            $scope.shForm   = true;
+			$scope.id = x;
+			$http({
+                method: 'POST',    
+                url: '../apidb/obat/get.php',
+                data: {newId: x}
+            }).then(function (response) {
+                console.log(response);
+                // on success
+                $scope.people           = response.data;
+                $scope.id               =  $scope.people.id;
+                $scope.name             =  $scope.people.name;
+                $scope.quantity         =  $scope.people.quantity;
+                $scope.satuan           =  $scope.people.satuan;
+                $scope.harga            =  $scope.people.harga;
+                
+            }, function (response) {
+                
+                // on error
+                console.log(response.data,response.status);
+                
+            });
+        };
+
+        $scope.cancelFormObat = function() {
+            
+            $scope.shTable  = true;
+            $scope.shForm   = false;
+            $scope.id               =  "";
+            $scope.name             =  "";
+            $scope.quantity            =  "";
+            $scope.satuan          =  "";
+            $scope.harga          =  "";
+            
+        };
         
+
+
+
+   setTimeout(function(){
+    $('#mytableObat').dataTable({
+        "bPaginate": true,
+        "bLengthChange": true,
+        "aLengthMenu": [ 30, 50, 100 ],
+        "bFilter": true,
+        "bSort": true,
+        "bInfo": true,
+        "bRetrieve": true,
+        "bAutoWidth": false,
+        "sEmptyTable": "",
+    });
+    }, 4000);
+   
         
 });
