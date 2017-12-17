@@ -12,10 +12,10 @@
             templateUrl : "histori.html",
             controller  : "HistoriCtrl",
         })
-        .when("/invoice", {
-          templateUrl : "invoice.html",
-          controller  : "InvoiceCtrl",
-        })
+        .when("/invoice/:id/:idkunjungan", {
+            templateUrl : "invoice.html",
+            controller  : "InvoiceCtrl",
+        })   
         .otherwise({
             templateUrl : "dashboard.html",
             controller  : "HomeCtrl",

@@ -699,7 +699,7 @@ app.controller("PerawatanCtrl", function ($scope,$interval,$http, $route,$timeou
             // on success
             $scope.datakunjungan    = response.data;
             $scope.namadokter       =  $scope.datakunjungan.dokter;
-            $scope.iddokter         =  $scope.datakunjungan.iddokter;
+            $scope.iddokter         =  $scope.datakunjungan.id_dokter;
 
             console.log("Dokternya " + $scope.dokter);
            
@@ -1005,16 +1005,27 @@ app.controller("PerawatanCtrl", function ($scope,$interval,$http, $route,$timeou
                     $route.reload();    
                 }
             });
+           
 
             if($scope.daftarObat.length != 0){
                 for(var i = 0; i < $scope.daftarObat.length; i++){
                    // Memasukkan data obat ke database 
                    var id_obat = $scope.daftarObat[i].mid;
                    var quantity_obat = $scope.daftarObat[i].mid;
+                   var harga_obat = $scope.daftarObat[i].harga;
+                   var satuan_obat = $scope.daftarObat[i].satuan;
+                   var nama_obat = $scope.daftarObat[i].name;
                     $http({
                         method: 'POST',
                         url:  '../apidb/klinik/submit_obat_kunjungan.php',
-                        data: {idKunjungan: $routeParams.idkunjungan, idObat: id_obat, quantityObat: quantity_obat }   
+                        data: { idKunjungan : $routeParams.idkunjungan,
+                                idPasien    : $routeParams.id,
+                                namaPasien  : $scope.namaPasien, 
+                                idObat      : id_obat,
+                                namaObat    : nama_obat ,
+                                hargaObat   : harga_obat, 
+                                satuanObat  : satuan_obat, 
+                                quantityObat: quantity_obat }   
                     }).then(function (response) {
                         // on success
                         if(response.status==200){

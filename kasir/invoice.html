@@ -24,30 +24,36 @@
       </div>
       <div class="well m-t bg-light lt">
         <div class="row">
-          <div class="col-xs-6">
-            <h3>Mohammad Iqbal</h3>
-            <h4>Nomor Kunjungan</h4>
-            <p>DSDC-000-003</p>
-            <h4>Alamat</h4>
-            Jalan Sekolah Pembangunan No.7a Medan<br>
-            Phone: 031-432-678<br>
-            Email: youemail@gmail.com<br>
-            
-          </div>
+            <div class="col-xs-6">
+                <h3>{{nameUser}}</h3>
+                <h4>Nomor Kunjungan</h4>
+                <p>{{idKunjungan}}</p>
+                <h4>Alamat</h4>
+                {{alamat}}<br>
+                Phone: {{phone}}<br>
+                
+              </div>
 
-          <div class="col-xs-6">
-              <h3>Klinik</h3>
-              <p>ABCD</p>
-              <h4>Dokter</h4>
-              Markus Haris Maulana<br>
-              
-            </div>
-
+              <div class="col-xs-6">
+                  <h3>Klinik</h3>
+                    <p ng-if="id_klinik == 1" >IKGP/IKGM</option>
+                    <p ng-if="id_klinik == 2" >PERIDONSIA</p>
+                    <p ng-if="id_klinik == 3" >ILMU PENYAKIT MULUT</p>
+                    <p ng-if="id_klinik == 4" >ILMU KEDOKTERAN GIGI ANAK</p>
+                    <p ng-if="id_klinik == 5" >KONSERVASI</p>
+                    <p ng-if="id_klinik == 6" >PROSTODONSIA</p>
+                    <p ng-if="id_klinik == 7" >ILMU BEDAH MULUT</p>
+                    <p ng-if="id_klinik == 8" >ORTODONSIA</p>
+                    <p ng-if="id_klinik == 9" >RADIOLOGI KEDOKTERAN GIGI</p>
+                  <h4>Dokter</h4>
+                  {{namadokter}}<br>
+                  
+                </div>
         </div>
       </div>
-      <p class="m-t m-b">Invoice date: <strong>dd MM yyyy</strong><br>
+      <p class="m-t m-b">Invoice date: <strong>{{ idKunjungan * 1 |  date:'dd-MMMM-yyyy'}}</strong><br>
         Invoice status: <span class="label bg-danger">Belum Bayar</span><br>
-        Invoice ID: <strong>#9399034</strong>
+        Invoice ID: <strong>#{{idKunjungan}}</strong>
       </p>
       <div class="line"></div>
       <table class="table table-striped bg-white b-a">
@@ -80,21 +86,15 @@
               <tr>
                 <th style="width: 60px">QTY</th>
                 <th>Biaya Farmasi / Obat</th>
-                <th style="width: 140px">UNIT PRICE</th>
-                <th style="width: 90px">TOTAL</th>
+                <th style="width: 100px">UNIT PRICE</th>
+                <th style="width: 150px">TOTAL</th>
               </tr>
             </thead>
-            <tr>
-                <td>1</td>
-                <td>Operasi Gigi</td>
-                <td>Rp 749.00</td>
-                <td>Rp 749.00</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Operasi Gigi</td>
-                <td>Rp 429.00</td>
-                <td>Rp858.00</td>
+              <tr ng-repeat="x in myData">
+                <td>{{x.quantity}}</td>
+                <td>{{x.nama_obat}}</td>
+                <td>{{ x.harga | currency:'Rp':0 }}</td>
+                <td>{{x.quantity * x.harga | currency:'Rp':0}}</td>
               </tr>
               <tr>
                 <td colspan="3" class="text-right"><strong>Subtotal</strong></td>

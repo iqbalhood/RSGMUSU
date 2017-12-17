@@ -16,7 +16,7 @@
           templateUrl : "histori.html",
           controller  : "HistoriCtrl",
         })
-        .when("/invoice", {
+        .when("/invoice/:id/:idkunjungan", {
           templateUrl : "invoice.html",
           controller  : "InvoiceCtrl",
         })      

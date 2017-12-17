@@ -3,7 +3,10 @@ var app = angular.module('myApp.controller', []);
 
 
 app.controller("HomeCtrl", function ($scope,$cookies,$interval,$http, $route,$timeout, $routeParams, $window) {
-   
+    $http.get("../apidb/apotek/list_data_obat.php").then(function (response) {
+        $scope.myData = response.data.event;
+        console.log(response.data.event);
+    });
 
 });
 
@@ -378,5 +381,94 @@ app.controller("HistoriCtrl", function ($scope,$interval,$http, $route,$timeout,
 
 app.controller("InvoiceCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
         
+    console.log("ID PASIEN" + $routeParams.id );
+    console.log("ID KUNJUNGAN" + $routeParams.idkunjungan );
+
+    $scope.idKunjungan = $routeParams.idkunjungan;
+
+    $scope.getTotal =0;
+    
+    //GET DATA PASIEN
+
+      $http({
+        method: 'POST',    
+        url: '../apidb/pasien/get.php',
+        data: {newId: $routeParams.id}
+    }).then(function (response) {
         
+        // on success
+        $scope.people           =  response.data;
+        $scope.id               =  $scope.people.id;
+        $scope.nameUser         =  $scope.people.name;
+        $scope.phone            =  $scope.people.phone;
+        $scope.kelamin          =  $scope.people.jenis_kelamin;
+        $scope.alamat           =  $scope.people.alamat;
+       
+        
+    }, function (response) {
+        
+        // on error
+        console.log(response.data,response.status);
+        
+    });
+
+    //GET DATA KLINIK DAN DOKTER
+    console.log("ID KUNJUNGAN GET"+ $scope.idKunjungan);
+
+    $http({
+        method: 'POST',    
+        url: '../apidb/kunjungan/get.php',
+        data: {newId: $scope.idKunjungan}
+    }).then(function (response) {
+        
+        // on success
+        $scope.datakunjungan    = response.data;
+        $scope.namadokter       =  $scope.datakunjungan.dokter;
+        $scope.iddokter         =  $scope.datakunjungan.id_dokter;
+        $scope.id_klinik        =  $scope.datakunjungan.id_klinik;
+        
+
+        console.log("Dokternya " + $scope.namadokter);
+       
+        
+    }, function (response) {
+        
+        // on error
+        console.log(response.data,response.status);
+        
+    });
+
+
+
+    $http.get("../apidb/apotek/invoice_list_data_obat.php?id="+$scope.idKunjungan).then(function (response) {
+        $scope.myData = response.data.event;
+        console.log(response.data.event);
+        console.log("PANJANG "+$scope.myData.length);
+
+        for(var i = 0; i < $scope.myData.length; i++){
+            console.log(($scope.myData[i].harga * $scope.myData[i].quantity) );
+            // var harga = $scope.myData[i].harga;
+            // var quantity = $scope.myData[i].quantity;
+             $scope.getTotal += ($scope.myData[i].harga * $scope.myData[i].quantity);
+        }
+
+
+    });
+
+
+    // $scope.getTotal = function(){
+    //     console.log("NYOBAIN TOTAL");
+    //     var total = 0;
+    //     for(var i = 0; i < $scope.myData.length; i++){
+    //         var harga = $scope.myData.harga[i];
+    //         var quantity = $scope.myData.quantity[i];
+    //         total += (harga * quantity);
+    //     }
+    //     return total;
+    // }
+
+   
+
+
+
 });

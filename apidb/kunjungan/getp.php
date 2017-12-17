@@ -3,10 +3,7 @@ require '../connect.php';
 
 $connect = connect();
 
-// Add the new data to the database.
-$postdata = file_get_contents("php://input");
-$request  = json_decode($postdata);
-$newId = preg_replace('/[^0-9 ]/','',$request->newId);
+$newId = $_GET['id'];
 // Get the data
 $people = array();
 
@@ -20,8 +17,9 @@ $sql = "SELECT 	tabel_kunjugan.id_kunjungan,
                 FROM tabel_kunjugan
                 INNER JOIN data_dokter ON tabel_kunjugan.id_dokter = data_dokter.id
                 INNER JOIN data_pasien ON tabel_kunjugan.id_pasien = data_pasien.id
-                WHERE tabel_kunjugan.id_kunjungan = $newId
-                ORDER BY tabel_kunjugan.id_kunjungan";
+                WHERE tabel_kunjugan.id_kunjungan = $newId";
+
+                echo $sql;
 
 if($result = mysqli_query($connect,$sql))
 {
