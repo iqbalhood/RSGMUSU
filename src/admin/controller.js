@@ -48,7 +48,7 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
                 
                  method: 'POST',
                  url:  '../apidb/pasien/postedit.php',
-                 data: {newId: $scope.id, newName: $scope.name, newPhone: $scope.phone  , newKelamin: $scope.kelamin}
+                 data: {newId: $scope.id, noRegistrasi: $scope.noreg, tglRegistrasi: $scope.tglreg , newName: $scope.name, tempatLahir: $scope.tptlahir, tanggalLahir: $scope.tgllahir , newKelamin: $scope.kelamin, agama: $scope.agama , alamat: $scope.alamat, rtrw: $scope.rtrw , kelurahan: $scope.kelurahan, kecamatan: $scope.kecamatan, kabupaten: $scope.kabupaten, propinsi: $scope.propinsi, newPhone: $scope.phone, kewarganegaraan: $scope.kewarganegaraan, noKtp: $scope.noktp, pendidikan: $scope.pendidikan , pekerjaan: $scope.pekerjaan, statusPerkawinan: $scope.status_perkawinan , tglPertamamasuk: $scope.tgl_pertama_masuk , caraBayar: $scope.cara_bayar , tujuanKunjunganpertama: $scope.tujuan_kunjungan_pertama, alergi: $scope.alergi , catatan: $scope.catatan}
                  
             }).then(function (response) {
 
@@ -154,10 +154,31 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
         
         $scope.shTable  = true;
         $scope.shForm   = false;
-        $scope.id               =  "";
-        $scope.name             =  "";
-        $scope.phone            =  "";
-        $scope.kelamin          =  "";
+				$scope.id       =  "";
+				$scope.noreg    =  "";
+				$scope.tglreg   =  "";
+                $scope.name     =  "";
+				$scope.tptlahir =  "";
+				$scope.tgllahir             =  "";
+				$scope.kelamin          =  "";
+				$scope.agama            =  "";
+				$scope.alamat            =  "";
+				$scope.rtrw            = "";
+				$scope.kelurahan            =  "";
+				$scope.kecamatan            =  "";
+				$scope.kabupaten             =  "";
+				$scope.propinsi            =  "";
+				$scope.phone            =  "";
+                $scope.kewarganegaraan            =  "";
+				$scope.noktp            =  "";
+				$scope.pendidikan            =  "";
+				$scope.pekerjaan            =  "";
+				$scope.status_perkawinan            =  "";
+				$scope.tgl_pertama_masuk            =  "";
+				$scope.cara_bayar            =  "";
+				$scope.tujuan_kunjungan_pertama            = "";
+				$scope.alergi            = "";
+				$scope.catatan            =  "";
         
     };
 

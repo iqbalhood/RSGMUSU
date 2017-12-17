@@ -16,7 +16,7 @@ if(isset($postdata) && !empty($postdata))
 	$tanggalLahir = preg_replace('/[^0-9 ]/','',$request->tanggalLahir);
 	$newKelamin = preg_replace('/[^0-9 ]/','',$request->newKelamin);
 	$agama = preg_replace('/[^0-9 ]/','',$request->agama);
-	$alamat = preg_replace('/[^a-zA-Z ]/','',$request->alamat);
+	$alamat = preg_replace('/[^a-zA-Z0-9 ]/','',$request->alamat);
 	$rtrw = $request->rtrw;
 	$kelurahan = preg_replace('/[^a-zA-Z ]/','',$request->kelurahan);
 	$kecamatan = preg_replace('/[^a-zA-Z ]/','',$request->kecamatan);

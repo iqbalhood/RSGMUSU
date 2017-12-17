@@ -48,7 +48,7 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
                 
                  method: 'POST',
                  url:  '../apidb/pasien/postedit.php',
-                 data: {newId: $scope.id, newName: $scope.name, newPhone: $scope.phone  , newKelamin: $scope.kelamin}
+                 data: {newId: $scope.id, noRegistrasi: $scope.noreg, tglRegistrasi: $scope.tglreg , newName: $scope.name, tempatLahir: $scope.tptlahir, tanggalLahir: $scope.tgllahir , newKelamin: $scope.kelamin, agama: $scope.agama , alamat: $scope.alamat, rtrw: $scope.rtrw , kelurahan: $scope.kelurahan, kecamatan: $scope.kecamatan, kabupaten: $scope.kabupaten, propinsi: $scope.propinsi, newPhone: $scope.phone, kewarganegaraan: $scope.kewarganegaraan, noKtp: $scope.noktp, pendidikan: $scope.pendidikan , pekerjaan: $scope.pekerjaan, statusPerkawinan: $scope.status_perkawinan , tglPertamamasuk: $scope.tgl_pertama_masuk , caraBayar: $scope.cara_bayar , tujuanKunjunganpertama: $scope.tujuan_kunjungan_pertama, alergi: $scope.alergi , catatan: $scope.catatan}
                  
             }).then(function (response) {
 
@@ -64,7 +64,7 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
                 
                  method: 'POST',
                  url:  '../apidb/pasien/post.php',
-                 data: {newName: $scope.name, newPhone: $scope.phone  , newKelamin: $scope.kelamin}
+                 data: {noRegistrasi: $scope.noreg, tglRegistrasi: $scope.tglreg , newName: $scope.name, tempatLahir: $scope.tptlahir, tanggalLahir: $scope.tgllahir , newKelamin: $scope.kelamin, agama: $scope.agama , alamat: $scope.alamat, rtrw: $scope.rtrw , kelurahan: $scope.kelurahan, kecamatan: $scope.kecamatan, kabupaten: $scope.kabupaten, propinsi: $scope.propinsi, newPhone: $scope.phone, kewarganegaraan: $scope.kewarganegaraan, noKtp: $scope.noktp, pendidikan: $scope.pendidikan , pekerjaan: $scope.pekerjaan, statusPerkawinan: $scope.status_perkawinan , tglPertamamasuk: $scope.tgl_pertama_masuk , caraBayar: $scope.cara_bayar , tujuanKunjunganpertama: $scope.tujuan_kunjungan_pertama, alergi: $scope.alergi , catatan: $scope.catatan }
                  
             }).then(function (response) {
                 // on success
@@ -90,13 +90,35 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
                 url: '../apidb/pasien/get.php',
                 data: {newId: x}
             }).then(function (response) {
-                
+                console.log(response.data);
                 // on success
                 $scope.people           = response.data;
                 $scope.id               =  $scope.people.id;
+				$scope.noreg    =  $scope.people.no_registrasi;
+				$scope.tglreg   =  $scope.people.tgl_registrasi;
                 $scope.name             =  $scope.people.name;
-                $scope.phone            =  $scope.people.phone;
-                $scope.kelamin          =  $scope.people.jenis_kelamin;
+				$scope.tptlahir             =  $scope.people.tempat_lahir;
+				$scope.tgllahir             =  $scope.people.tanggal_lahir;
+				$scope.kelamin          =  $scope.people.jenis_kelamin;
+				$scope.agama            =  $scope.people.agama;
+				$scope.alamat            =  $scope.people.alamat;
+				$scope.rtrw            =  $scope.people.rtrw;
+				$scope.kelurahan            =  $scope.people.kelurahan;
+				$scope.kecamatan            =  $scope.people.kecamatan;
+				$scope.kabupaten             =  $scope.people.kabupaten;
+				$scope.propinsi            =  $scope.people.propinsi;
+				$scope.phone            =  $scope.people.phone;
+                $scope.kewarganegaraan            =  $scope.people.kewarganegaraan;
+				$scope.noktp            =  $scope.people.noktp;
+				$scope.pendidikan            =  $scope.people.pendidikan;
+				$scope.pekerjaan            =  $scope.people.pekerjaan;
+				$scope.status_perkawinan            =  $scope.people.status_perkawinan;
+				$scope.tgl_pertama_masuk            =  $scope.people.tgl_pertama_masuk;
+				$scope.cara_bayar            =  $scope.people.cara_bayar;
+				$scope.tujuan_kunjungan_pertama            =  $scope.people.tujuan_kunjungan_pertama;
+				$scope.alergi            =  $scope.people.alergi;
+				$scope.catatan            =  $scope.people.catatan;
+                
                
                 
             }, function (response) {
@@ -132,10 +154,31 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
         
         $scope.shTable  = true;
         $scope.shForm   = false;
-        $scope.id               =  "";
-        $scope.name             =  "";
-        $scope.phone            =  "";
-        $scope.kelamin          =  "";
+       $scope.id       =  "";
+				$scope.noreg    =  "";
+				$scope.tglreg   =  "";
+                $scope.name     =  "";
+				$scope.tptlahir =  "";
+				$scope.tgllahir             =  "";
+				$scope.kelamin          =  "";
+				$scope.agama            =  "";
+				$scope.alamat            =  "";
+				$scope.rtrw            = "";
+				$scope.kelurahan            =  "";
+				$scope.kecamatan            =  "";
+				$scope.kabupaten             =  "";
+				$scope.propinsi            =  "";
+				$scope.phone            =  "";
+                $scope.kewarganegaraan            =  "";
+				$scope.noktp            =  "";
+				$scope.pendidikan            =  "";
+				$scope.pekerjaan            =  "";
+				$scope.status_perkawinan            =  "";
+				$scope.tgl_pertama_masuk            =  "";
+				$scope.cara_bayar            =  "";
+				$scope.tujuan_kunjungan_pertama            = "";
+				$scope.alergi            = "";
+				$scope.catatan            =  "";
         
     };
 
@@ -484,7 +527,106 @@ app.controller("ObatCtrl", function ($scope,$interval,$http, $route,$timeout, $r
         console.log(response.data.event);
    });
    
-   
+      $scope.showForm = function() {
+            $scope.shTable  = false;
+            $scope.shForm   = true;
+        };
+		
+		$scope.editForm = function(x) {
+            $scope.shTable  = false;
+            $scope.shForm   = true;
+			$scope.id = x;
+			$http({
+                method: 'POST',    
+                url: '../apidb/users/get.php',
+                data: {newId: x}
+            }).then(function (response) {
+                console.log(response);
+                // on success
+                $scope.people           = response.data;
+                $scope.id               =  $scope.people.id;
+                $scope.username             =  $scope.people.username;
+                $scope.password            =  $scope.people.password;
+                $scope.akses          =  $scope.people.akses;
+                
+            }, function (response) {
+                
+                // on error
+                console.log(response.data,response.status);
+                
+            });
+        };
+		
+		$scope.deleteForm = function(x) {
+       // console.log("This Is delete x value "+x);
+        $http({
+            
+            method: 'POST',
+            url:  '../apidb/users/delete.php',
+            data: { recordId : x }
+            
+        }).then(function (response) {
+      
+           $route.reload();  
+      
+        }, function (response) {
+            
+            console.log(response.data,response.status);
+            
+        });
+      };
+		
+		
+	$scope.cancelForm = function() {
+        
+        $scope.shTable  = true;
+        $scope.shForm   = false;
+        $scope.id               =  "";
+        $scope.username             =  "";
+        $scope.password            =  "";
+        $scope.akses          =  "";
+		
+        
+    };
+		
+		$scope.submitForm = function(){
+			if($scope.id){
+            console.log(" ID YANG DIEDIT "+ $scope.id);
+            console.log($scope.id);
+            console.log($scope.name);
+            console.log($scope.password);
+            console.log($scope.akses);
+            $http({
+                
+                 method: 'POST',
+                 url:  '../apidb/users/postedit.php',
+                 data: {newId: $scope.id, newName: $scope.username, newPassword: $scope.password  , newAkses: $scope.akses}
+                 
+            }).then(function (response) {
+
+                console.log(response);
+                // on success
+                if(response.status==200){
+                    $route.reload();    
+                }
+            });
+        }else{
+			$http({
+                
+                 method: 'POST',
+                 url:  '../apidb/users/post.php',
+                 data: {newName: $scope.username, newPassword: $scope.password  , newAkses: $scope.akses}
+                 
+            }).then(function (response) {
+                // on success
+                if(response.status==200){
+                    $route.reload();    
+                }
+            });
+		}
+		};
+		
+	
 
    setTimeout(function(){
     $('#mytableUsers').dataTable({
