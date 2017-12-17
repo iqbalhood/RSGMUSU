@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 11, 2017 at 05:57 
+-- Generation Time: Dec 14, 2017 at 01:24 
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -117,22 +117,47 @@ INSERT INTO `data_obat` (`id`, `nama`, `quantity`, `satuan`, `harga`) VALUES
 
 CREATE TABLE IF NOT EXISTS `data_pasien` (
   `id` int(20) NOT NULL AUTO_INCREMENT,
+  `no_registrasi` varchar(20) NOT NULL,
+  `tgl_registrasi` date NOT NULL,
   `nama` varchar(200) NOT NULL,
+  `tempat_lahir` varchar(20) NOT NULL,
+  `tanggal_lahir` date NOT NULL,
   `jenis_kelamin` varchar(200) NOT NULL,
+  `agama` varchar(20) NOT NULL,
+  `alamat` varchar(200) NOT NULL,
+  `rtrw` varchar(10) NOT NULL,
+  `kelurahan` varchar(20) NOT NULL,
+  `kecamatan` varchar(20) NOT NULL,
+  `kabupaten` varchar(20) NOT NULL,
+  `propinsi` varchar(20) NOT NULL,
   `nomor_hp` varchar(200) NOT NULL,
+  `kewarganegaraan` varchar(20) NOT NULL,
+  `noktp` varchar(50) NOT NULL,
+  `pendidikan` varchar(20) NOT NULL,
+  `pekerjaan` varchar(20) NOT NULL,
+  `status_perkawinan` varchar(10) NOT NULL,
+  `tgl_pertama_masuk` date NOT NULL,
+  `cara_bayar` varchar(20) NOT NULL,
+  `tujuan_kunjungan_pertama` varchar(50) NOT NULL,
+  `alergi` varchar(100) NOT NULL,
+  `catatan` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `data_pasien`
 --
 
-INSERT INTO `data_pasien` (`id`, `nama`, `jenis_kelamin`, `nomor_hp`) VALUES
-(18, 'Markus Horison', '1', '082368008333'),
-(19, 'Dwi Agustini Lubis', '2', '0897737373'),
-(20, 'Dwi Andini', '2', '08973701175'),
-(21, 'Bari Subarjo', '1', '0823680084444'),
-(22, 'Muhammad Akbar Purba', '1', '0812689008999');
+INSERT INTO `data_pasien` (`id`, `no_registrasi`, `tgl_registrasi`, `nama`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `agama`, `alamat`, `rtrw`, `kelurahan`, `kecamatan`, `kabupaten`, `propinsi`, `nomor_hp`, `kewarganegaraan`, `noktp`, `pendidikan`, `pekerjaan`, `status_perkawinan`, `tgl_pertama_masuk`, `cara_bayar`, `tujuan_kunjungan_pertama`, `alergi`, `catatan`) VALUES
+(1, '', '0000-00-00', '$newName', '', '0000-00-00', '$newKelamin', '', '', '', '', '', '', '', '$newPhone', '', '', '', '', '', '0000-00-00', '', '', '', ''),
+(2, '', '0000-00-00', '$newName', '', '0000-00-00', '$newKelamin', '', '', '', '', '', '', '', '$newPhone', '', '', '', '', '', '0000-00-00', '', '', '', ''),
+(3, '', '0000-00-00', '$newName', '', '0000-00-00', '$newKelamin', '', '', '', '', '', '', '', '$newPhone', '', '', '', '', '', '0000-00-00', '', '', '', ''),
+(4, '', '0000-00-00', '$newName', '', '0000-00-00', '$newKelamin', '', '', '', '', '', '', '', '$newPhone', '', '', '', '', '', '0000-00-00', '', '', '', ''),
+(5, '', '0000-00-00', '$newName', '', '0000-00-00', '$newKelamin', '', '', '', '', '', '', '', '$newPhone', '', '', '', '', '', '0000-00-00', '', '', '', ''),
+(6, '', '0000-00-00', 'fahrul', '', '0000-00-00', 'Pria', '', '', '', '', '', '', '', '0812', '', '', '', '', '', '0000-00-00', '', '', '', ''),
+(7, '111', '2017-01-01', 'fahrul', 'medan', '2017-01-01', '1', '', 'jl ahmad dahlan no ', '', 'buntu', 't morawa', 'deli serdang', 'sumatera utara', '081112341234', 'wni', '11207865121', 's', 'developer', 'menikah', '2017-01-01', '', '', 'obat nyamuk', 'panjang'),
+(8, '1212', '2017-01-01', 'gondo', 'medan', '2017-01-01', '2', '', 'medan', '', 'medan', 'medan', 'medan', 'sumut', '08112123121', 'indonesia', '11201212912', 'S', 'mahasiswa', 'kawin', '2017-01-01', '', '', 'cicak', 'y'),
+(9, '1234', '2017-01-01', 'iqbal', 'tebing tinggi', '2017-01-01', '1', '1', 'jl mongonsidi no ', '1', 'anggrung', 'polonia', 'medan', 'sumatera utara', '081112345678', 'indonesia', '112934762329211', 'D3', 'developer', 'belum nika', '2017-01-01', '1', '9', 'tepung', 'coba');
 
 -- --------------------------------------------------------
 
@@ -169,12 +194,14 @@ CREATE TABLE IF NOT EXISTS `statistik` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nama` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `statistik`
 --
 
+INSERT INTO `statistik` (`id`, `nama`) VALUES
+(1, 'fdsafdsf');
 
 -- --------------------------------------------------------
 

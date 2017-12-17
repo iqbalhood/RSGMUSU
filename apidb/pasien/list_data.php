@@ -23,6 +23,7 @@ $db = new DB_CONNECT();
 	  while ($row = mysql_fetch_array($result)) {
 			$event 							    = array();			
 			$event["id"] 						= $row["id"];
+			$event["no_registrasi"] 			= $row["no_registrasi"];
 			$event["nama"] 					    = $row["nama"];
 			$event["jenis_kelamin"] 			= $row["jenis_kelamin"];
 			$event["phone"] 					= $row["nomor_hp"];
