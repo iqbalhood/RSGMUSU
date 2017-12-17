@@ -11,34 +11,41 @@
                      
                      
                             <a href="" class="thumb-sm m-r">
-                              <img src="../img/a1.jpg" class="r r-2x">
-                            </a>
-                            <a href="">Mohammad Iqbal</a>
-                            <div class="clear">&nbsp;</div>
-                            <div class="">
-                                <span class="pull-right text-info">23 Years Old</span>
-                                <span>Age</span>
-                            </div>
-                            <div class="clear">&nbsp;</div>                        
-                            <div class="">
-                                <span class="pull-right text-info">Male</span>
-                                <span>Gender</span>
-                            </div>
-                            <div class="clear">&nbsp;</div>                        
-                            <div class="">
-                                <span class="pull-right text-info">164 cm</span>
-                                <span>Height</span>
-                            </div>
-                            <div class="clear">&nbsp;</div>                        
-                            <div class="">
-                                <span class="pull-right text-info">50 Kg</span>
-                                <span>Weight</span>
-                            </div>
-                            <div class="clear">&nbsp;</div>                        
-                            <div class="">
-                                <span class="pull-right text-info">B</span>
-                                <span>Blood Type</span>
-                            </div>
+                                    <img src="../img/a1.jpg" class="r r-2x" ng-if="kelamin == 1">
+                                    <img src="../img/a3.jpg" class="r r-2x" ng-if="kelamin == 2">
+                                </a>
+                                <a href="">{{namaPasien}}</a>
+                                <div class="clear">&nbsp;</div>
+                                <div class="">
+                                    <span class="pull-right text-info">{{phone}}</span>
+                                    <span>Phone</span>
+                                </div>
+                                <div class="clear">&nbsp;</div>  
+                                <div class="">
+                                    <span class="pull-right text-info">23 Years Old</span>
+                                    <span>Age</span>
+                                </div>
+                                <div class="clear">&nbsp;</div>                        
+                                <div class="">
+                                    <span class="pull-right text-info" ng-if="kelamin == 1">Male</span>
+                                    <span class="pull-right text-info" ng-if="kelamin == 2">Female</span>
+                                    <span>Gender</span>
+                                </div>
+                                <div class="clear">&nbsp;</div>                        
+                                <div class="">
+                                    <span class="pull-right text-info">164 cm</span>
+                                    <span>Height</span>
+                                </div>
+                                <div class="clear">&nbsp;</div>                        
+                                <div class="">
+                                    <span class="pull-right text-info">50 Kg</span>
+                                    <span>Weight</span>
+                                </div>
+                                <div class="clear">&nbsp;</div>                        
+                                <div class="">
+                                    <span class="pull-right text-info">B</span>
+                                    <span>Blood Type</span>
+                                </div>
     
                      
                     </div>
@@ -71,49 +78,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>                    
-                            <td>
-                                12 Desember 2017
-                            </td>
-                            <td>dr. H. Boyke Dian Nugraha, SpOG </td>
-                            <td class="text-success">
-                                <a href="#!/rekam-medis/{{id_pasien}}"></q> <button class="btn m-b-xs btn-sm btn-success btn-addon">
-                                 <i class="icon-size-fullscreen icon pull-right"></i>View Data</button></a>
-                             </td>
-                            </tr>
-                            <tr>                    
-                                <td>
-                                12 Desember 2017
-                                </td>
-                                <td>dr. H. Boyke Dian Nugraha, SpOG </td>
+                            <tr ng-repeat="a in rekamMedisPasien">
+                                <td>{{a.id_kunjungan * 1 |  date:'dd-MMMM-yyyy'}}</td>
+                                <td>{{a.nama_dokter}}</td>
                                 <td class="text-success">
-                                    <a href="#!/rekam-medis"></q> <button class="btn m-b-xs btn-sm btn-success btn-addon">
-                                     <i class="icon-size-fullscreen icon pull-right"></i>View Data</button></a>
-                                 </td>
-                            </tr>
-    
-                            <tr>                    
-                                <td>
-                                12 Desember 2017
+                                        <a href="#!/rekam-medis/{{id}}/{{a.id_kunjungan}}"></q> <button class="btn m-b-xs btn-sm btn-success btn-addon">
+                                        <i class="icon-size-fullscreen icon pull-right"></i>View Data</button></a>
                                 </td>
-                                <td>dr. H. Boyke Dian Nugraha, SpOG </td>
-                                <td class="text-success">
-                                    <a href="#!/rekam-medis"></q> <button class="btn m-b-xs btn-sm btn-success btn-addon">
-                                     <i class="icon-size-fullscreen icon pull-right"></i>View Data</button></a>
-                                 </td>
-                            </tr>
-    
-                            <tr>                    
-                                <td>
-                                12 Desember 2017
-                                </td>
-                                <td>dr. H. Boyke Dian Nugraha, SpOG </td>
-                                <td class="text-success">
-                                   <a href="#!/rekam-medis"></q> <button class="btn m-b-xs btn-sm btn-success btn-addon">
-                                    <i class="icon-size-fullscreen icon pull-right"></i>View Data</button></a>
-                                </td>
-                            </tr>
-                        
+                            </tr>                        
                         </tbody>
                         </table>
                     </div>

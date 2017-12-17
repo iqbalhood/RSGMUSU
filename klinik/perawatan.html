@@ -66,9 +66,9 @@
                         <div class="panel-body">
                         <form class="form-horizontal" method="get">
                           <div class="form-group">
-                            <label class="col-sm-12 panel-heading">Alergi Terhadap</label>
+                            <label class="col-sm-12 panel-heading">Dokter Penanggung Jawab</label>
                             <div class="col-sm-12">
-                                <textarea class="form-control"></textarea>                      
+                               {{namadokter}}                    
                             </div>  
                             <br />
                             <div class="clear">&nbsp;</div>
@@ -76,17 +76,15 @@
 
                             <label class="col-sm-12 panel-heading">Anamnese</label>
                             <div class="col-sm-12">
-                                <textarea class="form-control"></textarea>                      
+                                <textarea class="form-control" ng-model="amnese"></textarea>                      
                             </div>
 
                             <div class="clear">&nbsp;</div>
                             
                             <label class="col-sm-12 panel-heading">Diagnosa</label>
                             <div class="col-sm-12">
-                                <textarea class="form-control"></textarea>                      
+                                <textarea class="form-control" ng-model="diagnosa"></textarea>                      
                             </div>
-
-                          
 
                             <label class="col-sm-12 panel-heading">Pemeriksaan Gigi</label>
                             <div class="col-sm-12">

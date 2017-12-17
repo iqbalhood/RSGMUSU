@@ -532,7 +532,7 @@ app.controller("DataPasienCtrl", function ($scope,$interval,$http, $route,$timeo
             // on success
             $scope.people           = response.data;
             $scope.id               =  $scope.people.id;
-            $scope.name             =  $scope.people.name;
+            $scope.namaPasien       =  $scope.people.name;
             $scope.phone            =  $scope.people.phone;
             $scope.kelamin          =  $scope.people.jenis_kelamin;
            
@@ -542,6 +542,12 @@ app.controller("DataPasienCtrl", function ($scope,$interval,$http, $route,$timeo
             // on error
             console.log(response.data,response.status);
             
+        });
+
+         
+        $http.get("../apidb/klinik/list_rekam_medis.php").then(function (response) {
+            $scope.rekamMedisPasien = response.data.event;
+            console.log($scope.rekamMedisPasien);
         });
 
        
@@ -587,6 +593,8 @@ app.controller("RekamMedisCtrl", function ($scope,$interval,$http, $route,$timeo
 
     $scope.idPasien = $routeParams.id;
 
+    //GET DATA PASIEN
+
     $http({
         method: 'POST',    
         url: '../apidb/pasien/get.php',
@@ -594,7 +602,7 @@ app.controller("RekamMedisCtrl", function ($scope,$interval,$http, $route,$timeo
     }).then(function (response) {
         
         // on success
-        $scope.people           = response.data;
+        $scope.people           =  response.data;
         $scope.id               =  $scope.people.id;
         $scope.name             =  $scope.people.name;
         $scope.phone            =  $scope.people.phone;
@@ -607,6 +615,32 @@ app.controller("RekamMedisCtrl", function ($scope,$interval,$http, $route,$timeo
         console.log(response.data,response.status);
         
     });
+
+
+    //GET DATA REKAM MEDIS 
+
+    $http({
+        method: 'POST',    
+        url: '../apidb/klinik/get_rekam_medis.php',
+        data: {newId: $routeParams.idkunjungan}
+    }).then(function (response) {
+        
+        // on success
+
+        $scope.rm           =  response.data;
+        $scope.namaDokter   =  $scope.rm.nama_dokter;
+        $scope.amnese       =  $scope.rm.amnese;
+        $scope.diagnosa     =  $scope.rm.diagnosa;
+        
+    }, function (response) {
+        
+        // on error
+        console.log(response.data,response.status);
+        
+    });
+
+
+
 
 
     
@@ -645,6 +679,29 @@ app.controller("PerawatanCtrl", function ($scope,$interval,$http, $route,$timeou
             $scope.namaPasien       =  $scope.people.name;
             $scope.phone            =  $scope.people.phone;
             $scope.kelamin          =  $scope.people.jenis_kelamin;
+           
+            
+        }, function (response) {
+            
+            // on error
+            console.log(response.data,response.status);
+            
+        });
+
+
+
+        $http({
+            method: 'POST',    
+            url: '../apidb/kunjungan/get.php',
+            data: {newId: $routeParams.idkunjungan}
+        }).then(function (response) {
+            
+            // on success
+            $scope.datakunjungan    = response.data;
+            $scope.namadokter       =  $scope.datakunjungan.dokter;
+            $scope.iddokter         =  $scope.datakunjungan.iddokter;
+
+            console.log("Dokternya " + $scope.dokter);
            
             
         }, function (response) {
@@ -937,34 +994,36 @@ app.controller("PerawatanCtrl", function ($scope,$interval,$http, $route,$timeou
 
         
         $scope.simpanData = function(){
-            console.log($scope.daftarObat);
+
+            $http({
+                method: 'POST',
+                url:  '../apidb/klinik/submit_rekam_medis.php',
+                data: {idKunjungan: $routeParams.idkunjungan, idPasien: $routeParams.id, idDokter: $scope.iddokter, namaDokter: $scope.namadokter, amnese: $scope.amnese, diagnosa: $scope.diagnosa }
+            }).then(function (response) {
+                // on success
+                if(response.status==200){
+                    $route.reload();    
+                }
+            });
+
             if($scope.daftarObat.length != 0){
-
                 for(var i = 0; i < $scope.daftarObat.length; i++){
-
-                  // Memasukkan data obat ke database 
-
+                   // Memasukkan data obat ke database 
                    var id_obat = $scope.daftarObat[i].mid;
                    var quantity_obat = $scope.daftarObat[i].mid;
-
                     $http({
-                        
                         method: 'POST',
                         url:  '../apidb/klinik/submit_obat_kunjungan.php',
-                        data: {idKunjungan: $routeParams.idkunjungan, idObat: id_obat, quantityObat: quantity_obat }
-
-                        
-                        
+                        data: {idKunjungan: $routeParams.idkunjungan, idObat: id_obat, quantityObat: quantity_obat }   
                     }).then(function (response) {
                         // on success
                         if(response.status==200){
                             $route.reload();    
                         }
                     });
-
-
                 }
             }
+
         };
 
     setTimeout(function(){

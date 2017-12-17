@@ -40,7 +40,7 @@
           templateUrl : "perawatan.html",
           controller  : "PerawatanCtrl",
         })
-        .when("/rekam-medis/:id", {
+        .when("/rekam-medis/:id/:idkunjungan", {
           templateUrl : "rekam-medis.html",
           controller  : "RekamMedisCtrl",
         })
