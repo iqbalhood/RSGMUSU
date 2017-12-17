@@ -34,7 +34,7 @@
         })
         .when("/data-pasien/:id", {
           templateUrl : "data-pasien.html",
-          controller  : "DetailUsersCtrl",
+          controller  : "DataPasienCtrl",
         })
         .when("/perawatan/:id", {
           templateUrl : "perawatan.html",
@@ -44,7 +44,7 @@
           templateUrl : "rekam-medis.html",
           controller  : "RekamMedisCtrl",
         })
-        .when("/perawatan/:id", {
+        .when("/perawatan/:id/:idkunjungan", {
           templateUrl : "perawatan.html",
           controller  : "PerawatanCtrl",
         })
