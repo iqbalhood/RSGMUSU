@@ -22,6 +22,7 @@ app.controller("InvoiceCtrl", function ($scope,$cookies,$interval,$http, $route,
     $scope.idKunjungan = $routeParams.idkunjungan;
 
     $scope.getTotal =0;
+    $scope.getTotalLayanan =0;
     
     //GET DATA PASIEN
 
@@ -85,6 +86,20 @@ app.controller("InvoiceCtrl", function ($scope,$cookies,$interval,$http, $route,
             // var harga = $scope.myData[i].harga;
             // var quantity = $scope.myData[i].quantity;
              $scope.getTotal += ($scope.myData[i].harga * $scope.myData[i].quantity);
+        }
+
+
+    });
+
+
+    $http.get("../apidb/klinik/list_data_layanan_no.php?id="+$scope.idKunjungan).then(function (response) {
+        $scope.myDataLayanan = response.data.event;
+        console.log(response.data.event);
+        // console.log("PANJANG "+$scope.myData.length);
+
+        for(var i = 0; i < $scope.myDataLayanan.length; i++){
+           
+             $scope.getTotalLayanan += ( ($scope.myDataLayanan[i].harga_bahan * 1) + ($scope.myDataLayanan[i].harga_layanan * 1));
         }
 
 

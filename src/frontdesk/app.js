@@ -36,7 +36,7 @@
           templateUrl : "data-pasien.html",
           controller  : "DataPasienCtrl",
         })
-        .when("/rekam-medis", {
+        .when("/rekam-medis/:id/:idkunjungan", {
           templateUrl : "rekam-medis.html",
           controller  : "RekamMedisCtrl",
         })

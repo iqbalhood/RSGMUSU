@@ -59,28 +59,23 @@
       <table class="table table-striped bg-white b-a">
         <thead>
           <tr>
-            <th style="width: 60px">QTY</th>
-            <th>TINDAKAN MEDIS</th>
-            <th style="width: 90px">UNIT PRICE</th>
+            <th style="width: 60px">No.</th>
+            <th>Biaya Tindakan Medis</th>
+            <th style="width: 240px"><center>HARGA BAHAN | HARGA LAYANAN</center></th>
             <th style="width: 140px">TOTAL</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Operasi Gigi</td>
-            <td>Rp 749.00</td>
-            <td>Rp 749.00</td>
+          <tr ng-repeat="w in myDataLayanan">
+            <td>{{$index + 1}}</td>
+            <td>{{w.nama_layanan}}</td>
+            <td><center>{{w.harga_bahan | currency:'Rp':0}} | {{w.harga_layanan  | currency:'Rp':0 }}</center></td>
+            <td>{{ ((w.harga_bahan * 1 ) + (w.harga_layanan * 1) ) | currency:'Rp':0 }}</td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>Operasi Gigi</td>
-            <td>Rp 429.00</td>
-            <td>Rp858.00</td>
-          </tr>
+         
           <tr>
             <td colspan="3" class="text-right"><strong>Subtotal</strong></td>
-            <td>Rp 1607.00</td>
+            <td>{{ getTotalLayanan | currency:'Rp':0  }}</td>
           </tr>
           <thead>
               <tr>
@@ -102,7 +97,7 @@
               </tr>
           <tr>
             <td colspan="3" class="text-right no-border"><strong>Total</strong></td>
-            <td><strong>Rp 1607.00</strong></td>
+            <td><strong>{{ (getTotal * 1 + getTotalLayanan * 1) | currency:'Rp':0  }}</strong></td>
           </tr>
         </tbody>
       </table>              

@@ -4,7 +4,10 @@ var app = angular.module('myApp.controller', []);
 
 app.controller("HomeCtrl", function ($scope, $cookies, $interval,$http, $route,$timeout, $routeParams, $window) {
     
-    
+    $http.get("../apidb/antrian/list_data.php").then(function (response) {
+        $scope.myData = response.data.event;
+        console.log(response.data.event);
+    });  
 
 });
 
@@ -655,11 +658,33 @@ app.controller("DataPasienCtrl", function ($scope,$interval,$http, $route,$timeo
 
         $scope.id_kunjungan = n;
 
-       
+        $http({
+            method: 'POST',    
+            url: '../apidb/pasien/get.php',
+            data: {newId: $routeParams.id}
+        }).then(function (response) {
+            
+            // on success
+            $scope.people           = response.data;
+            $scope.id               =  $scope.people.id;
+            $scope.namaPasien       =  $scope.people.name;
+            $scope.phone            =  $scope.people.phone;
+            $scope.kelamin          =  $scope.people.jenis_kelamin;
+           
+            
+        }, function (response) {
+            
+            // on error
+            console.log(response.data,response.status);
+            
+        });
 
-    
+         
+        $http.get("../apidb/klinik/list_rekam_medis.php").then(function (response) {
+            $scope.rekamMedisPasien = response.data.event;
+            console.log($scope.rekamMedisPasien);
+        });
 
-         // $http.get("config/daftar_pasien.php").then(function (response) {
         $http.get("../apidb/dokter/list_data.php").then(function (response) {
             $scope.dataDokter = response.data.event;
             console.log(response.data.event);
@@ -687,7 +712,8 @@ app.controller("DataPasienCtrl", function ($scope,$interval,$http, $route,$timeo
                     $route.reload();    
                 }
             });
-        };
+        };       
+
 
 });
 

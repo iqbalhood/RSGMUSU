@@ -550,10 +550,6 @@ app.controller("DataPasienCtrl", function ($scope,$interval,$http, $route,$timeo
             console.log($scope.rekamMedisPasien);
         });
 
-       
-
-    
-
          // $http.get("config/daftar_pasien.php").then(function (response) {
         $http.get("../apidb/dokter/list_data.php").then(function (response) {
             $scope.dataDokter = response.data.event;
@@ -648,7 +644,7 @@ app.controller("RekamMedisCtrl", function ($scope,$interval,$http, $route,$timeo
 });
 
 
-app.controller("PerawatanCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
+app.controller("PerawatanCtrl", function ($scope, $location, $interval,$http, $route,$timeout, $routeParams, $window) {
     
         $scope.daftarObat       = [];
         $scope.daftarLayanan    = [];
@@ -995,45 +991,77 @@ app.controller("PerawatanCtrl", function ($scope,$interval,$http, $route,$timeou
         
         $scope.simpanData = function(){
 
-            $http({
-                method: 'POST',
-                url:  '../apidb/klinik/submit_rekam_medis.php',
-                data: {idKunjungan: $routeParams.idkunjungan, idPasien: $routeParams.id, idDokter: $scope.iddokter, namaDokter: $scope.namadokter, amnese: $scope.amnese, diagnosa: $scope.diagnosa }
-            }).then(function (response) {
-                // on success
-                if(response.status==200){
-                    $route.reload();    
-                }
-            });
+            // $http({
+            //     method: 'POST',
+            //     url:  '../apidb/klinik/submit_rekam_medis.php',
+            //     data: {idKunjungan: $routeParams.idkunjungan, idPasien: $routeParams.id, idDokter: $scope.iddokter, namaDokter: $scope.namadokter, amnese: $scope.amnese, diagnosa: $scope.diagnosa }
+            // }).then(function (response) {
+            //     // on success
+            //     if(response.status==200){
+            //           
+            //     }
+            // });
            
 
-            if($scope.daftarObat.length != 0){
-                for(var i = 0; i < $scope.daftarObat.length; i++){
+            // if($scope.daftarObat.length != 0){
+            //     for(var i = 0; i < $scope.daftarObat.length; i++){
+            //        // Memasukkan data obat ke database 
+            //        var id_obat = $scope.daftarObat[i].mid;
+            //        var quantity_obat = $scope.daftarObat[i].mid;
+            //        var harga_obat = $scope.daftarObat[i].harga;
+            //        var satuan_obat = $scope.daftarObat[i].satuan;
+            //        var nama_obat = $scope.daftarObat[i].name;
+            //         $http({
+            //             method: 'POST',
+            //             url:  '../apidb/klinik/submit_obat_kunjungan.php',
+            //             data: { idKunjungan : $routeParams.idkunjungan,
+            //                     idPasien    : $routeParams.id,
+            //                     namaPasien  : $scope.namaPasien, 
+            //                     idObat      : id_obat,
+            //                     namaObat    : nama_obat ,
+            //                     hargaObat   : harga_obat, 
+            //                     satuanObat  : satuan_obat, 
+            //                     quantityObat: quantity_obat }   
+            //         }).then(function (response) {
+            //             // on success
+            //             if(response.status==200){
+            //                   
+            //             }
+            //         });
+            //     }
+            // }
+
+
+            if($scope.daftarLayanan.length != 0){
+                for(var i = 0; i < $scope.daftarLayanan.length; i++){
                    // Memasukkan data obat ke database 
-                   var id_obat = $scope.daftarObat[i].mid;
-                   var quantity_obat = $scope.daftarObat[i].mid;
-                   var harga_obat = $scope.daftarObat[i].harga;
-                   var satuan_obat = $scope.daftarObat[i].satuan;
-                   var nama_obat = $scope.daftarObat[i].name;
+            
+            //var obj = { name: $scope.nameLayanan, harga: $scope.harga_bahan , jasa : $scope.jasa  };
+                   var harga_bahan = $scope.daftarLayanan[i].harga;
+                   var harga_layanan = $scope.daftarLayanan[i].jasa;
+                   var nama_layanan = $scope.daftarLayanan[i].name;
                     $http({
                         method: 'POST',
-                        url:  '../apidb/klinik/submit_obat_kunjungan.php',
-                        data: { idKunjungan : $routeParams.idkunjungan,
-                                idPasien    : $routeParams.id,
-                                namaPasien  : $scope.namaPasien, 
-                                idObat      : id_obat,
-                                namaObat    : nama_obat ,
-                                hargaObat   : harga_obat, 
-                                satuanObat  : satuan_obat, 
-                                quantityObat: quantity_obat }   
+                        url:  '../apidb/klinik/submit_layanan_kunjungan.php',
+                        data: { idKunjungan   : $routeParams.idkunjungan,
+                                idPasien      : $routeParams.id,
+                                namaPasien    : $scope.namaPasien, 
+                                namaLayanan   : nama_layanan,
+                                hargaLayanan  : harga_layanan, 
+                                hargaBahan    : harga_bahan }   
                     }).then(function (response) {
                         // on success
                         if(response.status==200){
-                            $route.reload();    
+                            console.log("RESPON");  
+                           console.log(response);    
                         }
                     });
                 }
             }
+
+
+            //$location.path("/home");
+
 
         };
 
