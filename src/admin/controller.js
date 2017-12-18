@@ -4,7 +4,10 @@ var app = angular.module('myApp.controller', []);
 
 app.controller("HomeCtrl", function ($scope, $cookies, $interval,$http, $route,$timeout, $routeParams, $window) {
     
-    
+    $http.get("../apidb/antrian/list_data.php").then(function (response) {
+        $scope.myData = response.data.event;
+        console.log(response.data.event);
+    });  
 
 });
 
