@@ -18,8 +18,8 @@
           </p>
         </div>
         <div class="col-xs-6 text-right">
-          <p class="h4">#9048392</p>
-          <h5>29th Mar 2013</h5>           
+          <p class="h4">#{{idKunjungan}}</p>
+          <h5>{{ idKunjungan * 1 |  date:'dd-MMMM-yyyy'}}</h5>           
         </div>
       </div>
       <div class="well m-t bg-light lt">
@@ -98,7 +98,7 @@
               </tr>
               <tr>
                 <td colspan="3" class="text-right"><strong>Subtotal</strong></td>
-                <td>Rp 1607.00</td>
+                <td>{{ getTotal | currency:'Rp':0  }}</td>
               </tr>
           <tr>
             <td colspan="3" class="text-right no-border"><strong>Total</strong></td>

@@ -20,50 +20,25 @@
   <div class="table-responsive" >
       <table ui-jq="dataTable" class="table  table-striped b-t b-b" id="mytablePasien" >
       <thead>
-        <tr>
-          <th  style="width:5%">No </th>
-          <th  style="width:15%">ID Kunjungan</th>
-          <th  style="width:15%">Nama Pasien</th>
-          <th  style="width:15%">Nama Pendamping</th>            
-          <th  style="width:15%">Nama Dokter</th>          
-          <th  style="width:5%">Aksi</th>
-        </tr>
-      </thead>
-      <tbody>
           <tr>
-            <td  style="width:5%">1 </td>
-            <td  style="width:10%">ID Kunjungan</td>
-            <td  style="width:15%">Nama Pasien</td>
-            <td  style="width:15%">Nama Pendamping</td>            
-            <td  style="width:15%">Nama Dokter</td>          
-            <td  style="width:25%">
-              <a href="#!/invoice"><button class='btn btn-success'>Lihat Tagihan</button></a>
-            </td>              
-          </tr>
-
-          <tr>
-              <td  style="width:5%">2 </td>
-              <td  style="width:10%">ID Kunjungan</td>
-              <td  style="width:15%">Nama Pasien</td>
-              <td  style="width:15%">Nama Pendamping</td>            
-              <td  style="width:15%">Nama Dokter</td>          
-              <td  style="width:25%">
-                <a href="#!/invoice"><button class='btn btn-success'>Lihat Tagihan</button></a>
-              </td>              
+              <th  style="width:5%">No </th>
+              <th  style="width:10%">ID Kunjungan</th>
+              <th  style="width:15%">Nama Pasien</th>
+              <th  style="width:15%">Nama Pendamping</th>            
+              <th  style="width:15%">Nama Dokter</th>          
+              <th  style="width:25%">Aksi</th>
             </tr>
-
-
-            <tr>
-                <td  style="width:5%">3 </td>
-                <td  style="width:10%">ID Kunjungan</td>
-                <td  style="width:15%">Nama Pasien</td>
-                <td  style="width:15%">Nama Pendamping</td>            
-                <td  style="width:15%">Nama Dokter</td>          
-                <td  style="width:25%">
-                  <a href="#!/invoice"><button class='btn btn-success'>Lihat Tagihan</button></a>
-                </td>              
-              </tr>
-      </tbody>
+          </thead>
+          <tbody>
+              <tr ng-repeat="x in myData">
+                  <td>{{ $index + 1 }}</td>                      
+                  <td>{{ x.id_kunjungan }}</td>
+                  <td>{{ x.pasien }}</td>
+                  <td>{{ x.dokter_pendamping }}</td>
+                  <td>{{ x.dokter }}</td>
+                  <td>  <a href="#!/invoice/{{x.id_pasien}}/{{x.id_kunjungan}}"><button class='btn btn-success'>Lihat Tagihan</button></a> </td>
+                </tr>
+          </tbody>
     </table>
   </div>
 
