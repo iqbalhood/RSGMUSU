@@ -991,45 +991,45 @@ app.controller("PerawatanCtrl", function ($scope, $location, $interval,$http, $r
         
         $scope.simpanData = function(){
 
-            // $http({
-            //     method: 'POST',
-            //     url:  '../apidb/klinik/submit_rekam_medis.php',
-            //     data: {idKunjungan: $routeParams.idkunjungan, idPasien: $routeParams.id, idDokter: $scope.iddokter, namaDokter: $scope.namadokter, amnese: $scope.amnese, diagnosa: $scope.diagnosa }
-            // }).then(function (response) {
-            //     // on success
-            //     if(response.status==200){
-            //           
-            //     }
-            // });
+            $http({
+                method: 'POST',
+                url:  '../apidb/klinik/submit_rekam_medis.php',
+                data: {idKunjungan: $routeParams.idkunjungan, idPasien: $routeParams.id, idDokter: $scope.iddokter, namaDokter: $scope.namadokter, amnese: $scope.amnese, diagnosa: $scope.diagnosa }
+            }).then(function (response) {
+                // on success
+                if(response.status==200){
+                      
+                }
+            });
            
 
-            // if($scope.daftarObat.length != 0){
-            //     for(var i = 0; i < $scope.daftarObat.length; i++){
-            //        // Memasukkan data obat ke database 
-            //        var id_obat = $scope.daftarObat[i].mid;
-            //        var quantity_obat = $scope.daftarObat[i].mid;
-            //        var harga_obat = $scope.daftarObat[i].harga;
-            //        var satuan_obat = $scope.daftarObat[i].satuan;
-            //        var nama_obat = $scope.daftarObat[i].name;
-            //         $http({
-            //             method: 'POST',
-            //             url:  '../apidb/klinik/submit_obat_kunjungan.php',
-            //             data: { idKunjungan : $routeParams.idkunjungan,
-            //                     idPasien    : $routeParams.id,
-            //                     namaPasien  : $scope.namaPasien, 
-            //                     idObat      : id_obat,
-            //                     namaObat    : nama_obat ,
-            //                     hargaObat   : harga_obat, 
-            //                     satuanObat  : satuan_obat, 
-            //                     quantityObat: quantity_obat }   
-            //         }).then(function (response) {
-            //             // on success
-            //             if(response.status==200){
-            //                   
-            //             }
-            //         });
-            //     }
-            // }
+            if($scope.daftarObat.length != 0){
+                for(var i = 0; i < $scope.daftarObat.length; i++){
+                   // Memasukkan data obat ke database 
+                   var id_obat = $scope.daftarObat[i].mid;
+                   var quantity_obat = $scope.daftarObat[i].mid;
+                   var harga_obat = $scope.daftarObat[i].harga;
+                   var satuan_obat = $scope.daftarObat[i].satuan;
+                   var nama_obat = $scope.daftarObat[i].name;
+                    $http({
+                        method: 'POST',
+                        url:  '../apidb/klinik/submit_obat_kunjungan.php',
+                        data: { idKunjungan : $routeParams.idkunjungan,
+                                idPasien    : $routeParams.id,
+                                namaPasien  : $scope.namaPasien, 
+                                idObat      : id_obat,
+                                namaObat    : nama_obat ,
+                                hargaObat   : harga_obat, 
+                                satuanObat  : satuan_obat, 
+                                quantityObat: quantity_obat }   
+                    }).then(function (response) {
+                        // on success
+                        if(response.status==200){
+                              
+                        }
+                    });
+                }
+            }
 
 
             if($scope.daftarLayanan.length != 0){
@@ -1060,7 +1060,7 @@ app.controller("PerawatanCtrl", function ($scope, $location, $interval,$http, $r
             }
 
 
-            //$location.path("/home");
+            $location.path("/home");
 
 
         };

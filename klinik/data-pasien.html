@@ -72,6 +72,7 @@
                         <table class="table table-striped m-b-none">
                         <thead>
                             <tr>
+                            <th style="width:210px;" class="text-center">No. Rekam Medis</th>
                             <th style="width:170px;" class="text-center">Tanggal</th>
                             <th>Nama Dokter</th>                    
                             <th style="width:150px;">Aksi</th>
@@ -79,6 +80,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="a in rekamMedisPasien">
+                                <td>{{a.id_kunjungan}}</td>
                                 <td>{{a.id_kunjungan * 1 |  date:'dd-MMMM-yyyy'}}</td>
                                 <td>{{a.nama_dokter}}</td>
                                 <td class="text-success">

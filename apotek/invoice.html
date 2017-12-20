@@ -1,61 +1,30 @@
 <div class="bg-light lter b-b wrapper-md hidden-print">
         <a href class="btn btn-sm btn-info pull-right" onClick="window.print();">Print</a>
-        <h1 class="m-n font-thin h3">Invoice</h1>
+        <h1 class="m-n font-thin h3">Daftar Obat Apotik</h1>
       </div>
       <div class="wrapper-md" style="padding-bottom:100px;">
         <div>
-           <img src="../img/rsgmlogo.png" width="100px">
-          <div class="row">
-            <div class="col-xs-6">
-              <h4>RSGM USU</h4>
-              <p>Jl. DR. Mansyur No.66 <br>
-                Medan Baru, Kota Medan<br>
-                Sumatera Utara 20154
-              </p>
-              <p>
-                Telephone:  +62 61-692-7753<br>
-                Fax:  +62 61-692-7753
-              </p>
-            </div>
-            <div class="col-xs-6 text-right">
-              <p class="h4">#{{idKunjungan}}</p>
-              <h5>{{ idKunjungan * 1 |  date:'dd-MMMM-yyyy'}}</h5>           
-            </div>
+          <div class="col-xs-6">
+            <p class="m-t m-b">Nama Pasien: <strong>{{nameUser}}</strong><br>
+              Klinik: <span ng-if="id_klinik == 1" >IKGP/IKGM</span>
+                      <span ng-if="id_klinik == 2" >PERIDONSIA</span>
+                      <span ng-if="id_klinik == 3" >ILMU PENYAKIT MULUT</span>
+                      <span ng-if="id_klinik == 4" >ILMU KEDOKTERAN GIGI ANAK</span>
+                      <span ng-if="id_klinik == 5" >KONSERVASI</span>
+                      <span ng-if="id_klinik == 6" >PROSTODONSIA</span>
+                      <span ng-if="id_klinik == 7" >ILMU BEDAH MULUT</span>
+                      <span ng-if="id_klinik == 8" >ORTODONSIA</span>
+                      <span ng-if="id_klinik == 9" >RADIOLOGI KEDOKTERAN GIGI</span><br>
+              Dokter: <strong>#{{namadokter}}</strong>
+            </p>
           </div>
-          <div class="well m-t bg-light lt">
-            <div class="row">
-              <div class="col-xs-6">
-                <h3>{{nameUser}}</h3>
-                <h4>Nomor Kunjungan</h4>
-                <p>{{idKunjungan}}</p>
-                <h4>Alamat</h4>
-                {{alamat}}<br>
-                Phone: {{phone}}<br>
-                
-              </div>
-    
-              <div class="col-xs-6">
-                  <h3>Klinik</h3>
-                    <p ng-if="id_klinik == 1" >IKGP/IKGM</option>
-                    <p ng-if="id_klinik == 2" >PERIDONSIA</p>
-                    <p ng-if="id_klinik == 3" >ILMU PENYAKIT MULUT</p>
-                    <p ng-if="id_klinik == 4" >ILMU KEDOKTERAN GIGI ANAK</p>
-                    <p ng-if="id_klinik == 5" >KONSERVASI</p>
-                    <p ng-if="id_klinik == 6" >PROSTODONSIA</p>
-                    <p ng-if="id_klinik == 7" >ILMU BEDAH MULUT</p>
-                    <p ng-if="id_klinik == 8" >ORTODONSIA</p>
-                    <p ng-if="id_klinik == 9" >RADIOLOGI KEDOKTERAN GIGI</p>
-                  <h4>Dokter</h4>
-                  {{namadokter}}<br>
-                  
-                </div>
-    
-            </div>
+
+          <div class="col-xs-6">
+              <p class="m-t m-b">Invoice date: <strong>{{ idKunjungan * 1 |  date:'dd-MMMM-yyyy'}}</strong><br>
+                Invoice status: <span class="label bg-danger">Belum Bayar</span><br>
+                Invoice ID: <strong>#{{idKunjungan}}</strong>
+              </p>
           </div>
-          <p class="m-t m-b">Invoice date: <strong>{{ idKunjungan * 1 |  date:'dd-MMMM-yyyy'}}</strong><br>
-            Invoice status: <span class="label bg-danger">Belum Bayar</span><br>
-            Invoice ID: <strong>#{{idKunjungan}}</strong>
-          </p>
           <div class="line"></div>
           <table class="table table-striped bg-white b-a">
            
@@ -71,7 +40,7 @@
                     <td>{{x.quantity}}</td>
                     <td>{{x.nama_obat}}</td>
                     <td>{{ x.harga | currency:'Rp':0 }}</td>
-                    <td>{{x.quantity * x.harga | currency:'Rp':0}}</td>
+                    <td>{{x.quantity * x.harga | currency:'Rp':0}}    <i  class="fa fa-times text-danger text"></i></td>
                   </tr>
                   
                  
@@ -89,8 +58,8 @@
                 <div class="col-sm-8 ">
                   </div>
               <div class="col-sm-4 ">
-                <button type="submit" class="btn btn-black">Back</button>
-                <button type="submit" class="btn btn-success">Accept Order ?</button>
+                <!-- <button type="submit" class="btn btn-black">Back</button>
+                <button type="submit" class="btn btn-success">Accept Order ?</button> -->
               </div>
             </div>
     
