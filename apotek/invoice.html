@@ -34,19 +34,22 @@
                     <th>Biaya Farmasi / Obat</th>
                     <th style="width: 100px">UNIT PRICE</th>
                     <th style="width: 150px">TOTAL</th>
+                    <th style="width: 50px"></th>
                   </tr>
                 </thead>
                   <tr ng-repeat="x in myData">
                     <td>{{x.quantity}}</td>
                     <td>{{x.nama_obat}}</td>
                     <td>{{ x.harga | currency:'Rp':0 }}</td>
-                    <td>{{x.quantity * x.harga | currency:'Rp':0}}    <i  class="fa fa-times text-danger text"></i></td>
+                    <td>{{x.quantity * x.harga | currency:'Rp':0}}</td>
+                    <td><i  class="fa fa-times text-danger text" ng-click="hapusObat(x.id);"></i></td>
                   </tr>
                   
                  
               <tr>
-                <td colspan="3" class="text-right no-border"><strong>Total</strong></td>
+                <td colspan="3" class="text-right no-border" ><strong>Total</strong></td>
                 <td><strong> {{ getTotal | currency:'Rp':0  }}</strong></td>
+                <td></td>
               </tr>
             </tbody>
           </table>              
@@ -58,8 +61,8 @@
                 <div class="col-sm-8 ">
                   </div>
               <div class="col-sm-4 ">
-                <!-- <button type="submit" class="btn btn-black">Back</button>
-                <button type="submit" class="btn btn-success">Accept Order ?</button> -->
+                <button type="submit" class="btn btn-black">Back</button>
+                <button type="submit" class="btn btn-success" ng-click="submitObat()">Accept Order ?</button>
               </div>
             </div>
     

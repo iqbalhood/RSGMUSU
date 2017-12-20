@@ -456,16 +456,34 @@ app.controller("InvoiceCtrl", function ($scope,$interval,$http, $route,$timeout,
     });
 
 
-    // $scope.getTotal = function(){
-    //     console.log("NYOBAIN TOTAL");
-    //     var total = 0;
-    //     for(var i = 0; i < $scope.myData.length; i++){
-    //         var harga = $scope.myData.harga[i];
-    //         var quantity = $scope.myData.quantity[i];
-    //         total += (harga * quantity);
-    //     }
-    //     return total;
-    // }
+    $scope.hapusObat = function(x){
+
+         $http({
+            
+            method: 'POST',
+            url:  '../apidb/apotek/delete_obat.php',
+            data: { recordId : x }
+            
+        }).then(function (response) {
+      
+           $route.reload();  
+      
+        }, function (response) {
+            
+            console.log(response.data,response.status);
+            
+        });
+    };
+
+
+    $scope.submitObat = function(){
+    
+        for(var i = 0; i < $scope.myData.length; i++){
+            var idObat = $scope.myData[i].id;
+            console.log("ID OBAT"+idObat);
+        }
+      
+    }
 
    
 
