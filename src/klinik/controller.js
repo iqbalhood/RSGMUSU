@@ -6,7 +6,7 @@ app.controller("HomeCtrl", function ($scope,$cookies,$interval,$http, $route,$ti
     var klinikCookie = $cookies.get('klinik');
     $scope.tipeKlinik = klinikCookie;
 
-    console.log("HOME CTRL COOKIE" + $scope.tipeKlinik);
+    
     $http.get("../apidb/kunjungan/list_data.php?id="+klinikCookie).then(function (response) {
         $scope.myData = response.data.event;
         console.log(response.data.event);

@@ -482,6 +482,10 @@ app.controller("InvoiceCtrl", function ($scope,$interval,$http, $route,$timeout,
             var idObat = $scope.myData[i].id;
             console.log("ID OBAT"+idObat);
         }
+
+
+       // $location.path("/home");
+        
       
     }
 
