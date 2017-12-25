@@ -24,8 +24,8 @@ if(isset($postdata) && !empty($postdata))
     
     if($idKunjungan  == '' ||  $idObat == '' || $idPasien  == '' || $quantityObat  == '' ) return;
     
-    $sql = "INSERT INTO `tabel_obat_kunjungan` (`id`, `id_pasien`, `nama_pasien`, `id_kunjungan`, `id_obat`, `nama_obat`, `satuan`, `quantity`, `harga`)
-             VALUES                            (NULL, ' $idPasien', '$namaPasien', '$idKunjungan', '$idObat', '$namaObat', '$satuanObat', '$quantityObat', '$hargaObat');";
+    $sql = "INSERT INTO `tabel_obat_kunjungan` (`id`, `id_pasien`,  `nama_pasien`, `id_kunjungan`, `id_obat`, `nama_obat`, `satuan`,      `quantity`,      `harga`,     `status`)
+             VALUES                            (NULL, ' $idPasien', '$namaPasien', '$idKunjungan', '$idObat', '$namaObat', '$satuanObat', '$quantityObat', '$hargaObat', '1');";
 
     mysqli_query($connect,$sql);
     

@@ -11,6 +11,7 @@ app.controller("HomeCtrl", function ($scope,$cookies,$interval,$http, $route,$ti
 });
 
 
+
 app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
    
     $scope.shTable  = true;
@@ -477,16 +478,10 @@ app.controller("InvoiceCtrl", function ($scope,$interval,$http, $route,$timeout,
 
 
     $scope.submitObat = function(){
-    
         for(var i = 0; i < $scope.myData.length; i++){
             var idObat = $scope.myData[i].id;
             console.log("ID OBAT"+idObat);
         }
-
-
-       // $location.path("/home");
-        
-      
     }
 
    

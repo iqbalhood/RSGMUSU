@@ -40,6 +40,10 @@
           templateUrl : "perawatan.html",
           controller  : "PerawatanCtrl",
         })
+        .when("/riwayat", {
+          templateUrl : "riwayat.html",
+          controller  : "RiwayatCtrl",
+        })
         .when("/rekam-medis/:id/:idkunjungan", {
           templateUrl : "rekam-medis.html",
           controller  : "RekamMedisCtrl",

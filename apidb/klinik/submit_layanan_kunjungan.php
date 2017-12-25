@@ -20,8 +20,8 @@ if(isset($postdata) && !empty($postdata))
     $hargaBahan     = $request->hargaBahan;
 
     
-    $sql = "INSERT INTO `tabel_layanan_kunjungan` (`id`, `id_pasien`, `nama_pasien`, `id_kunjungan`, `nama_layanan`, `harga_layanan`, `harga_bahan`)
-             VALUES                            (NULL, ' $idPasien', '$namaPasien', '$idKunjungan', '$namaLayanan', '$hargaLayanan', '$hargaBahan');";
+    $sql = "INSERT INTO `tabel_layanan_kunjungan` (`id`, `id_pasien`, `nama_pasien`, `id_kunjungan`, `nama_layanan`, `harga_layanan`, `harga_bahan`, `status`)
+                                        VALUES    (NULL, ' $idPasien', '$namaPasien', '$idKunjungan', '$namaLayanan', '$hargaLayanan', '$hargaBahan', '1');";
 
 
     mysqli_query($connect,$sql);

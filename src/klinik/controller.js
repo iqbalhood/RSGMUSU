@@ -29,6 +29,35 @@ app.controller("HomeCtrl", function ($scope,$cookies,$interval,$http, $route,$ti
 });
 
 
+
+
+app.controller("RiwayatCtrl", function ($scope,$cookies,$interval,$http, $route,$timeout, $routeParams, $window) {
+    var klinikCookie = $cookies.get('klinik');
+    $scope.tipeKlinik = klinikCookie;
+
+    
+    $http.get("../apidb/kunjungan/list_data.php?id="+klinikCookie).then(function (response) {
+        $scope.myData = response.data.event;
+        console.log(response.data.event);
+       });
+
+       setTimeout(function(){
+        $('#mytablePasien').dataTable({
+            "bPaginate": true,
+            "bLengthChange": true,
+            "aLengthMenu": [ 30, 50, 100 ],
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "bRetrieve": true,
+            "bAutoWidth": false,
+            "sEmptyTable": "",
+        });
+        }, 4000);
+
+});
+
+
 app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
    
     $scope.shTable  = true;
