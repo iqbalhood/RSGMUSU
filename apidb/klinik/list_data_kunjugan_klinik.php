@@ -2,8 +2,9 @@
 /*
  * kode untuk tampilak semua produk, pada halaman home
  */
-
 $response = array();
+
+$idkunjungan = $_GET['idkunjungan'];
 
 
 // include db connect class
@@ -13,20 +14,20 @@ require_once '../../config/db_connect.php';
 $db = new DB_CONNECT();
 	 
 	//  get by event
-	$result = mysql_query("SELECT * FROM data_pasien") or die(mysql_error());
+	$result = mysql_query("SELECT * FROM tabel_kunjugan WHERE `id_kunjungan` = '$idkunjungan'") or die(mysql_error());
 		// cek
 		if (mysql_num_rows($result) > 0) {
 		    // looping hasil
 		    // event node
 		    $response["event"] = array();
 		    
-	  while ($row = mysql_fetch_array($result)) {
+	     while ($row = mysql_fetch_array($result)) {
 			$event 							    = array();			
-			$event["id"] 						= $row["id"];
-			$event["no_rekam_medis"] 			= $row["no_rekam_medis"];
-			$event["nama"] 					    = $row["nama"];
-			$event["jenis_kelamin"] 			= $row["jenis_kelamin"];
-			$event["phone"] 					= $row["nomor_hp"];
+            $event["id_kunjungan"] 				= $row["id_kunjungan"];
+            $event["id_antrian"] 				= $row["id_antrian"];            
+			$event["id_klinik"] 				= $row["id_klinik"];
+			$event["dokter_pendamping"] 		= $row["dokter_pendamping"];
+			$event["id_dokter"] 		        = $row["id_dokter"];
 			
 			array_push($response["event"], $event);
 		 }
@@ -36,11 +37,10 @@ $db = new DB_CONNECT();
 		    // echo JSON response
 		    echo json_encode($response);
 		} else {
-		    $response["success"] = 0;
+            
+            $response["success"] = 0;
 		    $response["message"] = "Tidak ada data yang ditemukan";
 
 		    echo json_encode($response);
 		}
 
-
-?>

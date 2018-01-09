@@ -20,7 +20,7 @@ if($result = mysqli_query($connect,$sql))
   while($row = mysqli_fetch_assoc($result))
   {
       $people['id']             = $row['id'];
-	  $people['no_registrasi']  = $row['no_registrasi'];
+	  $people['no_rekam_medis']  = $row['no_rekam_medis'];
 	  $people['tgl_registrasi'] = $row['tgl_registrasi'];
       $people['name']           = $row['nama'];
 	  $people['tempat_lahir']   = $row['tempat_lahir'];

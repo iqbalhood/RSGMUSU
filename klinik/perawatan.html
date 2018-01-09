@@ -8,8 +8,6 @@
                 <div class="col wrapper-lg w-lg bg-light dk r-r">
                     <h4 class="font-thin m-t-none m-b">Basic Info</h4>
                     <div class="">
-                     
-                     
                             <a href="" class="thumb-sm m-r">
                                 <img src="../img/a1.jpg" class="r r-2x" ng-if="kelamin == 1">
                                 <img src="../img/a3.jpg" class="r r-2x" ng-if="kelamin == 2">
@@ -74,19 +72,135 @@
                             <div class="clear">&nbsp;</div>
                             <div class="clear">&nbsp;</div>
 
-                            <label class="col-sm-12 panel-heading">Anamnese</label>
-                            <div class="col-sm-12">
-                                <textarea class="form-control" ng-model="amnese"></textarea>                      
-                            </div>
-
-                            <div class="clear">&nbsp;</div>
-                            
                             <label class="col-sm-12 panel-heading">Diagnosa</label>
                             <div class="col-sm-12">
                                 <textarea class="form-control" ng-model="diagnosa"></textarea>                      
                             </div>
 
-                            <label class="col-sm-12 panel-heading">Pemeriksaan Gigi</label>
+                            <div class="clear">&nbsp;</div>
+
+                            <label class="col-sm-12 panel-heading">Anamnese</label>
+                            <div class="col-sm-12">
+                                <textarea class="form-control" ng-model="amnese"></textarea>                      
+                            </div>
+
+                            <label class="col-sm-12 panel-heading">Riwayat Penyakit</label>
+                            <div class="col-sm-12">
+                                <textarea class="form-control" ng-model="riwayatPenyakit"></textarea>                      
+                            </div>
+
+                            <label class="col-sm-12 panel-heading">Riwayat Penyakit</label>
+                            <div class="col-sm-12">
+                                <textarea class="form-control" ng-model="riwayatPenyakit"></textarea>                      
+                            </div>
+
+                            <label class="col-sm-12 panel-heading"><h3>Pemeriksaan Fisik</h3></label>
+                            <label class="col-sm-12 panel-heading">Tanda Tanda Vital</label>
+                            <div class="col-sm-12">
+                                <div class="input-group m-b">
+                                    <span class="input-group-addon">Kesadaran</span>
+                                    <input type="text" class="form-control" placeholder=".....">
+                                  </div>    
+                                  
+                                  <div class="input-group m-b">
+                                    <span class="input-group-addon">Kondisi Umum</span>
+                                    <input type="text" class="form-control" placeholder=".....">
+                                  </div>    
+
+
+                                  <div class="input-group m-b">
+                                    <span class="input-group-addon">Tekanan Darah</span>
+                                    <input type="text" class="form-control" placeholder=".....">
+                                  </div>    
+
+                                  <div class="input-group m-b">
+                                    <span class="input-group-addon">Denyut Nadi</span>
+                                    <input type="text" class="form-control" placeholder=".....">
+                                  </div>    
+                                  <div class="input-group m-b">
+                                    <span class="input-group-addon">Pernafasan</span>
+                                    <input type="text" class="form-control" placeholder=".....">
+                                  </div>    
+
+                                  <div class="input-group m-b">
+                                    <span class="input-group-addon">Suhu</span>
+                                    <input type="text" class="form-control" placeholder=".....">
+                                  </div>    
+                            </div>
+
+                            <label class="col-sm-12 panel-heading">Ekstra Oral</label>
+                            <div class="col-sm-12">
+                                    <label class="col-sm-12 ">Tonus Bibir</label>
+
+                                    <div class="form-group">
+                                           
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-4">
+                                                    <label class="checkbox-inline">
+                                                        <input type="checkbox" value="option1"> Hipotonus
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label class="checkbox-inline">
+                                                        <input type="checkbox" value="option2"> Normal
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-4">    
+                                                    <label class="checkbox-inline">
+                                                        <input type="checkbox" value="option3"> Hipertonus
+                                                    </label>
+                                                </div>
+                                            </div>
+                                    </div>
+
+                                    <label class="col-sm-12 ">TMJ</label>
+
+                                    <div class="form-group">
+                                           
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-6">
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" value="option1"> Normal
+                                                </label>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                <div class="input-group m-b">
+                                                        <span class="input-group-addon">
+                                                                <input type="checkbox">
+                                                              </span>
+                                                              <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                </div> 
+                                                </div>
+                                            </div>
+                                    </div>
+
+                                    <label class="col-sm-12 ">Kelenjar Limfe</label>
+
+                                    <div class="form-group">
+                                           
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-4">
+                                                    <label class="checkbox-inline">
+                                                        <input type="checkbox" value="option1"> Teraba
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label class="checkbox-inline">
+                                                        <input type="checkbox" value="option2"> Teraba Sakit
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label class="checkbox-inline">
+                                                        <input type="checkbox" value="option3"> Tidak Teraba
+                                                    </label>
+                                                </div>
+                                            </div>
+                                    </div>
+                            </div>
+
+
+
+                            <label class="col-sm-12 panel-heading"><h3>Pemeriksaan Gigi</h3></label>
                             <div class="col-sm-12">
                                     <!-- ORDONTOGRAMA INPUT -->
                             
@@ -310,6 +424,8 @@
                                             <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
                                             <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">41</text>
                                         </g>
+
+                                    
                                         
                                         <!-- Derecha primer fila -->
                                         
@@ -560,6 +676,17 @@
                                 </div>
                             </div>
 
+                            <div class="col-sm-12"  >
+                                <div class="line line-dashed b-b line-lg pull-in"></div>
+                                <label class="col-sm-12 panel-heading"> Peta Mukosa dan Jaringa Lunak Mulut</label>
+                                <row>
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-8"></div>
+                                    <div class="col-sm-2"></div>
+                                </row>
+                               
+                            </div>
+
 
 
 
@@ -767,9 +894,13 @@
                         
                                 </div>
                             </div>
+
+
                             <!-- Panel Tambah Obat -->
-                            <label class="col-sm-12">Pilih Daftar Obat</label>
-                            <div class="col-sm-12"><div class="line line-dashed b-b line-lg pull-in"></div></div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-6 col-md-6">Pilih Daftar Obat</div>
+                                <div class="col-sm-6 col-md-6"><button class="btn m-b-xs w-xs btn-danger btn-rounded" style="float:right"> X Close </button></div>
+                            </div>
                             <div class="col-sm-12">
                                 <div class="table-responsive" >
                                         <table ui-jq="dataTable"  class="table  table-striped b-t b-b"   id="mytableObat">

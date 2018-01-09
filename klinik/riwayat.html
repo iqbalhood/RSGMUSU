@@ -36,7 +36,7 @@
               <td>{{ x.pasien }}</td>
               <td>{{ x.dokter_pendamping }}</td>
               <td>{{ x.dokter }}</td>
-              <td><a href="#!/perawatan/{{x.id_pasien}}/{{x.id_kunjungan}}"></a> <button class="btn m-b-xs btn-sm btn-danger btn-addon"><i class="fa  fa-external-link-square"></i>Arahkan Ke Klinik Lain</button> </a> </td>
+              <td> <button class="btn m-b-xs btn-sm btn-danger btn-addon" ng-click="showKlinik(x)"><i class="fa  fa-external-link-square"></i>Arahkan Ke Klinik Lain</button>  </td>
             </tr>
       </tbody>
     </table>
@@ -50,3 +50,73 @@
 <!-- / main -->
 
 </div>
+
+
+
+
+ <!-- #  Panel Pilih Instalasi dan Dokter Mahasiswa Pendamping -->
+ <div class="panel panel-default" ng-show="klinikForm" >
+  <div class="panel-heading font-bold">
+    Arahkan Ke Klinik
+  </div>
+  <div class="panel-body">
+
+<form class="form-horizontal">
+
+ 
+  <input type="hidden" class="form-control" ng-model="id_pasien">  
+  <input type="hidden" class="form-control" ng-model="id_kunjungan">
+  
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label" >Klinik</label>
+        <div class="col-sm-10">
+          <select name="account" class="form-control m-b"  ng-model="klinik">
+            <option value="1">IKGP/IKGM</option>
+            <option value="2">PERIDONSIA</option>
+            <option value="3">ILMU PENYAKIT MULUT</option>
+            <option value="4">ILMU KEDOKTERAN GIGI ANAK</option>
+            <option value="5">KONSERVASI</option>
+            <option value="6">PROSTODONSIA</option>
+            <option value="7">ILMU BEDAH MULUT</option>
+            <option value="8">ORTODONSIA</option>
+            <option value="9">RADIOLOGI KEDOKTERAN GIGI</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+              <label class="col-sm-2 control-label" >CO AS / Dokter Muda</label>
+              <div class="col-sm-10">
+                  <input type="text" class="form-control" ng-model="dokterpendamping">                                
+              </div>
+      </div>
+
+      <div class="form-group">
+              <label class="col-sm-2 control-label" >PPDGS</label>
+              <div class="col-sm-10">
+                <select name="account" class="form-control m-b"  ng-model="dokterpraktisi">
+                      <option ng-repeat="x in dataDokter" value="{{x.id}}">{{x.nama}}</option>
+                </select>
+              </div>
+      </div>
+
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <div class="col-sm-4 col-sm-offset-2">
+        <button type="submit" ng-click="cancelFormKlinik()" class="btn btn-default">Cancel</button>
+        <button ng-click="submitForm()" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+
+</form>
+
+  </div>
+</div>
+
+<!-- #  Panel Pilih Instalasi dan Dokter Mahasiswa Pendamping -->
+
+
+
+
+

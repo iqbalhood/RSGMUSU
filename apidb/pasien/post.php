@@ -9,7 +9,7 @@ if(isset($postdata) && !empty($postdata))
 {
     $request  = json_decode($postdata);
    
-	$noRegistrasi = preg_replace('/[^0-9 ]/','',$request->noRegistrasi);
+	$noRekamMedis = preg_replace('/[^0-9 ]/','',$request->noRekamMedis);
 	$tglRegistrasi = preg_replace('/[^0-9 ]/','',$request->tglRegistrasi);
     $newName  = preg_replace('/[^a-zA-Z ]/','',$request->newName);
 	$tempatLahir = preg_replace('/[^a-zA-Z ]/','',$request->tempatLahir);
@@ -37,7 +37,7 @@ if(isset($postdata) && !empty($postdata))
 	
     
     if($newName  == '' ||  $newPhone == ''  ) return;
-    $noRegistrasi = mysqli_real_escape_string($connect,$noRegistrasi);
+    $noRekamMedis = mysqli_real_escape_string($connect,$noRekamMedis);
 	$tglRegistrasi = mysqli_real_escape_string($connect,$tglRegistrasi);
     $newName  = mysqli_real_escape_string($connect,$newName);
 	$tempatLahir = mysqli_real_escape_string($connect,$tempatLahir);
@@ -62,7 +62,7 @@ if(isset($postdata) && !empty($postdata))
 	$alergi = mysqli_real_escape_string($connect,$alergi);
 	$catatan = mysqli_real_escape_string($connect,$catatan);
 
-    $sql = "INSERT INTO `data_pasien` (`id`, `no_registrasi`, `tgl_registrasi`,`nama`,`tempat_lahir`,`tanggal_lahir`,`jenis_kelamin`, `agama`,`alamat`,`rtrw`,`kelurahan`,`kecamatan`, `kabupaten`, `propinsi`,`nomor_hp`, `kewarganegaraan`, `noktp`, `pendidikan`, `pekerjaan`, `status_perkawinan`,`tgl_pertama_masuk`, `cara_bayar`, `tujuan_kunjungan_pertama`, `alergi`, `catatan` ) VALUES (NULL, '$noRegistrasi','$tglRegistrasi','$newName', '$tempatLahir','$tanggalLahir','$newKelamin', '$agama','$alamat','$rtrw','$kelurahan','$kecamatan','$kabupaten','$propinsi','$newPhone','$kewarganegaraan','$noktp','$pendidikan','$pekerjaan','$statusPerkawinan','$tglPertamamasuk','$caraBayar','$tujuanKunjunganpertama','$alergi','$catatan')";
+    $sql = "INSERT INTO `data_pasien` (`id`, `no_rekam_medis`, `tgl_registrasi`,`nama`,`tempat_lahir`,`tanggal_lahir`,`jenis_kelamin`, `agama`,`alamat`,`rtrw`,`kelurahan`,`kecamatan`, `kabupaten`, `propinsi`,`nomor_hp`, `kewarganegaraan`, `noktp`, `pendidikan`, `pekerjaan`, `status_perkawinan`,`tgl_pertama_masuk`, `cara_bayar`, `tujuan_kunjungan_pertama`, `alergi`, `catatan` ) VALUES (NULL, '$noRekamMedis','$tglRegistrasi','$newName', '$tempatLahir','$tanggalLahir','$newKelamin', '$agama','$alamat','$rtrw','$kelurahan','$kecamatan','$kabupaten','$propinsi','$newPhone','$kewarganegaraan','$noktp','$pendidikan','$pekerjaan','$statusPerkawinan','$tglPertamamasuk','$caraBayar','$tujuanKunjunganpertama','$alergi','$catatan')";
 
     mysqli_query($connect,$sql);
     

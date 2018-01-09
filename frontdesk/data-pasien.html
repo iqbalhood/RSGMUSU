@@ -8,8 +8,6 @@
                         <div class="col wrapper-lg w-lg bg-light dk r-r">
                             <h4 class="font-thin m-t-none m-b">Basic Info</h4>
                             <div class="">
-                             
-                             
                                     <a href="" class="thumb-sm m-r">
                                             <img src="../img/a1.jpg" class="r r-2x" ng-if="kelamin == 1">
                                             <img src="../img/a3.jpg" class="r r-2x" ng-if="kelamin == 2">
@@ -73,26 +71,67 @@
                                 <table class="table table-striped m-b-none">
                                 <thead>
                                     <tr>
-                                    <th style="width:170px;" class="text-center">Tanggal</th>
-                                    <th>Nama Dokter</th>                    
+                                    <th style="width:170px;" >Id Kunjungan</th>
+                                    <th style="width:170px;" >Tanggal</th>      
                                     <th style="width:150px;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="a in rekamMedisPasien">
+                                        <td>{{a.id_kunjungan}}</td>
                                         <td>{{a.id_kunjungan * 1 |  date:'dd-MMMM-yyyy'}}</td>
-                                        <td>{{a.nama_dokter}}</td>
                                         <td class="text-success">
-                                                <a href="#!/rekam-medis/{{id}}/{{a.id_kunjungan}}"></q> <button class="btn m-b-xs btn-sm btn-success btn-addon">
-                                                <i class="icon-size-fullscreen icon pull-right"></i>View Data</button></a>
+                                                 <button class="btn m-b-xs btn-sm btn-success btn-addon" ng-click="showTable(a.id_kunjungan)">
+                                                <i class="icon-size-fullscreen icon pull-right"></i>View Data</button>
                                         </td>
                                     </tr>                        
                                 </tbody>
                                 </table>
                             </div>
+
+
+                            <div ng-show="tablePelayanan">
+                                {{idRM}}
+                                <i class="icon  icon-close text-danger m-r-sm pull-right" ng-click="hideTable()"></i>
+                                <h4 class="font-thin m-t-none m-b-none text-primary-lt">Daftar Perawatan</h4>
+                                <div class="clear">&nbsp;</div>                                    
+                                <div class="panel panel-default">
+                                    <div class="panel-heading"> Klinik {{klinik}} Untuk Kunjugan {{ID}} {{TANGGAL}}</div>
+                                    <table class="table table-striped m-b-none">
+                                    <thead>
+                                            <tr>
+                                                <th style="width:170px;" >Id Kunjungan</th>
+                                                <th style="width:170px;" >Klinik</th>
+                                                <th style="width:170px;" >Tanggal</th>      
+                                                <th style="width:150px;">Aksi</th>
+                                             </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr ng-repeat="v in dataKunjunganKlinik">
+                                                <td style="width:170px;" >{{v.id_kunjungan}}</td>
+                                                <td style="width:170px;" >{{v.id_klinik}}</td>
+                                                <td style="width:170px;" >Sample</td>      
+                                                <td style="width:150px;">
+                                                        <a href="#!/rekam-medis/{{id}}/{{idRM}}">
+                                                        <button class="btn m-b-xs btn-sm btn-info btn-addon" >
+                                                        <i class="fa fa-arrow-right pull-right"></i>Lihat Data </button>
+                                                        </a>
+                                                </td> 
+                                            </tr>  
+                                            
+                                           
+                                    </tbody>
+                                    </table>
+                                </div>
+                            </div>
             
                         </div>
                         <!-- # End Panel Kanan -->
+
+
+                        
+                            
+                
             
                      </div>
 
@@ -143,14 +182,14 @@
                     </div>
 
                     <div class="form-group">
-                            <label class="col-sm-2 control-label" >Dokter Pendamping</label>
+                            <label class="col-sm-2 control-label" >CO AS / Dokter Muda</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" ng-model="dokterpendamping">                                
                             </div>
                     </div>
 
                     <div class="form-group">
-                            <label class="col-sm-2 control-label" >Dokter Praktisi</label>
+                            <label class="col-sm-2 control-label" >PPDGS</label>
                             <div class="col-sm-10">
                               <select name="account" class="form-control m-b"  ng-model="dokterpraktisi">
                                     <option ng-repeat="x in dataDokter" value="{{x.id}}">{{x.nama}}</option>

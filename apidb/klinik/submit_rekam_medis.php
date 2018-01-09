@@ -9,6 +9,7 @@ if(isset($postdata) && !empty($postdata))
 {
     $request        = json_decode($postdata);
     $idKunjungan    = $request->idKunjungan;
+    $idAntrian      = $request->idAntrian;
     $idPasien       = $request->idPasien;
     $idDokter       = $request->idDokter;
     $namaDokter     = $request->namaDokter;
@@ -17,7 +18,10 @@ if(isset($postdata) && !empty($postdata))
  
     if($idKunjungan  == '' ||  $idPasien == '' || $amnese  == '' || $diagnosa  == '' ) return;
     $sql = "INSERT INTO `rekam_medis` (`id_kunjungan`, `id_pasien`, `id_dokter`, `nama_dokter`, `amnese`, `diagnosa`) VALUES ('$idKunjungan ', '$idPasien', '$idDokter', '$namaDokter', '$amnese', '$diagnosa');";
+    $sql_update = "UPDATE `tabel_kunjugan` SET `status` = '2' WHERE `tabel_kunjugan`.`id_antrian` = '$idAntrian';"; 
+
 
     mysqli_query($connect,$sql);
+    mysqli_query($connect,$sql_update);
 }
 exit;

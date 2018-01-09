@@ -6,6 +6,7 @@
 $response = array();
 
 $id = $_GET['id'];
+$status = $_GET['status'];
 
 // include db connect class
 require_once '../../config/db_connect.php';
@@ -24,7 +25,7 @@ $db = new DB_CONNECT();
 								FROM tabel_kunjugan
 								INNER JOIN data_dokter ON tabel_kunjugan.id_dokter = data_dokter.id
 								INNER JOIN data_pasien ON tabel_kunjugan.id_pasien = data_pasien.id
-								WHERE tabel_kunjugan.id_klinik = $id
+								WHERE tabel_kunjugan.id_klinik = $id AND tabel_kunjugan.status = '$status'
 								ORDER BY tabel_kunjugan.id_kunjungan") or die(mysql_error());
 		// cek
 		if (mysql_num_rows($result) > 0) {

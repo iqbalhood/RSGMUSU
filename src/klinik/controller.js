@@ -7,7 +7,7 @@ app.controller("HomeCtrl", function ($scope,$cookies,$interval,$http, $route,$ti
     $scope.tipeKlinik = klinikCookie;
 
     
-    $http.get("../apidb/kunjungan/list_data.php?id="+klinikCookie).then(function (response) {
+    $http.get("../apidb/kunjungan/list_data.php?id="+klinikCookie+"&status=1").then(function (response) {
         $scope.myData = response.data.event;
         console.log(response.data.event);
        });
@@ -36,10 +36,53 @@ app.controller("RiwayatCtrl", function ($scope,$cookies,$interval,$http, $route,
     $scope.tipeKlinik = klinikCookie;
 
     
-    $http.get("../apidb/kunjungan/list_data.php?id="+klinikCookie).then(function (response) {
+    $http.get("../apidb/kunjungan/list_data.php?id="+klinikCookie+"&status=2").then(function (response) {
         $scope.myData = response.data.event;
         console.log(response.data.event);
        });
+
+    $http.get("../apidb/dokter/list_data.php").then(function (response) {
+        $scope.dataDokter = response.data.event;
+        console.log(response.data.event);
+    });
+
+
+    $scope.showKlinik = function(x) {
+        $scope.dokterpendamping = x.dokter_pendamping;        
+        $scope.id_kunjungan = x.id_kunjungan;
+        $scope.id_pasien = x.id_pasien;
+        $scope.klinikForm = true;
+    };
+
+    $scope.cancelFormKlinik= function(){
+        $scope.klinikForm = false;
+    };
+
+    $scope.submitForm= function(){
+        var xx = new Date();
+        var yy = xx.getTime();
+
+
+
+        $scope.idAntrian = yy;
+
+        console.log("ID ANTRIAN YANG DIDAPAT "+$scope.idAntrian );
+
+        $http({
+            
+             method: 'POST',
+             url:  '../apidb/datapasien/submit_ke_klinik.php',
+             data: {idKunjungan: $scope.id_kunjungan, idAntrian: $scope.idAntrian, idKlinik: $scope.klinik  , dokterPendamping: $scope.dokterpendamping, dokterPendamping: $scope.dokterpendamping, idDokter: $scope.dokterpraktisi, idPasien: $scope.id_pasien }
+             
+        }).then(function (response) {
+            // on success
+            if(response.status==200){
+                $route.reload();    
+            }
+        });
+    };  
+
+
 
        setTimeout(function(){
         $('#mytablePasien').dataTable({
@@ -574,7 +617,7 @@ app.controller("DataPasienCtrl", function ($scope,$interval,$http, $route,$timeo
         });
 
          
-        $http.get("../apidb/klinik/list_rekam_medis.php").then(function (response) {
+        $http.get("../apidb/klinik/list_rekam_medis_pasien.php?idpasien="+$scope.id_pasien).then(function (response) {
             $scope.rekamMedisPasien = response.data.event;
             console.log($scope.rekamMedisPasien);
         });
@@ -725,6 +768,7 @@ app.controller("PerawatanCtrl", function ($scope, $location, $interval,$http, $r
             $scope.datakunjungan    = response.data;
             $scope.namadokter       =  $scope.datakunjungan.dokter;
             $scope.iddokter         =  $scope.datakunjungan.id_dokter;
+            $scope.idAntrian        =  $scope.datakunjungan.id_antrian;
 
             console.log("Dokternya " + $scope.dokter);
            
@@ -1023,7 +1067,7 @@ app.controller("PerawatanCtrl", function ($scope, $location, $interval,$http, $r
             $http({
                 method: 'POST',
                 url:  '../apidb/klinik/submit_rekam_medis.php',
-                data: {idKunjungan: $routeParams.idkunjungan, idPasien: $routeParams.id, idDokter: $scope.iddokter, namaDokter: $scope.namadokter, amnese: $scope.amnese, diagnosa: $scope.diagnosa }
+                data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id, idDokter: $scope.iddokter, namaDokter: $scope.namadokter, amnese: $scope.amnese, diagnosa: $scope.diagnosa }
             }).then(function (response) {
                 // on success
                 if(response.status==200){

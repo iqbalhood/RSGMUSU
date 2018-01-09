@@ -11,6 +11,7 @@ $newId = preg_replace('/[^0-9 ]/','',$request->newId);
 $people = array();
 
 $sql = "SELECT 	tabel_kunjugan.id_kunjungan,
+                tabel_kunjugan.id_antrian,
                 tabel_kunjugan.id_klinik,
                 tabel_kunjugan.dokter_pendamping,
                 tabel_kunjugan.id_dokter,
@@ -29,6 +30,7 @@ if($result = mysqli_query($connect,$sql))
   while($row = mysqli_fetch_assoc($result))
   {
     $people["id_kunjungan"] 			= $row["id_kunjungan"];
+    $people["id_antrian"] 			  = $row["id_antrian"];
     $people["id_klinik"] 					= $row["id_klinik"];
     $people["dokter_pendamping"] 	= $row["dokter_pendamping"];
     $people["id_dokter"] 					= $row["id_dokter"];
