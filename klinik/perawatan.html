@@ -64,7 +64,7 @@
                         <div class="panel-body">
                         <form class="form-horizontal" method="get">
                           <div class="form-group">
-                            <label class="col-sm-12 panel-heading">Dokter Penanggung Jawab</label>
+                            <label class="col-sm-12 panel-heading"><h3>Dokter Penanggung Jawab</h3></label>
                             <div class="col-sm-12">
                                {{namadokter}}                    
                             </div>  
@@ -72,27 +72,24 @@
                             <div class="clear">&nbsp;</div>
                             <div class="clear">&nbsp;</div>
 
-                            <label class="col-sm-12 panel-heading">Diagnosa</label>
+                            <label class="col-sm-12 panel-heading"><h3>Diagnosa</h3></label>
                             <div class="col-sm-12">
                                 <textarea class="form-control" ng-model="diagnosa"></textarea>                      
                             </div>
 
                             <div class="clear">&nbsp;</div>
 
-                            <label class="col-sm-12 panel-heading">Anamnese</label>
+                            <label class="col-sm-12 panel-heading"><h3>Anamnese</h3></label>
                             <div class="col-sm-12">
                                 <textarea class="form-control" ng-model="amnese"></textarea>                      
                             </div>
 
-                            <label class="col-sm-12 panel-heading">Riwayat Penyakit</label>
+                            <label class="col-sm-12 panel-heading"><h3>Riwayat Penyakit</h3></label>
                             <div class="col-sm-12">
                                 <textarea class="form-control" ng-model="riwayatPenyakit"></textarea>                      
                             </div>
 
-                            <label class="col-sm-12 panel-heading">Riwayat Penyakit</label>
-                            <div class="col-sm-12">
-                                <textarea class="form-control" ng-model="riwayatPenyakit"></textarea>                      
-                            </div>
+                          
 
                             <label class="col-sm-12 panel-heading"><h3>Pemeriksaan Fisik</h3></label>
                             <label class="col-sm-12 panel-heading">Tanda Tanda Vital</label>
@@ -128,7 +125,7 @@
                                   </div>    
                             </div>
 
-                            <label class="col-sm-12 panel-heading">Ekstra Oral</label>
+                            <label class="col-sm-12 panel-heading"><h3>Ekstra Oral</h3></label>
                             <div class="col-sm-12">
                                     <label class="col-sm-12 ">Tonus Bibir</label>
 
@@ -196,6 +193,14 @@
                                                 </div>
                                             </div>
                                     </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                    <row>
+                                        <div class="col-sm-4"><img src="../img/periksaoral-a.png"/></div>
+                                        <div class="col-sm-4"><textarea class="form-control"></textarea></div>
+                                        <div class="col-sm-4"><img src="../img/periksaoral-b.png"/></div>
+                                    </row>  
                             </div>
 
 
@@ -677,21 +682,222 @@
                             </div>
 
                             <div class="col-sm-12"  >
+                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                    <label class="col-sm-12 panel-heading">Rencana Perawatan </label>
+                            </div>
+
+                            <div class="col-sm-12"  >
                                 <div class="line line-dashed b-b line-lg pull-in"></div>
-                                <label class="col-sm-12 panel-heading"> Peta Mukosa dan Jaringa Lunak Mulut</label>
+                                <label class="col-sm-12 panel-heading"> Perawatan </label>
+                            </div>
+
+                            <div class="line line-dashed b-b line-lg pull-in"></div>
+
+                            <label class="col-sm-12 panel-heading"><h3>Jaringan Lunak Mulut</h3></label>
+
+                                <label class="col-sm-12 ">Kebersihan Mulut</label>
+                            
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                            <div class="col-sm-4">
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" value="option1"> Baik
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" value="option2"> Sedang
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">    
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" value="option3"> Buruk
+                                                </label>
+                                            </div>
+                                    </div>
+                                </div>
+
+                                <label class="col-sm-12 ">Mukosa bukal</label>
+                                
+                                <div class="form-group">
+                                     <div class="col-sm-12">
+                                            <div class="col-sm-4">
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" value="option1"> Normal
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                    <div class="input-group m-b">
+                                                            <span class="input-group-addon">
+                                                                    <input type="checkbox">
+                                                                  </span>
+                                                                  <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                    </div> 
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                
+                                <label class="col-sm-12 ">Mukosa bukal</label>
+                                    
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                            <div class="col-sm-4">
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" value="option1"> Normal
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="input-group m-b">
+                                                    <span class="input-group-addon">
+                                                        <input type="checkbox">
+                                                    </span>
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                </div> 
+                                            </div>
+                                               
+                                    </div>
+                                </div> 
+                                
+                                <label class="col-sm-12 ">Frenulum labil</label>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                            <div class="col-sm-4">
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" value="option1"> Normal
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="input-group m-b">
+                                                    <span class="input-group-addon">
+                                                        <input type="checkbox">
+                                                    </span>
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                </div> 
+                                            </div>
+                                            
+                                    </div>
+                                </div> 
+                                
+                                <label class="col-sm-12 ">Lidah</label>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                            <div class="col-sm-4">
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" value="option1"> Normal
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="input-group m-b">
+                                                    <span class="input-group-addon">
+                                                        <input type="checkbox">
+                                                    </span>
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                </div> 
+                                            </div>
+                                            
+                                    </div>
+                                </div> 
+
+                                <label class="col-sm-12 ">Palatum</label>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                            <div class="col-sm-4">
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" value="option1"> Normal
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="input-group m-b">
+                                                    <span class="input-group-addon">
+                                                        <input type="checkbox">
+                                                    </span>
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                </div> 
+                                            </div>
+                                            
+                                    </div>
+                                </div> 
+
+                                <label class="col-sm-12 ">Tonsil</label>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                            <div class="col-sm-4">
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" value="option1"> Normal
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="input-group m-b">
+                                                    <span class="input-group-addon">
+                                                        <input type="checkbox">
+                                                    </span>
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                </div> 
+                                            </div>
+                                            
+                                    </div>
+                                </div> 
+
+                                <label class="col-sm-12 ">Dasar Mulut</label>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                            <div class="col-sm-4">
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" value="option1"> Normal
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="input-group m-b">
+                                                    <span class="input-group-addon">
+                                                        <input type="checkbox">
+                                                    </span>
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                </div> 
+                                            </div>
+                                            
+                                    </div>
+                                </div> 
+                                <label class="col-sm-12 ">Gingiva</label>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                            <div class="col-sm-4">
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" value="option1"> Normal
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="input-group m-b">
+                                                    <span class="input-group-addon">
+                                                        <input type="checkbox">
+                                                    </span>
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                </div> 
+                                            </div>
+                                            
+                                    </div>
+                                </div> 
+
+                            <div class="col-sm-12">
+                                <label class="col-sm-12 panel-heading"><h4> Peta Mukosa dan Jaringan Lunak Mulut</h4></label>
                                 <row>
-                                    <div class="col-sm-2"></div>
-                                    <div class="col-sm-8"></div>
-                                    <div class="col-sm-2"></div>
-                                </row>
-                               
+                                    <div class="col-sm-4"><img src="../img/mukosa1.png"/></div>
+                                    <div class="col-sm-4"><textarea></textarea></div>
+                                    <div class="col-sm-4"><img src="../img/mukosa1.png"/></div>
+                                </row>  
                             </div>
 
 
 
 
 
-                            <label class="col-sm-12 panel-heading" style="margin-top:40px;">Tindakan Medis</label>
+                            <label class="col-sm-12 panel-heading" style="margin-top:40px;"><h3>Tindakan Medis</h3></label>
                             <div class="col-sm-12">
                                     <div class="panel panel-default">
                                       <div class="panel-heading">Daftar Tindakan</div>
@@ -817,7 +1023,7 @@
 
 
 
-                            <label class="col-sm-12" style="margin-top:40px;">Pengobatan</label>
+                            <label class="col-sm-12" style="margin-top:40px;"><h3>Pengobatan</h3></label>
                             <div class="col-sm-12">
                                     <div class="panel panel-default">
                                       <div class="panel-heading">Daftar Obat</div>
