@@ -25,6 +25,7 @@ $db = new DB_CONNECT();
 			$event["id"] 						= $row["id"];
 			$event["no_rekam_medis"] 			= $row["no_rekam_medis"];
 			$event["nama"] 					    = $row["nama"];
+			$event["tanggal_lahir"] 			= $row["tanggal_lahir"];
 			$event["jenis_kelamin"] 			= $row["jenis_kelamin"];
 			$event["phone"] 					= $row["nomor_hp"];
 			

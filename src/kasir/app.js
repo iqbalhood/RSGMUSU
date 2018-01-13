@@ -16,6 +16,10 @@
             templateUrl : "invoice.html",
             controller  : "InvoiceCtrl",
         })   
+        .when("/invoice-history/:id/:idkunjungan", {
+            templateUrl : "invoice-history.html",
+            controller  : "InvoiceCtrl",
+        })   
         .otherwise({
             templateUrl : "dashboard.html",
             controller  : "HomeCtrl",

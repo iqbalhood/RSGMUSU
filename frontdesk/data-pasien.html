@@ -16,33 +16,33 @@
                                         <div class="clear">&nbsp;</div>
                                         <div class="">
                                             <span class="pull-right text-info">{{phone}}</span>
-                                            <span>Phone</span>
+                                            <span>No Hp</span>
                                         </div>
                                         <div class="clear">&nbsp;</div>  
                                         <div class="">
                                             <span class="pull-right text-info">23 Years Old</span>
-                                            <span>Age</span>
+                                            <span>Umur</span>
                                         </div>
                                         <div class="clear">&nbsp;</div>                        
                                         <div class="">
                                             <span class="pull-right text-info" ng-if="kelamin == 1">Male</span>
                                             <span class="pull-right text-info" ng-if="kelamin == 2">Female</span>
-                                            <span>Gender</span>
+                                            <span>Jenis Kelamin</span>
                                         </div>
                                         <div class="clear">&nbsp;</div>                        
                                         <div class="">
                                             <span class="pull-right text-info">164 cm</span>
-                                            <span>Height</span>
+                                            <span>Tinggi</span>
                                         </div>
                                         <div class="clear">&nbsp;</div>                        
                                         <div class="">
                                             <span class="pull-right text-info">50 Kg</span>
-                                            <span>Weight</span>
+                                            <span>Berat Badan</span>
                                         </div>
                                         <div class="clear">&nbsp;</div>                        
                                         <div class="">
                                             <span class="pull-right text-info">B</span>
-                                            <span>Blood Type</span>
+                                            <span>Golongan Darah</span>
                                         </div>
             
                              
@@ -64,16 +64,16 @@
                         <!-- # Panel Kanan Berisi Informasi Data List Rekam Medis -->    
                         <div class="col wrapper">
                             <i class="fa fa-circle-o text-info m-r-sm pull-right"></i>
-                            <h4 class="font-thin m-t-none m-b-none text-primary-lt">Rekam Medis</h4>
+                            <h4 class="font-thin m-t-none m-b-none text-primary-lt">Riwayat Kunjungan</h4>
                             <div class="clear">&nbsp;</div>                                    
                             <div class="panel panel-default">
-                                <div class="panel-heading">Daftar Rekam Medis</div>
+                                <div class="panel-heading">Daftar Riwayat Kunjungan</div>
                                 <table class="table table-striped m-b-none">
                                 <thead>
                                     <tr>
                                     <th style="width:170px;" >Id Kunjungan</th>
                                     <th style="width:170px;" >Tanggal</th>      
-                                    <th style="width:150px;">Aksi</th>
+                                    <th style="width:150px;">Riwayat Kunjungan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -91,7 +91,7 @@
 
 
                             <div ng-show="tablePelayanan">
-                                {{idRM}}
+                              
                                 <i class="icon  icon-close text-danger m-r-sm pull-right" ng-click="hideTable()"></i>
                                 <h4 class="font-thin m-t-none m-b-none text-primary-lt">Daftar Perawatan</h4>
                                 <div class="clear">&nbsp;</div>                                    
@@ -103,7 +103,7 @@
                                                 <th style="width:170px;" >Id Kunjungan</th>
                                                 <th style="width:170px;" >Klinik</th>
                                                 <th style="width:170px;" >Tanggal</th>      
-                                                <th style="width:150px;">Aksi</th>
+                                                <th style="width:150px;">Riwayat Perawatan</th>
                                              </tr>
                                     </thead>
                                     <tbody>
@@ -169,7 +169,7 @@
                       <div class="col-sm-10">
                         <select name="account" class="form-control m-b"  ng-model="klinik">
                           <option value="1">IKGP/IKGM</option>
-                          <option value="2">PERIDONSIA</option>
+                          <option value="2">PERIODENSIA</option>
                           <option value="3">ILMU PENYAKIT MULUT</option>
                           <option value="4">ILMU KEDOKTERAN GIGI ANAK</option>
                           <option value="5">KONSERVASI</option>
@@ -182,14 +182,14 @@
                     </div>
 
                     <div class="form-group">
-                            <label class="col-sm-2 control-label" >CO AS / Dokter Muda</label>
+                            <label class="col-sm-2 control-label" >CO AS /  PPDGS</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" ng-model="dokterpendamping">                                
                             </div>
                     </div>
 
                     <div class="form-group">
-                            <label class="col-sm-2 control-label" >PPDGS</label>
+                            <label class="col-sm-2 control-label" >Dokter Penanggung Jawab Pasien</label>
                             <div class="col-sm-10">
                               <select name="account" class="form-control m-b"  ng-model="dokterpraktisi">
                                     <option ng-repeat="x in dataDokter" value="{{x.id}}">{{x.nama}}</option>

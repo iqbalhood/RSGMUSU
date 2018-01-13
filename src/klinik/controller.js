@@ -716,13 +716,16 @@ app.controller("RekamMedisCtrl", function ($scope,$interval,$http, $route,$timeo
 });
 
 
-app.controller("PerawatanCtrl", function ($scope, $location, $interval,$http, $route,$timeout, $routeParams, $window) {
-    
+app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval,$http, $route,$timeout, $routeParams, $window) {
+    var klinikCookie = $cookies.get('klinik');
         $scope.daftarObat       = [];
         $scope.daftarLayanan    = [];
 
         $scope.status = "Tidak Ada";
         $scope.warna = "#ffffff";
+        $scope.imageUrl = "../img/G1.png";
+
+
 
         $scope.colorC18 = "#ffffff";
         $scope.colorT18 = "#ffffff";
@@ -782,7 +785,7 @@ app.controller("PerawatanCtrl", function ($scope, $location, $interval,$http, $r
 
         
 
-        $http.get("../apidb/layanan/list_data.php?id=2").then(function (response) {
+        $http.get("../apidb/layanan/list_data.php?id="+klinikCookie).then(function (response) {
             $scope.dataLayanan = response.data.event;
             console.log(response.data.event);
         });
@@ -962,7 +965,25 @@ app.controller("PerawatanCtrl", function ($scope, $location, $interval,$http, $r
         };
 
         
+        $scope.fungsiGH = function(){
+            $scope.imageUrl = "../img/gigi_hilang.png";
+            $scope.keterangan18 = "Gigi Hilang";
+            $scope.tabelKeterangan = true;
 
+        };
+
+        $scope.fungsiML = function(){
+            $scope.imageUrl = "../img/gigi_mahkota_logam.png";
+            $scope.keterangan18 = "Mahkota Logam";
+            $scope.tabelKeterangan = true;
+
+        };
+
+        $scope.n18 = function(){
+            $scope.imageUrl = "../img/G1.png";
+            $scope.keterangan18 = "";
+            $scope.tabelKeterangan = false;
+        }
 
         $scope.clickColor18 = function(x){
 

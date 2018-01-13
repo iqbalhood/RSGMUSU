@@ -1,7 +1,7 @@
 (function(){
     "use strict";
 
-    var app = angular.module("myApp", ["ngClickCopy","myApp.controller","ngRoute", "ngCookies",]);
+    var app = angular.module("myApp", ["ngClickCopy","myApp.controller","720kb.datepicker","ngRoute", "ngCookies",]);
     app.config(function($routeProvider) {
         $routeProvider
         .when("/home", {
