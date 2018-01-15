@@ -745,11 +745,15 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
         }).then(function (response) {
             
             // on success
-            $scope.people           = response.data;
+            $scope.people           =  response.data;
             $scope.id               =  $scope.people.id;
             $scope.namaPasien       =  $scope.people.name;
             $scope.phone            =  $scope.people.phone;
             $scope.kelamin          =  $scope.people.jenis_kelamin;
+            $scope.umur             =  $scope.people.umur;
+            $scope.tinggi_badan     =  $scope.people.tinggi_badan;
+            $scope.golongan_darah   =  $scope.people.golongan_darah;
+            $scope.berat_badan      =  $scope.people.berat_badan;
            
             
         }, function (response) {

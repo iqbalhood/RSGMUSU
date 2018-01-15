@@ -16,33 +16,33 @@
                             <div class="clear">&nbsp;</div>
                             <div class="">
                                 <span class="pull-right text-info">{{phone}}</span>
-                                <span>Phone</span>
+                                <span>Nomor Telepon</span>
                             </div>
                             <div class="clear">&nbsp;</div>  
                             <div class="">
-                                <span class="pull-right text-info">23 Years Old</span>
-                                <span>Age</span>
+                                <span class="pull-right text-info">{{umur}} Tahun</span>
+                                <span>Umur</span>
                             </div>
                             <div class="clear">&nbsp;</div>                        
                             <div class="">
-                                <span class="pull-right text-info" ng-if="kelamin == 1">Male</span>
-                                <span class="pull-right text-info" ng-if="kelamin == 2">Female</span>
-                                <span>Gender</span>
+                                <span class="pull-right text-info" ng-if="kelamin == 1">Laki - Laki</span>
+                                <span class="pull-right text-info" ng-if="kelamin == 2">Perempuan</span>
+                                <span>Jenis Kelamin</span>
                             </div>
                             <div class="clear">&nbsp;</div>                        
                             <div class="">
-                                <span class="pull-right text-info">164 cm</span>
-                                <span>Height</span>
+                                <span class="pull-right text-info">{{tinggi_badan}} cm</span>
+                                <span>Tinggi Badan</span>
                             </div>
                             <div class="clear">&nbsp;</div>                        
                             <div class="">
                                 <span class="pull-right text-info">50 Kg</span>
-                                <span>Weight</span>
+                                <span>Berat Badan</span>
                             </div>
                             <div class="clear">&nbsp;</div>                        
                             <div class="">
                                 <span class="pull-right text-info">B</span>
-                                <span>Blood Type</span>
+                                <span>Golongan Darah</span>
                             </div>
     
                      
@@ -309,17 +309,17 @@
                                             <div class="col-sm-12">
                                                 <div class="col-sm-4">
                                                     <label class="checkbox-inline">
-                                                        <input type="checkbox" value="option1"> Hipotonus
+                                                        <input type="radio" name="optionsRadios" value="option1"> Hipotonus
                                                     </label>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <label class="checkbox-inline">
-                                                        <input type="checkbox" value="option2"> Normal
+                                                        <input type="radio" name="optionsRadios" value="option2"> Normal
                                                     </label>
                                                 </div>
                                                 <div class="col-sm-4">    
                                                     <label class="checkbox-inline">
-                                                        <input type="checkbox" value="option3"> Hipertonus
+                                                        <input type="radio" name="optionsRadios" value="option3"> Hipertonus
                                                     </label>
                                                 </div>
                                             </div>
@@ -332,14 +332,14 @@
                                             <div class="col-sm-12">
                                                 <div class="col-sm-6">
                                                 <label class="checkbox-inline">
-                                                    <input type="checkbox" value="option1"> Normal
+                                                    <input type="radio" name="optionsRadios"  value="option1"> Normal
                                                 </label>
                                                 </div>
                                                 <div class="col-sm-6">
                                                 <div class="input-group m-b">
                                                         <span class="input-group-addon">
-                                                                <input type="checkbox">
-                                                              </span>
+                                                              <input type="radio" name="optionsRadios" value="option2">
+                                                        </span>
                                                               <input type="text" class="form-control" placeholder="Ada Kelainan">
                                                 </div> 
                                                 </div>
@@ -353,17 +353,17 @@
                                             <div class="col-sm-12">
                                                 <div class="col-sm-4">
                                                     <label class="checkbox-inline">
-                                                        <input type="checkbox" value="option1"> Teraba
+                                                        <input type="radio"  name="optionsRadios" value="option1"> Teraba
                                                     </label>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <label class="checkbox-inline">
-                                                        <input type="checkbox" value="option2"> Teraba Sakit
+                                                        <input type="radio" name="optionsRadios" value="option2"> Teraba Sakit
                                                     </label>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <label class="checkbox-inline">
-                                                        <input type="checkbox" value="option3"> Tidak Teraba
+                                                        <input type="radio" name="optionsRadios" value="option3"> Tidak Teraba
                                                     </label>
                                                 </div>
                                             </div>
@@ -466,17 +466,17 @@
                                     <div class="col-sm-12">
                                             <div class="col-sm-4">
                                                 <label class="checkbox-inline">
-                                                    <input type="checkbox" value="option1"> Baik
+                                                    <input type="radio"  name="optionsRadios" value="option1"> Baik
                                                 </label>
                                             </div>
                                             <div class="col-sm-4">
                                                 <label class="checkbox-inline">
-                                                    <input type="checkbox" value="option2"> Sedang
+                                                    <input type="radio"  name="optionsRadios" value="option2"> Sedang
                                                 </label>
                                             </div>
                                             <div class="col-sm-4">    
                                                 <label class="checkbox-inline">
-                                                    <input type="checkbox" value="option3"> Buruk
+                                                    <input type="radio"  name="optionsRadios" value="option3"> Buruk
                                                 </label>
                                             </div>
                                     </div>
@@ -488,13 +488,13 @@
                                      <div class="col-sm-12">
                                             <div class="col-sm-4">
                                                 <label class="checkbox-inline">
-                                                    <input type="checkbox" value="option1"> Normal
+                                                    <input type="radio"  name="optionsRadios"  value="option1"> Normal
                                                 </label>
                                             </div>
                                             <div class="col-sm-4">
                                                     <div class="input-group m-b">
                                                             <span class="input-group-addon">
-                                                                    <input type="checkbox">
+                                                                    <input type="radio"  name="optionsRadios">
                                                                   </span>
                                                                   <input type="text" class="form-control" placeholder="Ada Kelainan">
                                                     </div> 
@@ -509,13 +509,13 @@
                                     <div class="col-sm-12">
                                             <div class="col-sm-4">
                                                 <label class="checkbox-inline">
-                                                    <input type="checkbox" value="option1"> Normal
+                                                    <input type="radio"   name="optionsRadios" value="option1"> Normal
                                                 </label>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="input-group m-b">
                                                     <span class="input-group-addon">
-                                                        <input type="checkbox">
+                                                        <input type="radio"  name="optionsRadios" value="option2">
                                                     </span>
                                                     <input type="text" class="form-control" placeholder="Ada Kelainan">
                                                 </div> 
@@ -528,16 +528,16 @@
                                 
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                            <div class="col-sm-4">
-                                                <label class="checkbox-inline">
-                                                    <input type="checkbox" value="option1"> Normal
-                                                </label>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="input-group m-b">
-                                                    <span class="input-group-addon">
-                                                        <input type="checkbox">
-                                                    </span>
+                                        <div class="col-sm-4">
+                                            <label class="checkbox-inline">
+                                                <input type="radio"   name="optionsRadios" value="option1"> Normal
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon">
+                                                    <input type="radio"  name="optionsRadios" value="option2">
+                                                </span>
                                                     <input type="text" class="form-control" placeholder="Ada Kelainan">
                                                 </div> 
                                             </div>
@@ -549,16 +549,16 @@
                                 
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                            <div class="col-sm-4">
-                                                <label class="checkbox-inline">
-                                                    <input type="checkbox" value="option1"> Normal
-                                                </label>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="input-group m-b">
-                                                    <span class="input-group-addon">
-                                                        <input type="checkbox">
-                                                    </span>
+                                        <div class="col-sm-4">
+                                            <label class="checkbox-inline">
+                                                <input type="radio"   name="optionsRadios" value="option1"> Normal
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon">
+                                                    <input type="radio"  name="optionsRadios" value="option2">
+                                                </span>
                                                     <input type="text" class="form-control" placeholder="Ada Kelainan">
                                                 </div> 
                                             </div>
@@ -570,16 +570,16 @@
                                 
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                            <div class="col-sm-4">
-                                                <label class="checkbox-inline">
-                                                    <input type="checkbox" value="option1"> Normal
-                                                </label>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="input-group m-b">
-                                                    <span class="input-group-addon">
-                                                        <input type="checkbox">
-                                                    </span>
+                                        <div class="col-sm-4">
+                                            <label class="checkbox-inline">
+                                                <input type="radio"   name="optionsRadios" value="option1"> Normal
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon">
+                                                    <input type="radio"  name="optionsRadios" value="option2">
+                                                </span>
                                                     <input type="text" class="form-control" placeholder="Ada Kelainan">
                                                 </div> 
                                             </div>
@@ -591,16 +591,16 @@
                                 
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                            <div class="col-sm-4">
-                                                <label class="checkbox-inline">
-                                                    <input type="checkbox" value="option1"> Normal
-                                                </label>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="input-group m-b">
-                                                    <span class="input-group-addon">
-                                                        <input type="checkbox">
-                                                    </span>
+                                        <div class="col-sm-4">
+                                            <label class="checkbox-inline">
+                                                <input type="radio"   name="optionsRadios" value="option1"> Normal
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon">
+                                                    <input type="radio"  name="optionsRadios" value="option2">
+                                                </span>
                                                     <input type="text" class="form-control" placeholder="Ada Kelainan">
                                                 </div> 
                                             </div>
@@ -612,16 +612,16 @@
                                 
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                            <div class="col-sm-4">
-                                                <label class="checkbox-inline">
-                                                    <input type="checkbox" value="option1"> Normal
-                                                </label>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="input-group m-b">
-                                                    <span class="input-group-addon">
-                                                        <input type="checkbox">
-                                                    </span>
+                                        <div class="col-sm-4">
+                                            <label class="checkbox-inline">
+                                                <input type="radio"   name="optionsRadios" value="option1"> Normal
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon">
+                                                    <input type="radio"  name="optionsRadios" value="option2">
+                                                </span>
                                                     <input type="text" class="form-control" placeholder="Ada Kelainan">
                                                 </div> 
                                             </div>
@@ -632,16 +632,16 @@
                                 
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                            <div class="col-sm-4">
-                                                <label class="checkbox-inline">
-                                                    <input type="checkbox" value="option1"> Normal
-                                                </label>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="input-group m-b">
-                                                    <span class="input-group-addon">
-                                                        <input type="checkbox">
-                                                    </span>
+                                        <div class="col-sm-4">
+                                            <label class="checkbox-inline">
+                                                <input type="radio"   name="optionsRadios" value="option1"> Normal
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon">
+                                                    <input type="radio"  name="optionsRadios" value="option2">
+                                                </span>
                                                     <input type="text" class="form-control" placeholder="Ada Kelainan">
                                                 </div> 
                                             </div>
