@@ -27,7 +27,7 @@ if(isset($postdata) && !empty($postdata))
 	$noktp 					= preg_replace('/[^0-9 ]/','',$request->noKtp);
     $pendidikan 			= $request->pendidikan;
 	$pekerjaan 				= preg_replace('/[^a-zA-Z ]/','',$request->pekerjaan);
-	$statusPerkawinan 		= preg_replace('/[^a-zA-Z ]/','',$request->statusPerkawinan);
+	$statusPerkawinan 		= $request->statusPerkawinan;
 	$tglPertamamasuk 		= $request->tglPertamamasuk;
 	$caraBayar 				= preg_replace('/[^0-9 ]/','',$request->caraBayar);
 	$tujuanKunjunganpertama = $request->tujuanKunjunganpertama;
