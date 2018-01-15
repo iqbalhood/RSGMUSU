@@ -28,9 +28,9 @@ if(isset($postdata) && !empty($postdata))
     $pendidikan 			= $request->pendidikan;
 	$pekerjaan 				= preg_replace('/[^a-zA-Z ]/','',$request->pekerjaan);
 	$statusPerkawinan 		= preg_replace('/[^a-zA-Z ]/','',$request->statusPerkawinan);
-	$tglPertamamasuk 		= preg_replace('/[^0-9 ]/','',$request->tglPertamamasuk);
+	$tglPertamamasuk 		= $request->tglPertamamasuk;
 	$caraBayar 				= preg_replace('/[^0-9 ]/','',$request->caraBayar);
-	$tujuanKunjunganpertama = preg_replace('/[^0-9 ]/','',$request->tujuanKunjunganpertama);
+	$tujuanKunjunganpertama = $request->tujuanKunjunganpertama;
 	$alergi 				= preg_replace('/[^a-zA-Z ]/','',$request->alergi);
 	$catatan 				= preg_replace('/[^a-zA-Z ]/','',$request->catatan);
     $tinggi_badan 			= $request->tinggi_badan;

@@ -42,11 +42,10 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
     $scope.submitForm = function() {
         
         if($scope.id){
-            console.log(" ID YANG DIEDIT "+ $scope.id);
-            console.log($scope.id);
-            console.log($scope.name);
-            console.log($scope.kelamin);
-            console.log($scope.phone);
+            // console.log(" ID YANG DIEDIT "+ $scope.id);
+            // console.log("TINGGI B"+ $scope.tinggi_badan);
+            // console.log("BERAT B"+ $scope.berat_badan);
+            console.log("statusPerkawinan"+ $scope.statusPerkawinan);
            
             console.log("noRekamMedis");
             $http({
@@ -132,7 +131,9 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
 				$scope.catatan                  =  $scope.people.catatan;
 				$scope.tinggi_badan             =  $scope.people.tinggi_badan;
 				$scope.berat_badan              =  $scope.people.berat_badan;
-				$scope.golongan_darah           =  $scope.people.golongan_darah;
+                $scope.golongan_darah           =  $scope.people.golongan_darah;
+                
+                console.log("BERAT BADANMU   "+$scope.people.berat_badan);
                 
                
                 
