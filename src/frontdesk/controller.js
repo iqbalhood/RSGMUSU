@@ -229,7 +229,7 @@ app.controller("KlinikCtrl", function ($scope,$interval,$http, $route,$timeout, 
     $scope.shTable  = true;
     $scope.shForm   = false;
       
-   $http.get("../apidb/kunjungan/list_data.php?id="+$routeParams.id).then(function (response) {
+   $http.get("../apidb/kunjungan/list_data.php?id="+$routeParams.id+"&status=1").then(function (response) {
     $scope.myData = response.data.event;
     console.log(response.data.event);
    });
