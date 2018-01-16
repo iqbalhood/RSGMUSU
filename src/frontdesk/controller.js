@@ -13,41 +13,25 @@ app.controller("HomeCtrl", function ($scope, $cookies, $interval,$http, $route,$
 
 app.controller("LayananMedisCtrl", function ($scope, $cookies, $interval,$http, $route,$timeout, $routeParams, $window) {
     $scope.shTable = true;
-   
-
-
     $http.get("../apidb/tindakan_medis/list_data.php").then(function (response) {
         $scope.myData = response.data.event;
-        console.log(response.data.event);
        });
-
-     
-
 });
 
 
 app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
-   
     $scope.shTable  = true;
     $scope.shForm   = false;
     $scope.id ="";
-
    // $http.get("config/daftar_pasien.php").then(function (response) {
    $http.get("../apidb/pasien/list_data.php").then(function (response) {
         $scope.myData = response.data.event;
-        console.log(response.data.event);
     });
 
     $scope.no = Math.floor((Math.random() * 10000) + 1);
     $scope.submitForm = function() {
         
         if($scope.id){
-            // console.log(" ID YANG DIEDIT "+ $scope.id);
-            // console.log("TINGGI B"+ $scope.tinggi_badan);
-            // console.log("BERAT B"+ $scope.berat_badan);
-            console.log("statusPerkawinan"+ $scope.statusPerkawinan);
-           
-            console.log("noRekamMedis");
             $http({
                 
                  method: 'POST',
@@ -86,9 +70,7 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
          //Time Stamp Untuk Rekam Medis
          var d = new Date();
          var n = d.getTime();
-
          $scope.noRekamMedis = n;
-
          $scope.tgllahir = "0000-00-00";
     };
 
@@ -123,7 +105,7 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
 				$scope.noktp                    =  $scope.people.noktp;
 				$scope.pendidikan               =  $scope.people.pendidikan;
 				$scope.pekerjaan                =  $scope.people.pekerjaan;
-				$scope.statusPerkawinan         =  $scope.people.status_perkawinan;
+				$scope.status_perkawinan        =  $scope.people.status_perkawinan;
 				$scope.tgl_pertama_masuk        =  $scope.people.tgl_pertama_masuk;
 				$scope.cara_bayar               =  $scope.people.cara_bayar;
 				$scope.tujuan_kunjungan_pertama =  $scope.people.tujuan_kunjungan_pertama;
@@ -168,33 +150,33 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
 
     $scope.cancelForm = function() {
         
-        $scope.shTable  = true;
-        $scope.shForm   = false;
-       $scope.id       =  "";
-				$scope.noreg    =  "";
-				$scope.tglreg   =  "";
-                $scope.name     =  "";
-				$scope.tptlahir =  "";
-				$scope.tgllahir             =  "";
-				$scope.kelamin          =  "";
-				$scope.agama            =  "";
-				$scope.alamat            =  "";
-				$scope.rtrw            = "";
-				$scope.kelurahan            =  "";
-				$scope.kecamatan            =  "";
-				$scope.kabupaten             =  "";
-				$scope.propinsi            =  "";
-				$scope.phone            =  "";
-                $scope.kewarganegaraan            =  "";
-				$scope.noktp            =  "";
-				$scope.pendidikan            =  "";
-				$scope.pekerjaan            =  "";
-				$scope.statusPerkawinan            =  "";
+                $scope.shTable                      = true;
+                $scope.shForm                       = false;
+                $scope.id                           =  "";
+				$scope.noreg                        =  "";
+				$scope.tglreg                       =  "";
+                $scope.name                         =  "";
+				$scope.tptlahir                     =  "";
+				$scope.tgllahir                     =  "";
+				$scope.kelamin                      =  "";
+				$scope.agama                        =  "";
+				$scope.alamat                       =  "";
+				$scope.rtrw                         = "";
+				$scope.kelurahan                    =  "";
+				$scope.kecamatan                    =  "";
+				$scope.kabupaten                    =  "";
+				$scope.propinsi                     =  "";
+				$scope.phone                        =  "";
+                $scope.kewarganegaraan              =  "";
+				$scope.noktp                        =  "";
+				$scope.pendidikan                   =  "";
+				$scope.pekerjaan                    =  "";
+				$scope.status_perkawinan            =  "";
 				$scope.tgl_pertama_masuk            =  "";
-				$scope.cara_bayar            =  "";
-				$scope.tujuan_kunjungan_pertama            = "";
-				$scope.alergi            = "";
-				$scope.catatan            =  "";
+				$scope.cara_bayar                   =  "";
+				$scope.tujuan_kunjungan_pertama     = "";
+				$scope.alergi                       = "";
+				$scope.catatan                      =  "";
         
     };
 
@@ -375,8 +357,8 @@ app.controller("KlinikCtrl", function ($scope,$interval,$http, $route,$timeout, 
     
         $scope.cancelForm = function() {
             
-            $scope.shTable  = true;
-            $scope.shForm   = false;
+            $scope.shTable          = true;
+            $scope.shForm           = false;
             $scope.id               =  "";
             $scope.name             =  "";
             $scope.phone            =  "";
@@ -679,11 +661,15 @@ app.controller("DataPasienCtrl", function ($scope,$interval,$http, $route,$timeo
         }).then(function (response) {
             
             // on success
-            $scope.people           = response.data;
+            $scope.people           =  response.data;
             $scope.id               =  $scope.people.id;
             $scope.namaPasien       =  $scope.people.name;
             $scope.phone            =  $scope.people.phone;
             $scope.kelamin          =  $scope.people.jenis_kelamin;
+            $scope.umur             =  $scope.people.umur;
+            $scope.tinggi_badan     =  $scope.people.tinggi_badan;
+            $scope.golongan_darah   =  $scope.people.golongan_darah;
+            $scope.berat_badan      =  $scope.people.berat_badan;
            
             
         }, function (response) {
@@ -781,14 +767,14 @@ app.controller("LayananCtrl", function ($scope,$interval,$http, $route,$timeout,
             }).then(function (response) {
                 console.log(response);
                 // on success
-                $scope.people           = response.data;
+                $scope.people           =  response.data;
                 $scope.id               =  $scope.people.id;
                 $scope.name             =  $scope.people.layanan;            
-                $scope.bahan          =  $scope.people.bahan;
-				$scope.harga_bahan         =  $scope.people.harga_bahan;
-				$scope.harga_koas          =  $scope.people.harga_koas;
-				$scope.harga_drg          =  $scope.people.harga_drg;
-				$scope.harga_drgsp          =  $scope.people.harga_drgsp;
+                $scope.bahan            =  $scope.people.bahan;
+				$scope.harga_bahan      =  $scope.people.harga_bahan;
+				$scope.harga_koas       =  $scope.people.harga_koas;
+				$scope.harga_drg        =  $scope.people.harga_drg;
+				$scope.harga_drgsp      =  $scope.people.harga_drgsp;
                 
             }, function (response) {
                 
@@ -836,13 +822,11 @@ app.controller("LayananCtrl", function ($scope,$interval,$http, $route,$timeout,
             console.log($scope.name);
             console.log($scope.harga_bahan);
             $http({
-                
                  method: 'POST',
                  url:  '../apidb/layanan/postedit.php',
                  data: {newId: $scope.id, newName: $scope.name,newBahan: $scope.bahan, newHargabahan: $scope.harga_bahan, newHargakoas: $scope.harga_koas, newHargadrg: $scope.harga_drg,newHargadrgsp: $scope.harga_drgsp}
                  
             }).then(function (response) {
-
                 console.log(response);
                 // on success
                 if(response.status==200){
@@ -851,11 +835,9 @@ app.controller("LayananCtrl", function ($scope,$interval,$http, $route,$timeout,
             });
         }else{
 			$http({
-                
                  method: 'POST',
                  url:  '../apidb/layanan/post.php?id='+$routeParams.id,
-                 data: {newName: $scope.name, newBahan: $scope.bahan, newHargabahan: $scope.harga_bahan, newHargakoas: $scope.harga_koas, newHargadrg: $scope.harga_drg, newHargadrgsp: $scope.harga_drgsp}
-                 
+                 data: {newName: $scope.name, newBahan: $scope.bahan, newHargabahan: $scope.harga_bahan, newHargakoas: $scope.harga_koas, newHargadrg: $scope.harga_drg, newHargadrgsp: $scope.harga_drgsp}                 
             }).then(function (response) {
                 // on success
                 if(response.status==200){

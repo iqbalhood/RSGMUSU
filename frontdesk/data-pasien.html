@@ -8,42 +8,42 @@
                         <div class="col wrapper-lg w-lg bg-light dk r-r">
                             <h4 class="font-thin m-t-none m-b">Basic Info</h4>
                             <div class="">
-                                    <a href="" class="thumb-sm m-r">
-                                            <img src="../img/a1.jpg" class="r r-2x" ng-if="kelamin == 1">
-                                            <img src="../img/a3.jpg" class="r r-2x" ng-if="kelamin == 2">
-                                        </a>
-                                        <a href="">{{namaPasien}}</a>
-                                        <div class="clear">&nbsp;</div>
-                                        <div class="">
-                                            <span class="pull-right text-info">{{phone}}</span>
-                                            <span>No Hp</span>
-                                        </div>
-                                        <div class="clear">&nbsp;</div>  
-                                        <div class="">
-                                            <span class="pull-right text-info">23 Years Old</span>
-                                            <span>Umur</span>
-                                        </div>
-                                        <div class="clear">&nbsp;</div>                        
-                                        <div class="">
-                                            <span class="pull-right text-info" ng-if="kelamin == 1">Male</span>
-                                            <span class="pull-right text-info" ng-if="kelamin == 2">Female</span>
-                                            <span>Jenis Kelamin</span>
-                                        </div>
-                                        <div class="clear">&nbsp;</div>                        
-                                        <div class="">
-                                            <span class="pull-right text-info">164 cm</span>
-                                            <span>Tinggi</span>
-                                        </div>
-                                        <div class="clear">&nbsp;</div>                        
-                                        <div class="">
-                                            <span class="pull-right text-info">50 Kg</span>
-                                            <span>Berat Badan</span>
-                                        </div>
-                                        <div class="clear">&nbsp;</div>                        
-                                        <div class="">
-                                            <span class="pull-right text-info">B</span>
-                                            <span>Golongan Darah</span>
-                                        </div>
+                                <a href="" class="thumb-sm m-r">
+                                    <img src="../img/a1.jpg" class="r r-2x" ng-if="kelamin == 1">
+                                    <img src="../img/a3.jpg" class="r r-2x" ng-if="kelamin == 2">
+                                </a>
+                                <a href="">{{namaPasien}}</a>
+                                <div class="clear">&nbsp;</div>
+                                <div class="">
+                                    <span class="pull-right text-info">{{phone}}</span>
+                                    <span>Nomor Telepon</span>
+                                </div>
+                                <div class="clear">&nbsp;</div>  
+                                <div class="">
+                                    <span class="pull-right text-info">{{umur}} Tahun</span>
+                                    <span>Umur</span>
+                                </div>
+                                <div class="clear">&nbsp;</div>                        
+                                <div class="">
+                                    <span class="pull-right text-info" ng-if="kelamin == 1">Laki - Laki</span>
+                                    <span class="pull-right text-info" ng-if="kelamin == 2">Perempuan</span>
+                                    <span>Jenis Kelamin</span>
+                                </div>
+                                <div class="clear">&nbsp;</div>                        
+                                <div class="">
+                                    <span class="pull-right text-info">{{tinggi_badan}} cm</span>
+                                    <span>Tinggi Badan</span>
+                                </div>
+                                <div class="clear">&nbsp;</div>                        
+                                <div class="">
+                                    <span class="pull-right text-info">{{berat_badan}} Kg</span>
+                                    <span>Berat Badan</span>
+                                </div>
+                                <div class="clear">&nbsp;</div>                        
+                                <div class="">
+                                    <span class="pull-right text-info">{{golongan_darah}}</span>
+                                    <span>Golongan Darah</span>
+                                </div>
             
                              
                             </div>
@@ -54,7 +54,7 @@
                             <div class="m-b-sm">
                                 <div class="btn-group btn-group-justified">
                                                                
-                                  <a href="#!/home" class="btn btn-danger">Tutup Dialog</a>
+                                  <a href="#!/pasien" class="btn btn-danger">Tutup Dialog</a>
                                   <a href="" class="btn btn-success" ng-click="showKlinik()">Go to Klinik</a>
                                 </div>
                               </div>

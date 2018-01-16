@@ -40,7 +40,7 @@
 
   <div class="panel panel-default" ng-show="shForm">
       <div class="panel-heading font-bold">
-        Form elements
+        <button class="btn m-b-xs btn-sm btn-danger btn-addon" ng-click="cancelForm()" ><i class="fa  fa-arrow-left"></i>Back</button>
       </div>
       <div class="panel-body">
 
@@ -182,7 +182,7 @@
   <div class="form-group">
             <label class="col-sm-2 control-label" for="input-id-1">Status Perkawinan</label>
             <div class="col-sm-10">
-              <select name="account" class="form-control m-b"  ng-model="statusPerkawinan">
+              <select name="account" class="form-control m-b"  ng-model="status_perkawinan">
                 <option value="1">BELUM KAWIN</option>
                 <option value="2">KAWIN</option>
               </select>

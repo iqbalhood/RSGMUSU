@@ -27,8 +27,7 @@ if(isset($postdata) && !empty($postdata))
 	$noktp 					= preg_replace('/[^0-9 ]/','',$request->noKtp);
     $pendidikan 			= $request->pendidikan;
 	$pekerjaan 				= preg_replace('/[^a-zA-Z ]/','',$request->pekerjaan);
-//	$statusPerkawinan 		= $request->statusPerkawinan;
-	$statusPerkawinan 		= "1";
+	$statusPerkawinan 		= $request->statusPerkawinan;
 	$tglPertamamasuk 		= $request->tglPertamamasuk;
 	$caraBayar 				= preg_replace('/[^0-9 ]/','',$request->caraBayar);
 	$tujuanKunjunganpertama = preg_replace('/[^0-9 ]/','',$request->tujuanKunjunganpertama);
@@ -38,7 +37,7 @@ if(isset($postdata) && !empty($postdata))
 	$berat_badan 			= preg_replace('/[^0-9 ]/','',$request->berat_badan);
 	$golongan_darah 		= $request->golongan_darah;
     
-    if($newName  == '' ||  $newPhone == ''  ) return;
+   
     
     $noRekamMedis 			= mysqli_real_escape_string($connect,$noRekamMedis);
 	$tglRegistrasi 			= mysqli_real_escape_string($connect,$tglRegistrasi);
@@ -58,7 +57,7 @@ if(isset($postdata) && !empty($postdata))
 	$noktp 					= mysqli_real_escape_string($connect,$noktp);
 	$pendidikan 			= mysqli_real_escape_string($connect,$pendidikan);
 	$pekerjaan 				= mysqli_real_escape_string($connect,$pekerjaan);
-	//$statusPerkawinan 		= mysqli_real_escape_string($connect,$statusPerkawinan);
+	$statusPerkawinan 		= mysqli_real_escape_string($connect,$statusPerkawinan);
 	$tglPertamamasuk 		= mysqli_real_escape_string($connect,$tglPertamamasuk);
 	$caraBayar 				= mysqli_real_escape_string($connect,$caraBayar);
 	$tujuanKunjunganpertama = mysqli_real_escape_string($connect,$tujuanKunjunganpertama);
@@ -67,9 +66,6 @@ if(isset($postdata) && !empty($postdata))
 	$tinggi_badan 			= mysqli_real_escape_string($connect,$tinggi_badan);
 	$berat_badan 			= mysqli_real_escape_string($connect,$berat_badan);
 	$golongan_darah 		= mysqli_real_escape_string($connect,$golongan_darah);
-
-
-	echo "KAWIN ### "+ $statusPerkawinan;
 
     $sql = "UPDATE `data_pasien` SET `no_rekam_medis` = '$noRekamMedis', `tgl_registrasi` = '$tglRegistrasi', `nama` = '$newName', `tempat_lahir` = '$tempatLahir', `tanggal_lahir` = '$tanggalLahir', `jenis_kelamin` = '$newKelamin', `agama` = '$agama', `alamat` = '$alamat', `rtrw` = '$rtrw', `kelurahan` = '$kelurahan', `kecamatan` = '$kecamatan', `kabupaten` = '$kabupaten', `propinsi` = '$propinsi', `nomor_hp` = '$newPhone', `kewarganegaraan` = '$kewarganegaraan', `noktp` = '$noktp', `pendidikan` = '$pendidikan', `pekerjaan` = '$pekerjaan', `status_perkawinan` = '$statusPerkawinan', `tgl_pertama_masuk` = '$tglPertamamasuk', `cara_bayar` = '$caraBayar', `tujuan_kunjungan_pertama` = '$tujuanKunjunganpertama', `alergi` = '$alergi', `catatan` = '$catatan', `tinggi_badan` = '$tinggi_badan', `berat_badan` = '$berat_badan', `golongan_darah` = '$golongan_darah'  WHERE `data_pasien`.`id` = $newId;";
     mysqli_query($connect,$sql);
