@@ -723,7 +723,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 
         $scope.status = "Tidak Ada";
         $scope.warna = "#ffffff";
-        $scope.imageUrl = "../img/G1.png";
+        $scope.imageUrl = "../img/G1G1.png";
 
 
 
@@ -970,14 +970,14 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 
         
         $scope.fungsiGH = function(){
-            $scope.imageUrl = "../img/gigi_hilang.png";
+            $scope.imageUrl = "../img/small/gigi_hilang.png";
             $scope.keterangan18 = "Gigi Hilang";
             $scope.tabelKeterangan = true;
 
         };
 
         $scope.fungsiML = function(){
-            $scope.imageUrl = "../img/gigi_mahkota_logam.png";
+            $scope.imageUrl = "../img/small/gigi_mahkota_logam.png";
             $scope.keterangan18 = "Mahkota Logam";
             $scope.tabelKeterangan = true;
 
