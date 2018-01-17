@@ -88,21 +88,21 @@
                                     <div class="col-sm-4">
                                         <div class="input-group m-b">
                                             <span class="input-group-addon">Penyakit Jantung</span>
-                                            <input type="text" class="form-control" placeholder=".....">
+                                            <input type="text" class="form-control" placeholder="....." ng-model="penyakit_jantung">
                                         </div>  
                                     </div>
                                     <div class="col-sm-4">
                                             <label class="col-sm-6 control-label">Tidak/Ya</label>
                                             <div class="col-sm-6">
                                               <label class="i-switch m-t-xs m-r">
-                                                <input type="checkbox" >
+                                                <input type="checkbox" ng-model="status_jantung" >
                                                 <i></i>
                                               </label>
                                             </div> 
                                             
                                     </div>
                                     <div class="col-sm-4">
-                                            <input type="text" class="form-control" placeholder="Keterangan">
+                                            <input type="text" class="form-control" placeholder="Keterangan" ng-model="keterangan_jantung">
                                     </div>
                             </div>
 
@@ -110,21 +110,21 @@
                                     <div class="col-sm-4">
                                         <div class="input-group m-b">
                                             <span class="input-group-addon">Hipertensi</span>
-                                            <input type="text" class="form-control" placeholder=".....">
+                                            <input type="text" class="form-control" placeholder="....." ng-model="penyakit_hipertensi">
                                         </div>  
                                     </div>
                                     <div class="col-sm-4">
                                             <label class="col-sm-6 control-label">Tidak/Ya</label>
                                             <div class="col-sm-6">
                                               <label class="i-switch m-t-xs m-r">
-                                                <input type="checkbox" >
+                                                <input type="checkbox" ng-model="status_hipertensi" >
                                                 <i></i>
                                               </label>
                                             </div> 
                                             
                                     </div>
                                     <div class="col-sm-4">
-                                            <input type="text" class="form-control" placeholder="Keterangan">
+                                            <input type="text" class="form-control" placeholder="Keterangan" ng-model="keterangan_hipertensi">
                                     </div>
                             </div>
 
@@ -268,32 +268,32 @@
                             <div class="col-sm-12">
                                 <div class="input-group m-b">
                                     <span class="input-group-addon">Kesadaran</span>
-                                    <input type="text" class="form-control" placeholder=".....">
+                                    <input type="text" class="form-control" placeholder="....." ng-model="kesadaran">
                                   </div>    
                                   
                                   <div class="input-group m-b">
                                     <span class="input-group-addon">Kondisi Umum</span>
-                                    <input type="text" class="form-control" placeholder=".....">
+                                    <input type="text" class="form-control" placeholder="....." ng-model="kondisi_umum">
                                   </div>    
 
 
                                   <div class="input-group m-b">
                                     <span class="input-group-addon">Tekanan Darah</span>
-                                    <input type="text" class="form-control" placeholder=".....">
+                                    <input type="text" class="form-control" placeholder="....." ng-model="tekanan_darah">
                                   </div>    
 
                                   <div class="input-group m-b">
                                     <span class="input-group-addon">Denyut Nadi</span>
-                                    <input type="text" class="form-control" placeholder=".....">
+                                    <input type="text" class="form-control" placeholder="....." ng-model="denyut_nadi">
                                   </div>    
                                   <div class="input-group m-b">
                                     <span class="input-group-addon">Pernafasan</span>
-                                    <input type="text" class="form-control" placeholder=".....">
+                                    <input type="text" class="form-control" placeholder="....." ng-model="pernafasan">
                                   </div>    
 
                                   <div class="input-group m-b">
                                     <span class="input-group-addon">Suhu</span>
-                                    <input type="text" class="form-control" placeholder=".....">
+                                    <input type="text" class="form-control" placeholder="....." ng-model="suhu">
                                   </div>    
                             </div>
 
@@ -306,17 +306,17 @@
                                             <div class="col-sm-12">
                                                 <div class="col-sm-4">
                                                     <label class="checkbox-inline">
-                                                        <input type="radio" name="optionsRadios" value="option1"> Hipotonus
+                                                        <input type="radio" ng-model="tonus_bibir" name="optionsRadios" value="hipotonus"> Hipotonus
                                                     </label>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <label class="checkbox-inline">
-                                                        <input type="radio" name="optionsRadios" value="option2"> Normal
+                                                        <input type="radio" ng-model="tonus_bibir" name="optionsRadios" value="normal"> Normal
                                                     </label>
                                                 </div>
                                                 <div class="col-sm-4">    
                                                     <label class="checkbox-inline">
-                                                        <input type="radio" name="optionsRadios" value="option3"> Hipertonus
+                                                        <input type="radio" ng-model="tonus_bibir" name="optionsRadios" value="hipertonus"> Hipertonus
                                                     </label>
                                                 </div>
                                             </div>
@@ -329,15 +329,15 @@
                                             <div class="col-sm-12">
                                                 <div class="col-sm-6">
                                                 <label class="checkbox-inline">
-                                                    <input type="radio" name="optionsRadios"  value="option1"> Normal
+                                                    <input type="radio"  ng-model="tmj"  name="optionsRadios"    value="option1"> Normal
                                                 </label>
                                                 </div>
                                                 <div class="col-sm-6">
                                                 <div class="input-group m-b">
                                                         <span class="input-group-addon">
-                                                              <input type="radio" name="optionsRadios" value="option2">
+                                                              <input type="radio" ng-model="tmj"  name="optionsRadios" value="option2">
                                                         </span>
-                                                              <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                              <input type="text"  ng-model="kelainan_tmj" class="form-control" placeholder="Ada Kelainan">
                                                 </div> 
                                                 </div>
                                             </div>
@@ -350,17 +350,17 @@
                                             <div class="col-sm-12">
                                                 <div class="col-sm-4">
                                                     <label class="checkbox-inline">
-                                                        <input type="radio"  name="optionsRadios" value="option1"> Teraba
+                                                        <input type="radio" ng-model="kelenjar_limfe"  name="optionsRadios" value="option1"> Teraba
                                                     </label>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <label class="checkbox-inline">
-                                                        <input type="radio" name="optionsRadios" value="option2"> Teraba Sakit
+                                                        <input type="radio" ng-model="kelenjar_limfe"  name="optionsRadios" value="option2"> Teraba Sakit
                                                     </label>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <label class="checkbox-inline">
-                                                        <input type="radio" name="optionsRadios" value="option3"> Tidak Teraba
+                                                        <input type="radio" ng-model="kelenjar_limfe"  name="optionsRadios" value="option3"> Tidak Teraba
                                                     </label>
                                                 </div>
                                             </div>
@@ -381,22 +381,22 @@
                             <div class="col-sm-12">
                                     <!-- ORDONTOGRAMA INPUT -->
                                    <div style="width:20px;float:left;"> <center>18 <br /><img src="{{imageUrl}}" ng-click="n18()"  /></center> </div>
-                                   <div style="width:20px;float:left;padding-left:20px"> <center>17 <br /><img src="../img/G1G1.png" /></center> </div>
-                                   <div style="width:20px;float:left;padding-left:40px"> <center>16 <br /><img src="../img/G1G1.png" /></center> </div>
-								   <div style="width:20px;float:left;padding-left:40px"> <center>15 <br /><img src="../img/G1G1.png" /></center> </div>
-								   <div style="width:20px;float:left;padding-left:40px"> <center>14 <br /><img src="../img/G1G1.png" /></center> </div>
-								   <div style="width:20px;float:left;padding-left:40px"> <center>13 <br /><img src="../img/G1G1.png" /></center> </div>
-								   <div style="width:20px;float:left;padding-left:40px"> <center>12 <br /><img src="../img/G1G1.png" /></center> </div>
-								   <div style="width:20px;float:left;padding-left:40px"> <center>11 <br /><img src="../img/G1G1.png" /></center> </div>
+                                   <div style="width:20px;float:left;padding-left:20px"> <center>17 <br /><img src="../img/G1G1.png" ng-click="n17()"  /></center> </div>
+                                   <div style="width:20px;float:left;padding-left:40px"> <center>16 <br /><img src="../img/G1G1.png" ng-click="n16()"  /></center> </div>
+								   <div style="width:20px;float:left;padding-left:40px"> <center>15 <br /><img src="../img/G1G1.png" ng-click="n15()" /></center> </div>
+								   <div style="width:20px;float:left;padding-left:40px"> <center>14 <br /><img src="../img/G1G1.png" ng-click="n14()" /></center> </div>
+								   <div style="width:20px;float:left;padding-left:40px"> <center>13 <br /><img src="../img/G1G1.png" ng-click="n13()" /></center> </div>
+								   <div style="width:20px;float:left;padding-left:40px"> <center>12 <br /><img src="../img/G1G1.png" ng-click="n12()" /></center> </div>
+								   <div style="width:20px;float:left;padding-left:40px"> <center>11 <br /><img src="../img/G1G1.png" ng-click="n11()" /></center> </div>
 								   <div style="width:20px;float:left;padding-left:40px">&nbsp;</div>
-								   <div style="width:20px;float:left;padding-left:40px"> <center>21 <br /><img src="../img/G1G1.png" /></center> </div>
-								   <div style="width:20px;float:left;padding-left:40px"> <center>22 <br /><img src="../img/G1G1.png" /></center> </div>
-								   <div style="width:20px;float:left;padding-left:40px"> <center>23 <br /><img src="../img/G1G1.png" /></center> </div>
-								   <div style="width:20px;float:left;padding-left:40px"> <center>24 <br /><img src="../img/G1G1.png" /></center> </div>
-								   <div style="width:20px;float:left;padding-left:40px"> <center>25 <br /><img src="../img/G1G1.png" /></center> </div>
-								   <div style="width:20px;float:left;padding-left:40px"> <center>26 <br /><img src="../img/G1G1.png" /></center> </div>
-								   <div style="width:20px;float:left;padding-left:40px"> <center>27 <br /><img src="../img/G1G1.png" /></center> </div>
-								   <div style="width:20px;float:left;padding-left:40px"> <center>28 <br /><img src="../img/G1G1.png" /></center> </div>
+								   <div style="width:20px;float:left;padding-left:40px"> <center>21 <br /><img src="../img/G1G1.png" ng-click="n21()" /></center> </div>
+								   <div style="width:20px;float:left;padding-left:40px"> <center>22 <br /><img src="../img/G1G1.png" ng-click="n22()" /></center> </div>
+								   <div style="width:20px;float:left;padding-left:40px"> <center>23 <br /><img src="../img/G1G1.png" ng-click="n23()" /></center> </div>
+								   <div style="width:20px;float:left;padding-left:40px"> <center>24 <br /><img src="../img/G1G1.png" ng-click="n24()" /></center> </div>
+								   <div style="width:20px;float:left;padding-left:40px"> <center>25 <br /><img src="../img/G1G1.png" ng-click="n25()" /></center> </div>
+								   <div style="width:20px;float:left;padding-left:40px"> <center>26 <br /><img src="../img/G1G1.png" ng-click="n26()" /></center> </div>
+								   <div style="width:20px;float:left;padding-left:40px"> <center>27 <br /><img src="../img/G1G1.png" ng-click="n27()" /></center> </div>
+								   <div style="width:20px;float:left;padding-left:40px"> <center>28 <br /><img src="../img/G1G1.png" ng-click="n28()" /></center> </div>
 							</div>
 							<div class="col-sm-12">
                                     <!-- ORDONTOGRAMA INPUT -->

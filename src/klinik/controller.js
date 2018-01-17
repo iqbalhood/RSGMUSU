@@ -1089,16 +1089,34 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
         
         $scope.simpanData = function(){
 
-            $http({
-                method: 'POST',
-                url:  '../apidb/klinik/put_rm_penyakit.php',
-                data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id,  }
-            }).then(function (response) {
-                // on success
-                if(response.status==200){
-                   console.log("Simpan Riwayat Penyakit Sukses...!!!");   
-                }
-            });
+             
+           
+
+           
+
+            // $http({
+            //     method: 'POST',
+            //     url:  '../apidb/klinik/put_rm_riwayat_penyakit.php',
+            //     data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id,
+            //            penyakitJantung : $scope.penyakit_jantung, keteranganJantung : $scope.keterangan_jantung, statusJantung: $scope.status_jantung }
+            // }).then(function (response) {
+            //     // on success
+            //     if(response.status==200){
+            //        console.log("Simpan Riwayat Penyakit Sukses...!!!");   
+            //     }
+            // });
+
+            // $http({
+            //     method: 'POST',
+            //     url:  '../apidb/klinik/put_rm_tanda_vital.php',
+            //     data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id,
+            //            kesadaran : $scope.kesadaran, kondisiUmum : $scope.kondisi_umum, tekananDarah: $scope.tekanan_darah, denyutNadi: $scope.denyut_nadi, pernafasan: $scope.pernafasan, suhu: $scope.suhu }
+            // }).then(function (response) {
+            //     // on success
+            //     if(response.status==200){
+            //        console.log("Simpan Tanda Vital Sukses...!!!");   
+            //     }
+            // });
 
 
 
