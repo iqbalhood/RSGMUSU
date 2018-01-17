@@ -723,7 +723,17 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 
         $scope.status = "Tidak Ada";
         $scope.warna = "#ffffff";
-        $scope.imageUrl = "../img/G1G1.png";
+
+        $scope.imageUrl18 = "../img/G1G1.png";
+        $scope.imageUrl17 = "../img/G1G1.png";
+        $scope.imageUrl16 = "../img/G1G1.png";
+        $scope.imageUrl15 = "../img/G1G1.png";
+        $scope.imageUrl14 = "../img/G1G1.png";
+        $scope.imageUrl13 = "../img/G1G1.png";
+        $scope.imageUrl12 = "../img/G1G1.png";
+        $scope.imageUrl11 = "../img/G1G1.png";
+
+        $scope.teethValue = 0 ;
 
 
 
@@ -970,129 +980,212 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 
         
         $scope.fungsiGH = function(){
-            $scope.imageUrl = "../img/small/gigi_hilang.png";
-            $scope.keterangan18 = "Gigi Hilang";
-            $scope.tabelKeterangan = true;
+            console.log("Teeeth Value GH "+ $scope.teethValue);
+
+            if($scope.teethValue == 18){
+
+                $scope.imageUrl18 = "../img/small/gigi_hilang.png";   
+
+            }
+
+            if($scope.teethValue == 17){
+
+                $scope.imageUrl17 = "../img/small/gigi_hilang.png";   
+            }
+
+            if($scope.teethValue == 16){
+
+                $scope.imageUrl16 = "../img/small/gigi_hilang.png";   
+
+            }
+
+            if($scope.teethValue == 15){
+
+                $scope.imageUrl15 = "../img/small/gigi_hilang.png";   
+            }
+
+            if($scope.teethValue == 14){
+
+                $scope.imageUrl14 = "../img/small/gigi_hilang.png";    
+
+            }
+
+            if($scope.teethValue == 13){
+
+                $scope.imageUrl13 = "../img/small/gigi_hilang.png";   
+
+            }
+
+            if($scope.teethValue == 12){
+
+                $scope.imageUrl12 = "../img/small/gigi_hilang.png";    
+
+            }
+
+            if($scope.teethValue == 11){
+
+                $scope.imageUrl11 = "../img/small/gigi_hilang.png";    
+
+            }
+            
 
         };
 
-        $scope.fungsiML = function(){
-            $scope.imageUrl = "../img/small/gigi_mahkota_logam.png";
-            $scope.keterangan18 = "Mahkota Logam";
-            $scope.tabelKeterangan = true;
+       
+        $scope.fungsiBelumErupsi = function(){
+
+            console.log("Teeeth Value Belum Erupsi "+ $scope.teethValue);
+
+            if($scope.teethValue == 18){
+
+                $scope.imageUrl18 = "../img/small/belum_erupsi.png";   
+
+            }
+
+            if($scope.teethValue == 17){
+
+                $scope.imageUrl17 = "../img/small/belum_erupsi.png";     
+            }
+
+            if($scope.teethValue == 16){
+
+                $scope.imageUrl16 = "../img/small/belum_erupsi.png";     
+
+            }
+
+            if($scope.teethValue == 15){
+
+                $scope.imageUrl15 = "../img/small/belum_erupsi.png";     
+            }
+
+            if($scope.teethValue == 14){
+
+                $scope.imageUrl14 = "../img/small/belum_erupsi.png";      
+
+            }
+
+            if($scope.teethValue == 13){
+
+                $scope.imageUrl13 = "../img/small/belum_erupsi.png";    
+
+            }
+
+            if($scope.teethValue == 12){
+
+                $scope.imageUrl12 = "../img/small/belum_erupsi.png";      
+
+            }
+
+            if($scope.teethValue == 11){
+
+                $scope.imageUrl11 = "../img/small/belum_erupsi.png";    
+
+            }
 
         };
+
+        $scope.fungsiErupsiSebagian = function(){
+
+            console.log("Teeeth Value Belum Erupsi "+ $scope.teethValue);
+
+            if($scope.teethValue == 18){
+
+                $scope.imageUrl18 = "../img/small/erupsi_sebagian.png";   
+
+            }
+
+            if($scope.teethValue == 17){
+
+                $scope.imageUrl17 = "../img/small/erupsi_sebagian.png";     
+            }
+
+            if($scope.teethValue == 16){
+
+                $scope.imageUrl16 = "../img/small/erupsi_sebagian.png";     
+
+            }
+
+            if($scope.teethValue == 15){
+
+                $scope.imageUrl15 = "../img/small/erupsi_sebagian.png";     
+            }
+
+            if($scope.teethValue == 14){
+
+                $scope.imageUrl14 = "../img/small/erupsi_sebagian.png";      
+
+            }
+
+            if($scope.teethValue == 13){
+
+                $scope.imageUrl13 = "../img/small/erupsi_sebagian.png";    
+
+            }
+
+            if($scope.teethValue == 12){
+
+                $scope.imageUrl12 = "../img/small/erupsi_sebagian.png";      
+
+            }
+
+            if($scope.teethValue == 11){
+
+                $scope.imageUrl11 = "../img/small/erupsi_sebagian.png";    
+
+            }
+
+
+        };  
+
+
 
         $scope.n18 = function(){
-            $scope.imageUrl = "../img/G1.png";
-            $scope.keterangan18 = "";
-            $scope.tabelKeterangan = false;
+            $scope.imageUrl18 = "../img/G1G1.png";  
+            $scope.teethValue = 18;  
+            console.log("Teeeth Value "+ $scope.teethValue);
         }
 
-        $scope.clickColor18 = function(x){
+        $scope.n17 = function(){
+            $scope.imageUrl17 = "../img/G1G1.png";
+            $scope.teethValue = 17;  
+            console.log("Teeeth Value "+ $scope.teethValue);
+        }
 
-            $scope.shFormGigi = true;
+        $scope.n16= function(){
+            $scope.imageUrl16 = "../img/G1G1.png";
+            $scope.teethValue = 16;  
+        }
 
-            if(x == 'C'){
-                if($scope.colorC18 != "lime"){
-                    $scope.colorC18 = $scope.warna;
-                }else{
-                    $scope.colorC18 = "white";
-                }      
-            }
+        $scope.n15= function(){
+            $scope.imageUrl15 = "../img/G1G1.png";
+            $scope.teethValue = 15;  
+        }
 
+        $scope.n14= function(){
+            $scope.imageUrl14 = "../img/G1G1.png";
+            $scope.teethValue = 14;  
+        }
 
-            if(x == 'T'){
-                if($scope.colorT18 != "lime"){
-                    $scope.colorT18 = $scope.warna;
-                }else{
-                    $scope.colorT18 = "white";
-                }
-            }
+        $scope.n13= function(){
+            $scope.imageUrl13 = "../img/G1G1.png";
+            $scope.teethValue = 13;  
+        }
 
+        $scope.n12= function(){
+            $scope.imageUrl12 = "../img/G1G1.png";
+            $scope.teethValue = 12;  
+        }
 
-            if(x == 'B'){
-                if($scope.colorB18 != "lime"){
-                    $scope.colorB18 = $scope.warna;
-                }else{
-                    $scope.colorB18 = "white";
-                }
-            }
-
-
-            if(x == 'R'){
-                if($scope.colorR18 != "lime"){
-                    $scope.colorR18 = $scope.warna;
-                }else{
-                    $scope.colorR18 = "white";
-                }
-            }
-
-
-            if(x == 'L'){
-                if($scope.colorL18 != "lime"){
-                    $scope.colorL18 = $scope.warna;
-                }else{
-                    $scope.colorL18 = "white";
-                }
-            }
+        $scope.n11= function(){
+            $scope.imageUrl11 = "../img/G1G1.png";
+            $scope.teethValue = 11;  
+        }
 
 
 
-           
-            
-        };
-
-
-        $scope.setStatus = function(x){
-
-           
-
-            if(x == '1'){
-
-                $scope.status = "Cavity";
-                $scope.warna = "#7266ba";
-
-            }
-
-            if(x == '2'){
-                
-                $scope.status = "Missing";
-                $scope.warna = "#23b7e5";
-                
-            }
-
-            if(x == '3'){
-                
-                $scope.status = "Implakasi";
-                $scope.warna = "#27c24c";
-                
-            }
-
-            if(x == '4'){
-                
-                $scope.status = "Gigi goyang";
-                $scope.warna = "#fad733";
-                
-            }
-
-            if(x == '5'){
-                
-                $scope.status = "Bridge";
-                $scope.warna = "#f05050";
-                
-            }
-
-        };
-
-
+       
         
         $scope.simpanData = function(){
-
-             
-           
-
-           
 
             // $http({
             //     method: 'POST',
