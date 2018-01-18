@@ -481,7 +481,7 @@
                                     <div class="col-sm-4"><img src="../img/tambalan_non_logam.png" ng-click="fungsiTambalanNonLogam()"/> Tambalan Non Logam</div>
                                   </div>
 								  <div class="col-sm-12">
-									<div class="col-sm-4"><img src="../img/non_vital.png" ng-click="fungsiSisaAkar()"/> Sisa Akar</div>
+									<div class="col-sm-4"><img src="../img/sisa_akar.png" ng-click="fungsiSisaAkar()"/> Sisa Akar</div>
                                     <div class="col-sm-4"><img src="../img/gigi_mahkota_logam.png" ng-click="fungsiML()"/> Mahkota Logam</div>
                                   </div>
                                   <div class="clear">&nbsp;</div>
@@ -522,26 +522,7 @@
                                     </div>
                             </div>
 
-                            <label class="col-sm-12 panel-heading"><h3>Diagnosa</h3></label>
-                            <div class="col-sm-12">
-                                <textarea class="form-control" ng-model="diagnosa"></textarea>                      
-                            </div>
-
-                            <div class="col-sm-12"  >
-                                    <div class="line line-dashed b-b line-lg pull-in"></div>
-                                    <label class="col-sm-12 panel-heading">Rencana Perawatan </label>
-                                    <div class="col-sm-12">
-                                            <textarea class="form-control" ng-model="rencanaPerawatan"></textarea>                      
-                                    </div>
-                            </div>
-
-                            <div class="col-sm-12"  >
-                                <div class="line line-dashed b-b line-lg pull-in"></div>
-                                <label class="col-sm-12 panel-heading"> Perawatan </label>
-                                <div class="col-sm-12">
-                                        <textarea class="form-control" ng-model="dataPerawatan"></textarea>                      
-                                </div>
-                            </div>
+                          
 
                             <div class="line line-dashed b-b line-lg pull-in" style="margin-top:30px;"></div>
 
@@ -745,6 +726,87 @@
                                 </row>  
                             </div>
 
+
+                            <label class="col-sm-12 panel-heading" style="margin-top:40px;"><h3>Perawatan</h3></label>
+                            <div class="col-sm-12">
+                                <button class="btn m-b-xs btn-sm btn-primary btn-addon"><i class="fa fa-plus"></i>Tambahkan Perawatan</button>
+                            </div>
+                            <!-- FORM PERAWATAN GIGI-->
+                            <div class="col-sm-12">
+
+
+                                <div class="panel panel-default" >
+                                        <div class="panel-heading font-bold">
+                                        Form Perawatan
+                                        </div>
+                                        <div class="panel-body">
+
+                                    <form class="form-horizontal">
+                                        <input type="hidden" class="form-control" ng-model="idLayanan">
+                                        <input type="hidden" class="form-control" ng-model="no">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="input-id-1">Element Gigi / Mulut </label>
+                                            <div class="col-sm-10">
+                                                    <input type="text" class="form-control" placeholder="................" ng-model="elementGigiMulut">
+                                            </div>
+                                        </div>  
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="input-id-1">Diagnosa</label>
+                                            <div class="col-sm-10">
+                                                    <input type="text" class="form-control" placeholder="................" ng-model="diagnosaGigiMulut">
+                                            </div>
+                                        </div> 	
+                                        <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="input-id-1">Perawatan</label>
+                                                <div class="col-sm-10">
+                                                        <input type="text" class="form-control" placeholder="................" ng-model="perawatanGigiMulut">
+                                                </div>
+                                            </div> 	
+                                        
+                                       
+                                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                                        <div class="form-group">
+                                            <div class="col-sm-4 col-sm-offset-2">
+                                            <button type="submit" ng-click="cancelFormPerawatan()" class="btn btn-default">Cancel</button>
+                                            <button ng-click="submitFormPerawatan()" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!-- FORM PERAWATAN GIGI-->
+
+                            <label class="col-sm-12 panel-heading" style="margin-top:40px;"><h3>Daftar Perawatan</h3></label>
+                            <div class="col-sm-12">
+                                    <div class="panel panel-default">
+                                      <div class="panel-heading">Daftar Perawatan</div>
+                                      <table class="table table-striped m-b-none">
+                                        <thead>
+                                          <tr>
+                                            <th style="width:20px;" class="text-center">No</th>       
+                                            <th style="width:70px;">Element Gigi</th>
+                                            <th style="width:70px;">Diagnosa</th>
+                                            <th style="width:70px;">Perawatan </th>
+                                            <th style="width:20px;">Aksi</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="j in daftarPerawatan">
+                                                <td>{{ $index + 1 }}</td>
+                                                <td>{{ j.element_gigi_mulut }}</td>
+                                                <td>{{ j.diagnosa }}</td>
+                                                <td>{{ j.perawatan}}</td>
+                                                <td><i  class="fa fa-times text-danger text" ng-click="hapusdaftarPerawatan($index)"></i></td>
+                                            </tr>
+                                         
+                                        </tbody>
+                                      </table>
+                                    </div>
+                            </div>
 
 
 

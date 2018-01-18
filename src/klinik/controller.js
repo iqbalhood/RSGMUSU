@@ -720,6 +720,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
     var klinikCookie = $cookies.get('klinik');
         $scope.daftarObat       = [];
         $scope.daftarLayanan    = [];
+        $scope.daftarPerawatan  = [];
 
         $scope.status = "Tidak Ada";
         $scope.warna = "#ffffff";
@@ -978,6 +979,18 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
             $scope.shFormLayanan  = false;       
         };
 
+        $scope.submitFormPerawatan = function(){
+
+            var obj = { element_gigi_mulut : $scope.elementGigiMulut, diagnosa: $scope.diagnosaGigiMulut , perawatan : $scope.perawatanGigiMulut  };
+
+            $scope.daftarPerawatan.push(obj);
+
+
+
+        };
+
+
+
         
         $scope.fungsiGH = function(){
             console.log("Teeeth Value GH "+ $scope.teethValue);
@@ -1136,6 +1149,427 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 
 
         };  
+
+        $scope.fungsiKaries = function(){
+
+                console.log("Teeeth Value Belum Erupsi "+ $scope.teethValue);
+
+            if($scope.teethValue == 18){
+
+                $scope.imageUrl18 = "../img/small/karies.png";   
+
+            }
+
+            if($scope.teethValue == 17){
+
+                $scope.imageUrl17 = "../img/small/karies.png";     
+            }
+
+            if($scope.teethValue == 16){
+
+                $scope.imageUrl16 = "../img/small/karies.png";     
+
+            }
+
+            if($scope.teethValue == 15){
+
+                $scope.imageUrl15 = "../img/small/karies.png";     
+            }
+
+            if($scope.teethValue == 14){
+
+                $scope.imageUrl14 = "../img/small/karies.png";      
+
+            }
+
+            if($scope.teethValue == 13){
+
+                $scope.imageUrl13 = "../img/small/karies.png";    
+
+            }
+
+            if($scope.teethValue == 12){
+
+                $scope.imageUrl12 = "../img/small/karies.png";      
+
+            }
+
+            if($scope.teethValue == 11){
+
+                $scope.imageUrl11 = "../img/small/karies.png";    
+
+            }
+
+        };
+
+        $scope.fungsiAnomaliBentuk = function(){
+
+            console.log("Teeeth Value Belum Erupsi "+ $scope.teethValue);
+
+        if($scope.teethValue == 18){
+
+            $scope.imageUrl18 = "../img/small/anomali_bentuk.png";   
+
+        }
+
+        if($scope.teethValue == 17){
+
+            $scope.imageUrl17 = "../img/small/anomali_bentuk.png";     
+        }
+
+        if($scope.teethValue == 16){
+
+            $scope.imageUrl16 = "../img/small/anomali_bentuk.png";     
+
+        }
+
+        if($scope.teethValue == 15){
+
+            $scope.imageUrl15 = "../img/small/anomali_bentuk.png";     
+        }
+
+        if($scope.teethValue == 14){
+
+            $scope.imageUrl14 = "../img/small/anomali_bentuk.png";      
+
+        }
+
+        if($scope.teethValue == 13){
+
+            $scope.imageUrl13 = "../img/small/anomali_bentuk.png";    
+
+        }
+
+        if($scope.teethValue == 12){
+
+            $scope.imageUrl12 = "../img/small/anomali_bentuk.png";      
+
+        }
+
+        if($scope.teethValue == 11){
+
+            $scope.imageUrl11 = "../img/small/anomali_bentuk.png";    
+
+        }
+
+    };
+
+    $scope.fungsiTambalanLogam = function(){
+
+        console.log("Teeeth Value Belum Erupsi "+ $scope.teethValue);
+
+        if($scope.teethValue == 18){
+
+            $scope.imageUrl18 = "../img/small/tambalan_logam.png";   
+
+        }
+
+        if($scope.teethValue == 17){
+
+            $scope.imageUrl17 = "../img/small/tambalan_logam.png";     
+        }
+
+        if($scope.teethValue == 16){
+
+            $scope.imageUrl16 = "../img/small/tambalan_logam.png";     
+
+        }
+
+        if($scope.teethValue == 15){
+
+            $scope.imageUrl15 = "../img/small/tambalan_logam.png";     
+        }
+
+        if($scope.teethValue == 14){
+
+            $scope.imageUrl14 = "../img/small/tambalan_logam.png";      
+
+        }
+
+        if($scope.teethValue == 13){
+
+            $scope.imageUrl13 = "../img/small/tambalan_logam.png";    
+
+        }
+
+        if($scope.teethValue == 12){
+
+            $scope.imageUrl12 = "../img/small/tambalan_logam.png";      
+
+        }
+
+        if($scope.teethValue == 11){
+
+            $scope.imageUrl11 = "../img/small/tambalan_logam.png";    
+
+        }
+
+    };
+
+
+        $scope.fungsiNonVital = function(){
+
+            console.log("Teeeth Value Belum Erupsi "+ $scope.teethValue);
+
+            if($scope.teethValue == 18){
+
+                $scope.imageUrl18 = "../img/small/non_vital.png";   
+
+            }
+
+            if($scope.teethValue == 17){
+
+                $scope.imageUrl17 = "../img/small/non_vital.png";     
+            }
+
+            if($scope.teethValue == 16){
+
+                $scope.imageUrl16 = "../img/small/non_vital.png";     
+
+            }
+
+            if($scope.teethValue == 15){
+
+                $scope.imageUrl15 = "../img/small/non_vital.png";     
+            }
+
+            if($scope.teethValue == 14){
+
+                $scope.imageUrl14 = "../img/small/non_vital.png";      
+
+            }
+
+            if($scope.teethValue == 13){
+
+                $scope.imageUrl13 = "../img/small/non_vital.png";    
+
+            }
+
+            if($scope.teethValue == 12){
+
+                $scope.imageUrl12 = "../img/small/non_vital.png";      
+
+            }
+
+            if($scope.teethValue == 11){
+
+                $scope.imageUrl11 = "../img/small/non_vital.png";    
+
+            }
+
+        };
+
+        
+
+        $scope.fungsiTambalanNonLogam = function(){
+
+            console.log("Teeeth Value Belum Erupsi "+ $scope.teethValue);
+
+            if($scope.teethValue == 18){
+
+                $scope.imageUrl18 = "../img/small/tambalan_non_logam.png";   
+
+            }
+
+            if($scope.teethValue == 17){
+
+                $scope.imageUrl17 = "../img/small/tambalan_non_logam.png";     
+            }
+
+            if($scope.teethValue == 16){
+
+                $scope.imageUrl16 = "../img/small/tambalan_non_logam.png";     
+
+            }
+
+            if($scope.teethValue == 15){
+
+                $scope.imageUrl15 = "../img/small/tambalan_non_logam.png";     
+            }
+
+            if($scope.teethValue == 14){
+
+                $scope.imageUrl14 = "../img/small/tambalan_non_logam.png";      
+
+            }
+
+            if($scope.teethValue == 13){
+
+                $scope.imageUrl13 = "../img/small/tambalan_non_logam.png";    
+
+            }
+
+            if($scope.teethValue == 12){
+
+                $scope.imageUrl12 = "../img/small/tambalan_non_logam.png";      
+
+            }
+
+            if($scope.teethValue == 11){
+
+                $scope.imageUrl11 = "../img/small/tambalan_non_logam.png";    
+
+            }
+
+        };
+
+        $scope.fungsiSisaAkar = function(){
+
+            console.log("Teeeth Value Belum Erupsi "+ $scope.teethValue);
+
+            if($scope.teethValue == 18){
+
+                $scope.imageUrl18 = "../img/small/sisa_akar.png";   
+
+            }
+
+            if($scope.teethValue == 17){
+
+                $scope.imageUrl17 = "../img/small/sisa_akar.png";     
+            }
+
+            if($scope.teethValue == 16){
+
+                $scope.imageUrl16 = "../img/small/sisa_akar.png";     
+
+            }
+
+            if($scope.teethValue == 15){
+
+                $scope.imageUrl15 = "../img/small/sisa_akar.png";     
+            }
+
+            if($scope.teethValue == 14){
+
+                $scope.imageUrl14 = "../img/small/sisa_akar.png";      
+
+            }
+
+            if($scope.teethValue == 13){
+
+                $scope.imageUrl13 = "../img/small/sisa_akar.png";    
+
+            }
+
+            if($scope.teethValue == 12){
+
+                $scope.imageUrl12 = "../img/small/sisa_akar.png";      
+
+            }
+
+            if($scope.teethValue == 11){
+
+                $scope.imageUrl11 = "../img/small/sisa_akar.png";    
+
+            }
+
+        };
+
+        $scope.fungsiML = function(){
+
+            console.log("Teeeth Value Belum Erupsi "+ $scope.teethValue);
+
+            if($scope.teethValue == 18){
+
+                $scope.imageUrl18 = "../img/small/gigi_mahkota_logam.png";   
+
+            }
+
+            if($scope.teethValue == 17){
+
+                $scope.imageUrl17 = "../img/small/gigi_mahkota_logam.png";     
+            }
+
+            if($scope.teethValue == 16){
+
+                $scope.imageUrl16 = "../img/small/gigi_mahkota_logam.png";     
+
+            }
+
+            if($scope.teethValue == 15){
+
+                $scope.imageUrl15 = "../img/small/gigi_mahkota_logam.png";     
+            }
+
+            if($scope.teethValue == 14){
+
+                $scope.imageUrl14 = "../img/small/gigi_mahkota_logam.png";      
+
+            }
+
+            if($scope.teethValue == 13){
+
+                $scope.imageUrl13 = "../img/small/gigi_mahkota_logam.png";    
+
+            }
+
+            if($scope.teethValue == 12){
+
+                $scope.imageUrl12 = "../img/small/gigi_mahkota_logam.png";      
+
+            }
+
+            if($scope.teethValue == 11){
+
+                $scope.imageUrl11 = "../img/small/gigi_mahkota_logam.png";    
+
+            }
+
+        };
+
+        $scope.fungsiMahkotaNonLogam = function(){
+
+            console.log("Teeeth Value Belum MahkotaNonLogam "+ $scope.teethValue);
+
+            if($scope.teethValue == 18){
+
+                $scope.imageUrl18 = "../img/small/mahkota_non_logam.png";   
+
+            }
+
+            if($scope.teethValue == 17){
+
+                $scope.imageUrl17 = "../img/small/mahkota_non_logam.png";     
+            }
+
+            if($scope.teethValue == 16){
+
+                $scope.imageUrl16 = "../img/small/mahkota_non_logam.png";     
+
+            }
+
+            if($scope.teethValue == 15){
+
+                $scope.imageUrl15 = "../img/small/mahkota_non_logam.png";     
+            }
+
+            if($scope.teethValue == 14){
+
+                $scope.imageUrl14 = "../img/small/mahkota_non_logam.png";      
+
+            }
+
+            if($scope.teethValue == 13){
+
+                $scope.imageUrl13 = "../img/small/mahkota_non_logam.png";    
+
+            }
+
+            if($scope.teethValue == 12){
+
+                $scope.imageUrl12 = "../img/small/mahkota_non_logam.png";      
+
+            }
+
+            if($scope.teethValue == 11){
+
+                $scope.imageUrl11 = "../img/small/mahkota_non_logam.png";    
+
+            }
+
+        };
+        
+
 
 
 
