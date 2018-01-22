@@ -1,19 +1,22 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.9
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 14, 2017 at 01:24 
--- Server version: 5.5.8
--- PHP Version: 5.3.5
+-- Generation Time: Jan 22, 2018 at 05:22 AM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 5.6.32
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `klinikusu`
@@ -25,24 +28,22 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Table structure for table `data_dokter`
 --
 
-CREATE TABLE IF NOT EXISTS `data_dokter` (
-  `id` int(8) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `data_dokter` (
+  `id` int(8) NOT NULL,
   `nama` varchar(300) NOT NULL,
   `jenis_kelamin` varchar(1) NOT NULL,
-  `nomor_hp` varchar(24) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `nomor_hp` varchar(24) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `data_dokter`
 --
 
 INSERT INTO `data_dokter` (`id`, `nama`, `jenis_kelamin`, `nomor_hp`) VALUES
-(1, 'dr H Boyke Dian Nugraha SpOG MARS', '1', '081285000336'),
-(2, 'Teuku Adifitrian', '1', '081285000335'),
-(3, 'Ryan Thamrin', '1', '082368008555'),
-(4, 'Dr Farah Quinn', '2', '082368008333'),
-(5, 'Dr Jamin Ginting', '1', '081265558638');
+(1, 'dr. Dian Nugraha', '1', '081285000336'),
+(2, 'dr. Teuku Adifitrian', '1', '081285000335'),
+(3, 'dr. Ryan Baskoro', '1', '082368008555'),
+(4, 'dr. Maruli Siregar', '2', '082368008333');
 
 -- --------------------------------------------------------
 
@@ -50,17 +51,16 @@ INSERT INTO `data_dokter` (`id`, `nama`, `jenis_kelamin`, `nomor_hp`) VALUES
 -- Table structure for table `data_layanan`
 --
 
-CREATE TABLE IF NOT EXISTS `data_layanan` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `data_layanan` (
+  `id` int(11) NOT NULL,
   `layanan` varchar(300) NOT NULL,
   `bahan` text NOT NULL,
   `harga_bahan` int(255) NOT NULL,
   `idklinik` int(11) NOT NULL,
   `harga_koas` int(11) NOT NULL,
   `harga_drg` int(11) NOT NULL,
-  `harga_drgsp` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+  `harga_drgsp` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `data_layanan`
@@ -91,23 +91,23 @@ INSERT INTO `data_layanan` (`id`, `layanan`, `bahan`, `harga_bahan`, `idklinik`,
 -- Table structure for table `data_obat`
 --
 
-CREATE TABLE IF NOT EXISTS `data_obat` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `data_obat` (
+  `id` int(11) NOT NULL,
   `nama` varchar(300) NOT NULL,
   `quantity` varchar(300) NOT NULL,
   `satuan` varchar(300) NOT NULL,
-  `harga` int(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+  `harga` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `data_obat`
 --
 
 INSERT INTO `data_obat` (`id`, `nama`, `quantity`, `satuan`, `harga`) VALUES
-(1, 'Paracetamol', '20', 'Papanw', 2000000),
+(1, 'Paracetamol', '15', 'Papan', 2000000),
 (2, 'Panadol', '15', 'Botol 500 Ml', 300000),
-(6, 'liquid', '12', 'sachet', 500000);
+(3, 'Liquid Chlorophyll', '15', 'Botol 800 Mg', 600000),
+(4, 'Alkohol', '13', 'Liter', 5000000);
 
 -- --------------------------------------------------------
 
@@ -115,9 +115,9 @@ INSERT INTO `data_obat` (`id`, `nama`, `quantity`, `satuan`, `harga`) VALUES
 -- Table structure for table `data_pasien`
 --
 
-CREATE TABLE IF NOT EXISTS `data_pasien` (
-  `id` int(20) NOT NULL AUTO_INCREMENT,
-  `no_registrasi` varchar(20) NOT NULL,
+CREATE TABLE `data_pasien` (
+  `id` int(20) NOT NULL,
+  `no_rekam_medis` varchar(20) NOT NULL,
   `tgl_registrasi` date NOT NULL,
   `nama` varchar(200) NOT NULL,
   `tempat_lahir` varchar(20) NOT NULL,
@@ -135,29 +135,31 @@ CREATE TABLE IF NOT EXISTS `data_pasien` (
   `noktp` varchar(50) NOT NULL,
   `pendidikan` varchar(20) NOT NULL,
   `pekerjaan` varchar(20) NOT NULL,
-  `status_perkawinan` varchar(10) NOT NULL,
+  `status_perkawinan` varchar(30) NOT NULL,
   `tgl_pertama_masuk` date NOT NULL,
   `cara_bayar` varchar(20) NOT NULL,
   `tujuan_kunjungan_pertama` varchar(50) NOT NULL,
   `alergi` varchar(100) NOT NULL,
   `catatan` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+  `tinggi_badan` varchar(20) NOT NULL,
+  `berat_badan` varchar(20) NOT NULL,
+  `golongan_darah` varchar(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `data_pasien`
 --
 
-INSERT INTO `data_pasien` (`id`, `no_registrasi`, `tgl_registrasi`, `nama`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `agama`, `alamat`, `rtrw`, `kelurahan`, `kecamatan`, `kabupaten`, `propinsi`, `nomor_hp`, `kewarganegaraan`, `noktp`, `pendidikan`, `pekerjaan`, `status_perkawinan`, `tgl_pertama_masuk`, `cara_bayar`, `tujuan_kunjungan_pertama`, `alergi`, `catatan`) VALUES
-(1, '', '0000-00-00', '$newName', '', '0000-00-00', '$newKelamin', '', '', '', '', '', '', '', '$newPhone', '', '', '', '', '', '0000-00-00', '', '', '', ''),
-(2, '', '0000-00-00', '$newName', '', '0000-00-00', '$newKelamin', '', '', '', '', '', '', '', '$newPhone', '', '', '', '', '', '0000-00-00', '', '', '', ''),
-(3, '', '0000-00-00', '$newName', '', '0000-00-00', '$newKelamin', '', '', '', '', '', '', '', '$newPhone', '', '', '', '', '', '0000-00-00', '', '', '', ''),
-(4, '', '0000-00-00', '$newName', '', '0000-00-00', '$newKelamin', '', '', '', '', '', '', '', '$newPhone', '', '', '', '', '', '0000-00-00', '', '', '', ''),
-(5, '', '0000-00-00', '$newName', '', '0000-00-00', '$newKelamin', '', '', '', '', '', '', '', '$newPhone', '', '', '', '', '', '0000-00-00', '', '', '', ''),
-(6, '', '0000-00-00', 'fahrul', '', '0000-00-00', 'Pria', '', '', '', '', '', '', '', '0812', '', '', '', '', '', '0000-00-00', '', '', '', ''),
-(7, '111', '2017-01-01', 'fahrul', 'medan', '2017-01-01', '1', '', 'jl ahmad dahlan no ', '', 'buntu', 't morawa', 'deli serdang', 'sumatera utara', '081112341234', 'wni', '11207865121', 's', 'developer', 'menikah', '2017-01-01', '', '', 'obat nyamuk', 'panjang'),
-(8, '1212', '2017-01-01', 'gondo', 'medan', '2017-01-01', '2', '', 'medan', '', 'medan', 'medan', 'medan', 'sumut', '08112123121', 'indonesia', '11201212912', 'S', 'mahasiswa', 'kawin', '2017-01-01', '', '', 'cicak', 'y'),
-(9, '1234', '2017-01-01', 'iqbal', 'tebing tinggi', '2017-01-01', '1', '1', 'jl mongonsidi no ', '1', 'anggrung', 'polonia', 'medan', 'sumatera utara', '081112345678', 'indonesia', '112934762329211', 'D3', 'developer', 'belum nika', '2017-01-01', '1', '9', 'tepung', 'coba');
+INSERT INTO `data_pasien` (`id`, `no_rekam_medis`, `tgl_registrasi`, `nama`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `agama`, `alamat`, `rtrw`, `kelurahan`, `kecamatan`, `kabupaten`, `propinsi`, `nomor_hp`, `kewarganegaraan`, `noktp`, `pendidikan`, `pekerjaan`, `status_perkawinan`, `tgl_pertama_masuk`, `cara_bayar`, `tujuan_kunjungan_pertama`, `alergi`, `catatan`, `tinggi_badan`, `berat_badan`, `golongan_darah`) VALUES
+(7, '111', '2017-01-01', 'Fahrul Hidayat', 'Medan', '1965-11-10', '1', '1', 'Jalan Sekolah Pembangunan no89', '009/009', 'buntu', 't morawa', 'deli serdang', 'sumatera utara', '081112341234', 'wni', '11207865121', 's', 'developer', '1', '2017-01-01', '1', '1', 'obat nyamuk', 'panjang', '165', '80', 'A'),
+(8, '1212', '2017-01-01', 'Putri', 'Medan', '1986-10-09', '2', '', 'Jalan Sei Serayu No 85 Babura', '', 'Babura Sunggal', 'Medan Sunggal', 'Medan', 'sumut', '08112123121', 'indonesia', '11201212912', 'S', 'mahasiswa', '1', '2017-01-01', '', '', 'cicak', 'y', '165', '80', 'O'),
+(9, '1234', '2017-01-01', 'Mohammad Iqbal', 'Tebing Tinggi', '1991-01-14', '1', '1', 'Jalan Sekolah Pembangunan No7a Medan Sunggal', '1', 'anggrung', 'polonia', 'medan', 'sumatera utara', '081112345678', 'indonesia', '112934762329211', 'D3', 'developer', '', '2017-01-01', '1', '1', 'tepung', 'coba', '165', '80', 'B'),
+(10, '1234', '2017-01-01', 'Nazwa Sihab', 'Tebing Tinggi', '1986-07-12', '2', '1', 'Jalan Sekolah Pembangunan No7a Medan Sunggal', '1', 'anggrung', 'polonia', 'medan', 'sumatera utara', '081112345678', 'indonesia', '112934762329211', 'D3', 'developer', '', '2017-01-01', '1', '1', 'tepung', 'coba', '165', '80', 'AB'),
+(11, '1212', '2017-01-01', 'Shania Junianatha', 'Medan', '1998-06-27', '2', '3', 'Jalan Sei Serayu No 85 Babura', '001/001', 'Babura Sunggal', 'Medan Sunggal', 'Medan', 'sumut', '08112123121', 'indonesia', '11201212912', 'SMA', 'mahasiswa', '', '2017-01-01', '1', '2', 'cicak', 'y', '165', '80', 'A'),
+(12, '31422', '2017-01-01', 'Melody Nurramdhani Laksani', 'Medan', '1994-01-11', '2', '1', 'Jalan Sei Serayu No 85 Babura', '009/009', 'Babura Sunggal', 'Medan Sunggal', 'Medan', 'sumut', '08112123121', 'indonesia', '11201212912', 'S', 'mahasiswa', '', '2017-01-01', '1', '1', 'cicak', 'y', '159', '55', 'B'),
+(13, '312131', '0000-00-00', 'Martin Leo Sitepu', 'Medan', '1994-09-20', '1', '1', 'Jalan Mongonsidi No6 Medan', '001/001', 'Anggrung', 'Medan Polonia', 'Medan', 'Sumatera Utara', '082368008333', 'Indonesia', '1411368008333', 'S1', 'Tukang Ikan', '1', '2018-01-27', '2', '2', 'KUCING', 'Orangnya Baik Bangetttt', '170', '66', 'O'),
+(14, '1515406432910', '0000-00-00', 'Martin Sinambela', 'Medan', '1984-01-18', '1', '3', 'Jalan Sekolah Pembangunan', '09/56', 'Kampung Kelumpang', 'Medan Baru', 'Medan', 'Sumatera Utara', '08235688998998', 'Indonesia', '123455121232', 'S3', 'Kuliahan', '1', '2018-01-11', '1', '1', 'Susu', 'Susu Kuda Liar Dia tak bisa', '190', '80', 'B'),
+(15, '1516011146877', '0000-00-00', 'Babe Cabita', 'Medan', '1995-03-08', '1', '1', 'Jl Ps 1 Tj Sari Medan Selayang Kota Medan Sumatera Utara 20154', '005/005', 'Tj Sari', 'Medan Selayang', 'Medan', 'Sumatera Utara', '08112642109', 'Indonesia', '14098071679699797', 'S1', 'Standup Comedian', '2', '2018-01-23', '2', '6', 'Alergi Ikan Lele', 'Lumayan Lucu Lah', '165', '80', 'A');
 
 -- --------------------------------------------------------
 
@@ -165,43 +167,102 @@ INSERT INTO `data_pasien` (`id`, `no_registrasi`, `tgl_registrasi`, `nama`, `tem
 -- Table structure for table `dca_users`
 --
 
-CREATE TABLE IF NOT EXISTS `dca_users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `dca_users` (
+  `id` int(11) NOT NULL,
   `username` varchar(50) DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL,
-  `akses` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+  `akses` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `dca_users`
 --
 
 INSERT INTO `dca_users` (`id`, `username`, `password`, `akses`) VALUES
-(1, 'iqbal', 'password', '1'),
-(2, 'joni', 'joni', '3'),
-(4, 'wa', 'gue', '5'),
-(5, 'santi', 'santi', '4'),
-(6, 'boyke', 'boyke', '2');
+(1, 'iqbal', 'password', 'admin'),
+(2, 'joni', 'joni', 'perawat'),
+(3, 'dokter', 'dokter', 'dokter');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `statistik`
+-- Table structure for table `rekam_medis`
 --
 
-CREATE TABLE IF NOT EXISTS `statistik` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nama` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+CREATE TABLE `rekam_medis` (
+  `id_kunjungan` varchar(20) NOT NULL,
+  `id_pasien` varchar(20) NOT NULL,
+  `id_dokter` varchar(20) NOT NULL,
+  `nama_dokter` text NOT NULL,
+  `amnese` text NOT NULL,
+  `diagnosa` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `statistik`
+-- Dumping data for table `rekam_medis`
 --
 
-INSERT INTO `statistik` (`id`, `nama`) VALUES
-(1, 'fdsafdsf');
+INSERT INTO `rekam_medis` (`id_kunjungan`, `id_pasien`, `id_dokter`, `nama_dokter`, `amnese`, `diagnosa`) VALUES
+('1513573922711 ', '9', '3', 'dr. Ryan Baskoro', 'Iqbal Muhammad Fajri', 'Sakit Demam'),
+('1513584794436 ', '7', '1', 'dr. Dian Nugraha', 'Contoh Anamnese', 'Contoh Diagnosa'),
+('1513842542159 ', '7', '2', 'dr. Teuku Adifitrian', 'Contoh', 'Contoh'),
+('1513844347015 ', '9', '1', 'dr. Dian Nugraha', 'contoh anamnese', 'contoh diagnosa'),
+('1514435747068 ', '12', '4', 'dr. Maruli Siregar', 'sdfasfasfa', 'asfdasfdafsd'),
+('1514449206314 ', '11', '1', 'dr. Dian Nugraha', 'Anamnese', 'Diagnosa'),
+('1515423830705 ', '14', '2', 'dr. Teuku Adifitrian', 'Anamnese', 'Diagnosa'),
+('1515572197437 ', '14', '3', 'dr. Ryan Baskoro', 'Contoh', 'Contoh');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rm_riwayat_penyakit`
+--
+
+CREATE TABLE `rm_riwayat_penyakit` (
+  `id` int(2) NOT NULL,
+  `id_kunjungan` varchar(30) NOT NULL,
+  `id_antrian` varchar(30) NOT NULL,
+  `id_pasien` varchar(300) NOT NULL,
+  `penyakit_jantung` text NOT NULL,
+  `status_jantung` tinyint(1) NOT NULL,
+  `keterangan_jantung` text NOT NULL,
+  `penyakit_hipertensi` text NOT NULL,
+  `status_hipertensi` tinyint(1) NOT NULL,
+  `keterangan_hipertensi` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `rm_riwayat_penyakit`
+--
+
+INSERT INTO `rm_riwayat_penyakit` (`id`, `id_kunjungan`, `id_antrian`, `id_pasien`, `penyakit_jantung`, `status_jantung`, `keterangan_jantung`, `penyakit_hipertensi`, `status_hipertensi`, `keterangan_hipertensi`) VALUES
+(9, '1515572197437', '1516117127920 ', '14', 'sdfasfdasf', 1, 'asfdasfsafdsadfas', '', 0, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rm_tanda_vital`
+--
+
+CREATE TABLE `rm_tanda_vital` (
+  `id` int(11) NOT NULL,
+  `id_kunjungan` varchar(30) NOT NULL,
+  `id_antrian` varchar(30) NOT NULL,
+  `id_pasien` varchar(30) NOT NULL,
+  `kesadaran` text NOT NULL,
+  `kondisi_umum` text NOT NULL,
+  `tekanan_darah` text NOT NULL,
+  `denyut_nadi` text NOT NULL,
+  `pernafasan` text NOT NULL,
+  `suhu` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `rm_tanda_vital`
+--
+
+INSERT INTO `rm_tanda_vital` (`id`, `id_kunjungan`, `id_antrian`, `id_pasien`, `kesadaran`, `kondisi_umum`, `tekanan_darah`, `denyut_nadi`, `pernafasan`, `suhu`) VALUES
+(3, '1515572197437', '1516117127920', '14', 'gg', 'gg', 'ggg', 'gg', 'ggg', 'gg');
 
 -- --------------------------------------------------------
 
@@ -209,15 +270,275 @@ INSERT INTO `statistik` (`id`, `nama`) VALUES
 -- Table structure for table `tabel_kunjugan`
 --
 
-CREATE TABLE IF NOT EXISTS `tabel_kunjugan` (
+CREATE TABLE `tabel_kunjugan` (
+  `id` int(11) NOT NULL,
   `id_kunjungan` varchar(200) NOT NULL,
+  `id_antrian` varchar(200) NOT NULL,
   `id_klinik` int(200) NOT NULL,
   `dokter_pendamping` varchar(300) NOT NULL,
   `id_dokter` int(200) NOT NULL,
   `id_pasien` int(200) NOT NULL,
-  PRIMARY KEY (`id_kunjungan`)
+  `status` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tabel_kunjugan`
 --
+
+INSERT INTO `tabel_kunjugan` (`id`, `id_kunjungan`, `id_antrian`, `id_klinik`, `dokter_pendamping`, `id_dokter`, `id_pasien`, `status`) VALUES
+(1, '1514355581213', '1514355581213', 9, 'Nagita Slavina', 1, 7, '2'),
+(2, '1514435747068', '1514435747068', 9, 'Maruli Sirait', 4, 12, '2'),
+(3, '1514435747068', '1514448970463', 6, 'Maruli Sirait', 2, 12, '1'),
+(4, '1514355581213', '1514448993727', 8, 'Nagita Slavina', 2, 7, '1'),
+(5, '1514449206314', '1514449206314', 3, 'IJECK', 1, 11, '2'),
+(6, '1514616829448', '1514616829448', 9, 'Doni Mulyanto', 3, 10, '1'),
+(7, '1514355581213', '1514616899066', 7, 'Nagita Slavina', 2, 7, '1'),
+(8, '1514966341045', '1514966341045', 1, 'Matrino Lio', 3, 12, '1'),
+(9, '1515423830705', '1515423830705', 1, 'Martin Luther', 2, 14, '2'),
+(10, '1515570329227', '1515570329227', 1, 'Ahmad Albar', 1, 13, '1'),
+(11, '1515572197437', '1515572197437', 2, 'Dedi', 3, 14, '2'),
+(12, '1515572197437', '1515573075107', 1, 'Dedi', 1, 14, '1'),
+(13, '1515574323896', '1515574323896', 9, 'Didi', 3, 9, '1'),
+(14, '1515574339843', '1515574339843', 5, 'dedi', 1, 9, '1'),
+(15, '1515572197437', '1516117127920', 2, 'Dedi', 1, 14, '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tabel_layanan_kunjungan`
+--
+
+CREATE TABLE `tabel_layanan_kunjungan` (
+  `id` int(10) NOT NULL,
+  `id_pasien` varchar(10) NOT NULL,
+  `nama_pasien` varchar(30) NOT NULL,
+  `id_kunjungan` varchar(200) NOT NULL,
+  `id_antrian` varchar(200) NOT NULL,
+  `nama_layanan` text NOT NULL,
+  `harga_bahan` varchar(100) NOT NULL,
+  `harga_layanan` varchar(100) NOT NULL,
+  `status` varchar(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tabel_layanan_kunjungan`
+--
+
+INSERT INTO `tabel_layanan_kunjungan` (`id`, `id_pasien`, `nama_pasien`, `id_kunjungan`, `id_antrian`, `nama_layanan`, `harga_bahan`, `harga_layanan`, `status`) VALUES
+(2, ' 9', 'iqbal', '1513557483589', '', 'Pemolesan tindakan setelah skeling', '10000', '20000', '1'),
+(3, ' 7', 'Fahrul Hidayat', '1513571203618', '', 'Pemolesan tindakan setelah skeling', '10000', '15000', '1'),
+(15, ' 9', 'Mohammad Iqbal', '1513573922711', '', 'Pemolesan tindakan setelah skeling', '10000', '20000', '1'),
+(16, ' 7', 'Fahrul Hidayat', '1513584794436', '', 'Pemolesan tindakan setelah skeling', '10000', '20000', '1'),
+(17, ' 7', 'Fahrul Hidayat', '1513842542159', '', 'Pemolesan tindakan setelah skeling', '10000', '15000', '1'),
+(18, ' 9', 'Mohammad Iqbal', '1513844347015', '', 'Pemolesan tindakan setelah skeling', '10000', '20000', '1'),
+(19, ' 9', 'Mohammad Iqbal', '1513844347015', '', 'Pemeriksaan dan Penskeleran Rahang Atas  Rahang Bawah', '32000', '20000', '1'),
+(20, ' 12', 'Melody Nurramdhani Laksani', '1514435747068', '', 'Pemolesan tindakan setelah skeling', '10000', '20000', '1'),
+(21, ' 11', 'Shania Junianatha', '1514449206314', '', 'Pemolesan tindakan setelah skeling', '10000', '20000', '1'),
+(22, ' 14', 'Martin Sinambela', '1515423830705', '', 'Topikal Aplikasi FlourAF RA dan RB', '0', '25000', '1'),
+(23, ' 14', 'Martin Sinambela', '1515572197437', '', 'Pemolesan tindakan setelah skeling', '10000', '20000', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tabel_obat_kunjungan`
+--
+
+CREATE TABLE `tabel_obat_kunjungan` (
+  `id` int(10) NOT NULL,
+  `id_pasien` varchar(10) NOT NULL,
+  `nama_pasien` varchar(30) NOT NULL,
+  `id_kunjungan` varchar(200) NOT NULL,
+  `id_antrian` varchar(200) NOT NULL,
+  `id_obat` varchar(10) NOT NULL,
+  `nama_obat` text NOT NULL,
+  `satuan` varchar(20) NOT NULL,
+  `quantity` varchar(20) NOT NULL,
+  `harga` varchar(100) NOT NULL,
+  `status` varchar(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tabel_obat_kunjungan`
+--
+
+INSERT INTO `tabel_obat_kunjungan` (`id`, `id_pasien`, `nama_pasien`, `id_kunjungan`, `id_antrian`, `id_obat`, `nama_obat`, `satuan`, `quantity`, `harga`, `status`) VALUES
+(8, ' 7', 'fahrul', '1513535380299', '', '1', 'Paracetamol', 'Papan', '1', '2000000', '1'),
+(9, ' 9', 'Mohammad Iqbal', '1513573922711', '', '1', 'Paracetamol', 'Papan', '1', '2000000', '1'),
+(11, ' 7', 'Fahrul Hidayat', '1513584794436', '', '1', 'Paracetamol', 'Papan', '1', '2000000', '1'),
+(12, ' 7', 'Fahrul Hidayat', '1513842542159', '', '2', 'Panadol', 'Botol 500 Ml', '2', '300000', '1'),
+(14, ' 9', 'Mohammad Iqbal', '1513844347015', '', '2', 'Panadol', 'Botol 500 Ml', '2', '300000', '1'),
+(15, ' 9', 'Mohammad Iqbal', '1513844347015', '', '1', 'Paracetamol', 'Papan', '1', '2000000', '1'),
+(16, ' 9', 'Mohammad Iqbal', '1513844347015', '', '4', 'Alkohol', 'Liter', '4', '5000000', '1'),
+(17, ' 12', 'Melody Nurramdhani Laksani', '1514435747068', '', '1', 'Paracetamol', 'Papan', '1', '2000000', '1'),
+(18, ' 11', 'Shania Junianatha', '1514449206314', '', '1', 'Paracetamol', 'Papan', '1', '2000000', '1'),
+(19, ' 14', 'Martin Sinambela', '1515423830705', '', '1', 'Paracetamol', 'Papan', '1', '2000000', '1'),
+(20, ' 14', 'Martin Sinambela', '1515572197437', '', '2', 'Panadol', 'Botol 500 Ml', '2', '300000', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tidakan_medis`
+--
+
+CREATE TABLE `tidakan_medis` (
+  `id` int(11) NOT NULL,
+  `nama_tindakan` text NOT NULL,
+  `klinik` int(2) NOT NULL,
+  `harga_bahan` int(255) NOT NULL,
+  `harga_tindakan_medis_1` int(255) NOT NULL,
+  `harga_tindakan_medis_2` int(255) NOT NULL,
+  `harga_tindakan_medis_3` int(255) NOT NULL,
+  `harga_tindakan_medis_4` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tidakan_medis`
+--
+
+INSERT INTO `tidakan_medis` (`id`, `nama_tindakan`, `klinik`, `harga_bahan`, `harga_tindakan_medis_1`, `harga_tindakan_medis_2`, `harga_tindakan_medis_3`, `harga_tindakan_medis_4`) VALUES
+(1, 'Pemeriksaan dan Penskeleran Rahang Atas & Rahang Bawah (Full Mouth)', 1, 17000, 15000, 0, 0, 0);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `data_dokter`
+--
+ALTER TABLE `data_dokter`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `data_layanan`
+--
+ALTER TABLE `data_layanan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `data_obat`
+--
+ALTER TABLE `data_obat`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `data_pasien`
+--
+ALTER TABLE `data_pasien`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dca_users`
+--
+ALTER TABLE `dca_users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `rekam_medis`
+--
+ALTER TABLE `rekam_medis`
+  ADD PRIMARY KEY (`id_kunjungan`);
+
+--
+-- Indexes for table `rm_riwayat_penyakit`
+--
+ALTER TABLE `rm_riwayat_penyakit`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `rm_tanda_vital`
+--
+ALTER TABLE `rm_tanda_vital`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tabel_kunjugan`
+--
+ALTER TABLE `tabel_kunjugan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tabel_layanan_kunjungan`
+--
+ALTER TABLE `tabel_layanan_kunjungan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tabel_obat_kunjungan`
+--
+ALTER TABLE `tabel_obat_kunjungan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tidakan_medis`
+--
+ALTER TABLE `tidakan_medis`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `data_dokter`
+--
+ALTER TABLE `data_dokter`
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `data_layanan`
+--
+ALTER TABLE `data_layanan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `data_obat`
+--
+ALTER TABLE `data_obat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `data_pasien`
+--
+ALTER TABLE `data_pasien`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `rm_riwayat_penyakit`
+--
+ALTER TABLE `rm_riwayat_penyakit`
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `rm_tanda_vital`
+--
+ALTER TABLE `rm_tanda_vital`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tabel_kunjugan`
+--
+ALTER TABLE `tabel_kunjugan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `tabel_layanan_kunjungan`
+--
+ALTER TABLE `tabel_layanan_kunjungan`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `tabel_obat_kunjungan`
+--
+ALTER TABLE `tabel_obat_kunjungan`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `tidakan_medis`
+--
+ALTER TABLE `tidakan_medis`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
