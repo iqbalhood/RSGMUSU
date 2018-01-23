@@ -8,44 +8,42 @@
                 <div class="col wrapper-lg w-lg bg-light dk r-r">
                     <h4 class="font-thin m-t-none m-b">Basic Info</h4>
                     <div class="">
-                     
-                     
-                        <a href="" class="thumb-sm m-r">
-                            <img src="../img/a1.jpg" class="r r-2x" ng-if="kelamin == 1">
-                            <img src="../img/a3.jpg" class="r r-2x" ng-if="kelamin == 2">
-                        </a>
-                        <a href="">{{name}}</a>
-                        <div class="clear">&nbsp;</div>
-                        <div class="">
-                            <span class="pull-right text-info">{{phone}}</span>
-                            <span>Phone</span>
-                        </div>
-                        <div class="clear">&nbsp;</div>  
-                        <div class="">
-                            <span class="pull-right text-info">23 Years Old</span>
-                            <span>Age</span>
-                        </div>
-                        <div class="clear">&nbsp;</div>                        
-                        <div class="">
-                            <span class="pull-right text-info" ng-if="kelamin == 1">Male</span>
-                            <span class="pull-right text-info" ng-if="kelamin == 2">Female</span>
-                            <span>Gender</span>
-                        </div>
-                        <div class="clear">&nbsp;</div>                        
-                        <div class="">
-                            <span class="pull-right text-info">164 cm</span>
-                            <span>Height</span>
-                        </div>
-                        <div class="clear">&nbsp;</div>                        
-                        <div class="">
-                            <span class="pull-right text-info">50 Kg</span>
-                            <span>Weight</span>
-                        </div>
-                        <div class="clear">&nbsp;</div>                        
-                        <div class="">
-                            <span class="pull-right text-info">B</span>
-                            <span>Blood Type</span>
-                        </div>
+                            <a href="" class="thumb-sm m-r">
+                                <img src="../img/a1.jpg" class="r r-2x" ng-if="kelamin == 1">
+                                <img src="../img/a3.jpg" class="r r-2x" ng-if="kelamin == 2">
+                            </a>
+                            <a href="">{{namaPasien}}</a>
+                            <div class="clear">&nbsp;</div>
+                            <div class="">
+                                <span class="pull-right text-info">{{phone}}</span>
+                                <span>Nomor Telepon</span>
+                            </div>
+                            <div class="clear">&nbsp;</div>  
+                            <div class="">
+                                <span class="pull-right text-info">{{umur}} Tahun</span>
+                                <span>Umur</span>
+                            </div>
+                            <div class="clear">&nbsp;</div>                        
+                            <div class="">
+                                <span class="pull-right text-info" ng-if="kelamin == 1">Laki - Laki</span>
+                                <span class="pull-right text-info" ng-if="kelamin == 2">Perempuan</span>
+                                <span>Jenis Kelamin</span>
+                            </div>
+                            <div class="clear">&nbsp;</div>                        
+                            <div class="">
+                                <span class="pull-right text-info">{{tinggi_badan}} cm</span>
+                                <span>Tinggi Badan</span>
+                            </div>
+                            <div class="clear">&nbsp;</div>                        
+                            <div class="">
+                                <span class="pull-right text-info">{{berat_badan}} Kg</span>
+                                <span>Berat Badan</span>
+                            </div>
+                            <div class="clear">&nbsp;</div>                        
+                            <div class="">
+                                <span class="pull-right text-info">{{golongan_darah}}</span>
+                                <span>Golongan Darah</span>
+                            </div>
     
                      
                     </div>
@@ -61,607 +59,767 @@
                 </div>
                 <!-- # End Panel Kiri -->
     
-               <!-- # Panel Kanan -->    
-               <div class="col wrapper">
-                    <div class="panel-body">
-                    <form class="form-horizontal" method="get">
-                      <div class="form-group">
-                        
-                        <div class="panel panel-default">
-                            <label class="col-sm-12 panel-heading">Dokter Penanggung Jawab</label>
-                        </div>
+                <!-- # Panel Kanan -->    
+                <div class="col wrapper">
+                        <div class="panel-body">
+                        <form class="form-horizontal" method="get">
+                          <div class="form-group">
+                            <label class="col-sm-12 panel-heading"><h3>Dokter Penanggung Jawab</h3></label>
+                            <div class="col-sm-12">
+                               {{namadokter}}                    
+                            </div>  
+                            <br />
+                            <div class="clear">&nbsp;</div>
+                            <div class="clear">&nbsp;</div>
+
+                           
+
+                            <div class="clear">&nbsp;</div>
+
+                            <label class="col-sm-12 panel-heading"><h3>Anamnese</h3></label>
+                            <div class="col-sm-12">
+                                <textarea class="form-control" ng-model="amnese"></textarea>                      
+                            </div>
+
+                            <label class="col-sm-12 panel-heading"><h3>Riwayat Penyakit</h3></label>
+                           
+
+                            <div class="col-sm-12">
+                                    <div class="col-sm-4">
+                                        <div class="input-group m-b">
+                                            <span class="input-group-addon">Penyakit Jantung</span>
+                                            <input type="text" class="form-control" placeholder="....." ng-model="penyakit_jantung">
+                                        </div>  
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <label class="col-sm-6 control-label">Tidak/Ya</label>
+                                            <div class="col-sm-6">
+                                              <label class="i-switch m-t-xs m-r">
+                                                <input type="checkbox" ng-model="status_jantung" >
+                                                <i></i>
+                                              </label>
+                                            </div> 
+                                            
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Keterangan" ng-model="keterangan_jantung">
+                                    </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                    <div class="col-sm-4">
+                                        <div class="input-group m-b">
+                                            <span class="input-group-addon">Hipertensi</span>
+                                            <input type="text" class="form-control" placeholder="....." ng-model="penyakit_hipertensi">
+                                        </div>  
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <label class="col-sm-6 control-label">Tidak/Ya</label>
+                                            <div class="col-sm-6">
+                                              <label class="i-switch m-t-xs m-r">
+                                                <input type="checkbox" ng-model="status_hipertensi" >
+                                                <i></i>
+                                              </label>
+                                            </div> 
+                                            
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Keterangan" ng-model="keterangan_hipertensi">
+                                    </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                    <div class="col-sm-4">
+                                        <div class="input-group m-b">
+                                            <span class="input-group-addon">Diabetes Melitus</span>
+                                            <input type="text" class="form-control" placeholder=".....">
+                                        </div>  
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <label class="col-sm-6 control-label">Tidak/Ya</label>
+                                            <div class="col-sm-6">
+                                              <label class="i-switch m-t-xs m-r">
+                                                <input type="checkbox" >
+                                                <i></i>
+                                              </label>
+                                            </div> 
+                                            
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Keterangan">
+                                    </div>
+                            </div>
+                          
+                            <div class="col-sm-12">
+                                    <div class="col-sm-4">
+                                        <div class="input-group m-b">
+                                            <span class="input-group-addon">Alergi</span>
+                                            <input type="text" class="form-control" placeholder=".....">
+                                        </div>  
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <label class="col-sm-6 control-label">Tidak/Ya</label>
+                                            <div class="col-sm-6">
+                                              <label class="i-switch m-t-xs m-r">
+                                                <input type="checkbox" >
+                                                <i></i>
+                                              </label>
+                                            </div> 
+                                            
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Keterangan">
+                                    </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                    <div class="col-sm-4">
+                                        <div class="input-group m-b">
+                                            <span class="input-group-addon">Asma</span>
+                                            <input type="text" class="form-control" placeholder=".....">
+                                        </div>  
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <label class="col-sm-6 control-label">Tidak/Ya</label>
+                                            <div class="col-sm-6">
+                                              <label class="i-switch m-t-xs m-r">
+                                                <input type="checkbox" >
+                                                <i></i>
+                                              </label>
+                                            </div> 
+                                            
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Keterangan">
+                                    </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                    <div class="col-sm-4">
+                                        <div class="input-group m-b">
+                                            <span class="input-group-addon">Penyakit Hepar</span>
+                                            <input type="text" class="form-control" placeholder=".....">
+                                        </div>  
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <label class="col-sm-6 control-label">Tidak/Ya</label>
+                                            <div class="col-sm-6">
+                                              <label class="i-switch m-t-xs m-r">
+                                                <input type="checkbox" >
+                                                <i></i>
+                                              </label>
+                                            </div> 
+                                            
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Keterangan">
+                                    </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                    <div class="col-sm-4">
+                                        <div class="input-group m-b">
+                                            <span class="input-group-addon">Penyakit Lambung</span>
+                                            <input type="text" class="form-control" placeholder=".....">
+                                        </div>  
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <label class="col-sm-6 control-label">Tidak/Ya</label>
+                                            <div class="col-sm-6">
+                                              <label class="i-switch m-t-xs m-r">
+                                                <input type="checkbox" >
+                                                <i></i>
+                                              </label>
+                                            </div> 
+                                            
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Keterangan">
+                                    </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                    <div class="col-sm-4">
+                                        <div class="input-group m-b">
+                                            <span class="input-group-addon">Lain-lain</span>
+                                            <input type="text" class="form-control" placeholder=".....">
+                                        </div>  
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <label class="col-sm-6 control-label">Tidak/Ya</label>
+                                            <div class="col-sm-6">
+                                              <label class="i-switch m-t-xs m-r">
+                                                <input type="checkbox" >
+                                                <i></i>
+                                              </label>
+                                            </div> 
+                                            
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Keterangan">
+                                    </div>
+                            </div>
+
+                            
+                            
+
+                            <label class="col-sm-12 panel-heading"><h3>Pemeriksaan Fisik</h3></label>
+                            <label class="col-sm-12 panel-heading">Tanda Tanda Vital</label>
+                            <div class="col-sm-12">
+                                <div class="input-group m-b">
+                                    <span class="input-group-addon">Kesadaran</span>
+                                    <input type="text" class="form-control" placeholder="....." ng-model="kesadaran">
+                                  </div>    
+                                  
+                                  <div class="input-group m-b">
+                                    <span class="input-group-addon">Kondisi Umum</span>
+                                    <input type="text" class="form-control" placeholder="....." ng-model="kondisi_umum">
+                                  </div>    
 
 
-                        <div class="col-sm-12">
-                           {{namaDokter}}                    
-                        </div>  
-                        <br />
-                        <div class="clear">&nbsp;</div>
-                        <div class="clear">&nbsp;</div>
+                                  <div class="input-group m-b">
+                                    <span class="input-group-addon">Tekanan Darah</span>
+                                    <input type="text" class="form-control" placeholder="....." ng-model="tekanan_darah">
+                                  </div>    
 
-                        <div class="panel panel-default" style="margin-top:50px">
-                            <label class="col-sm-12 panel-heading" >Anamnese</label>
-                        </div>
-                        <div class="col-sm-12">
-                            {{amnese}}                   
-                        </div>
+                                  <div class="input-group m-b">
+                                    <span class="input-group-addon">Denyut Nadi</span>
+                                    <input type="text" class="form-control" placeholder="....." ng-model="denyut_nadi">
+                                  </div>    
+                                  <div class="input-group m-b">
+                                    <span class="input-group-addon">Pernafasan</span>
+                                    <input type="text" class="form-control" placeholder="....." ng-model="pernafasan">
+                                  </div>    
 
-                        <div class="clear">&nbsp;</div>
-                        <div class="clear">&nbsp;</div>
-                        <div class="panel panel-default" style="margin-top:50px">
-                            <label class="col-sm-12 panel-heading">Diagnosa</label>
-                        </div>
-                        <div class="col-sm-12">
-                           {{diagnosa}}                  
-                        </div>
-                        
-                        <div class="clear">&nbsp;</div>
-                        <div class="clear">&nbsp;</div>
+                                  <div class="input-group m-b">
+                                    <span class="input-group-addon">Suhu</span>
+                                    <input type="text" class="form-control" placeholder="....." ng-model="suhu">
+                                  </div>    
+                            </div>
 
-                        <div class="panel panel-default" style="margin-top:50px">
-                            <label class="col-sm-12 panel-heading" >Pemeriksaan Gigi</label>
-                        </div>
+                            <label class="col-sm-12 panel-heading"><h3>Ekstra Oral</h3></label>
+                            <div class="col-sm-12">
+                                    <label class="col-sm-12 ">Tonus Bibir</label>
 
+                                    <div class="form-group">
+                                           
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-4">
+                                                    <label class="checkbox-inline">
+                                                        <input type="radio" ng-model="tonus_bibir" name="optionsRadios" value="hipotonus"> Hipotonus
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label class="checkbox-inline">
+                                                        <input type="radio" ng-model="tonus_bibir" name="optionsRadios" value="normal"> Normal
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-4">    
+                                                    <label class="checkbox-inline">
+                                                        <input type="radio" ng-model="tonus_bibir" name="optionsRadios" value="hipertonus"> Hipertonus
+                                                    </label>
+                                                </div>
+                                            </div>
+                                    </div>
+
+                                    <label class="col-sm-12 ">TMJ</label>
+
+                                    <div class="form-group">
+                                           
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-6">
+                                                <label class="checkbox-inline">
+                                                    <input type="radio"  ng-model="tmj"  name="optionsRadios"    value="option1"> Normal
+                                                </label>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                <div class="input-group m-b">
+                                                        <span class="input-group-addon">
+                                                              <input type="radio" ng-model="tmj"  name="optionsRadios" value="option2">
+                                                        </span>
+                                                              <input type="text"  ng-model="kelainan_tmj" class="form-control" placeholder="Ada Kelainan">
+                                                </div> 
+                                                </div>
+                                            </div>
+                                    </div>
+
+                                    <label class="col-sm-12 ">Kelenjar Limfe</label>
+
+                                    <div class="form-group">
+                                           
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-4">
+                                                    <label class="checkbox-inline">
+                                                        <input type="radio" ng-model="kelenjar_limfe"  name="optionsRadios" value="option1"> Teraba
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label class="checkbox-inline">
+                                                        <input type="radio" ng-model="kelenjar_limfe"  name="optionsRadios" value="option2"> Teraba Sakit
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label class="checkbox-inline">
+                                                        <input type="radio" ng-model="kelenjar_limfe"  name="optionsRadios" value="option3"> Tidak Teraba
+                                                    </label>
+                                                </div>
+                                            </div>
+                                    </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                    <row>
+                                        <div class="col-sm-4"><img src="../img/periksaoral1.jpg"/></div>
+                                        <div class="col-sm-4"><textarea class="form-control" style="height: 300px;"></textarea></div>
+                                        <div class="col-sm-4"><img src="../img/periksaoral2.jpg"/></div>
+                                    </row>  
+                            </div>
+
+
+
+                            <label class="col-sm-12 panel-heading"><h3>Pemeriksaan Gigi</h3></label>
+                            <div class="col-sm-12">
+                                <!-- ORDONTOGRAMA INPUT -->
+                               <div style="width:20px;float:left;" ng-click="n18()"> <center>18 <br /><img src="{{imageUrl18}}"   /></center> </div>
+                               <div style="width:20px;float:left;margin-left:20px" ng-click="n17()" > <center>17 <br /><img src="{{imageUrl17}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n16()" > <center>16 <br /><img src="{{imageUrl16}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n15()"> <center>15 <br /><img src="{{imageUrl15}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n14()"> <center>14 <br /><img src="{{imageUrl14}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n13()"> <center>13 <br /><img src="{{imageUrl13}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n12()"> <center>12 <br /><img src="{{imageUrl12}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n11()"> <center>11 <br /><img src="{{imageUrl11}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px">&nbsp;</div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n21()"> <center>21 <br /><img src="{{imageUrl21}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n22()"> <center>22 <br /><img src="{{imageUrl22}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n23()"> <center>23 <br /><img src="{{imageUrl23}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n24()"> <center>24 <br /><img src="{{imageUrl24}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n25()"> <center>25 <br /><img src="{{imageUrl25}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n26()"> <center>26 <br /><img src="{{imageUrl26}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n27()"> <center>27 <br /><img src="{{imageUrl27}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n28()"> <center>28 <br /><img src="{{imageUrl28}}" /></center> </div>
+                        </div>
                         <div class="col-sm-12">
                                 <!-- ORDONTOGRAMA INPUT -->
-                        
-                        <div id="svgselect" style="width: 610px; height: 230px;"> <!-- background-color:red -->
-                            <svg version="1.1" height="100%" width="100%">
-                                <g transform="scale(1.5)" id="gmain">
-                                    <g id="P18">
-                                        <polygon points="0,0 	20,0 	15,5 	5,5"    fill="{{colorC18}}" stroke="#58666e" stroke-width="0.5" id="TD" opacity="1" ng-click="clickColor18('C')" ></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20"   fill="{{colorT18}}" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"  ng-click="clickColor18('T')"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15"  fill="{{colorB18}}" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"  ng-click="clickColor18('B')"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20"   fill="{{colorR18}}" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"  ng-click="clickColor18('R')"></polygon>
-                                        <polygon points="5,5 	15,5 	15,15 	5,15"   fill="{{colorL18}}" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"  ng-click="clickColor18('L')"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">18</text>
-                                    </g>
-                                    <g id="P17" transform="translate(25,0)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">17</text>
-                                    </g>
-                                    <g id="P16" transform="translate(50,0)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">16</text>
-                                    </g>
-                                    <g id="P15" transform="translate(75,0)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">15</text>
-                                    </g>
-                                    <g id="P14" transform="translate(100,0)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">14</text>
-                                    </g>
-                                    <g id="P13" transform="translate(125,0)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">13</text>
-                                    </g>
-                                    <g id="P12" transform="translate(150,0)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">12</text>
-                                    </g>
-                                    <g id="P11" transform="translate(175,0)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">11</text>
-                                    </g>
-                                    
-                                    <!-- Izquierda segunda fila -->
-                            
-                                    <g id="P55" transform="translate(75,40)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">55</text>
-                                    </g>
-                                    <g id="P54" transform="translate(100,40)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">54</text>
-                                    </g>
-                                    <g id="P53" transform="translate(125,40)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">53</text>
-                                    </g>
-                                    <g id="P52" transform="translate(150,40)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">52</text>
-                                    </g>
-                                    <g id="P51" transform="translate(175,40)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">51</text>
-                                    </g>
-                            
-                                    <!-- Izquierda tercer fila -->
-                            
-                                    <g id="P85" transform="translate(75,80)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">85</text>
-                                    </g>
-                                    <g id="P84" transform="translate(100,80)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">84</text>
-                                    </g>
-                                    <g id="P83" transform="translate(125,80)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">83</text>
-                                    </g>
-                                    <g id="P82" transform="translate(150,80)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">82</text>
-                                    </g>
-                                    <g id="P81" transform="translate(175,80)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">81</text>
-                                    </g>
-                            
-                                    <!-- Izquierda cuarta fila -->
-                            
-                                    <g id="P48" transform="translate(0,120)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">48</text>
-                                    </g>
-                                    <g id="P47" transform="translate(25,120)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">47</text>
-                                    </g>
-                                    <g id="P46" transform="translate(50,120)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">46</text>
-                                    </g>
-                                    <g id="P45" transform="translate(75,120)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">45</text>
-                                    </g>
-                                    <g id="P44" transform="translate(100,120)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">44</text>
-                                    </g>
-                                    <g id="P43" transform="translate(125,120)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">43</text>
-                                    </g>
-                                    <g id="P42" transform="translate(150,120)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">42</text>
-                                    </g>
-                                    <g id="P41" transform="translate(175,120)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">41</text>
-                                    </g>
-                                    
-                                    <!-- Derecha primer fila -->
-                                    
-                                    <g id="P21" transform="translate(210,0)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">21</text>
-                                    </g>
-                                    <g id="P22" transform="translate(235,0)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">22</text>
-                                    </g>
-                                    <g id="P23" transform="translate(260,0)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">23</text>
-                                    </g>
-                                    <g id="P24" transform="translate(285,0)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">24</text>
-                                    </g>
-                                    <g id="P25" transform="translate(310,0)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">25</text>
-                                    </g>
-                                    <g id="P26" transform="translate(335,0)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">26</text>
-                                    </g>
-                                    <g id="P27" transform="translate(360,0)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">27</text>
-                                    </g>
-                                    <g id="P28" transform="translate(385,0)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">28</text>
-                                    </g>
-                                    
-                                    <!-- Derecha segunda fila -->
-                                    
-                                    <g id="P61" transform="translate(210,40)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">61</text>
-                                    </g>
-                                    <g id="P62" transform="translate(235,40)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">62</text>
-                                    </g>
-                                    <g id="P63" transform="translate(260,40)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">63</text>
-                                    </g>
-                                    <g id="P64" transform="translate(285,40)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">64</text>
-                                    </g>
-                                    <g id="P65" transform="translate(310,40)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">65</text>
-                                    </g>
-                                    
-                                    <!-- Derecha tercer fila -->
-                                    
-                                    <g id="P71" transform="translate(210,80)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">71</text>
-                                    </g>
-                                    <g id="P72" transform="translate(235,80)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">72</text>
-                                    </g>
-                                    <g id="P73" transform="translate(260,80)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">73</text>
-                                    </g>
-                                    <g id="P74" transform="translate(285,80)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">74</text>
-                                    </g>
-                                    <g id="P75" transform="translate(310,80)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">75</text>
-                                    </g>
-                                    
-                                    <!-- Derecha cuarta fila -->
-                                    
-                                    <g id="P31" transform="translate(210,120)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">31</text>
-                                    </g>
-                                    <g id="P32" transform="translate(235,120)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">32</text>
-                                    </g>
-                                    <g id="P33" transform="translate(260,120)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">33</text>
-                                    </g>
-                                    <g id="P34" transform="translate(285,120)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">34</text>
-                                    </g>
-                                    <g id="P35" transform="translate(310,120)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">35</text>
-                                    </g>
-                                    <g id="P36" transform="translate(335,120)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">36</text>
-                                    </g>
-                                    <g id="P37" transform="translate(360,120)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">37</text>
-                                    </g>
-                                    <g id="P38" transform="translate(385,120)">
-                                        <polygon points="5,5 	15,5 	15,15 	5,15" fill="white" stroke="#58666e" stroke-width="0.5" id="C" opacity="1"></polygon>
-                                        <polygon points="0,0 	20,0 	15,5 	5,5" fill="white" stroke="#58666e" stroke-width="0.5" id="T" opacity="1"></polygon>
-                                        <polygon points="5,15 	15,15 	20,20 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="B" opacity="1"></polygon>
-                                        <polygon points="15,5 	20,0 	20,20 	15,15" fill="white" stroke="#58666e" stroke-width="0.5" id="R" opacity="1"></polygon>
-                                        <polygon points="0,0 	5,5 	5,15 	0,20" fill="white" stroke="#58666e" stroke-width="0.5" id="L" opacity="1"></polygon>
-                                        <text x="6" y="30" stroke="#58666e" fill="#58666e" stroke-width="0.1" style="font-size: 6pt;font-weight:normal">38</text>
-                                    </g>
-                                </g>
-                            </svg>
+                               <div style="width:20px;float:left;">&nbsp; </div>
+                               <div style="width:20px;float:left;margin-left:20px"> &nbsp;</div>
+                               <div style="width:20px;float:left;margin-left:40px"> &nbsp; </div>
+                               <div style="width:20px;float:left;margin-left:40px"  ng-click="n55()"> <center>55 <br /><img src="{{imageUrl55}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px"  ng-click="n54()"> <center>54 <br /><img src="{{imageUrl54}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px"  ng-click="n53()"> <center>53 <br /><img src="{{imageUrl53}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px"  ng-click="n52()"> <center>52 <br /><img src="{{imageUrl52}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px"  ng-click="n51()"> <center>51 <br /><img src="{{imageUrl51}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px">&nbsp;</div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n61()"> <center>61 <br /><img src="{{imageUrl61}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n62()"> <center>62 <br /><img src="{{imageUrl62}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n63()"> <center>63 <br /><img src="{{imageUrl63}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n64()"> <center>64 <br /><img src="{{imageUrl64}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n65()"> <center>65 <br /><img src="{{imageUrl65}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px"> &nbsp; </div>
+                               <div style="width:20px;float:left;margin-left:40px"> &nbsp; </div>
+                               <div style="width:20px;float:left;margin-left:40px"> &nbsp; </div>
                         </div>
-                   
-        
-           
-                
-                        <!-- ORDONTOGRAMA INPUT -->                                            
+                        <div class="col-sm-12">
+                                <!-- ORDONTOGRAMA INPUT -->
+                               <div style="width:20px;float:left;">&nbsp; </div>
+                               <div style="width:20px;float:left;margin-left:20px"> &nbsp;</div>
+                               <div style="width:20px;float:left;margin-left:40px"> &nbsp; </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n85()"> <center>85 <br /><img src="{{imageUrl85}}"/></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n84()"> <center>84 <br /><img src="{{imageUrl84}}"/></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n83()"> <center>83 <br /><img src="{{imageUrl83}}"/></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n82()"> <center>82 <br /><img src="{{imageUrl82}}"/></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n81()"> <center>81 <br /><img src="{{imageUrl81}}"/></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px">&nbsp;</div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n71()" > <center>71 <br /><img src="{{imageUrl71}}"/></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n72()" > <center>72 <br /><img src="{{imageUrl72}}"/></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n73()" > <center>73 <br /><img src="{{imageUrl73}}"/></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n74()" > <center>74 <br /><img src="{{imageUrl74}}"/></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n75()" > <center>75 <br /><img src="{{imageUrl75}}"/></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px"> &nbsp; </div>
+                               <div style="width:20px;float:left;margin-left:40px"> &nbsp; </div>
+                               <div style="width:20px;float:left;margin-left:40px"> &nbsp; </div>
                         </div>
-
-
-                     
-
-                        <div class="col-sm-12"  >
-                            <div class="line line-dashed b-b line-lg pull-in"></div>
-                            <label class="col-sm-12 panel-heading"> Keterangan : {{status}}</label>
-                            <div class="form-group">
-                              <div class="col-sm-12">
-                                    <button class="btn m-b-xs btn-sm btn-primary btn-addon" ng-click="setStatus('1')"><i class="fa fa-plus"></i>Cavity</button>
-                                    <button class="btn m-b-xs btn-sm btn-info btn-addon" ng-click="setStatus('2')"><i class="fa fa-plus"></i>Missing</button>
-                                    <button class="btn m-b-xs btn-sm btn-success btn-addon" ng-click="setStatus('3')"><i class="fa fa-plus"></i>Implakasi</button>
-                                    <button class="btn m-b-xs btn-sm btn-warning btn-addon" ng-click="setStatus('4')"><i class="fa fa-plus"></i>Gigi goyang</button>
-                                    <button class="btn m-b-xs btn-sm btn-danger btn-addon" ng-click="setStatus('5')"><i class="fa fa-plus"></i>Bridge</button>
-                              </div>
-                              <div class="clear">&nbsp;</div>
-                              <div class="clear">&nbsp;</div>
-                              <div class="clear">&nbsp;</div>                     
+                        <div class="col-sm-12">
+                                <!-- ORDONTOGRAMA INPUT -->
+                               <div style="width:20px;float:left;" ng-click="n48()" > <center>48 <br /><img src="{{imageUrl48}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:20px" ng-click="n47()" > <center>47 <br /><img src="{{imageUrl47}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n46()" > <center>46 <br /><img src="{{imageUrl46}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n45()" > <center>45 <br /><img src="{{imageUrl45}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n44()" > <center>44 <br /><img src="{{imageUrl44}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n43()" > <center>43 <br /><img src="{{imageUrl43}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n42()" > <center>42 <br /><img src="{{imageUrl42}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n41()" > <center>41 <br /><img src="{{imageUrl41}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px">&nbsp;</div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n31()"> <center>31 <br /><img src="{{imageUrl31}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n32()"> <center>32 <br /><img src="{{imageUrl32}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n33()"> <center>33 <br /><img src="{{imageUrl33}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n34()"> <center>34 <br /><img src="{{imageUrl34}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n35()"> <center>35 <br /><img src="{{imageUrl35}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n36()"> <center>36 <br /><img src="{{imageUrl36}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n37()"> <center>37 <br /><img src="{{imageUrl37}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n38()"> <center>38 <br /><img src="{{imageUrl38}}" /></center> </div>
+                        </div>
+                         
+                                    
+                            <div class="col-sm-12"  >
+                                <div class="line line-dashed b-b line-lg pull-in"></div>
+                                <div class="form-group">
+                                  <div class="col-sm-12">
+									<div class="col-sm-4"><img src="../img/belum_erupsi.png"  ng-click="fungsiBelumErupsi()"/> Tidak / Belum Erupsi</div>
+                                      <div class="col-sm-4"><img src="../img/gigi_hilang.png" ng-click="fungsiGH()"/> Gigi Hilang</div>
+                                      <div class="col-sm-4"><img src="../img/mahkota_non_logam.png" ng-click="fungsiMahkotaNonLogam()"/> Mahkota Non Logam</div>
+                                  </div>
+								  <div class="col-sm-12">
+									<div class="col-sm-4"><img src="../img/erupsi_sebagian.png" ng-click="fungsiErupsiSebagian()" /> Erupsi Sebagian</div>
+                                    <div class="col-sm-4"><img src="../img/karies.png" ng-click="fungsiKaries()"/> Karies/Tambalan Sementara</div>
+                                  </div>
+								  <div class="col-sm-12">
+									<div class="col-sm-4"><img src="../img/anomali_bentuk.png" ng-click="fungsiAnomaliBentuk()"/> Anomali Bentuk</div>
+                                    <div class="col-sm-4"><img src="../img/tambalan_logam.png" ng-click="fungsiTambalanLogam()"/> Tambalan Logam</div>
+                                  </div>
+								  <div class="col-sm-12">
+									<div class="col-sm-4"><img src="../img/non_vital.png" ng-click="fungsiNonVital()"/> Non Vital</div>
+                                    <div class="col-sm-4"><img src="../img/tambalan_non_logam.png" ng-click="fungsiTambalanNonLogam()"/> Tambalan Non Logam</div>
+                                  </div>
+								  <div class="col-sm-12">
+									<div class="col-sm-4"><img src="../img/sisa_akar.png" ng-click="fungsiSisaAkar()"/> Sisa Akar</div>
+                                    <div class="col-sm-4"><img src="../img/gigi_mahkota_logam.png" ng-click="fungsiML()"/> Mahkota Logam</div>
+                                  </div>
+                                  <div class="clear">&nbsp;</div>
+                                  <div class="clear">&nbsp;</div>
+                                  <div class="clear">&nbsp;</div>                     
+                                </div>
                             </div>
-                        </div>
+
+                            <div class="col-sm-12">
+                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                    <label class="col-sm-12 panel-heading"> Keterangan : </label>
+
+                                    <table class="table table-striped m-b-none" >
+                                            <thead>
+                                              <tr>
+                                                <th style="width:60px;" class="text-center">No</th>
+                                                <th>Element Gigi</th>                    
+                                                <th>Keterangan</th>
+                                                <th style="width:20px;">Aksi</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                                <tr >
+                                                    <td>1</td><td>P18</td><td>{{keterangan18}}</td><td><i  class="fa fa-times text-danger text"></i></td>
+                                                </tr>
+                                             
+                                            </tbody>
+                                    </table>
 
 
 
-
-
-                        <label class="col-sm-12 panel-heading" style="margin-top:40px;">Tindakan Medis</label>
-                        <div class="col-sm-12">
-                                <div class="panel panel-default">
-                                  <div class="panel-heading">Daftar Tindakan</div>
-                                  <table class="table table-striped m-b-none">
-                                    <thead>
-                                      <tr>
-                                        <th style="width:20px;" class="text-center">No</th>
-                                        <th>Item</th>           
-                                        <th style="width:70px;">Harga Bahan</th>
-                                        <th style="width:70px;">Harga Layanan</th>
-                                        <th style="width:70px;">Total </th>
-                                        <th style="width:20px;">Aksi</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr ng-repeat="a in daftarLayanan">
-                                            <td>{{ $index + 1 }}</td>
-                                            <td>{{ a.name }}</td>
-                                            <td>{{ a.harga | currency:'Rp':0 }}</td>
-                                            <td>{{ a.jasa | currency:'Rp':0 }}</td>
-                                            <td>{{ ( (a.jasa * 1) + (a.harga * 1) ) | currency:'Rp':0 }}</td><td><i  class="fa fa-times text-danger text" ng-click="hapusdaftarLayanan($index)"></i></td>
-                                        </tr>
+                                    <div class="form-group">
                                      
-                                    </tbody>
-                                  </table>
+                                      <div class="clear">&nbsp;</div>
+                                      <div class="clear">&nbsp;</div>
+                                      <div class="clear">&nbsp;</div>                     
+                                    </div>
+                            </div>
+
+                          
+
+                            <div class="line line-dashed b-b line-lg pull-in" style="margin-top:30px;"></div>
+
+                            <label class="col-sm-12 panel-heading"><h3>Jaringan Lunak Mulut</h3></label>
+
+                                <label class="col-sm-12 ">Kebersihan Mulut</label>
+                            
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                            <div class="col-sm-4">
+                                                <label class="checkbox-inline">
+                                                    <input type="radio"  name="optionsRadios" value="option1"> Baik
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label class="checkbox-inline">
+                                                    <input type="radio"  name="optionsRadios" value="option2"> Sedang
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">    
+                                                <label class="checkbox-inline">
+                                                    <input type="radio"  name="optionsRadios" value="option3"> Buruk
+                                                </label>
+                                            </div>
+                                    </div>
                                 </div>
-                        </div>
 
-                        
+                                <label class="col-sm-12 ">Mukosa bukal</label>
+                                
+                                <div class="form-group">
+                                     <div class="col-sm-12">
+                                            <div class="col-sm-4">
+                                                <label class="checkbox-inline">
+                                                    <input type="radio"  name="optionsRadios"  value="option1"> Normal
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                    <div class="input-group m-b">
+                                                            <span class="input-group-addon">
+                                                                    <input type="radio"  name="optionsRadios">
+                                                                  </span>
+                                                                  <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                    </div> 
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                
+                                <label class="col-sm-12 ">Mukosa labial</label>
+                                    
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                            <div class="col-sm-4">
+                                                <label class="checkbox-inline">
+                                                    <input type="radio"   name="optionsRadios" value="option1"> Normal
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="input-group m-b">
+                                                    <span class="input-group-addon">
+                                                        <input type="radio"  name="optionsRadios" value="option2">
+                                                    </span>
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                </div> 
+                                            </div>
+                                               
+                                    </div>
+                                </div> 
+                                
+                                <label class="col-sm-12 ">Frenulum labial</label>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <label class="checkbox-inline">
+                                                <input type="radio"   name="optionsRadios" value="option1"> Normal
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon">
+                                                    <input type="radio"  name="optionsRadios" value="option2">
+                                                </span>
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                </div> 
+                                            </div>
+                                            
+                                    </div>
+                                </div> 
+                                
+                                <label class="col-sm-12 ">Lidah</label>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <label class="checkbox-inline">
+                                                <input type="radio"   name="optionsRadios" value="option1"> Normal
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon">
+                                                    <input type="radio"  name="optionsRadios" value="option2">
+                                                </span>
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                </div> 
+                                            </div>
+                                            
+                                    </div>
+                                </div> 
+
+                                <label class="col-sm-12 ">Palatum</label>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <label class="checkbox-inline">
+                                                <input type="radio"   name="optionsRadios" value="option1"> Normal
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon">
+                                                    <input type="radio"  name="optionsRadios" value="option2">
+                                                </span>
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                </div> 
+                                            </div>
+                                            
+                                    </div>
+                                </div> 
+
+                                <label class="col-sm-12 ">Tonsil</label>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <label class="checkbox-inline">
+                                                <input type="radio"   name="optionsRadios" value="option1"> Normal
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon">
+                                                    <input type="radio"  name="optionsRadios" value="option2">
+                                                </span>
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                </div> 
+                                            </div>
+                                            
+                                    </div>
+                                </div> 
+
+                                <label class="col-sm-12 ">Dasar Mulut</label>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <label class="checkbox-inline">
+                                                <input type="radio"   name="optionsRadios" value="option1"> Normal
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon">
+                                                    <input type="radio"  name="optionsRadios" value="option2">
+                                                </span>
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                </div> 
+                                            </div>
+                                            
+                                    </div>
+                                </div> 
+                                <label class="col-sm-12 ">Gingiva</label>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <label class="checkbox-inline">
+                                                <input type="radio"   name="optionsRadios" value="option1"> Normal
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon">
+                                                    <input type="radio"  name="optionsRadios" value="option2">
+                                                </span>
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                </div> 
+                                            </div>
+                                            
+                                    </div>
+                                </div> 
+
+                            <div class="col-sm-12">
+                                <label class="col-sm-12 panel-heading"><h4> Peta Mukosa dan Jaringan Lunak Mulut</h4></label>
+                                <row>
+                                    <div class="col-sm-4"><img src="../img/mukosa1.jpg"/></div>
+                                    <div class="col-sm-4"><textarea class="form-control" style="height: 300px;"></textarea></div>
+                                    <div class="col-sm-4"><img src="../img/mukosa2.jpg"/></div>
+                                </row>  
+                            </div>
+
+
+                            <label class="col-sm-12 panel-heading" style="margin-top:40px;"><h3>Element Gigi / Mulut</h3></label>
+                            <div class="col-sm-12">
+                                <textarea class="form-control" ng-model="element_gigi_mulut"></textarea>      
+                            </div>
+
+                            <label class="col-sm-12 panel-heading" style="margin-top:40px;"><h3>Diagnosa</h3></label>
+                            <div class="col-sm-12">
+                                <textarea class="form-control" ng-model="diagnosa"></textarea>      
+                            </div>
+
+
+                            <label class="col-sm-12 panel-heading" style="margin-top:40px;"><h3>Perawatan</h3></label>
+                            <div class="col-sm-12">
+                                <textarea class="form-control" ng-model="perawatan"></textarea>      
+                            </div>
 
 
 
-                        <label class="col-sm-12" style="margin-top:40px;">Pengobatan</label>
-                        <div class="col-sm-12">
-                                <div class="panel panel-default">
-                                  <div class="panel-heading">Daftar Obat</div>
-                                  <table class="table table-striped m-b-none">
-                                    <thead>
-                                      <tr>
-                                        <th style="width:60px;" class="text-center">No</th>
-                                        <th>Item</th>                    
-                                        <th style="width:70px;">Quantity</th>
-                                        <th style="width:70px;">Satuan</th>
-                                        <th style="width:70px;">Harga</th>
-                                        <th style="width:70px;">Total</th>
-                                        <th style="width:20px;">Aksi</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                        
-                                        <tr ng-repeat="y in daftarObat">
-                                            <td>{{ $index + 1 }}</td><td>{{ y.name }}</td><td>{{ y.quantity }}</td><td>{{ y.satuan }}</td><td>{{ y.harga | currency:'Rp':0 }}</td> <td>{{   y.quantity * y.harga | currency:'Rp':0 }}</td> <td><i  class="fa fa-times text-danger text" ng-click="hapusdaftarObat($index)"></i></td>
-                                        </tr>
-                                     
-                                    </tbody>
-                                  </table>
-                                </div>
-                        </div>
-
-                        
-                      
-
-
+                            <label class="col-sm-12 panel-heading" style="margin-top:40px;"><h3>Tindakan Medis</h3></label>
+                            <div class="col-sm-12">
+                                    <div class="panel panel-default">
+                                      <div class="panel-heading">Daftar Tindakan</div>
+                                      <table class="table table-striped m-b-none">
+                                        <thead>
+                                          <tr>
+                                            <th style="width:20px;" class="text-center">No</th>
+                                            <th>Item</th>           
+                                            <th style="width:70px;">Harga Bahan</th>
+                                            <th style="width:70px;">Harga Layanan</th>
+                                            <th style="width:70px;">Total </th>
+                                            <th style="width:20px;">Aksi</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="a in daftarLayanan">
+                                                <td>{{ $index + 1 }}</td>
+                                                <td>{{ a.name }}</td>
+                                                <td>{{ a.harga | currency:'Rp':0 }}</td>
+                                                <td>{{ a.jasa | currency:'Rp':0 }}</td>
+                                                <td>{{ ( (a.jasa * 1) + (a.harga * 1) ) | currency:'Rp':0 }}</td><td><i  class="fa fa-times text-danger text" ng-click="hapusdaftarLayanan($index)"></i></td>
+                                            </tr>
+                                         
+                                        </tbody>
+                                      </table>
+                                    </div>
+                            </div>
 
                     
 
+                            <label class="col-sm-12" style="margin-top:40px;"><h3>Pengobatan</h3></label>
+                            <div class="col-sm-12">
+                                    <div class="panel panel-default">
+                                      <div class="panel-heading">Daftar Obat</div>
+                                      <table class="table table-striped m-b-none">
+                                        <thead>
+                                          <tr>
+                                            <th style="width:60px;" class="text-center">No</th>
+                                            <th>Item</th>                    
+                                            <th style="width:70px;">Quantity</th>
+                                            <th style="width:70px;">Satuan</th>
+                                            <th style="width:70px;">Harga</th>
+                                            <th style="width:70px;">Total</th>
+                                            <th style="width:20px;">Aksi</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            <tr ng-repeat="y in daftarObat">
+                                                <td>{{ $index + 1 }}</td><td>{{ y.name }}</td><td>{{ y.quantity }}</td><td>{{ y.satuan }}</td><td>{{ y.harga | currency:'Rp':0 }}</td> <td>{{   y.quantity * y.harga | currency:'Rp':0 }}</td> <td><i  class="fa fa-times text-danger text" ng-click="hapusdaftarObat($index)"></i></td>
+                                            </tr>
+                                         
+                                        </tbody>
+                                      </table>
+                                    </div>
+                            </div>
 
-                        <div class="col-sm-12" style="margin-top:50px">
+                        
 
-                                <div class="line line-dashed b-b line-lg pull-in"></div>
-                               
 
+                          </div>
+                          </form>
                         </div>
+                  
+    
+                </div>
+                <!-- # End Panel Kanan -->
 
 
-                      </div>
-                      </form>
-                    </div>
-              
 
-            </div>
-            <!-- # End Panel Kanan -->
+               
+
+
+
 
 
     

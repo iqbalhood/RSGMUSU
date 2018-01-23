@@ -661,6 +661,67 @@ app.controller("RekamMedisCtrl", function ($scope,$interval,$http, $route,$timeo
 
     $scope.idPasien = $routeParams.id;
 
+         //Kode Gambar Gigi Untuk Form Odontograma
+         $scope.imageUrl18 = "../img/G1G1.png";
+         $scope.imageUrl17 = "../img/G1G1.png";
+         $scope.imageUrl16 = "../img/G1G1.png";
+         $scope.imageUrl15 = "../img/G1G1.png";
+         $scope.imageUrl14 = "../img/G1G1.png";
+         $scope.imageUrl13 = "../img/G1G1.png";
+         $scope.imageUrl12 = "../img/G1G1.png";
+         $scope.imageUrl11 = "../img/G1G1.png";
+ 
+         $scope.imageUrl21 = "../img/G1G1.png";
+         $scope.imageUrl22 = "../img/G1G1.png";
+         $scope.imageUrl23 = "../img/G1G1.png";
+         $scope.imageUrl24 = "../img/G1G1.png";
+         $scope.imageUrl25 = "../img/G1G1.png";
+         $scope.imageUrl26 = "../img/G1G1.png";
+         $scope.imageUrl27 = "../img/G1G1.png";
+         $scope.imageUrl28 = "../img/G1G1.png";
+ 
+         $scope.imageUrl55 = "../img/G1G1.png";
+         $scope.imageUrl54 = "../img/G1G1.png";
+         $scope.imageUrl53 = "../img/G1G1.png";
+         $scope.imageUrl52 = "../img/G1G1.png";
+         $scope.imageUrl51 = "../img/G1G1.png";
+ 
+         $scope.imageUrl61 = "../img/G1G1.png";
+         $scope.imageUrl62 = "../img/G1G1.png";
+         $scope.imageUrl63 = "../img/G1G1.png";
+         $scope.imageUrl64 = "../img/G1G1.png";
+         $scope.imageUrl65 = "../img/G1G1.png";
+ 
+         $scope.imageUrl85 = "../img/G1G1.png";
+         $scope.imageUrl84 = "../img/G1G1.png";
+         $scope.imageUrl83 = "../img/G1G1.png";
+         $scope.imageUrl82 = "../img/G1G1.png";
+         $scope.imageUrl81 = "../img/G1G1.png";
+         
+         $scope.imageUrl71 = "../img/G1G1.png";
+         $scope.imageUrl72 = "../img/G1G1.png";
+         $scope.imageUrl73 = "../img/G1G1.png";
+         $scope.imageUrl74 = "../img/G1G1.png";
+         $scope.imageUrl75 = "../img/G1G1.png";
+ 
+         $scope.imageUrl48 = "../img/G1G1.png";
+         $scope.imageUrl47 = "../img/G1G1.png";
+         $scope.imageUrl46 = "../img/G1G1.png";
+         $scope.imageUrl45 = "../img/G1G1.png";
+         $scope.imageUrl44 = "../img/G1G1.png";
+         $scope.imageUrl43 = "../img/G1G1.png";
+         $scope.imageUrl42 = "../img/G1G1.png";
+         $scope.imageUrl41 = "../img/G1G1.png";
+ 
+         $scope.imageUrl31 = "../img/G1G1.png";
+         $scope.imageUrl32 = "../img/G1G1.png";
+         $scope.imageUrl33 = "../img/G1G1.png";
+         $scope.imageUrl34 = "../img/G1G1.png";
+         $scope.imageUrl35 = "../img/G1G1.png";
+         $scope.imageUrl36 = "../img/G1G1.png";
+         $scope.imageUrl37 = "../img/G1G1.png";
+         $scope.imageUrl38 = "../img/G1G1.png";
+
     //GET DATA PASIEN
 
     $http({
@@ -672,9 +733,13 @@ app.controller("RekamMedisCtrl", function ($scope,$interval,$http, $route,$timeo
         // on success
         $scope.people           =  response.data;
         $scope.id               =  $scope.people.id;
-        $scope.name             =  $scope.people.name;
+        $scope.namaPasien       =  $scope.people.name;
         $scope.phone            =  $scope.people.phone;
         $scope.kelamin          =  $scope.people.jenis_kelamin;
+        $scope.umur             =  $scope.people.umur;
+        $scope.tinggi_badan     =  $scope.people.tinggi_badan;
+        $scope.golongan_darah   =  $scope.people.golongan_darah;
+        $scope.berat_badan      =  $scope.people.berat_badan;
        
         
     }, function (response) {
@@ -720,7 +785,9 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
     var klinikCookie = $cookies.get('klinik');
         $scope.daftarObat       = [];
         $scope.daftarLayanan    = [];
-      
+
+
+     
         $scope.status = "Tidak Ada";
         $scope.warna = "#ffffff";
 
@@ -792,6 +859,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
          //Kode Gambar Gigi Untuk Form Odontograma
 
         $scope.teethValue = 0 ;
+        $scope.teethExplaination = "";
 
      
         $http.get("../apidb/obat/list_data.php").then(function (response) {
@@ -1025,7 +1093,8 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 
         
         $scope.fungsiGH = function(){
-            console.log("Teeeth Value GH "+ $scope.teethValue);
+            
+            $scope.teethExplaination = "Gigi Hilang";
 
             if($scope.teethValue == 18){
 
@@ -1338,12 +1407,17 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
                 $scope.imageUrl38 = "../img/small/gigi_hilang.png";   
     
             }
+
+
+        
             
 
         };
 
        
         $scope.fungsiBelumErupsi = function(){
+
+            $scope.teethExplaination = "Belum Erupsi";
 
             console.log("Teeeth Value Belum Erupsi "+ $scope.teethValue);
 
@@ -1664,7 +1738,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 
         $scope.fungsiErupsiSebagian = function(){
 
-            console.log("Teeeth Value Belum Erupsi "+ $scope.teethValue);
+            $scope.teethExplaination = "Erupsi Sebagian";
 
             if($scope.teethValue == 18){
 
@@ -1983,7 +2057,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 
         $scope.fungsiKaries = function(){
 
-                console.log("Teeeth Value Belum Erupsi "+ $scope.teethValue);
+            $scope.teethExplaination = "Karies";
 
             if($scope.teethValue == 18){
 
