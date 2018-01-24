@@ -1096,6 +1096,10 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
             $scope.daftarKondisiGigi.push(obj);
         }
 
+        $scope.hapusdaftarKondisi = function(x){
+            $scope.daftarKondisiGigi.splice(x,1);
+        };
+
         
         $scope.fungsiGH = function(){
             
