@@ -783,9 +783,9 @@ app.controller("RekamMedisCtrl", function ($scope,$interval,$http, $route,$timeo
 
 app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval,$http, $route,$timeout, $routeParams, $window) {
     var klinikCookie = $cookies.get('klinik');
-        $scope.daftarObat       = [];
-        $scope.daftarLayanan    = [];
-
+        $scope.daftarObat           = [];
+        $scope.daftarLayanan        = [];
+        $scope.daftarKondisiGigi    = [];
 
      
         $scope.status = "Tidak Ada";
@@ -1090,6 +1090,11 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
             // console.log( $scope.daftarLayanan);     
             $scope.shFormLayanan  = false;       
         };
+
+        $scope.submitFormKondisi = function(){
+            var obj = { teeth: $scope.teethValue, explaination: $scope.teethExplaination , keterangan : $scope.keterangan_element_gigi  };
+            $scope.daftarKondisiGigi.push(obj);
+        }
 
         
         $scope.fungsiGH = function(){
@@ -2376,7 +2381,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 
     $scope.fungsiAnomaliBentuk = function(){
 
-            console.log("Teeeth Value Belum Erupsi "+ $scope.teethValue);
+        $scope.teethExplaination = "Anomali Bentuk";
 
         if($scope.teethValue == 18){
 
@@ -2694,7 +2699,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 
     $scope.fungsiTambalanLogam = function(){
 
-        console.log("Teeeth Value Belum Erupsi "+ $scope.teethValue);
+        $scope.teethExplaination = "Tambalan Logam";
 
         if($scope.teethValue == 18){
 
@@ -3013,7 +3018,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 
         $scope.fungsiNonVital = function(){
 
-            console.log("Teeeth Value Belum Erupsi "+ $scope.teethValue);
+            $scope.teethExplaination = "Non Vital";
 
             if($scope.teethValue == 18){
 
@@ -3333,7 +3338,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 
         $scope.fungsiTambalanNonLogam = function(){
 
-            console.log("Teeeth Value Belum Erupsi "+ $scope.teethValue);
+            $scope.teethExplaination = "Tambalan Logam";
 
             if($scope.teethValue == 18){
 
@@ -3651,7 +3656,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 
         $scope.fungsiSisaAkar = function(){
 
-            console.log("Teeeth Value Belum Erupsi "+ $scope.teethValue);
+            $scope.teethExplaination = "Sisa Akar";
 
             if($scope.teethValue == 18){
 
@@ -3970,7 +3975,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 
         $scope.fungsiML = function(){
 
-            console.log("Teeeth Value Belum Erupsi "+ $scope.teethValue);
+            $scope.teethExplaination = "Mahkota Logam";
 
             if($scope.teethValue == 18){
 
@@ -4289,7 +4294,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 
         $scope.fungsiMahkotaNonLogam = function(){
 
-            console.log("Teeeth Value Belum MahkotaNonLogam "+ $scope.teethValue);
+            $scope.teethExplaination = "Mahkota Non Logam";
 
             if($scope.teethValue == 18){
 
