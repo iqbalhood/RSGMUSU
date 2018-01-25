@@ -685,6 +685,13 @@ app.controller("DataPasienCtrl", function ($scope,$interval,$http, $route,$timeo
             console.log($scope.rekamMedisPasien);
         });
 
+
+        console.log("Data Perawatan Pasien");
+        $http.get("../apidb/klinik/list_perawatan_pasien.php?idpasien="+$scope.id_pasien).then(function (response) {
+            $scope.dataPerawatanPasien = response.data.event;
+            console.log(response.data.event);
+        });
+
         $http.get("../apidb/dokter/list_data.php").then(function (response) {
             $scope.dataDokter = response.data.event;
             console.log(response.data.event);

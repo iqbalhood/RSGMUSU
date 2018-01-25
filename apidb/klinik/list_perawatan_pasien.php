@@ -23,11 +23,13 @@ $db = new DB_CONNECT();
 		    
 	     while ($row = mysql_fetch_array($result)) {
 			$event 							    = array();			
-			$event["id_kunjungan"] 				= $row["id_kunjungan"];
 			$event["id_pasien"] 			    = $row["id_pasien"];
-			$event["id_dokter"] 		        = $row["id_dokter"];
 			$event["nama_dokter"] 			    = $row["nama_dokter"];
-			
+			$event["klinik"] 			   		= $row["id_klinik"];
+			$event["element"] 			   		= $row["element"];
+			$event["diagnosa"] 			   		= $row["diagnosa"];
+			$event["perawatan"] 			   	= $row["perawatan"];
+		
 			array_push($response["event"], $event);
 		 }
 		    // sukses

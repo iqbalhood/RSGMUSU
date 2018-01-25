@@ -782,7 +782,7 @@ app.controller("RekamMedisCtrl", function ($scope,$interval,$http, $route,$timeo
 
 
 app.controller("PerawatanRadiologiCtrl", function ($scope, $cookies, $location, $interval,$http, $route,$timeout, $routeParams, $window) {
-    var klinikCookie = $cookies.get('klinik');
+   
 console.log("PERAWATAN RADIOLOGI ");
 
 $scope.daftarLayanan        = [];
@@ -810,35 +810,14 @@ $http({
     
 });
 
-$http({
-    method: 'POST',    
-    url: '../apidb/pasien/get.php',
-    data: {newId: $routeParams.id}
-}).then(function (response) {
-    
-    // on success
-    $scope.people           =  response.data;
-    $scope.id               =  $scope.people.id;
-    $scope.namaPasien       =  $scope.people.name;
-    $scope.phone            =  $scope.people.phone;
-    $scope.kelamin          =  $scope.people.jenis_kelamin;
-    $scope.umur             =  $scope.people.umur;
-    $scope.tinggi_badan     =  $scope.people.tinggi_badan;
-    $scope.golongan_darah   =  $scope.people.golongan_darah;
-    $scope.berat_badan      =  $scope.people.berat_badan;
-   
-    
-}, function (response) {
-    
-    // on error
-    console.log(response.data,response.status);
-    
-});
 
 $http.get("../apidb/layanan/list_data.php?id="+klinikCookie).then(function (response) {
     $scope.dataLayanan = response.data.event;
     console.log(response.data.event);
 });
+
+
+
 
 $scope.FormLayanan = function(x) {
     $scope.shFormLayanan   = true;
@@ -946,10 +925,11 @@ $scope.submitFormLayanan = function(){
 
 
 $scope.simpanData = function(){
+    var klinikCookie = $cookies.get('klinik');
             $http({
                 method: 'POST',
                 url:  '../apidb/klinik/submit_perawatan.php',
-                data: {idAntrian: $scope.idAntrian, idPasien: $routeParams.id, idDokter: $scope.iddokter, namaDokter: $scope.namadokter, element: $scope.element_gigi_mulut, diagnosa: $scope.diagnosa, perawatan: $scope.perawatan }
+                data: {idAntrian: $scope.idAntrian, idKlinik : klinikCookie  , idPasien: $routeParams.id, idDokter: $scope.iddokter, namaDokter: $scope.namadokter, element: $scope.element_gigi_mulut, diagnosa: $scope.diagnosa, perawatan: $scope.perawatan }
             }).then(function (response) {
                 // on success
                 if(response.status==200){

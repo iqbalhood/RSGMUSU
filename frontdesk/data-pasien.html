@@ -93,7 +93,7 @@
                             <div ng-show="tablePelayanan">
                               
                                 <i class="icon  icon-close text-danger m-r-sm pull-right" ng-click="hideTable()"></i>
-                                <h4 class="font-thin m-t-none m-b-none text-primary-lt">Daftar Perawatan</h4>
+                                <h4 class="font-thin m-t-none m-b-none text-primary-lt">Daftar Kunjungan Klinik</h4>
                                 <div class="clear">&nbsp;</div>                                    
                                 <div class="panel panel-default">
                                     <div class="panel-heading"> Klinik {{klinik}} Untuk Kunjugan {{ID}} {{TANGGAL}}</div>
@@ -103,7 +103,7 @@
                                                 <th style="width:170px;" >Id Kunjungan</th>
                                                 <th style="width:170px;" >Klinik</th>
                                                 <th style="width:170px;" >Tanggal</th>      
-                                                <th style="width:150px;">Riwayat Perawatan</th>
+                                                <th style="width:150px;">Detail Kunjungan</th>
                                              </tr>
                                     </thead>
                                     <tbody>
@@ -129,34 +129,30 @@
 
                             <div>
                               
-                                <i class="icon  icon-close text-danger m-r-sm pull-right" ng-click="hideTable()"></i>
-                                <h4 class="font-thin m-t-none m-b-none text-primary-lt">Daftar Perawatan</h4>
+                               
+                                <h4 class="font-thin m-t-none m-b-none text-primary-lt">Data Perawatan</h4>
                                 <div class="clear">&nbsp;</div>                                    
                                 <div class="panel panel-default">
-                                    <div class="panel-heading"> Klinik {{klinik}} Untuk Kunjugan {{ID}} {{TANGGAL}}</div>
+                                    <div class="panel-heading"> Data Perawatan</div>
                                     <table class="table table-striped m-b-none">
                                     <thead>
-                                            <tr>
-                                                <th style="width:170px;" >Id Kunjungan</th>
-                                                <th style="width:170px;" >Klinik</th>
-                                                <th style="width:170px;" >Tanggal</th>      
-                                                <th style="width:150px;">Riwayat Perawatan</th>
-                                             </tr>
+                                                <tr>
+                                                    <th style="width:170px;" >Tanggal</th>
+                                                    <th style="width:170px;" >Element Gigi / Mulut</th>      
+                                                    <th style="width:150px;">Diagnosa</th>
+                                                    <th style="width:150px;">Perawatan</th>   
+                                                    <th style="width:170px;">Klinik</th>
+                                                    <th style="width:150px;">Nama Dokter</th>
+                                                </tr>
                                     </thead>
                                     <tbody>
-                                            <tr ng-repeat="v in dataKunjunganKlinik">
-                                                <td style="width:170px;" >{{v.id_kunjungan}}</td>
-                                                <td style="width:170px;" >{{v.id_klinik}}</td>
-                                                <td style="width:170px;" >Sample</td>      
-                                                <td style="width:150px;">
-                                                        <a href="#!/rekam-medis/{{id}}/{{idRM}}">
-                                                        <button class="btn m-b-xs btn-sm btn-info btn-addon" >
-                                                        <i class="fa fa-arrow-right pull-right"></i>Lihat Data </button>
-                                                        </a>
-                                                </td> 
-                                            </tr>  
-                                            
-                                           
+                                                <tr ng-repeat="v in dataPerawatanPasien">
+                                                    <td style="width:170px;" >{{y.id_kunjungan}}</td>
+                                                    <td style="width:170px;" >{{y.element_gigi}}</td>
+                                                    <td style="width:170px;" >{{y.diagnosa}}</td>
+                                                    <td style="width:170px;" >{{y.klinik}}</td>
+                                                    <td style="width:170px;" >{{y.nama_dokter}}</td> 
+                                                </tr>        
                                     </tbody>
                                     </table>
                                 </div>
