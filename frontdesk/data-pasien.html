@@ -124,6 +124,43 @@
                                     </table>
                                 </div>
                             </div>
+
+
+
+                            <div>
+                              
+                                <i class="icon  icon-close text-danger m-r-sm pull-right" ng-click="hideTable()"></i>
+                                <h4 class="font-thin m-t-none m-b-none text-primary-lt">Daftar Perawatan</h4>
+                                <div class="clear">&nbsp;</div>                                    
+                                <div class="panel panel-default">
+                                    <div class="panel-heading"> Klinik {{klinik}} Untuk Kunjugan {{ID}} {{TANGGAL}}</div>
+                                    <table class="table table-striped m-b-none">
+                                    <thead>
+                                            <tr>
+                                                <th style="width:170px;" >Id Kunjungan</th>
+                                                <th style="width:170px;" >Klinik</th>
+                                                <th style="width:170px;" >Tanggal</th>      
+                                                <th style="width:150px;">Riwayat Perawatan</th>
+                                             </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr ng-repeat="v in dataKunjunganKlinik">
+                                                <td style="width:170px;" >{{v.id_kunjungan}}</td>
+                                                <td style="width:170px;" >{{v.id_klinik}}</td>
+                                                <td style="width:170px;" >Sample</td>      
+                                                <td style="width:150px;">
+                                                        <a href="#!/rekam-medis/{{id}}/{{idRM}}">
+                                                        <button class="btn m-b-xs btn-sm btn-info btn-addon" >
+                                                        <i class="fa fa-arrow-right pull-right"></i>Lihat Data </button>
+                                                        </a>
+                                                </td> 
+                                            </tr>  
+                                            
+                                           
+                                    </tbody>
+                                    </table>
+                                </div>
+                            </div>
             
                         </div>
                         <!-- # End Panel Kanan -->
