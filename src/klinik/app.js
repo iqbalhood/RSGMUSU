@@ -36,10 +36,7 @@
           templateUrl : "data-pasien.html",
           controller  : "DataPasienCtrl",
         })
-        .when("/perawatan/:id", {
-          templateUrl : "perawatan.html",
-          controller  : "PerawatanCtrl",
-        })
+       
         .when("/riwayat", {
           templateUrl : "riwayat.html",
           controller  : "RiwayatCtrl",
@@ -51,6 +48,10 @@
         .when("/perawatan/:id/:idkunjungan", {
           templateUrl : "perawatan.html",
           controller  : "PerawatanCtrl",
+        })
+        .when("/pradiologi/:id/:idkunjungan", {
+          templateUrl : "perawatan-radiologi.html",
+          controller  : "PerawatanRadiologiCtrl",
         })
         .otherwise({
             templateUrl : "dashboard.html",

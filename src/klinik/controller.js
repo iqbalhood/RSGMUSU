@@ -781,6 +781,149 @@ app.controller("RekamMedisCtrl", function ($scope,$interval,$http, $route,$timeo
 });
 
 
+app.controller("PerawatanRadiologiCtrl", function ($scope, $cookies, $location, $interval,$http, $route,$timeout, $routeParams, $window) {
+    var klinikCookie = $cookies.get('klinik');
+console.log("PERAWATAN RADIOLOGI ");
+
+$scope.daftarLayanan        = [];
+
+$http({
+    method: 'POST',    
+    url: '../apidb/pasien/get.php',
+    data: {newId: $routeParams.id}
+}).then(function (response) {
+    
+    // on success
+    $scope.people           =  response.data;
+    $scope.id               =  $scope.people.id;
+    $scope.namaPasien       =  $scope.people.name;
+    $scope.phone            =  $scope.people.phone;
+    $scope.kelamin          =  $scope.people.jenis_kelamin;
+    $scope.umur             =  $scope.people.umur;
+    $scope.tinggi_badan     =  $scope.people.tinggi_badan;
+    $scope.golongan_darah   =  $scope.people.golongan_darah;
+    $scope.berat_badan      =  $scope.people.berat_badan;
+   
+    
+}, function (response) {
+    
+    // on error
+    console.log(response.data,response.status);
+    
+});
+
+$http.get("../apidb/layanan/list_data.php?id="+klinikCookie).then(function (response) {
+    $scope.dataLayanan = response.data.event;
+    console.log(response.data.event);
+});
+
+$scope.FormLayanan = function(x) {
+    $scope.shFormLayanan   = true;
+    $scope.id = x;
+    $http({
+        method: 'POST',    
+        url: '../apidb/layanan/get.php',
+        data: {newId: x}
+    }).then(function (response) {
+        console.log("DATA LAYANAN");
+        console.log(response);
+        // on success
+        $scope.peopleLayanan    =  response.data;
+        $scope.idLayanan        =  $scope.peopleLayanan.id;
+        $scope.nameLayanan      =  $scope.peopleLayanan.layanan;            
+        $scope.bahanLayanan     =  $scope.peopleLayanan.bahan;
+        $scope.harga_bahan      =  $scope.peopleLayanan.harga_bahan;
+        $scope.harga_koas       =  $scope.peopleLayanan.harga_koas;
+        $scope.harga_drg        =  $scope.peopleLayanan.harga_drg;
+        $scope.harga_drgsp      =  $scope.peopleLayanan.harga_drgsp;
+        
+    }, function (response) {
+        
+        // on error
+        console.log(response.data,response.status);
+        
+    });
+};
+
+$scope.cancelFormObat = function() {
+
+    $scope.shForm         = false;
+    $scope.id             =  "";
+    $scope.name           =  "";
+    $scope.quantity       =  "";
+    $scope.satuan         =  "";
+    $scope.harga          =  "";
+    
+};
+
+$scope.cancelFormLayanan = function() {
+    $scope.shFormLayanan  = false;
+    $scope.idLayanan        =  "";
+    $scope.nameLayanan      =  "";           
+    $scope.bahanLayanan     =  "";
+    $scope.harga_bahan      =  "";
+    $scope.harga_koas       =  "";
+    $scope.harga_drg        =  "";
+    $scope.harga_drgsp      =  "";
+};
+
+$scope.updateJasa = function(){
+
+    if($scope.pelaksana == '0'){
+        $scope.jasa  = $scope.harga_koas;
+
+    }
+
+    if($scope.pelaksana == '1'){
+        $scope.jasa  = $scope.harga_drg;  
+
+    }
+
+    if($scope.pelaksana == '2'){
+        $scope.jasa  = $scope.harga_drgsp;
+
+    }
+
+};
+
+$scope.submitFormLayanan = function(){
+    var obj = { name: $scope.nameLayanan, harga: $scope.harga_bahan , jasa : $scope.jasa  };
+    if($scope.daftarLayanan.length != 0){
+
+         //Jika Data Obat Sudah ada maka cek apakah  ada nama obat  yang sama di array
+         var index = $scope.daftarLayanan.map(function (item) {
+            return item.name;
+         }).indexOf($scope.nameLayanan);
+
+           // Jika benar obat memang sudah ada kita ganti quantitynya 
+        if(index != -1){ 
+            console.log ("harus diganti");
+            var hasil = parseInt($scope.daftarLayanan[index].harga_bahan) + parseInt($scope.harga_bahan);
+            $scope.daftarLayanan[index].harga_bahan = hasil;
+
+            var hasilJasa = parseInt($scope.daftarLayanan[index].jasa) + parseInt($scope.jasa);
+            $scope.daftarLayanan[index].jasa = hasilJasa;
+
+        }else{
+            $scope.daftarLayanan.push(obj);
+        }
+
+    }else{
+        // Jika Belum ada obat maka buatlah data obatnya 
+        $scope.daftarLayanan.push(obj);
+    }
+    // console.log( "PANJANG SCOPE"+$scope.daftarLayanan.length);
+    
+    // console.log("Nama Layanan Tersedia");
+    // $scope.daftarLayanan.push(obj);
+    // console.log( $scope.daftarLayanan);     
+    $scope.shFormLayanan  = false;       
+};
+
+
+});
+
+
 app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval,$http, $route,$timeout, $routeParams, $window) {
     var klinikCookie = $cookies.get('klinik');
         $scope.daftarObat           = [];

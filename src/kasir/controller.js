@@ -106,6 +106,45 @@ app.controller("InvoiceCtrl", function ($scope,$cookies,$interval,$http, $route,
     });
 
 
+    $scope.submitInvoice = function (){
+
+        console.log("=== Layanan ===");
+
+        for(var i = 0; i < $scope.myDataLayanan.length; i++){
+           console.log( $scope.myDataLayanan[i].nama_layanan);
+           
+           $http({
+            //             method: 'POST',
+            //             url:  '../apidb/klinik/submit_obat_kunjungan.php',
+            //             data: { idKunjungan : $routeParams.idkunjungan,
+            //                     idPasien    : $routeParams.id,
+            //                     namaPasien  : $scope.namaPasien, 
+            //                     idObat      : id_obat,
+            //                     namaObat    : nama_obat ,
+            //                     hargaObat   : harga_obat, 
+            //                     satuanObat  : satuan_obat, 
+            //                     quantityObat: quantity_obat }   
+            //         }).then(function (response) {
+            //             // on success
+            //             if(response.status==200){
+                              
+            //             }
+            //         });
+        }
+
+        console.log("=== Obat ===");
+
+        for(var j = 0; j < $scope.myData.length; j++){
+            console.log( $scope.myData[j].nama_obat);    
+        }
+
+
+    };
+
+
+   
+
+
 
 
 
