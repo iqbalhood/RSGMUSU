@@ -22,10 +22,22 @@ $db = new DB_CONNECT();
 		    $response["event"] = array();
 		    
 	     while ($row = mysql_fetch_array($result)) {
-			$event 							    = array();			
+
+			if ($row["id_klinik"] == "9" ) {
+
+				$klinik = "waw";
+
+			}else{
+				$klinik = "wew";
+			}
+
+
+
+			$event 							    = array();
+			$event["id_antrian"] 			    = $row["id_antrian"];			
 			$event["id_pasien"] 			    = $row["id_pasien"];
 			$event["nama_dokter"] 			    = $row["nama_dokter"];
-			$event["klinik"] 			   		= $row["id_klinik"];
+			$event["klinik"] 			   		= $klinik;
 			$event["element"] 			   		= $row["element"];
 			$event["diagnosa"] 			   		= $row["diagnosa"];
 			$event["perawatan"] 			   	= $row["perawatan"];

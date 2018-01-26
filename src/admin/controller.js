@@ -614,6 +614,10 @@ app.controller("ObatCtrl", function ($scope,$interval,$http, $route,$timeout, $r
                 }
             });
         }else{
+            console.log("USER NAME");
+            console.log($scope.username);
+            console.log($scope.password);
+            console.log($scope.akses);
 			$http({
                 
                  method: 'POST',
@@ -622,9 +626,10 @@ app.controller("ObatCtrl", function ($scope,$interval,$http, $route,$timeout, $r
                  
             }).then(function (response) {
                 // on success
-                if(response.status==200){
-                    $route.reload();    
-                }
+                console.log(response);
+                // if(response.status==200){
+                //     $route.reload();    
+                // }
             });
 		}
 		};

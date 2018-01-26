@@ -109,8 +109,8 @@
                                     <tbody>
                                             <tr ng-repeat="v in dataKunjunganKlinik">
                                                 <td style="width:170px;" >{{v.id_kunjungan}}</td>
-                                                <td style="width:170px;" >{{v.id_klinik}}</td>
-                                                <td style="width:170px;" >Sample</td>      
+                                                <td style="width:170px;" >{{v.nama_klinik}}</td>
+                                                <td style="width:170px;" >{{v.id_kunjungan | date:'dd-MMMM-yyyy'}}</td>      
                                                 <td style="width:150px;">
                                                         <a href="#!/rekam-medis/{{id}}/{{idRM}}">
                                                         <button class="btn m-b-xs btn-sm btn-info btn-addon" >
@@ -146,12 +146,13 @@
                                                 </tr>
                                     </thead>
                                     <tbody>
-                                                <tr ng-repeat="v in dataPerawatanPasien">
-                                                    <td style="width:170px;" >{{y.id_kunjungan}}</td>
-                                                    <td style="width:170px;" >{{y.element_gigi}}</td>
-                                                    <td style="width:170px;" >{{y.diagnosa}}</td>
-                                                    <td style="width:170px;" >{{y.klinik}}</td>
-                                                    <td style="width:170px;" >{{y.nama_dokter}}</td> 
+                                                <tr ng-repeat="p in dataPerawatanPasien">
+                                                    <td style="width:170px;" >{{p.id_antrian | date:'MM/dd/yyyy' }}</td>
+                                                    <td style="width:170px;" >{{p.element}}</td>
+                                                    <td style="width:170px;" >{{p.diagnosa}}</td>
+                                                    <td style="width:170px;" >{{p.perawatan}}</td>
+                                                    <td style="width:170px;" >{{p.klinik}}</td> 
+                                                    <td style="width:170px;" >{{p.nama_dokter}}</td> 
                                                 </tr>        
                                     </tbody>
                                     </table>
@@ -181,12 +182,9 @@
     
             <form class="form-horizontal">
 
-                <div class="form-group">
-                            <label class="col-sm-2 control-label" >ID Pasien</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" ng-model="id_pasien">
-                            </div>
-                </div>
+               
+
+                <input type="hidden" class="form-control" ng-model="id_pasien">
 
                 <div class="form-group">
                         <label class="col-sm-2 control-label" >ID KUNJUNGAN</label>
@@ -202,7 +200,7 @@
                       <div class="col-sm-10">
                         <select name="account" class="form-control m-b"  ng-model="klinik">
                           <option value="1">IKGP/IKGM</option>
-                          <option value="2">PERIODENSIA</option>
+                          <option value="2">PERIODONSIA</option>
                           <option value="3">ILMU PENYAKIT MULUT</option>
                           <option value="4">ILMU KEDOKTERAN GIGI ANAK</option>
                           <option value="5">KONSERVASI</option>

@@ -21,7 +21,7 @@ if(isset($postdata) && !empty($postdata))
 
     
     $sql = "INSERT INTO `perawatan` (`id`, `id_pasien`, `id_antrian`, `id_klinik`, `element`, `diagnosa`, `perawatan`, `id_dokter`, `nama_dokter`) 
-           VALUES (NULL, '$idAntrian', '$idPasien', '$idKlinik', '$element', '$diagnosa', '$perawatan', '$idDokter', '$namaDokter');";
+           VALUES (NULL, '$idPasien', '$idAntrian', '$idKlinik', '$element', '$diagnosa', '$perawatan', '$idDokter', '$namaDokter');";
 
 
     mysqli_query($connect,$sql);

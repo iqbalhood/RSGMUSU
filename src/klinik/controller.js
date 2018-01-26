@@ -660,6 +660,7 @@ app.controller("DataPasienCtrl", function ($scope,$interval,$http, $route,$timeo
 app.controller("RekamMedisCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
 
     $scope.idPasien = $routeParams.id;
+    $scope.daftarKondisiGigi    = [];
 
          //Kode Gambar Gigi Untuk Form Odontograma
          $scope.imageUrl18 = "../img/G1G1.png";
@@ -722,6 +723,14 @@ app.controller("RekamMedisCtrl", function ($scope,$interval,$http, $route,$timeo
          $scope.imageUrl37 = "../img/G1G1.png";
          $scope.imageUrl38 = "../img/G1G1.png";
 
+
+         $http.get("../apidb/dokter/list_data.php").then(function (response) {
+            $scope.dataDokter = response.data.event;
+            console.log(response.data.event);
+        });
+
+       
+
     //GET DATA PASIEN
 
     $http({
@@ -740,6 +749,355 @@ app.controller("RekamMedisCtrl", function ($scope,$interval,$http, $route,$timeo
         $scope.tinggi_badan     =  $scope.people.tinggi_badan;
         $scope.golongan_darah   =  $scope.people.golongan_darah;
         $scope.berat_badan      =  $scope.people.berat_badan;
+       
+        
+    }, function (response) {
+        
+        // on error
+        console.log(response.data,response.status);
+        
+    });
+
+    //ODONTOGRAMA
+
+    $http({
+        method: 'POST',    
+        url: '../apidb/klinik/get_odontograma.php',
+        data: {newId: $routeParams.idkunjungan}
+    }).then(function (response) {
+        
+        // on success
+
+        $scope.og           =  response.data;
+        $scope.odontoData   =  $scope.og.keterangan;
+
+        var JSONDATA = JSON.parse($scope.odontoData);
+
+
+        for(var i = 0; i<JSONDATA.length; i++){
+
+
+
+            console.log(JSONDATA[i].teeth);
+
+            var obj = { teeth: JSONDATA[i].teeth, explaination: JSONDATA[i].explaination , keterangan : JSONDATA[i].keterangan, url : JSONDATA[i].url };
+            $scope.daftarKondisiGigi.push(obj);
+
+                             $scope.teethValue = JSONDATA[i].teeth;
+
+                            if($scope.teethValue == 18){
+                
+                                $scope.imageUrl18 = JSONDATA[i].url;
+                
+                            }
+                
+                            if($scope.teethValue == 17){
+                
+                                $scope.imageUrl17 = JSONDATA[i].url;
+                            }
+                
+                            if($scope.teethValue == 16){
+                
+                                $scope.imageUrl16 = JSONDATA[i].url;
+                
+                            }
+                
+                            if($scope.teethValue == 15){
+                
+                                $scope.imageUrl15 = JSONDATA[i].url;
+                            }
+                
+                            if($scope.teethValue == 14){
+                
+                                $scope.imageUrl14 = JSONDATA[i].url; 
+                
+                            }
+                
+                            if($scope.teethValue == 13){
+                
+                                $scope.imageUrl13 = JSONDATA[i].url;
+                
+                            }
+                
+                            if($scope.teethValue == 12){
+                
+                                $scope.imageUrl12 = JSONDATA[i].url; 
+                
+                            }
+                
+                            if($scope.teethValue == 11){
+                
+                                $scope.imageUrl11 = JSONDATA[i].url; 
+                
+                            }
+                
+                            if($scope.teethValue == 21){
+                
+                                $scope.imageUrl21 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 22){
+                    
+                                $scope.imageUrl22 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 23){
+                    
+                                $scope.imageUrl23 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 24){
+                    
+                                $scope.imageUrl24 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 25){
+                    
+                                $scope.imageUrl25 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 26){
+                    
+                                $scope.imageUrl26 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 27){
+                    
+                                $scope.imageUrl27 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 28){
+                    
+                                $scope.imageUrl28 = JSONDATA[i].url;
+                    
+                            }
+                
+                            if($scope.teethValue == 55){
+                
+                                $scope.imageUrl55 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 54){
+                    
+                                $scope.imageUrl54 = JSONDATA[i].url;
+                    
+                            }
+                    
+                    
+                            if($scope.teethValue == 53){
+                    
+                                $scope.imageUrl53 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 52){
+                    
+                                $scope.imageUrl52 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 51){
+                    
+                                $scope.imageUrl51 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 61){
+                    
+                                $scope.imageUrl61 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 62){
+                    
+                                $scope.imageUrl62 = JSONDATA[i].url;
+                    
+                            }
+                    
+                    
+                            if($scope.teethValue == 63){
+                    
+                                $scope.imageUrl63 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 64){
+                    
+                                $scope.imageUrl64 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 65){
+                    
+                                $scope.imageUrl65 = JSONDATA[i].url;
+                    
+                            }
+                
+                            if($scope.teethValue == 85){
+                
+                                $scope.imageUrl85 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 84){
+                    
+                                $scope.imageUrl84 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 83){
+                    
+                                $scope.imageUrl83 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 82){
+                    
+                                $scope.imageUrl82 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 81){
+                    
+                                $scope.imageUrl81 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 71){
+                    
+                                $scope.imageUrl71 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 72){
+                    
+                                $scope.imageUrl72 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 73){
+                    
+                                $scope.imageUrl73 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 74){
+                    
+                                $scope.imageUrl74 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 75){
+                    
+                                $scope.imageUrl75 = JSONDATA[i].url;
+                    
+                            }
+                
+                            if($scope.teethValue == 48){
+                
+                                $scope.imageUrl48 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 47){
+                    
+                                $scope.imageUrl47 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 46){
+                    
+                                $scope.imageUrl46 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 45){
+                    
+                                $scope.imageUrl45 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 44){
+                    
+                                $scope.imageUrl44 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 43){
+                    
+                                $scope.imageUrl43 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 42){
+                    
+                                $scope.imageUrl42 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 41){
+                    
+                                $scope.imageUrl41 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 31){
+                    
+                                $scope.imageUrl31 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 32){
+                    
+                                $scope.imageUrl32 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 33){
+                    
+                                $scope.imageUrl33 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 34){
+                    
+                                $scope.imageUrl34 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 35){
+                    
+                                $scope.imageUrl35 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 36){
+                    
+                                $scope.imageUrl36 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 37){
+                    
+                                $scope.imageUrl37 = JSONDATA[i].url;
+                    
+                            }
+                    
+                            if($scope.teethValue == 38){
+                    
+                                $scope.imageUrl38 = JSONDATA[i].url;
+                    
+                            }
+
+        }
        
         
     }, function (response) {
@@ -782,9 +1140,9 @@ app.controller("RekamMedisCtrl", function ($scope,$interval,$http, $route,$timeo
 
 
 app.controller("PerawatanRadiologiCtrl", function ($scope, $cookies, $location, $interval,$http, $route,$timeout, $routeParams, $window) {
-   
+    
+var klinikCookie = $cookies.get('klinik');
 console.log("PERAWATAN RADIOLOGI ");
-
 $scope.daftarLayanan        = [];
 
 
@@ -929,7 +1287,7 @@ $scope.simpanData = function(){
             $http({
                 method: 'POST',
                 url:  '../apidb/klinik/submit_perawatan.php',
-                data: {idAntrian: $scope.idAntrian, idKlinik : klinikCookie  , idPasien: $routeParams.id, idDokter: $scope.iddokter, namaDokter: $scope.namadokter, element: $scope.element_gigi_mulut, diagnosa: $scope.diagnosa, perawatan: $scope.perawatan }
+                data: {idAntrian: $routeParams.idkunjungan, idKlinik : klinikCookie  , idPasien: $routeParams.id, idDokter: $scope.iddokter, namaDokter: $scope.namadokter, element: $scope.element_gigi_mulut, diagnosa: $scope.diagnosa, perawatan: $scope.perawatan }
             }).then(function (response) {
                 // on success
                 if(response.status==200){
@@ -1055,6 +1413,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 
         $scope.teethValue = 0 ;
         $scope.teethExplaination = "";
+        $scope.urlTEETH = ""; 
 
      
         $http.get("../apidb/obat/list_data.php").then(function (response) {
@@ -1287,7 +1646,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
         };
 
         $scope.submitFormKondisi = function(){
-            var obj = { teeth: $scope.teethValue, explaination: $scope.teethExplaination , keterangan : $scope.keterangan_element_gigi  };
+            var obj = { teeth: $scope.teethValue, explaination: $scope.teethExplaination , keterangan : $scope.keterangan_element_gigi, url : $scope.urlTEETH  };
             $scope.daftarKondisiGigi.push(obj);
         }
 
@@ -1299,6 +1658,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
         $scope.fungsiGH = function(){
             
             $scope.teethExplaination = "Gigi Hilang";
+            $scope.urlTEETH = "../img/small/gigi_hilang.png";
 
             if($scope.teethValue == 18){
 
@@ -1622,6 +1982,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
         $scope.fungsiBelumErupsi = function(){
 
             $scope.teethExplaination = "Belum Erupsi";
+            $scope.urlTEETH = "../img/small/belum_erupsi.png";
 
             console.log("Teeeth Value Belum Erupsi "+ $scope.teethValue);
 
@@ -1943,6 +2304,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
         $scope.fungsiErupsiSebagian = function(){
 
             $scope.teethExplaination = "Erupsi Sebagian";
+            $scope.urlTEETH = "../img/small/erupsi_sebagian.png";
 
             if($scope.teethValue == 18){
 
@@ -2262,6 +2624,8 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
         $scope.fungsiKaries = function(){
 
             $scope.teethExplaination = "Karies";
+            $scope.urlTEETH = "../img/small/karies.png";
+            
 
             if($scope.teethValue == 18){
 
@@ -2581,6 +2945,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
     $scope.fungsiAnomaliBentuk = function(){
 
         $scope.teethExplaination = "Anomali Bentuk";
+        $scope.urlTEETH = "../img/small/anomali_bentuk.png";
 
         if($scope.teethValue == 18){
 
@@ -2899,6 +3264,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
     $scope.fungsiTambalanLogam = function(){
 
         $scope.teethExplaination = "Tambalan Logam";
+        $scope.urlTEETH = "../img/small/tambalan_logam.png";
 
         if($scope.teethValue == 18){
 
@@ -3218,6 +3584,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
         $scope.fungsiNonVital = function(){
 
             $scope.teethExplaination = "Non Vital";
+            $scope.urlTEETH = "../img/small/non_vital.png";
 
             if($scope.teethValue == 18){
 
@@ -3538,6 +3905,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
         $scope.fungsiTambalanNonLogam = function(){
 
             $scope.teethExplaination = "Tambalan Logam";
+            $scope.urlTEETH = "../img/small/tambalan_non_logam.png";
 
             if($scope.teethValue == 18){
 
@@ -3856,6 +4224,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
         $scope.fungsiSisaAkar = function(){
 
             $scope.teethExplaination = "Sisa Akar";
+            $scope.urlTEETH = "../img/small/sisa_akar.png";
 
             if($scope.teethValue == 18){
 
@@ -4175,6 +4544,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
         $scope.fungsiML = function(){
 
             $scope.teethExplaination = "Mahkota Logam";
+            $scope.urlTEETH = "../img/small/gigi_mahkota_logam.png";
 
             if($scope.teethValue == 18){
 
@@ -4494,6 +4864,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
         $scope.fungsiMahkotaNonLogam = function(){
 
             $scope.teethExplaination = "Mahkota Non Logam";
+            $scope.urlTEETH = "../img/small/mahkota_non_logam.png";
 
             if($scope.teethValue == 18){
 
@@ -5090,101 +5461,117 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
         
         $scope.simpanData = function(){
 
-            // $http({
-            //     method: 'POST',
-            //     url:  '../apidb/klinik/put_rm_riwayat_penyakit.php',
-            //     data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id,
-            //            penyakitJantung : $scope.penyakit_jantung, keteranganJantung : $scope.keterangan_jantung, statusJantung: $scope.status_jantung }
-            // }).then(function (response) {
-            //     // on success
-            //     if(response.status==200){
-            //        console.log("Simpan Riwayat Penyakit Sukses...!!!");   
-            //     }
-            // });
+            var myJSON = JSON.stringify($scope.daftarKondisiGigi);
 
-            // $http({
-            //     method: 'POST',
-            //     url:  '../apidb/klinik/put_rm_tanda_vital.php',
-            //     data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id,
-            //            kesadaran : $scope.kesadaran, kondisiUmum : $scope.kondisi_umum, tekananDarah: $scope.tekanan_darah, denyutNadi: $scope.denyut_nadi, pernafasan: $scope.pernafasan, suhu: $scope.suhu }
-            // }).then(function (response) {
-            //     // on success
-            //     if(response.status==200){
-            //        console.log("Simpan Tanda Vital Sukses...!!!");   
-            //     }
-            // });
+            //INPUT DATA ODONTOGRAMA
+            $http({
+                method: 'POST',
+                url:  '../apidb/klinik/put_odontograma.php',
+                data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id,
+                       keterangan : myJSON }
+            }).then(function (response) {
+                // on success
+                if(response.status==200){
+                   console.log("Simpan Odontograma Sukses...!!!");   
+                }
+            });
+
+            $http({
+                method: 'POST',
+                url:  '../apidb/klinik/put_rm_riwayat_penyakit.php',
+                data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id,
+                       penyakitJantung : $scope.penyakit_jantung, keteranganJantung : $scope.keterangan_jantung, statusJantung: $scope.status_jantung }
+            }).then(function (response) {
+                // on success
+                if(response.status==200){
+                   console.log("Simpan Riwayat Penyakit Sukses...!!!");   
+                }
+            });
+
+            $http({
+                method: 'POST',
+                url:  '../apidb/klinik/put_rm_tanda_vital.php',
+                data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id,
+                       kesadaran : $scope.kesadaran, kondisiUmum : $scope.kondisi_umum, tekananDarah: $scope.tekanan_darah, denyutNadi: $scope.denyut_nadi, pernafasan: $scope.pernafasan, suhu: $scope.suhu }
+            }).then(function (response) {
+                // on success
+                if(response.status==200){
+                   console.log("Simpan Tanda Vital Sukses...!!!");   
+                }
+            });
 
 
 
-            // $http({
-            //     method: 'POST',
-            //     url:  '../apidb/klinik/submit_rekam_medis.php',
-            //     data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id, idDokter: $scope.iddokter, namaDokter: $scope.namadokter, amnese: $scope.amnese, diagnosa: $scope.diagnosa }
-            // }).then(function (response) {
-            //     // on success
-            //     if(response.status==200){
+            $http({
+                method: 'POST',
+                url:  '../apidb/klinik/submit_rekam_medis.php',
+                data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id, idDokter: $scope.iddokter, namaDokter: $scope.namadokter, amnese: $scope.amnese, diagnosa: $scope.diagnosa }
+            }).then(function (response) {
+                // on success
+                if(response.status==200){
                       
-            //     }
-            // });
+                }
+            });
            
 
-            // if($scope.daftarObat.length != 0){
-            //     for(var i = 0; i < $scope.daftarObat.length; i++){
-            //        // Memasukkan data obat ke database 
-            //        var id_obat = $scope.daftarObat[i].mid;
-            //        var quantity_obat = $scope.daftarObat[i].mid;
-            //        var harga_obat = $scope.daftarObat[i].harga;
-            //        var satuan_obat = $scope.daftarObat[i].satuan;
-            //        var nama_obat = $scope.daftarObat[i].name;
-            //         $http({
-            //             method: 'POST',
-            //             url:  '../apidb/klinik/submit_obat_kunjungan.php',
-            //             data: { idKunjungan : $routeParams.idkunjungan,
-            //                     idPasien    : $routeParams.id,
-            //                     namaPasien  : $scope.namaPasien, 
-            //                     idObat      : id_obat,
-            //                     namaObat    : nama_obat ,
-            //                     hargaObat   : harga_obat, 
-            //                     satuanObat  : satuan_obat, 
-            //                     quantityObat: quantity_obat }   
-            //         }).then(function (response) {
-            //             // on success
-            //             if(response.status==200){
+            if($scope.daftarObat.length != 0){
+                for(var i = 0; i < $scope.daftarObat.length; i++){
+                   // Memasukkan data obat ke database 
+                   var id_obat = $scope.daftarObat[i].mid;
+                   var quantity_obat = $scope.daftarObat[i].mid;
+                   var harga_obat = $scope.daftarObat[i].harga;
+                   var satuan_obat = $scope.daftarObat[i].satuan;
+                   var nama_obat = $scope.daftarObat[i].name;
+                    $http({
+                        method: 'POST',
+                        url:  '../apidb/klinik/submit_obat_kunjungan.php',
+                        data: { idKunjungan : $routeParams.idkunjungan,
+                                idPasien    : $routeParams.id,
+                                namaPasien  : $scope.namaPasien, 
+                                idObat      : id_obat,
+                                namaObat    : nama_obat ,
+                                hargaObat   : harga_obat, 
+                                satuanObat  : satuan_obat, 
+                                quantityObat: quantity_obat }   
+                    }).then(function (response) {
+                        // on success
+                        if(response.status==200){
                               
-            //             }
-            //         });
-            //     }
-            // }
+                        }
+                    });
+                }
+            }
 
 
-            // if($scope.daftarLayanan.length != 0){
-            //     for(var i = 0; i < $scope.daftarLayanan.length; i++){
-            //        // Memasukkan data obat ke database 
-            //        var harga_bahan = $scope.daftarLayanan[i].harga;
-            //        var harga_layanan = $scope.daftarLayanan[i].jasa;
-            //        var nama_layanan = $scope.daftarLayanan[i].name;
-            //         $http({
-            //             method: 'POST',
-            //             url:  '../apidb/klinik/submit_layanan_kunjungan.php',
-            //             data: { idKunjungan   : $routeParams.idkunjungan,
-            //                     idPasien      : $routeParams.id,
-            //                     namaPasien    : $scope.namaPasien, 
-            //                     namaLayanan   : nama_layanan,
-            //                     hargaLayanan  : harga_layanan, 
-            //                     hargaBahan    : harga_bahan }   
-            //         }).then(function (response) {
-            //             // on success
-            //             if(response.status==200){
-            //                 console.log("RESPON");  
-            //                console.log(response);    
-            //             }
-            //         });
-            //     }
-            // }
+            if($scope.daftarLayanan.length != 0){
+                for(var i = 0; i < $scope.daftarLayanan.length; i++){
+                   // Memasukkan data obat ke database 
+                   var harga_bahan = $scope.daftarLayanan[i].harga;
+                   var harga_layanan = $scope.daftarLayanan[i].jasa;
+                   var nama_layanan = $scope.daftarLayanan[i].name;
+                    $http({
+                        method: 'POST',
+                        url:  '../apidb/klinik/submit_layanan_kunjungan.php',
+                        data: { idKunjungan   : $routeParams.idkunjungan,
+                                idPasien      : $routeParams.id,
+                                namaPasien    : $scope.namaPasien, 
+                                namaLayanan   : nama_layanan,
+                                hargaLayanan  : harga_layanan, 
+                                hargaBahan    : harga_bahan }   
+                    }).then(function (response) {
+                        // on success
+                        if(response.status==200){
+                            console.log("RESPON");  
+                           console.log(response);  
+                           // $location.path("/home");
+  
+                        }
+                    });
+                }
+            }
 
 
-            // $location.path("/home");
-
+            
 
         };
 
