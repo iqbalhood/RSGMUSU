@@ -1145,6 +1145,32 @@ var klinikCookie = $cookies.get('klinik');
 console.log("PERAWATAN RADIOLOGI ");
 $scope.daftarLayanan        = [];
 
+$http({
+    method: 'POST',    
+    url: '../apidb/pasien/get.php',
+    data: {newId: $routeParams.id}
+}).then(function (response) {
+    
+    // on success
+    $scope.people           =  response.data;
+    $scope.id               =  $scope.people.id;
+    $scope.namaPasien       =  $scope.people.name;
+    $scope.phone            =  $scope.people.phone;
+    $scope.kelamin          =  $scope.people.jenis_kelamin;
+    $scope.umur             =  $scope.people.umur;
+    $scope.tinggi_badan     =  $scope.people.tinggi_badan;
+    $scope.golongan_darah   =  $scope.people.golongan_darah;
+    $scope.berat_badan      =  $scope.people.berat_badan;
+   
+    
+}, function (response) {
+    
+    // on error
+    console.log(response.data,response.status);
+    
+});
+
+
 
 $http({
     method: 'POST',    
