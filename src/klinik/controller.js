@@ -1129,11 +1129,6 @@ app.controller("RekamMedisCtrl", function ($scope,$interval,$http, $route,$timeo
         console.log(response.data,response.status);
         
     });
-
-
-
-
-
     
     
 });
@@ -5506,7 +5501,10 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
                 method: 'POST',
                 url:  '../apidb/klinik/put_rm_riwayat_penyakit.php',
                 data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id,
-                       penyakitJantung : $scope.penyakit_jantung, keteranganJantung : $scope.keterangan_jantung, statusJantung: $scope.status_jantung }
+                      keteranganJantung : $scope.keterangan_jantung, statusJantung: $scope.status_jantung,
+                      keteranganHipertensi : $scope.keterangan_hipertensi, statusHipertensi: $status.hipertensi,
+                      keteranganDiabetes : $scope.keterangan_diabetes, statusDiabetes: $status.diabetes  }
+                    
             }).then(function (response) {
                 // on success
                 if(response.status==200){

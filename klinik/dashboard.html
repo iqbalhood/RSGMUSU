@@ -6,7 +6,17 @@
 <div class="bg-light lter b-b wrapper-md">
   <div class="row">
     <div class="col-sm-6 col-xs-12">
-      <h1 class="m-n font-thin h3 text-black">Dashboard Klinik</h1>
+      <h1 class="m-n font-thin h3 text-black">Dashboard Klinik 
+        <span ng-if="tipeKlinik == 1 ">IKGP/IKGM</span>       
+        <span ng-if="tipeKlinik == 2 ">PERIODONSIA</span>       
+        <span ng-if="tipeKlinik == 3 ">ILMU PENYAKIT MULUT</span>       
+        <span ng-if="tipeKlinik == 4 ">ILMU KEDOKTERAN GIGI ANAK</span>       
+        <span ng-if="tipeKlinik == 5 ">KONSERVASI</span>       
+        <span ng-if="tipeKlinik == 6 ">PROSTODONSIA</span>       
+        <span ng-if="tipeKlinik == 7 ">ILMU BEDAH MULUT</span>       
+        <span ng-if="tipeKlinik == 8 ">ORTODONSIA</span>       
+        <span ng-if="tipeKlinik == 9 ">RADIOLOGI KEDOKTERAN GIGI</span>      
+      </h1>
       <small class="text-muted">Antrian Pasien</small>
     </div>
     <div class="col-sm-6 text-c hidden-xs">

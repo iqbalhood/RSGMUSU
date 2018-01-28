@@ -88,7 +88,6 @@
                                     <div class="col-sm-4">
                                         <div class="input-group m-b">
                                             <span class="input-group-addon">Penyakit Jantung</span>
-                                            <input type="text" class="form-control" placeholder="....." ng-model="penyakit_jantung">
                                         </div>  
                                     </div>
                                     <div class="col-sm-4">
@@ -110,7 +109,6 @@
                                     <div class="col-sm-4">
                                         <div class="input-group m-b">
                                             <span class="input-group-addon">Hipertensi</span>
-                                            <input type="text" class="form-control" placeholder="....." ng-model="penyakit_hipertensi">
                                         </div>  
                                     </div>
                                     <div class="col-sm-4">
@@ -132,21 +130,20 @@
                                     <div class="col-sm-4">
                                         <div class="input-group m-b">
                                             <span class="input-group-addon">Diabetes Melitus</span>
-                                            <input type="text" class="form-control" placeholder=".....">
                                         </div>  
                                     </div>
                                     <div class="col-sm-4">
                                             <label class="col-sm-6 control-label">Tidak/Ya</label>
                                             <div class="col-sm-6">
                                               <label class="i-switch m-t-xs m-r">
-                                                <input type="checkbox" >
+                                                <input type="checkbox"  ng-model="status_diabetes">
                                                 <i></i>
                                               </label>
                                             </div> 
                                             
                                     </div>
                                     <div class="col-sm-4">
-                                            <input type="text" class="form-control" placeholder="Keterangan">
+                                            <input type="text" class="form-control" placeholder="Keterangan" ng-model="keterangan_diabetes">
                                     </div>
                             </div>
                           
@@ -154,7 +151,6 @@
                                     <div class="col-sm-4">
                                         <div class="input-group m-b">
                                             <span class="input-group-addon">Alergi</span>
-                                            <input type="text" class="form-control" placeholder=".....">
                                         </div>  
                                     </div>
                                     <div class="col-sm-4">
@@ -176,7 +172,6 @@
                                     <div class="col-sm-4">
                                         <div class="input-group m-b">
                                             <span class="input-group-addon">Asma</span>
-                                            <input type="text" class="form-control" placeholder=".....">
                                         </div>  
                                     </div>
                                     <div class="col-sm-4">
@@ -198,7 +193,6 @@
                                     <div class="col-sm-4">
                                         <div class="input-group m-b">
                                             <span class="input-group-addon">Penyakit Hepar</span>
-                                            <input type="text" class="form-control" placeholder=".....">
                                         </div>  
                                     </div>
                                     <div class="col-sm-4">
@@ -220,7 +214,6 @@
                                     <div class="col-sm-4">
                                         <div class="input-group m-b">
                                             <span class="input-group-addon">Penyakit Lambung</span>
-                                            <input type="text" class="form-control" placeholder=".....">
                                         </div>  
                                     </div>
                                     <div class="col-sm-4">
@@ -242,7 +235,6 @@
                                     <div class="col-sm-4">
                                         <div class="input-group m-b">
                                             <span class="input-group-addon">Lain-lain</span>
-                                            <input type="text" class="form-control" placeholder=".....">
                                         </div>  
                                     </div>
                                     <div class="col-sm-4">
@@ -783,15 +775,7 @@
                                 <textarea class="form-control" ng-model="diagnosa"></textarea>      
                             </div>
 
-
-                            <label class="col-sm-12 panel-heading" style="margin-top:40px;"><h3>Perawatan</h3></label>
-                            <div class="col-sm-12">
-                                <textarea class="form-control" ng-model="perawatan"></textarea>      
-                            </div>
-
-
-
-                            <label class="col-sm-12 panel-heading" style="margin-top:40px;"><h3>Tindakan Medis</h3></label>
+                            <label class="col-sm-12 panel-heading" style="margin-top:40px;"><h3>Tindakan Medis /  Perawatan</h3></label>
                             <div class="col-sm-12">
                                     <div class="panel panel-default">
                                       <div class="panel-heading">Daftar Tindakan</div>
@@ -889,7 +873,7 @@
 
 
                             <!-- Panel Tambah Tindakan Medis -->
-                            <label class="col-sm-12" >Pilih Tindakan Medis</label>
+                            <label class="col-sm-12" >Pilih Tindakan Medis / Perawatan</label>
                             <div class="col-sm-12"><div class="line line-dashed b-b line-lg pull-in"></div></div>
                             <div class="col-sm-12">
                                 

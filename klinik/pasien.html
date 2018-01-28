@@ -12,19 +12,21 @@
         <thead>
           <tr>
             <th  style="width:5%">No </th>
-            <th  style="width:10%">No Registrasi</th>
-            <th  style="width:25%">Nama Pasien</th>
-            <th  style="width:25%">Jenis Kelamin</th>            
-            <th  style="width:10%">Phone</th>            
+            <th  style="width:10%">No Rekam Medis</th>
+            <th  style="width:15%">Nama Pasien</th>
+            <th  style="width:5%">Jenis Kelamin</th>            
+            <th  style="width:5%">Tanggal Lahir</th>            
+            <th  style="width:5%">Phone</th>            
             <th  style="width:25%">Aksi</th>
           </tr>
         </thead>
         <tbody>
             <tr ng-repeat="x in myData">
                 <td>{{ $index + 1 }}</td>                      
-                <td>{{ x.id }}</td>
+                <td>{{ x.no_rekam_medis }}</td>
                 <td>{{ x.nama }}</td>
                 <td><div ng-if="x.jenis_kelamin == 1">Laki-Laki</div> <div ng-if="x.jenis_kelamin == 2">  Perempuan</div></td>
+                <td>{{ x.tanggal_lahir }}</td>
                 <td>{{ x.phone }}</td>
                 <td> <a href="#!/data-pasien/{{x.id}}"><button class='btn btn-success'>View</button></a> <button class='btn btn-primary' ng-click="editForm(x.id)" >Edit</button>  <button class='btn btn-warning' ng-click="deleteForm(x.id)" >Delete</button></td>
               </tr>
@@ -38,26 +40,22 @@
 
   <div class="panel panel-default" ng-show="shForm">
       <div class="panel-heading font-bold">
-        Form elements
+        <button class="btn m-b-xs btn-sm btn-danger btn-addon" ng-click="cancelForm()" ><i class="fa  fa-arrow-left"></i>Back</button>
       </div>
       <div class="panel-body">
 
   <form class="form-horizontal">
       <input type="hidden" class="form-control" ng-model="id">
       
-      <div class="form-group">
-        <label class="col-sm-2 control-label" for="input-id-1">No Rekam Medis</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" ng-model="noRekamMedis">
-        </div>
-    </div>
-
+    
+  
   <div class="form-group">
-            <label class="col-sm-2 control-label" for="input-id-1">Tanggal Registrasi</label>
+            <label class="col-sm-2 control-label" for="input-id-1">Nomor Rekam Medis</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" ng-model="tglreg">
+              <input type="text" class="form-control" ng-model="noRekamMedis">
             </div>
         </div>
+  
   
   <div class="form-group">
             <label class="col-sm-2 control-label" for="input-id-1">Nama</label>
@@ -76,7 +74,7 @@
   <div class="form-group">
             <label class="col-sm-2 control-label" for="input-id-1">Tanggal Lahir</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" ng-model="tgllahir">
+              <datepicker date-format="yyyy-MM-dd"> <input type="text" class="form-control"  ng-model="tgllahir"></datepicker>
             </div>
         </div>
   
@@ -109,7 +107,7 @@
             <div class="col-sm-10">
               <input type="text" class="form-control" ng-model="alamat">
             </div>
-        </div>
+  </div>
   
   <div class="form-group">
             <label class="col-sm-2 control-label" for="input-id-1">RT/RW</label>
@@ -153,7 +151,7 @@
             </div>
         </div>
   
-        <div class="form-group">
+  <div class="form-group">
             <label class="col-sm-2 control-label" for="input-id-1">Kewarganegaraan</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" ng-model="kewarganegaraan">
@@ -167,7 +165,7 @@
             </div>
         </div>
   
-        <div class="form-group">
+  <div class="form-group">
             <label class="col-sm-2 control-label" for="input-id-1">Pendidikan</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" ng-model="pendidikan">
@@ -184,14 +182,17 @@
   <div class="form-group">
             <label class="col-sm-2 control-label" for="input-id-1">Status Perkawinan</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" ng-model="status_perkawinan">
+              <select name="account" class="form-control m-b"  ng-model="status_perkawinan">
+                <option value="1">BELUM KAWIN</option>
+                <option value="2">KAWIN</option>
+              </select>
             </div>
         </div>
   
   <div class="form-group">
             <label class="col-sm-2 control-label" for="input-id-1">Tanggal Pertama Masuk</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" ng-model="tgl_pertama_masuk">
+              <datepicker date-format="yyyy-MM-dd">  <input type="text" class="form-control" ng-model="tgl_pertama_masuk"> </datepicker>
             </div>
         </div>
   
@@ -206,7 +207,7 @@
           </div>
   
   <div class="form-group">
-            <label class="col-sm-2 control-label" >Tujuan Kunjungan pertama</label>
+            <label class="col-sm-2 control-label" >Klinik Yang Dituju</label>
             <div class="col-sm-10">
               <select name="account" class="form-control m-b"  ng-model="tujuan_kunjungan_pertama">
           <option value="1">IKGP/IKGM</option>
@@ -221,15 +222,41 @@
               </select>
             </div>
           </div>
+
+  <div class="form-group">
+      <label class="col-sm-2 control-label" for="input-id-1">Tinggi Badan (Cm)</label>
+        <div class="col-sm-10">
+              <input type="text" class="form-control" ng-model="tinggi_badan">
+        </div>
+  </div>  
   
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="input-id-1">Alergi</label>
+  <div class="form-group">
+    <label class="col-sm-2 control-label" for="input-id-1">Berat Badan (Kg)</label>
+      <div class="col-sm-10">
+            <input type="text" class="form-control" ng-model="berat_badan">
+      </div>
+  </div>  
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" >Golongan Darah</label>
+    <div class="col-sm-10">
+      <select name="account" class="form-control m-b"  ng-model="golongan_darah">
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="AB">AB</option>
+        <option value="O">O</option>        
+      </select>
+    </div>
+  </div>
+  
+  <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-id-1">Riwayat Alergi</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" ng-model="alergi">
             </div>
         </div>
   
-        <div class="form-group">
+  <div class="form-group">
             <label class="col-sm-2 control-label" for="input-id-1">Catatan</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" ng-model="catatan">
@@ -248,5 +275,17 @@
 
   </div>
 </div>
+
+
+
+  <!-- <datepicker date-format="yyyy-MM-dd" selector="form-control">
+      <div class="input-group">
+          <input class="form-control" placeholder="Choose a date"/>
+          <span class="input-group-addon" style="cursor: pointer">
+          <i class="fa fa-lg fa-calendar"></i>
+          </span>
+      </div>
+  </datepicker> -->
+
 
  

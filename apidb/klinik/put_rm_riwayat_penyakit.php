@@ -16,18 +16,16 @@ if(isset($postdata) && !empty($postdata))
     $idAntrian              = $request->idAntrian;
     $idPasien               = $request->idPasien;
 
-    $penyakitJantung        = $request->penyakitJantung;
     $statusJantung          = $request->statusJantung;
     $keteranganJantung      = $request->keteranganJantung;
 
-    $penyakitHipertensi     = $request->penyakitHipertensi;
     $statusHipertensi       = $request->statusHipetensi;
     $keteranganHipertensi   = $request->keteranganHipertensi;
 
     
     $sql = "INSERT INTO `rm_riwayat_penyakit` ( `id`, `id_kunjungan`, `id_antrian`, `id_pasien`, 
-                                                `penyakit_jantung`, `status_jantung`, `keterangan_jantung`,
-                                                `penyakit_hipertensi`, `status_hipertensi`, `keterangan_hipertensi`) 
+                                                `status_jantung`, `keterangan_jantung`,
+                                                `status_hipertensi`, `keterangan_hipertensi`) 
     
                                                 VALUES
 

@@ -627,9 +627,9 @@ app.controller("ObatCtrl", function ($scope,$interval,$http, $route,$timeout, $r
             }).then(function (response) {
                 // on success
                 console.log(response);
-                // if(response.status==200){
-                //     $route.reload();    
-                // }
+                if(response.status==200){
+                    $route.reload();    
+                }
             });
 		}
 		};
@@ -765,13 +765,13 @@ app.controller("LayananCtrl", function ($scope,$interval,$http, $route,$timeout,
 
     $scope.cancelForm = function() {
         
-        $scope.shTable  = true;
-        $scope.shForm   = false;
+        $scope.shTable          = true;
+        $scope.shForm           = false;
         $scope.id               =  "";
         $scope.name             =  "";
-        $scope.quantity            =  "";
-        $scope.satuan          =  "";
-		$scope.harga          =  "";
+        $scope.quantity         =  "";
+        $scope.satuan           =  "";
+		$scope.harga            =  "";
         
     };
 		
