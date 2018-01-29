@@ -5548,15 +5548,20 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
                 method: 'POST',
                 url:  '../apidb/klinik/put_rm_jaringan_lunak_mulut.php',
                 data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id, kebersihanMulut : $scope.kebersihan_mulut,
-                       mukosaBukal : $scope.mukosaBukal , kelainanMukosaBukal : $scope.kelainan_mukosa_bukal,
-                       mukosaLabial : $scope.mukosaLabial , kelainanMukosaLabial : $scope.kelainan_mukosa_labial,
-                       mukosaLabial : $scope.mukosaLabial , kelainanMukosaLabial : $scope.kelainan_mukosa_labial,
-                       
+                       mukosaBukal : $scope.mukosa_bukal , kelainanMukosaBukal : $scope.kelainan_mukosa_bukal,
+                       mukosaLabial : $scope.mukosa_labial , kelainanMukosaLabial : $scope.kelainan_mukosa_labial,
+                       frenulumLabial : $scope.frenulum_labial , kelainanFrenulumLabial : $scope.kelainan_frenulum_labial,
+                       lidah : $scope.lidah , kelainanLidah : $scope.kelainan_lidah,
+                       palatum : $scope.palatum , kelainanPalatum : $scope.kelainan_palatum,
+                       tonsil : $scope.tonsil , kelainanTonsil : $scope.kelainan_tonsil,
+                       dasarMulut : $scope.dasar_mulut , kelainanDasarMulut : $scope.kelainan_dasar_mulut,
+                       gingiva : $scope.gingiva , kelainanGingiva : $scope.kelainan_gingiva,
+                       keteranganJaringanLunakMulut : $scope.keterangan_jaringan_lunak_mulut 
                         }
             }).then(function (response) {
                 // on success
                 if(response.status==200){
-                   console.log("Simpan Tanda Vital Sukses...!!!");   
+                   console.log("Simpan Jaringan Lunak Mulut Sukses...!!!");   
                 }
             });
 

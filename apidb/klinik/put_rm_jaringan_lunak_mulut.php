@@ -40,7 +40,7 @@ if(isset($postdata) && !empty($postdata))
     $kelainanDasarMulut             = $request->kelainanDasarMulut;
 
     $gingiva                        = $request->gingiva;
-    $kelainanGigiva                 = $request->kelainanGigiva;
+    $kelainanGingiva                 = $request->kelainanGingiva;
 
     $keteranganJaringanLunakMulut   = $request->keteranganJaringanLunakMulut;
     
@@ -65,7 +65,7 @@ if(isset($postdata) && !empty($postdata))
                                                      '$palatum', '$kelainanPalatum',
                                                      '$tonsil', '$kelainanTonsil',
                                                      '$dasarMulut', '$kelainanDasarMulut', 
-                                                     '$gingiva', '$kelainanGigiva', 
+                                                     '$gingiva', '$kelainanGingiva', 
                                                      '$keteranganJaringanLunakMulut');";
 
 
