@@ -997,23 +997,23 @@ app.controller("LayananCtrl", function ($scope,$interval,$http, $route,$timeout,
             $scope.status_hipertensi       =  $scope.xx.status_hipertensi;
             $scope.keterangan_hipertensi   =  $scope.xx.keterangan_hipertensi;
 
-            $scope.status_diabetes       =  $scope.xx.status_diabetes;
-            $scope.keterangan_diabetes   =  $scope.xx.keterangan_diabetes;
+            $scope.status_diabetes          =  $scope.xx.status_diabetes;
+            $scope.keterangan_diabetes      =  $scope.xx.keterangan_diabetes;
 
-            $scope.status_alergi       =  $scope.xx.status_alergi;
-            $scope.keterangan_alergi   =  $scope.xx.keterangan_alergi;
+            $scope.status_alergi            =  $scope.xx.status_alergi;
+            $scope.keterangan_alergi        =  $scope.xx.keterangan_alergi;
 
-            $scope.status_asma       =  $scope.xx.status_asma;
-            $scope.keterangan_asma   =  $scope.xx.keterangan_asma;
+            $scope.status_asma              =  $scope.xx.status_asma;
+            $scope.keterangan_asma          =  $scope.xx.keterangan_asma;
             
-            $scope.status_hepar       =  $scope.xx.status_hepar;
-            $scope.keterangan_hepar   =  $scope.xx.keterangan_hepar;
+            $scope.status_hepar             =  $scope.xx.status_hepar;
+            $scope.keterangan_hepar         =  $scope.xx.keterangan_hepar;
             
-            $scope.status_lambung       =  $scope.xx.status_lambung;
-            $scope.keterangan_lambung   =  $scope.xx.keterangan_lambung;
+            $scope.status_lambung           =  $scope.xx.status_lambung;
+            $scope.keterangan_lambung       =  $scope.xx.keterangan_lambung;
             
-            $scope.status_lain       =  $scope.xx.status_lain;
-            $scope.keterangan_lain   =  $scope.xx.keterangan_lain;
+            $scope.status_lain              =  $scope.xx.status_lain;
+            $scope.keterangan_lain          =  $scope.xx.keterangan_lain;
            
            
             
