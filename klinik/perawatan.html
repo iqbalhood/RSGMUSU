@@ -788,7 +788,8 @@
                                         <thead>
                                           <tr>
                                             <th style="width:20px;" class="text-center">No</th>
-                                            <th>Item</th>           
+                                            <th>Item</th>
+                                            <th style="width:70px;">ICD 9</th>           
                                             <th style="width:70px;">Harga Bahan</th>
                                             <th style="width:70px;">Harga Layanan</th>
                                             <th style="width:70px;">Total </th>
@@ -799,6 +800,7 @@
                                             <tr ng-repeat="a in daftarLayanan">
                                                 <td>{{ $index + 1 }}</td>
                                                 <td>{{ a.name }}</td>
+                                                <td>{{ a.icd9 }}</td>
                                                 <td>{{ a.harga | currency:'Rp':0 }}</td>
                                                 <td>{{ a.jasa | currency:'Rp':0 }}</td>
                                                 <td>{{ ( (a.jasa * 1) + (a.harga * 1) ) | currency:'Rp':0 }}</td><td><i  class="fa fa-times text-danger text" ng-click="hapusdaftarLayanan($index)"></i></td>

@@ -758,6 +758,32 @@ app.controller("RekamMedisCtrl", function ($scope,$interval,$http, $route,$timeo
         
     });
 
+
+    // $http({
+    //     method: 'POST',    
+    //     url: '../apidb/pasien/get.php',
+    //     data: {newId: $routeParams.id}
+    // }).then(function (response) {
+        
+    //     // on success
+    //     $scope.people           =  response.data;
+    //     $scope.id               =  $scope.people.id;
+    //     $scope.namaPasien       =  $scope.people.name;
+    //     $scope.phone            =  $scope.people.phone;
+    //     $scope.kelamin          =  $scope.people.jenis_kelamin;
+    //     $scope.umur             =  $scope.people.umur;
+    //     $scope.tinggi_badan     =  $scope.people.tinggi_badan;
+    //     $scope.golongan_darah   =  $scope.people.golongan_darah;
+    //     $scope.berat_badan      =  $scope.people.berat_badan;
+       
+        
+    // }, function (response) {
+        
+    //     // on error
+    //     console.log(response.data,response.status);
+        
+    // });
+
     //ODONTOGRAMA
 
     $http({
@@ -1308,7 +1334,7 @@ $scope.simpanData = function(){
             $http({
                 method: 'POST',
                 url:  '../apidb/klinik/submit_perawatan.php',
-                data: {idAntrian: $routeParams.idkunjungan, idKlinik : klinikCookie  , idPasien: $routeParams.id, idDokter: $scope.iddokter, namaDokter: $scope.namadokter, element: $scope.element_gigi_mulut, diagnosa: $scope.diagnosa, perawatan: $scope.perawatan }
+                data: {idAntrian: $routeParams.idkunjungan, idKlinik : klinikCookie  , idPasien: $routeParams.id, idDokter: $scope.iddokter, namaDokter: $scope.namadokter, element: $scope.element_gigi_mulut, diagnosa: $scope.diagnosa, perawatan: $scope.perawatan, icd10: $scope.icd10 }
             }).then(function (response) {
                 // on success
                 if(response.status==200){
@@ -1357,9 +1383,10 @@ $scope.simpanData = function(){
 
 app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval,$http, $route,$timeout, $routeParams, $window) {
     var klinikCookie = $cookies.get('klinik');
-        $scope.daftarObat           = [];
-        $scope.daftarLayanan        = [];
-        $scope.daftarKondisiGigi    = [];
+        $scope.daftarObat               = [];
+        $scope.daftarLayanan            = [];
+        $scope.daftarKondisiGigi        = [];
+        $scope.daftarPerawatanInput     = [];
 
      
         $scope.status = "Tidak Ada";
@@ -1633,7 +1660,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
         };
 
         $scope.submitFormLayanan = function(){
-            var obj = { name: $scope.nameLayanan, harga: $scope.harga_bahan , jasa : $scope.jasa  };
+            var obj = { name: $scope.nameLayanan, harga: $scope.harga_bahan , jasa : $scope.jasa , icd9 : $scope.icd9 };
             if($scope.daftarLayanan.length != 0){
 
                  //Jika Data Obat Sudah ada maka cek apakah  ada nama obat  yang sama di array
@@ -1652,11 +1679,13 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 
                 }else{
                     $scope.daftarLayanan.push(obj);
+                    $scope.daftarPerawatanInput.push(obj.name);
                 }
 
             }else{
                 // Jika Belum ada obat maka buatlah data obatnya 
                 $scope.daftarLayanan.push(obj);
+                $scope.daftarPerawatanInput.push(obj.name);
             }
             // console.log( "PANJANG SCOPE"+$scope.daftarLayanan.length);
             
@@ -5483,66 +5512,76 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
         $scope.simpanData = function(){
 
            
-            // var myJSON = JSON.stringify($scope.daftarKondisiGigi);
+            var myJSON = JSON.stringify($scope.daftarKondisiGigi);
 
-            // //INPUT DATA ODONTOGRAMA
-            // $http({
-            //     method: 'POST',
-            //     url:  '../apidb/klinik/put_odontograma.php',
-            //     data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id,
-            //            keterangan : myJSON }
-            // }).then(function (response) {
-            //     // on success
-            //     if(response.status==200){
-            //        console.log("Simpan Odontograma Sukses...!!!");   
-            //     }
-            // });
+            //INPUT DATA ODONTOGRAMA
+            $http({
+                method: 'POST',
+                url:  '../apidb/klinik/put_odontograma.php',
+                data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id,
+                       keterangan : myJSON }
+            }).then(function (response) {
+                // on success
+                if(response.status==200){
+                   console.log("Simpan Odontograma Sukses...!!!");   
+                }
+            });
 
-            // $http({
-            //     method: 'POST',
-            //     url:  '../apidb/klinik/put_rm_riwayat_penyakit.php',
-            //     data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id,
-            //           keteranganJantung : $scope.keterangan_jantung, statusJantung: $scope.status_jantung,
-            //           keteranganHipertensi : $scope.keterangan_hipertensi, statusHipertensi: $scope.status_hipertensi,
-            //           keteranganDiabetes : $scope.keterangan_diabetes, statusDiabetes: $scope.status_diabetes,
-            //           keteranganAlergi : $scope.keterangan_alergi, statusAlergi: $scope.status_alergi,
-            //           keteranganAsma : $scope.keterangan_asma, statusAsma: $scope.status_asma,
-            //           keteranganHepar : $scope.keterangan_hepar, statusHepar: $scope.status_hepar,
-            //           keteranganLambung : $scope.keterangan_lambung, statusLambung: $scope.status_lambung,
-            //           keteranganLain : $scope.keterangan_lain, statusLain: $scope.status_lain
-            //         }
+            $http({
+                method: 'POST',
+                url:  '../apidb/klinik/submit_perawatan.php',
+                data: {idAntrian: $routeParams.idkunjungan, idKlinik : klinikCookie  , idPasien: $routeParams.id, idDokter: $scope.iddokter, namaDokter: $scope.namadokter, element: $scope.element_gigi_mulut, diagnosa: $scope.diagnosa, perawatan: JSON.stringify($scope.daftarPerawatanInput), icd10: $scope.icd10 }
+            }).then(function (response) {
+                // on success
+                if(response.status==200){
+                    console.log("input sukses");  
+                }
+            });
+
+            $http({
+                method: 'POST',
+                url:  '../apidb/klinik/put_rm_riwayat_penyakit.php',
+                data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id,
+                      keteranganJantung : $scope.keterangan_jantung, statusJantung: $scope.status_jantung,
+                      keteranganHipertensi : $scope.keterangan_hipertensi, statusHipertensi: $scope.status_hipertensi,
+                      keteranganDiabetes : $scope.keterangan_diabetes, statusDiabetes: $scope.status_diabetes,
+                      keteranganAlergi : $scope.keterangan_alergi, statusAlergi: $scope.status_alergi,
+                      keteranganAsma : $scope.keterangan_asma, statusAsma: $scope.status_asma,
+                      keteranganHepar : $scope.keterangan_hepar, statusHepar: $scope.status_hepar,
+                      keteranganLambung : $scope.keterangan_lambung, statusLambung: $scope.status_lambung,
+                      keteranganLain : $scope.keterangan_lain, statusLain: $scope.status_lain
+                    }
                     
-            // }).then(function (response) {
-            //     // on success
-            //     if(response.status==200){
-            //        console.log("Simpan Riwayat Penyakit Sukses...!!!");   
-            //     }
-            // });
+            }).then(function (response) {
+                // on success
+                if(response.status==200){
+                   console.log("Simpan Riwayat Penyakit Sukses...!!!");   
+                }
+            });
 
-            // $http({
-            //     method: 'POST',
-            //     url:  '../apidb/klinik/put_rm_ekstra_oral.php',
-            //     data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id, 
-            //            tonusBibir: $scope.tonus_bibir, tmj: $scope.tmj, kelainanTmj : $scope.kelainan_tmj, kelenjarLimfe : $scope.kelenjar_limfe,
-            //            keteranganEkstraOral : $scope.keterangan_ekstra_oral }
-            // }).then(function (response) {
-            //     // on success
-            //     if(response.status==200){
-                      
-            //     }
-            // });
+            $http({
+                method: 'POST',
+                url:  '../apidb/klinik/put_rm_ekstra_oral.php',
+                data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id, 
+                       tonusBibir: $scope.tonus_bibir, tmj: $scope.tmj, kelainanTmj : $scope.kelainan_tmj, kelenjarLimfe : $scope.kelenjar_limfe,
+                       keteranganEkstraOral : $scope.keterangan_ekstra_oral }
+            }).then(function (response) {
+                // on success
+                if(response.status==200){      
+                }
+            });
 
-            // $http({
-            //     method: 'POST',
-            //     url:  '../apidb/klinik/put_rm_tanda_vital.php',
-            //     data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id,
-            //            kesadaran : $scope.kesadaran, kondisiUmum : $scope.kondisi_umum, tekananDarah: $scope.tekanan_darah, denyutNadi: $scope.denyut_nadi, pernafasan: $scope.pernafasan, suhu: $scope.suhu }
-            // }).then(function (response) {
-            //     // on success
-            //     if(response.status==200){
-            //        console.log("Simpan Tanda Vital Sukses...!!!");   
-            //     }
-            // });
+            $http({
+                method: 'POST',
+                url:  '../apidb/klinik/put_rm_tanda_vital.php',
+                data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id,
+                       kesadaran : $scope.kesadaran, kondisiUmum : $scope.kondisi_umum, tekananDarah: $scope.tekanan_darah, denyutNadi: $scope.denyut_nadi, pernafasan: $scope.pernafasan, suhu: $scope.suhu }
+            }).then(function (response) {
+                // on success
+                if(response.status==200){
+                   console.log("Simpan Tanda Vital Sukses...!!!");   
+                }
+            });
 
              $http({
                 method: 'POST',
@@ -5567,80 +5606,73 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 
 
 
-            // $http({
-            //     method: 'POST',
-            //     url:  '../apidb/klinik/submit_rekam_medis.php',
-            //     data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id, idDokter: $scope.iddokter, namaDokter: $scope.namadokter, amnese: $scope.amnese, diagnosa: $scope.diagnosa }
-            // }).then(function (response) {
-            //     // on success
-            //     if(response.status==200){
+            $http({
+                method: 'POST',
+                url:  '../apidb/klinik/submit_rekam_medis.php',
+                data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id, idDokter: $scope.iddokter, namaDokter: $scope.namadokter, amnese: $scope.amnese, diagnosa: $scope.diagnosa }
+            }).then(function (response) {
+                // on success
+                if(response.status==200){
                       
-            //     }
-            // });
+                }
+            });
            
 
-            // if($scope.daftarObat.length != 0){
-            //     for(var i = 0; i < $scope.daftarObat.length; i++){
-            //        // Memasukkan data obat ke database 
-            //        var id_obat = $scope.daftarObat[i].mid;
-            //        var quantity_obat = $scope.daftarObat[i].mid;
-            //        var harga_obat = $scope.daftarObat[i].harga;
-            //        var satuan_obat = $scope.daftarObat[i].satuan;
-            //        var nama_obat = $scope.daftarObat[i].name;
-            //         $http({
-            //             method: 'POST',
-            //             url:  '../apidb/klinik/submit_obat_kunjungan.php',
-            //             data: { idKunjungan : $routeParams.idkunjungan,
-            //                     idPasien    : $routeParams.id,
-            //                     namaPasien  : $scope.namaPasien, 
-            //                     idObat      : id_obat,
-            //                     namaObat    : nama_obat ,
-            //                     hargaObat   : harga_obat, 
-            //                     satuanObat  : satuan_obat, 
-            //                     quantityObat: quantity_obat }   
-            //         }).then(function (response) {
-            //             // on success
-            //             if(response.status==200){
+            if($scope.daftarObat.length != 0){
+                for(var i = 0; i < $scope.daftarObat.length; i++){
+                   // Memasukkan data obat ke database 
+                   var id_obat = $scope.daftarObat[i].mid;
+                   var quantity_obat = $scope.daftarObat[i].mid;
+                   var harga_obat = $scope.daftarObat[i].harga;
+                   var satuan_obat = $scope.daftarObat[i].satuan;
+                   var nama_obat = $scope.daftarObat[i].name;
+                    $http({
+                        method: 'POST',
+                        url:  '../apidb/klinik/submit_obat_kunjungan.php',
+                        data: { idKunjungan : $routeParams.idkunjungan,
+                                idPasien    : $routeParams.id,
+                                namaPasien  : $scope.namaPasien, 
+                                idObat      : id_obat,
+                                namaObat    : nama_obat ,
+                                hargaObat   : harga_obat, 
+                                satuanObat  : satuan_obat, 
+                                quantityObat: quantity_obat }   
+                    }).then(function (response) {
+                        // on success
+                        if(response.status==200){
                               
-            //             }
-            //         });
-            //     }
-            // }
+                        }
+                    });
+                }
+            }
 
 
-            // if($scope.daftarLayanan.length != 0){
-            //     for(var i = 0; i < $scope.daftarLayanan.length; i++){
-            //        // Memasukkan data obat ke database 
-            //        var harga_bahan = $scope.daftarLayanan[i].harga;
-            //        var harga_layanan = $scope.daftarLayanan[i].jasa;
-            //        var nama_layanan = $scope.daftarLayanan[i].name;
-            //         $http({
-            //             method: 'POST',
-            //             url:  '../apidb/klinik/submit_layanan_kunjungan.php',
-            //             data: { idKunjungan   : $routeParams.idkunjungan,
-            //                     idPasien      : $routeParams.id,
-            //                     namaPasien    : $scope.namaPasien, 
-            //                     namaLayanan   : nama_layanan,
-            //                     hargaLayanan  : harga_layanan, 
-            //                     hargaBahan    : harga_bahan }   
-            //         }).then(function (response) {
-            //             // on success
-            //             if(response.status==200){
-            //                 console.log("RESPON");  
-            //                console.log(response);  
-            //                // $location.path("/home");
+            if($scope.daftarLayanan.length != 0){
+                for(var i = 0; i < $scope.daftarLayanan.length; i++){
+                   // Memasukkan data obat ke database 
+                   var harga_bahan = $scope.daftarLayanan[i].harga;
+                   var harga_layanan = $scope.daftarLayanan[i].jasa;
+                   var nama_layanan = $scope.daftarLayanan[i].name;
+                    $http({
+                        method: 'POST',
+                        url:  '../apidb/klinik/submit_layanan_kunjungan.php',
+                        data: { idKunjungan   : $routeParams.idkunjungan,
+                                idPasien      : $routeParams.id,
+                                namaPasien    : $scope.namaPasien, 
+                                namaLayanan   : nama_layanan,
+                                hargaLayanan  : harga_layanan, 
+                                hargaBahan    : harga_bahan }   
+                    }).then(function (response) {
+                        // on success
+                        if(response.status==200){
+                            console.log("Finish Submitting Rekam Medis");  
+                           console.log(response);  
+                           $location.path("/home");
   
-            //             }
-            //         });
-            //     }
-            // }
-
-          
-
-         
-
-
-            
+                        }
+                    });
+                }
+            }        
 
         };
 

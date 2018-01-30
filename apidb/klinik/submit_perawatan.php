@@ -18,10 +18,11 @@ if(isset($postdata) && !empty($postdata))
     $perawatan      = $request->perawatan;
     $idDokter       = $request->idDokter;
     $namaDokter     = $request->namaDokter;
+    $icd10          = $request->icd10;
 
     
-    $sql = "INSERT INTO `perawatan` (`id`, `id_pasien`, `id_antrian`, `id_klinik`, `element`, `diagnosa`, `perawatan`, `id_dokter`, `nama_dokter`) 
-           VALUES (NULL, '$idPasien', '$idAntrian', '$idKlinik', '$element', '$diagnosa', '$perawatan', '$idDokter', '$namaDokter');";
+    $sql = "INSERT INTO `perawatan` (`id`, `id_pasien`, `id_antrian`, `id_klinik`, `element`, `diagnosa`, `perawatan`, `id_dokter`, `nama_dokter`, `icd10`) 
+           VALUES (NULL, '$idPasien', '$idAntrian', '$idKlinik', '$element', '$diagnosa', '$perawatan', '$idDokter', '$namaDokter', '$icd10');";
 
 
     mysqli_query($connect,$sql);

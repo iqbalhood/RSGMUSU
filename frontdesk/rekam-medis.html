@@ -88,7 +88,6 @@
                                     <div class="col-sm-4">
                                         <div class="input-group m-b">
                                             <span class="input-group-addon">Penyakit Jantung</span>
-                                            <input type="text" class="form-control" placeholder="....." ng-model="penyakit_jantung">
                                         </div>  
                                     </div>
                                     <div class="col-sm-4">
@@ -110,7 +109,6 @@
                                     <div class="col-sm-4">
                                         <div class="input-group m-b">
                                             <span class="input-group-addon">Hipertensi</span>
-                                            <input type="text" class="form-control" placeholder="....." ng-model="penyakit_hipertensi">
                                         </div>  
                                     </div>
                                     <div class="col-sm-4">
@@ -132,21 +130,20 @@
                                     <div class="col-sm-4">
                                         <div class="input-group m-b">
                                             <span class="input-group-addon">Diabetes Melitus</span>
-                                            <input type="text" class="form-control" placeholder=".....">
                                         </div>  
                                     </div>
                                     <div class="col-sm-4">
                                             <label class="col-sm-6 control-label">Tidak/Ya</label>
                                             <div class="col-sm-6">
                                               <label class="i-switch m-t-xs m-r">
-                                                <input type="checkbox" >
+                                                <input type="checkbox"  ng-model="status_diabetes">
                                                 <i></i>
                                               </label>
                                             </div> 
                                             
                                     </div>
                                     <div class="col-sm-4">
-                                            <input type="text" class="form-control" placeholder="Keterangan">
+                                            <input type="text" class="form-control" placeholder="Keterangan" ng-model="keterangan_diabetes">
                                     </div>
                             </div>
                           
@@ -154,21 +151,20 @@
                                     <div class="col-sm-4">
                                         <div class="input-group m-b">
                                             <span class="input-group-addon">Alergi</span>
-                                            <input type="text" class="form-control" placeholder=".....">
                                         </div>  
                                     </div>
                                     <div class="col-sm-4">
                                             <label class="col-sm-6 control-label">Tidak/Ya</label>
                                             <div class="col-sm-6">
                                               <label class="i-switch m-t-xs m-r">
-                                                <input type="checkbox" >
+                                                <input type="checkbox" ng-model="status_alergi" >
                                                 <i></i>
                                               </label>
                                             </div> 
                                             
                                     </div>
                                     <div class="col-sm-4">
-                                            <input type="text" class="form-control" placeholder="Keterangan">
+                                            <input type="text" class="form-control" placeholder="Keterangan" ng-model="keterangan_alergi">
                                     </div>
                             </div>
 
@@ -176,21 +172,20 @@
                                     <div class="col-sm-4">
                                         <div class="input-group m-b">
                                             <span class="input-group-addon">Asma</span>
-                                            <input type="text" class="form-control" placeholder=".....">
                                         </div>  
                                     </div>
                                     <div class="col-sm-4">
                                             <label class="col-sm-6 control-label">Tidak/Ya</label>
                                             <div class="col-sm-6">
                                               <label class="i-switch m-t-xs m-r">
-                                                <input type="checkbox" >
+                                                <input type="checkbox" ng-model="status_asma" >
                                                 <i></i>
                                               </label>
                                             </div> 
                                             
                                     </div>
                                     <div class="col-sm-4">
-                                            <input type="text" class="form-control" placeholder="Keterangan">
+                                            <input type="text" class="form-control" placeholder="Keterangan"  ng-model="keterangan_asma">
                                     </div>
                             </div>
 
@@ -198,21 +193,20 @@
                                     <div class="col-sm-4">
                                         <div class="input-group m-b">
                                             <span class="input-group-addon">Penyakit Hepar</span>
-                                            <input type="text" class="form-control" placeholder=".....">
                                         </div>  
                                     </div>
                                     <div class="col-sm-4">
                                             <label class="col-sm-6 control-label">Tidak/Ya</label>
                                             <div class="col-sm-6">
                                               <label class="i-switch m-t-xs m-r">
-                                                <input type="checkbox" >
+                                                <input type="checkbox" ng-model="status_hepar" >
                                                 <i></i>
                                               </label>
                                             </div> 
                                             
                                     </div>
                                     <div class="col-sm-4">
-                                            <input type="text" class="form-control" placeholder="Keterangan">
+                                            <input type="text" class="form-control" placeholder="Keterangan" ng-model="keterangan_hepar">
                                     </div>
                             </div>
 
@@ -220,21 +214,20 @@
                                     <div class="col-sm-4">
                                         <div class="input-group m-b">
                                             <span class="input-group-addon">Penyakit Lambung</span>
-                                            <input type="text" class="form-control" placeholder=".....">
                                         </div>  
                                     </div>
                                     <div class="col-sm-4">
                                             <label class="col-sm-6 control-label">Tidak/Ya</label>
                                             <div class="col-sm-6">
                                               <label class="i-switch m-t-xs m-r">
-                                                <input type="checkbox" >
+                                                <input type="checkbox" ng-model="status_lambung" >
                                                 <i></i>
                                               </label>
                                             </div> 
                                             
                                     </div>
                                     <div class="col-sm-4">
-                                            <input type="text" class="form-control" placeholder="Keterangan">
+                                            <input type="text" class="form-control" placeholder="Keterangan" ng-model="keterangan_lambung">
                                     </div>
                             </div>
 
@@ -242,21 +235,20 @@
                                     <div class="col-sm-4">
                                         <div class="input-group m-b">
                                             <span class="input-group-addon">Lain-lain</span>
-                                            <input type="text" class="form-control" placeholder=".....">
                                         </div>  
                                     </div>
                                     <div class="col-sm-4">
                                             <label class="col-sm-6 control-label">Tidak/Ya</label>
                                             <div class="col-sm-6">
                                               <label class="i-switch m-t-xs m-r">
-                                                <input type="checkbox" >
+                                                <input type="checkbox" ng-model="status_lain" >
                                                 <i></i>
                                               </label>
                                             </div> 
                                             
                                     </div>
                                     <div class="col-sm-4">
-                                            <input type="text" class="form-control" placeholder="Keterangan">
+                                            <input type="text" class="form-control" placeholder="Keterangan" ng-model="keterangan_lain" >
                                     </div>
                             </div>
 
@@ -329,13 +321,13 @@
                                             <div class="col-sm-12">
                                                 <div class="col-sm-6">
                                                 <label class="checkbox-inline">
-                                                    <input type="radio"  ng-model="tmj"  name="optionsRadios"    value="option1"> Normal
+                                                    <input type="radio"  ng-model="tmj"  name="optionsTmj"    value="normal"> Normal
                                                 </label>
                                                 </div>
                                                 <div class="col-sm-6">
                                                 <div class="input-group m-b">
                                                         <span class="input-group-addon">
-                                                              <input type="radio" ng-model="tmj"  name="optionsRadios" value="option2">
+                                                              <input type="radio" ng-model="tmj"  name="optionsTmj" value="kelainan">
                                                         </span>
                                                               <input type="text"  ng-model="kelainan_tmj" class="form-control" placeholder="Ada Kelainan">
                                                 </div> 
@@ -350,17 +342,17 @@
                                             <div class="col-sm-12">
                                                 <div class="col-sm-4">
                                                     <label class="checkbox-inline">
-                                                        <input type="radio" ng-model="kelenjar_limfe"  name="optionsRadios" value="option1"> Teraba
+                                                        <input type="radio" ng-model="kelenjar_limfe"  name="optionlimfe" value="teraba"> Teraba
                                                     </label>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <label class="checkbox-inline">
-                                                        <input type="radio" ng-model="kelenjar_limfe"  name="optionsRadios" value="option2"> Teraba Sakit
+                                                        <input type="radio" ng-model="kelenjar_limfe"  name="optionlimfe" value="terasasakit"> Teraba Sakit
                                                     </label>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <label class="checkbox-inline">
-                                                        <input type="radio" ng-model="kelenjar_limfe"  name="optionsRadios" value="option3"> Tidak Teraba
+                                                        <input type="radio" ng-model="kelenjar_limfe"  name="optionlimfe" value="tidakteraba"> Tidak Teraba
                                                     </label>
                                                 </div>
                                             </div>
@@ -370,7 +362,7 @@
                             <div class="col-sm-12">
                                     <row>
                                         <div class="col-sm-4"><img src="../img/periksaoral1.jpg"/></div>
-                                        <div class="col-sm-4"><textarea class="form-control" style="height: 300px;"></textarea></div>
+                                        <div class="col-sm-4"><textarea class="form-control" style="height: 300px;" ng-model="keterangan_ekstra_oral"></textarea></div>
                                         <div class="col-sm-4"><img src="../img/periksaoral2.jpg"/></div>
                                     </row>  
                             </div>
@@ -490,7 +482,50 @@
                                 </div>
                             </div>
 
-                           <div class="col-sm-12">
+                            <!-- FORM KONDISI GIGI-->
+                            <div class="col-sm-12">
+                                <div class="panel panel-default">
+                                        <div class="panel-heading font-bold">
+                                        Form Pemeriksaan Gigi
+                                        </div>
+                                        <div class="panel-body">
+
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="input-id-1">Elemen Gigi</label>
+                                            <div class="col-sm-10">
+                                                <h5>{{teethValue}}</h5>
+                                            </div>
+                                        </div> 	
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="input-id-1">Kondisi</label>
+                                            <div class="col-sm-10">
+                                                <h5>{{teethExplaination}}</h5>
+                                            </div>
+                                        </div>
+                                      
+                                        <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="input-id-1">Keterangan </label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" ng-model="keterangan_element_gigi">
+                                                    <input type="hidden" class="form-control" ng-model="urlTEETH">
+                                                    
+                                                </div>
+                                        </div>
+                                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                                        <div class="form-group">
+                                            <div class="col-sm-4 col-sm-offset-2">
+                                            <button type="submit" ng-click="cancelFormKondisi()" class="btn btn-default">Cancel</button>
+                                            <button ng-click="submitFormKondisi()" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- FORM KONDISI GIGI-->
+
+                            <div class="col-sm-12">
                                     <div class="line line-dashed b-b line-lg pull-in"></div>
                                     <label class="col-sm-12 panel-heading"> Keterangan : </label>
 
@@ -501,6 +536,7 @@
                                                 <th>Elemen Gigi</th>                    
                                                 <th>Keterangan</th>
                                                 <th>Catatan</th>
+                                                <th style="width:20px;">Aksi</th>
                                               </tr>
                                             </thead>
                                             <tbody>
@@ -509,6 +545,7 @@
                                                     <td>{{ k.teeth }}</td>
                                                     <td>{{ k.explaination }}</td>
                                                     <td>{{ k.keterangan }}</td>
+                                                    <td><i  class="fa fa-times text-danger text"  ng-click="hapusdaftarKondisi($index)"></i></td>
                                                 </tr>
                                             </tbody>
                                     </table>
@@ -535,17 +572,17 @@
                                     <div class="col-sm-12">
                                             <div class="col-sm-4">
                                                 <label class="checkbox-inline">
-                                                    <input type="radio"  name="optionsRadios" value="option1"> Baik
+                                                    <input type="radio" ng-model="kebersihan_mulut"  name="kebersihan_mulut" value="baik"> Baik
                                                 </label>
                                             </div>
                                             <div class="col-sm-4">
                                                 <label class="checkbox-inline">
-                                                    <input type="radio"  name="optionsRadios" value="option2"> Sedang
+                                                    <input type="radio"  ng-model="kebersihan_mulut"  name="kebersihan_mulut" value="sedang"> Sedang
                                                 </label>
                                             </div>
                                             <div class="col-sm-4">    
                                                 <label class="checkbox-inline">
-                                                    <input type="radio"  name="optionsRadios" value="option3"> Buruk
+                                                    <input type="radio"  ng-model="kebersihan_mulut"  name="kebersihan_mulut" value="buruk"> Buruk
                                                 </label>
                                             </div>
                                     </div>
@@ -557,15 +594,15 @@
                                      <div class="col-sm-12">
                                             <div class="col-sm-4">
                                                 <label class="checkbox-inline">
-                                                    <input type="radio"  name="optionsRadios"  value="option1"> Normal
+                                                    <input type="radio"  ng-model="mukosa_bukal" name="mukosa_bukal"  value="normal"> Normal
                                                 </label>
                                             </div>
                                             <div class="col-sm-4">
                                                     <div class="input-group m-b">
                                                             <span class="input-group-addon">
-                                                                    <input type="radio"  name="optionsRadios">
+                                                                    <input type="radio"  ng-model="mukosa_bukal" name="mukosa_bukal" value="kelainan">
                                                                   </span>
-                                                                  <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                                  <input type="text" class="form-control" placeholder="Ada Kelainan" ng-model="kelainan_mukosa_bukal">
                                                     </div> 
                                             </div>
                                            
@@ -578,15 +615,15 @@
                                     <div class="col-sm-12">
                                             <div class="col-sm-4">
                                                 <label class="checkbox-inline">
-                                                    <input type="radio"   name="optionsRadios" value="option1"> Normal
+                                                    <input type="radio"   ng-model="mukosa_labial" name="mukosa_labial" value="normal"> Normal
                                                 </label>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="input-group m-b">
                                                     <span class="input-group-addon">
-                                                        <input type="radio"  name="optionsRadios" value="option2">
+                                                        <input type="radio"  ng-model="mukosa_labial" name="mukosa_labial" value="kelainan">
                                                     </span>
-                                                    <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan" ng-model="kelainan_mukosa_labial">
                                                 </div> 
                                             </div>
                                                
@@ -599,15 +636,15 @@
                                     <div class="col-sm-12">
                                         <div class="col-sm-4">
                                             <label class="checkbox-inline">
-                                                <input type="radio"   name="optionsRadios" value="option1"> Normal
+                                                <input type="radio"  ng-model="frenulum_labial" name="frenulum_labial" value="normal"> Normal
                                             </label>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="input-group m-b">
                                                 <span class="input-group-addon">
-                                                    <input type="radio"  name="optionsRadios" value="option2">
+                                                    <input type="radio"  ng-model="frenulum_labial" name="frenulum_labial" value="kelainan">
                                                 </span>
-                                                    <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan" ng-model="kelainan_frenulum_labial">
                                                 </div> 
                                             </div>
                                             
@@ -620,15 +657,15 @@
                                     <div class="col-sm-12">
                                         <div class="col-sm-4">
                                             <label class="checkbox-inline">
-                                                <input type="radio"   name="optionsRadios" value="option1"> Normal
+                                                <input type="radio"    ng-model="lidah" name="lidah" value="normal"> Normal
                                             </label>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="input-group m-b">
                                                 <span class="input-group-addon">
-                                                    <input type="radio"  name="optionsRadios" value="option2">
+                                                    <input type="radio"  ng-model="lidah" name="lidah" value="kelainan">
                                                 </span>
-                                                    <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan" ng-model="kelainan_lidah">
                                                 </div> 
                                             </div>
                                             
@@ -641,15 +678,15 @@
                                     <div class="col-sm-12">
                                         <div class="col-sm-4">
                                             <label class="checkbox-inline">
-                                                <input type="radio"   name="optionsRadios" value="option1"> Normal
+                                                <input type="radio"  ng-model="palatum" name="palatum" value="normal"> Normal
                                             </label>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="input-group m-b">
                                                 <span class="input-group-addon">
-                                                    <input type="radio"  name="optionsRadios" value="option2">
+                                                    <input type="radio"   ng-model="palatum" name="palatum" value="kelainan">
                                                 </span>
-                                                    <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan" ng-model="kelainan_palatum">
                                                 </div> 
                                             </div>
                                             
@@ -662,15 +699,15 @@
                                     <div class="col-sm-12">
                                         <div class="col-sm-4">
                                             <label class="checkbox-inline">
-                                                <input type="radio"   name="optionsRadios" value="option1"> Normal
+                                                <input type="radio"   ng-model="tonsil" name="tonsil" value="normal"> Normal
                                             </label>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="input-group m-b">
                                                 <span class="input-group-addon">
-                                                    <input type="radio"  name="optionsRadios" value="option2">
+                                                    <input type="radio"   ng-model="tonsil" name="tonsil" value="kelainan">
                                                 </span>
-                                                    <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan" ng-model="kelainan_tonsil">
                                                 </div> 
                                             </div>
                                             
@@ -683,15 +720,15 @@
                                     <div class="col-sm-12">
                                         <div class="col-sm-4">
                                             <label class="checkbox-inline">
-                                                <input type="radio"   name="optionsRadios" value="option1"> Normal
+                                                <input type="radio"   ng-model="dasar_mulut" name="dasar_mulut" value="normal"> Normal
                                             </label>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="input-group m-b">
                                                 <span class="input-group-addon">
-                                                    <input type="radio"  name="optionsRadios" value="option2">
+                                                    <input type="radio"   ng-model="dasar_mulut" name="dasar_mulut" value="kelainan">
                                                 </span>
-                                                    <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan" ng-model="kelainan_dasar_mulut">
                                                 </div> 
                                             </div>
                                             
@@ -703,15 +740,15 @@
                                     <div class="col-sm-12">
                                         <div class="col-sm-4">
                                             <label class="checkbox-inline">
-                                                <input type="radio"   name="optionsRadios" value="option1"> Normal
+                                                <input type="radio" ng-model="gingiva" name="gingiva" value="normal"> Normal
                                             </label>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="input-group m-b">
                                                 <span class="input-group-addon">
-                                                    <input type="radio"  name="optionsRadios" value="option2">
+                                                    <input type="radio"  ng-model="gingiva" name="gingiva" value="kelainan">
                                                 </span>
-                                                    <input type="text" class="form-control" placeholder="Ada Kelainan">
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan" ng-model="kelainan_gingiva">
                                                 </div> 
                                             </div>
                                             
@@ -722,7 +759,7 @@
                                 <label class="col-sm-12 panel-heading"><h4> Peta Mukosa dan Jaringan Lunak Mulut</h4></label>
                                 <row>
                                     <div class="col-sm-4"><img src="../img/mukosa1.jpg"/></div>
-                                    <div class="col-sm-4"><textarea class="form-control" style="height: 300px;"></textarea></div>
+                                    <div class="col-sm-4"><textarea class="form-control" style="height: 300px;" ng-model="keterangan_jaringan_lunak_mulut"></textarea></div>
                                     <div class="col-sm-4"><img src="../img/mukosa2.jpg"/></div>
                                 </row>  
                             </div>
@@ -738,15 +775,12 @@
                                 <textarea class="form-control" ng-model="diagnosa"></textarea>      
                             </div>
 
-
-                            <label class="col-sm-12 panel-heading" style="margin-top:40px;"><h3>Perawatan</h3></label>
+                            <label class="col-sm-12 panel-heading" style="margin-top:40px;"><h3>ICD 10</h3></label>
                             <div class="col-sm-12">
-                                <textarea class="form-control" ng-model="perawatan"></textarea>      
+                                <textarea class="form-control" ng-model="icd10"></textarea>      
                             </div>
 
-
-
-                            <label class="col-sm-12 panel-heading" style="margin-top:40px;"><h3>Tindakan Medis</h3></label>
+                            <label class="col-sm-12 panel-heading" style="margin-top:40px;"><h3>Tindakan Medis /  Perawatan</h3></label>
                             <div class="col-sm-12">
                                     <div class="panel panel-default">
                                       <div class="panel-heading">Daftar Tindakan</div>
@@ -754,7 +788,8 @@
                                         <thead>
                                           <tr>
                                             <th style="width:20px;" class="text-center">No</th>
-                                            <th>Item</th>           
+                                            <th>Item</th>
+                                            <th style="width:70px;">ICD 9</th>           
                                             <th style="width:70px;">Harga Bahan</th>
                                             <th style="width:70px;">Harga Layanan</th>
                                             <th style="width:70px;">Total </th>
@@ -765,6 +800,7 @@
                                             <tr ng-repeat="a in daftarLayanan">
                                                 <td>{{ $index + 1 }}</td>
                                                 <td>{{ a.name }}</td>
+                                                <td>{{ a.icd9 }}</td>
                                                 <td>{{ a.harga | currency:'Rp':0 }}</td>
                                                 <td>{{ a.jasa | currency:'Rp':0 }}</td>
                                                 <td>{{ ( (a.jasa * 1) + (a.harga * 1) ) | currency:'Rp':0 }}</td><td><i  class="fa fa-times text-danger text" ng-click="hapusdaftarLayanan($index)"></i></td>
@@ -775,7 +811,109 @@
                                     </div>
                             </div>
 
-                    
+                            <!-- FORM LAYANAN MEDIS-->
+                            <div class="col-sm-12">
+
+
+                                <div class="panel panel-default" ng-show="shFormLayanan">
+                                        <div class="panel-heading font-bold">
+                                        Form Layanan Medis
+                                        </div>
+                                        <div class="panel-body">
+
+                                    <form class="form-horizontal">
+                                        <input type="hidden" class="form-control" ng-model="idLayanan">
+                                        <input type="hidden" class="form-control" ng-model="no">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="input-id-1">Layanan</label>
+                                            <div class="col-sm-10">
+                                                <h5>{{nameLayanan}}</h5>
+                                            </div>
+                                        </div>  
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="input-id-1">Bahan yang digunakan</label>
+                                            <div class="col-sm-10">
+                                                <h5>{{bahanLayanan}}</h5>
+                                            </div>
+                                        </div> 	
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="input-id-1">Bahan yang digunakan</label>
+                                            <div class="col-sm-10">
+                                                <h5>{{harga_bahan | currency:'Rp':0 }}</h5>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="input-id-1">Pelaksana</label>
+                                                <div class="col-sm-10">
+                                                        <select class="form-control m-b"  ng-model="pelaksana" ng-change="updateJasa()">
+                                                                <option value="0">KO AS</option>                                
+                                                                <option value="1">DRG</option>
+                                                                <option value="2">DRG SP</option>
+                                                        </select>
+                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="input-id-1">Jasa Medis</label>
+                                                <div class="col-sm-10">
+                                                       {{jasa | currency:'Rp':0}}
+                                                </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="input-id-1">ICD 9</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" ng-model="icd9">
+                                            </div>
+                                    </div>
+                                        
+                                        <input type="hidden" class="form-control" ng-model="harga_koas">
+                                        <input type="hidden" class="form-control" ng-model="harga_drg">
+                                        <input type="hidden" class="form-control" ng-model="harga_drgsp">
+                                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                                        <div class="form-group">
+                                            <div class="col-sm-4 col-sm-offset-2">
+                                            <button type="submit" ng-click="cancelFormLayanan()" class="btn btn-default">Cancel</button>
+                                            <button ng-click="submitFormLayanan()" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!-- FORM LAYANAN MEDIS-->
+
+
+                            <!-- Panel Tambah Tindakan Medis -->
+                            <label class="col-sm-12" >Pilih Tindakan Medis / Perawatan</label>
+                            <div class="col-sm-12"><div class="line line-dashed b-b line-lg pull-in"></div></div>
+                            <div class="col-sm-12">
+                                
+                                <div class="table-responsive" >
+                                        <table ui-jq="dataTable"  class="table  table-striped b-t b-b"   id="mytableLayanan">
+                                        <thead>
+                                        <tr>
+                                            <th  style="width:5%">No </th>
+                                            <th  style="width:90%">Layanan</th>          
+                                            <th  style="width:5%">Aksi</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="z in dataLayanan">
+                                                <td>{{ $index + 1 }}</td> 
+                                                <td>{{z.layanan }}</td>
+                                                <td>
+                                                   <i ng-click="FormLayanan(z.id)" class="fa fa-check text-success"></i>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </div>
+
+
 
                             <label class="col-sm-12" style="margin-top:40px;"><h3>Pengobatan</h3></label>
                             <div class="col-sm-12">
@@ -804,7 +942,92 @@
                                     </div>
                             </div>
 
+                            <!-- Panel Tambah Obat -->
+                            <div class="col-sm-12">
+                                <div class="panel panel-default" ng-show="shForm">
+                                    <div class="panel-heading font-bold">
+                                      Form elements
+                                    </div>
+                                    <div class="panel-body">
                         
+                                <form class="form-horizontal">
+                                    <input type="hidden" class="form-control" ng-model="id">
+                                    
+                                      <div class="form-group">
+                                          <label class="col-sm-2 control-label" for="input-id-1">Name</label>
+                                          <div class="col-sm-10">
+                                            <input type="text" class="form-control" ng-model="name">
+                                          </div>
+                                      </div>
+                        
+                                      <div class="form-group">
+                                          <label class="col-sm-2 control-label" for="input-id-1">Quantity</label>
+                                          <div class="col-sm-10">
+                                            <input type="text" class="form-control" ng-model="quantity">
+                                          </div>
+                                      </div>
+                                
+                                      
+                                      <div class="form-group">
+                                          <label class="col-sm-2 control-label" for="input-id-1">Harga</label>
+                                          <div class="col-sm-10">
+                                            <p> {{harga | currency:'Rp':0 }}</p>
+                                          </div>
+    
+                                      </div>
+
+                                     
+                        
+                                      <div class="line line-dashed b-b line-lg pull-in"></div>
+                                      <div class="form-group">
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                          <button type="submit" ng-click="cancelFormObat()" class="btn btn-default">Cancel</button>
+                                          <button ng-click="submitForm()" class="btn btn-primary">Submit</button>
+                                        </div>
+                                      </div>
+                        
+                                </form>
+                        
+                                </div>
+                        
+                                </div>
+                            </div>
+
+
+                            <!-- Panel Tambah Obat -->
+                            <div class="col-sm-12">
+                                <div class="col-sm-6 col-md-6">Pilih Daftar Obat</div>
+                                <div class="col-sm-6 col-md-6"><button class="btn m-b-xs w-xs btn-danger btn-rounded" style="float:right" ng-show="btnClose"> X Close </button></div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="table-responsive" >
+                                        <table ui-jq="dataTable"  class="table  table-striped b-t b-b"   id="mytableObat">
+                                        <thead>
+                                        <tr>
+                                            <th  style="width:5%">No </th>
+                                            <th  style="width:90%">Nama Obat</th>          
+                                            <th  style="width:5%">Aksi</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="x in dataObat">
+                                                <td>{{ $index + 1 }}</td> 
+                                                <td>{{ x.nama }}</td>
+                                                <td>
+                                                   <i ng-click="FormObat(x.id)" class="fa fa-check text-success"></i>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                 </div>
+                            </div>
+
+
+
+                        
+
+
+                          
 
 
                           </div>

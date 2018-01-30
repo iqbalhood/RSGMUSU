@@ -23,12 +23,66 @@ $db = new DB_CONNECT();
 		    
 	     while ($row = mysql_fetch_array($result)) {
 
+			if ($row["id_klinik"] == "1" ) {
+
+				$klinik = "IKGP/IKGM";
+
+			}
+
+
+			if ($row["id_klinik"] == "2" ) {
+
+				$klinik = "PERIODONSIA";
+
+			}
+
+
+			if ($row["id_klinik"] == "3" ) {
+
+				$klinik = "ILMU PENYAKIT MULUT";
+
+			}
+
+
+			if ($row["id_klinik"] == "4" ) {
+
+				$klinik = "ILMU KEDOKTERAN GIGI ANAK";
+
+			}
+
+
+			if ($row["id_klinik"] == "5" ) {
+
+				$klinik = "KONSERVASI";
+
+			}
+
+
+			if ($row["id_klinik"] == "6" ) {
+
+				$klinik = "PROSTODONSIA";
+
+			}
+
+
+			if ($row["id_klinik"] == "7" ) {
+
+				$klinik = "ILMU BEDAH MULUT";
+
+			}
+
+
+			if ($row["id_klinik"] == "8" ) {
+
+				$klinik = "ORTODONSIA";
+
+			}
+
+
 			if ($row["id_klinik"] == "9" ) {
 
-				$klinik = "waw";
+				$klinik = "RADIOLOGI KEDOKTERAN GIGI";
 
-			}else{
-				$klinik = "wew";
 			}
 
 
