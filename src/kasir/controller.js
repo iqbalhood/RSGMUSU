@@ -9,7 +9,11 @@ app.controller("HomeCtrl", function ($scope,$cookies,$interval,$http, $route,$ti
        });
 });
 
-app.controller("HistoriCtrl", function ($scope,$cookies,$interval,$http, $route,$timeout, $routeParams, $window) {
+app.controller("HistoriCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
+
+    $scope.cekTanggal = function(){
+        alert("WOW KEEREEEENNN");
+    };
    
 });
 

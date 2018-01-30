@@ -8,52 +8,55 @@
           </div>
       </div>
 
-     <div class="wrapper-md">
+
+      <div class="wrapper-md">
         <div class="panel-body">
-          <div class="form-group">
-              <label class="col-sm-2 control-label" for="input-id-1">Dari Tanggal</label>
-              <div class="col-sm-10">
-                <datepicker date-format="yyyy-MM-dd"> <input type="text" class="form-control"  ng-model="tglawal"></datepicker>
-              </div>
+          <div class="panel panel-default">
+            <div class="panel-heading font-bold">                  
+             Pencarian 
+            </div>
+            <div class="panel-body">
+              <form class="form-inline" role="form">
+                <div class="form-group">
+                  <label class="sr-only" for="exampleInputEmail2">Dari Tanggal</label>
+                  <datepicker date-format="yyyy-MM-dd"> <input type="text" class="form-control"  placeholder="Dari Tanggal" ng-model="tglawal"></datepicker>
+                </div>
+
+                <div class="checkbox m-l m-r-xs">
+                  <label class="i-checks">
+                    <input type="checkbox" ng-click="cekTanggal" ng-model="myVar"><i></i> Ke Tanggal
+                  </label>
+                </div>
+
+                <div class="form-group" ng-show="myVar">
+                  <label class="sr-only" for="exampleInputPassword2">Ke Tanggal</label>
+                  <datepicker date-format="yyyy-MM-dd"> <input type="text" class="form-control"  placeholder="Ke Tanggal" ng-model="tglakhir"></datepicker>
+                </div>
+
+                <div class="form-group">
+                  <label class="sr-only" for="exampleInputPassword2">Klinik</label>
+                  <select class="form-control"  id="selklinik" style="margin-left:5px">
+                    <option value="0">SEMUA KLINIK</option>                                
+                    <option value="1">IKGP/IKGM</option>
+                    <option value="2">PERIODONSIA</option>
+                    <option value="3">ILMU PENYAKIT MULUT</option>
+                    <option value="4">ILMU KEDOKTERAN GIGI ANAK</option>
+                    <option value="5">KONSERVASI</option>
+                    <option value="6">PROSTODONSIA</option>
+                    <option value="7">ILMU BEDAH MULUT</option>
+                    <option value="8">ORTODONSIA</option>
+                    <option value="9">RADIOLOGI KEDOKTERAN GIGI</option>
+                  </select>
+                </div>
+
+
+               <button class="btn btn-primary btn-addon" style="margin-left:5px"><i class="fa fa-search"></i>Search</button>
+              </form>
+            </div>
           </div>
+        </div>
       </div>
-    </div>
 
-    <div class="wrapper-md">
-        <div class="panel-body">
-          <div class="form-group">
-              <label class="col-sm-2 control-label" for="input-id-1">Ke Tanggal</label>
-              <div class="col-sm-10">
-                <datepicker date-format="yyyy-MM-dd"> <input type="text" class="form-control"  ng-model="tglakhir"></datepicker>
-              </div>
-          </div>
-        </div>
-    </div>
-
-
-    <div class="wrapper-md">
-        <div class="panel-body">
-          <div class="form-group">
-              <label class="col-sm-2 control-label" for="input-id-1">Pilih Klinik</label>
-              <div class="col-sm-10">
-                  <select class="form-control m-b"  id="selklinik">
-                      <option value="0">SEMUA KLINIK</option>                                
-                      <option value="1">IKGP/IKGM</option>
-                      <option value="2">PERIODONSIA</option>
-                      <option value="3">ILMU PENYAKIT MULUT</option>
-                      <option value="4">ILMU KEDOKTERAN GIGI ANAK</option>
-                      <option value="5">KONSERVASI</option>
-                      <option value="6">PROSTODONSIA</option>
-                      <option value="7">ILMU BEDAH MULUT</option>
-                      <option value="8">ORTODONSIA</option>
-                      <option value="9">RADIOLOGI KEDOKTERAN GIGI</option>
-                    </select>
-              </div>
-          </div>
-        </div>
-    </div>
-
-     
 
       <div class="wrapper-md">
 
