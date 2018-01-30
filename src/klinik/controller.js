@@ -586,71 +586,105 @@ app.controller("ObatCtrl", function ($scope,$interval,$http, $route,$timeout, $r
  });
 
 app.controller("DataPasienCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
-  
+    $scope.klinikForm = false;
+    $scope.tablePelayanan = false;
+    $scope.id_pasien = $routeParams.id;
+
+    var d = new Date();
+    var n = d.getTime();
+
+    $scope.id_kunjungan = n;
+
+    $http({
+        method: 'POST',    
+        url: '../apidb/pasien/get.php',
+        data: {newId: $routeParams.id}
+    }).then(function (response) {
+        
+        // on success
+        $scope.people           =  response.data;
+        $scope.id               =  $scope.people.id;
+        $scope.namaPasien       =  $scope.people.name;
+        $scope.phone            =  $scope.people.phone;
+        $scope.kelamin          =  $scope.people.jenis_kelamin;
+        $scope.umur             =  $scope.people.umur;
+        $scope.tinggi_badan     =  $scope.people.tinggi_badan;
+        $scope.golongan_darah   =  $scope.people.golongan_darah;
+        $scope.berat_badan      =  $scope.people.berat_badan;
+       
+        
+    }, function (response) {
+        
+        // on error
+        console.log(response.data,response.status);
+        
+    });
+
+     
+    $http.get("../apidb/klinik/list_rekam_medis_pasien.php?idpasien="+$scope.id_pasien).then(function (response) {
+       
+        $scope.rekamMedisPasien = response.data.event;
+        console.log($scope.rekamMedisPasien);
+    });
+
+
+    console.log("Data Perawatan Pasien");
+    $http.get("../apidb/klinik/list_perawatan_pasien.php?idpasien="+$scope.id_pasien).then(function (response) {
+        console.log("SUKAKMU LAH ");
+        $scope.dataPerawatanPasien = response.data.event;
+        console.log($scope.dataPerawatanPasien);
+    });
+
+    $http.get("../apidb/dokter/list_data.php").then(function (response) {
+        $scope.dataDokter = response.data.event;
+        console.log(response.data.event);
+    });
+
+
+    $scope.showKlinik = function() {
+        $scope.klinikForm = true;
+    };
+
+    $scope.cancelFormKlinik= function(){
         $scope.klinikForm = false;
-        $scope.id_pasien = $routeParams.id;
+    };
 
-        var d = new Date();
-        var n = d.getTime();
+    $scope.showTable = function (x){
+        $scope.idRM = x;
+        $scope.tablePelayanan = true;
+        $http.get("../apidb/klinik/list_data_kunjugan_klinik.php?idkunjungan="+$scope.idRM).then(function (response) {
+            $scope.dataKunjunganKlinik = response.data.event;
+            console.log($scope.dataKunjunganKlinik);
+        });
+    };
 
-        $scope.id_kunjungan = n;
+    $scope.hideTable = function (){
+        
+        $scope.tablePelayanan = false;
+        
+    };
+
+    $scope.submitForm= function(){
+        var xx = new Date();
+        var yy = d.getTime();
+
+        $scope.idAntrian = yy;
+
+        console.log("ID ANTRIAN YANG DIDAPAT "+$scope.idAntrian );
 
         $http({
-            method: 'POST',    
-            url: '../apidb/pasien/get.php',
-            data: {newId: $routeParams.id}
+            
+             method: 'POST',
+             url:  '../apidb/datapasien/submit_ke_klinik.php',
+             data: {idKunjungan: $scope.id_kunjungan, idAntrian: $scope.idAntrian, idKlinik: $scope.klinik  , dokterPendamping: $scope.dokterpendamping, dokterPendamping: $scope.dokterpendamping, idDokter: $scope.dokterpraktisi, idPasien: $scope.id_pasien }
+             
         }).then(function (response) {
-            
             // on success
-            $scope.people           = response.data;
-            $scope.id               =  $scope.people.id;
-            $scope.namaPasien       =  $scope.people.name;
-            $scope.phone            =  $scope.people.phone;
-            $scope.kelamin          =  $scope.people.jenis_kelamin;
-           
-            
-        }, function (response) {
-            
-            // on error
-            console.log(response.data,response.status);
-            
+            if(response.status==200){
+                $route.reload();    
+            }
         });
-
-         
-        $http.get("../apidb/klinik/list_rekam_medis_pasien.php?idpasien="+$scope.id_pasien).then(function (response) {
-            $scope.rekamMedisPasien = response.data.event;
-            console.log($scope.rekamMedisPasien);
-        });
-
-         // $http.get("config/daftar_pasien.php").then(function (response) {
-        $http.get("../apidb/dokter/list_data.php").then(function (response) {
-            $scope.dataDokter = response.data.event;
-            console.log(response.data.event);
-        });
-
-
-        $scope.showKlinik = function() {
-            $scope.klinikForm = true;
-        };
-
-        $scope.cancelFormKlinik= function(){
-            $scope.klinikForm = false;
-        };
-
-        $scope.submitForm= function(){
-            $http({
-                
-                 method: 'POST',
-                 url:  '../apidb/datapasien/submit_ke_klinik.php',
-                 data: {idKunjungan: $scope.id_kunjungan, idKlinik: $scope.klinik  , dokterPendamping: $scope.dokterpendamping, dokterPendamping: $scope.dokterpendamping, idDokter: $scope.dokterpraktisi, idPasien: $scope.id_pasien }
-                 
-            }).then(function (response) {
-                // on success
-                if(response.status==200){
-                    $route.reload();    
-                }
-            });
-        };
+    };  
 
 
 

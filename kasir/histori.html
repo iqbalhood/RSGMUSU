@@ -4,42 +4,56 @@
 
       <div class="wrapper-md">
           <div class="panel-body">
-            <div class="form-group">
-                <label class="col-sm-2 control-label">BULAN</label>
-                <div class="col-sm-10">
-                  <select name="account" class="form-control m-b">
-                    <option>Januari</option>
-                    <option>Februari</option>
-                    <option>Maret</option>
-                    <option>April</option>
-                    <option>Mei</option>
-                    <option>Juni</option>
-                    <option>Agustus</option>
-                    <option>September</option>  
-                    <option>Oktober</option>   
-                    <option>November</option>                    
-                    <option>Desember</option>                                        
-                  </select>
-                </div>
-            </div>
-        </div>
+             <h2>Cari Berdasarkan Tanggal</h2>
+          </div>
       </div>
 
-      <div class="wrapper-md">
-          <div class="panel-body">
-            <div class="form-group">
-                <label class="col-sm-2 control-label">TAHUN</label>
-                <div class="col-sm-10">
-                  <select name="account" class="form-control m-b">
-                    <option>2018</option>
-                    <option>2017</option>
-                    <option>2016</option>
-                    <option>2015</option>
-                  </select>
-                </div>
-            </div>
-        </div>
+     <div class="wrapper-md">
+        <div class="panel-body">
+          <div class="form-group">
+              <label class="col-sm-2 control-label" for="input-id-1">Dari Tanggal</label>
+              <div class="col-sm-10">
+                <datepicker date-format="yyyy-MM-dd"> <input type="text" class="form-control"  ng-model="tglawal"></datepicker>
+              </div>
+          </div>
       </div>
+    </div>
+
+    <div class="wrapper-md">
+        <div class="panel-body">
+          <div class="form-group">
+              <label class="col-sm-2 control-label" for="input-id-1">Ke Tanggal</label>
+              <div class="col-sm-10">
+                <datepicker date-format="yyyy-MM-dd"> <input type="text" class="form-control"  ng-model="tglakhir"></datepicker>
+              </div>
+          </div>
+        </div>
+    </div>
+
+
+    <div class="wrapper-md">
+        <div class="panel-body">
+          <div class="form-group">
+              <label class="col-sm-2 control-label" for="input-id-1">Pilih Klinik</label>
+              <div class="col-sm-10">
+                  <select class="form-control m-b"  id="selklinik">
+                      <option value="0">SEMUA KLINIK</option>                                
+                      <option value="1">IKGP/IKGM</option>
+                      <option value="2">PERIODONSIA</option>
+                      <option value="3">ILMU PENYAKIT MULUT</option>
+                      <option value="4">ILMU KEDOKTERAN GIGI ANAK</option>
+                      <option value="5">KONSERVASI</option>
+                      <option value="6">PROSTODONSIA</option>
+                      <option value="7">ILMU BEDAH MULUT</option>
+                      <option value="8">ORTODONSIA</option>
+                      <option value="9">RADIOLOGI KEDOKTERAN GIGI</option>
+                    </select>
+              </div>
+          </div>
+        </div>
+    </div>
+
+     
 
       <div class="wrapper-md">
 
