@@ -991,29 +991,105 @@ app.controller("LayananCtrl", function ($scope,$interval,$http, $route,$timeout,
     console.log(response.data);
 
             $scope.xx           =  response.data;
-            $scope.status_jantung          =  $scope.xx.status_jantung;
+            if($scope.xx.status_jantung == '1'){
+                $scope.status_jantung = true;
+            } 
+            if($scope.xx.status_hipertensi == '1'){
+                $scope.status_hipertensi = true;
+            }
+
+            if($scope.xx.status_diabetes == '1'){
+                $scope.status_diabetes = true;
+            }
+
+            if($scope.xx.status_alergi == '1'){
+                $scope.status_alergi = true;
+            }
+
+            if($scope.xx.status_asma == '1'){
+                $scope.status_asma = true;
+            }
+
+            if($scope.xx.status_hepar == '1'){
+                $scope.status_hepar = true;
+            }
+
+            if($scope.xx.status_lambung == '1'){
+                $scope.status_lambung = true;
+            }
+
+            if($scope.xx.status_lain == '1'){
+                $scope.status_lain = true;
+            }
+     
             $scope.keterangan_jantung      =  $scope.xx.keterangan_jantung;
-
-            $scope.status_hipertensi       =  $scope.xx.status_hipertensi;
             $scope.keterangan_hipertensi   =  $scope.xx.keterangan_hipertensi;
-
-            $scope.status_diabetes          =  $scope.xx.status_diabetes;
             $scope.keterangan_diabetes      =  $scope.xx.keterangan_diabetes;
-
-            $scope.status_alergi            =  $scope.xx.status_alergi;
             $scope.keterangan_alergi        =  $scope.xx.keterangan_alergi;
-
-            $scope.status_asma              =  $scope.xx.status_asma;
             $scope.keterangan_asma          =  $scope.xx.keterangan_asma;
-            
-            $scope.status_hepar             =  $scope.xx.status_hepar;
             $scope.keterangan_hepar         =  $scope.xx.keterangan_hepar;
-            
-            $scope.status_lambung           =  $scope.xx.status_lambung;
             $scope.keterangan_lambung       =  $scope.xx.keterangan_lambung;
-            
-            $scope.status_lain              =  $scope.xx.status_lain;
             $scope.keterangan_lain          =  $scope.xx.keterangan_lain;
+           
+           
+            
+        }, function (response) {
+            
+            // on error
+            console.log("Riwyat Penyakit Show");
+            console.log(response.data,response.status);
+            
+        });
+
+
+           //GET DATA PASIEN
+    
+           $http({
+            method: 'POST',    
+            url: '../apidb/pasien/get.php',
+            data: {newId: $routeParams.id}
+        }).then(function (response) {
+            
+            // on success
+            $scope.people           =  response.data;
+            $scope.id               =  $scope.people.id;
+            $scope.namaPasien       =  $scope.people.name;
+            $scope.phone            =  $scope.people.phone;
+            $scope.kelamin          =  $scope.people.jenis_kelamin;
+            $scope.umur             =  $scope.people.umur;
+            $scope.tinggi_badan     =  $scope.people.tinggi_badan;
+            $scope.golongan_darah   =  $scope.people.golongan_darah;
+            $scope.berat_badan      =  $scope.people.berat_badan;
+           
+            
+        }, function (response) {
+            
+            // on error
+            console.log(response.data,response.status);
+            
+        });
+
+        console.log("Riwyat Penyakit Show");
+
+        /// Riwayat Penyakit
+        $http({
+            method: 'POST',    
+            url: '../apidb/klinik/get_tanda_vital.php',
+            data: {newId: $routeParams.idkunjungan}
+        }).then(function (response) {
+            
+            // on success
+
+                console.log(response.data);
+
+            $scope.ff                   =  response.data;
+          
+            $scope.kesadaran            =  $scope.ff.kesadaran;
+            $scope.kondisi_umum         =  $scope.ff.kondisi_umum;
+            $scope.tekanan_darah        =  $scope.ff.tekanan_darah;
+            $scope.denyut_nadi          =  $scope.ff.denyut_nadi;
+            $scope.pernafasan           =  $scope.ff.pernafasan;
+            $scope.suhu                 =  $scope.ff.suhu;
            
            
             

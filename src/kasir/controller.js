@@ -66,7 +66,8 @@ app.controller("InvoiceCtrl", function ($scope,$cookies,$interval,$http, $route,
         $scope.namadokter       =  $scope.datakunjungan.dokter;
         $scope.iddokter         =  $scope.datakunjungan.id_dokter;
         $scope.id_klinik        =  $scope.datakunjungan.id_klinik;
-        
+        $scope.dokter_pendamping = $scope.datakunjungan.dokter_pendamping;
+         
 
         console.log("Dokternya " + $scope.namadokter);
        
@@ -81,15 +82,25 @@ app.controller("InvoiceCtrl", function ($scope,$cookies,$interval,$http, $route,
 
 
     $http.get("../apidb/apotek/invoice_list_data_obat.php?id="+$scope.idKunjungan).then(function (response) {
-        $scope.myData = response.data.event;
-        console.log(response.data.event);
-        console.log("PANJANG "+$scope.myData.length);
+       
+        if (!response.data.event){
 
-        for(var i = 0; i < $scope.myData.length; i++){
-            console.log(($scope.myData[i].harga * $scope.myData[i].quantity) );
-            // var harga = $scope.myData[i].harga;
-            // var quantity = $scope.myData[i].quantity;
-             $scope.getTotal += ($scope.myData[i].harga * $scope.myData[i].quantity);
+            console.log("Data Obat Kosong");
+
+        }else{
+       
+       
+            $scope.myData = response.data.event;
+            console.log(response.data.event);
+            console.log("PANJANG "+$scope.myData.length);
+
+            for(var i = 0; i < $scope.myData.length; i++){
+                console.log(($scope.myData[i].harga * $scope.myData[i].quantity) );
+                // var harga = $scope.myData[i].harga;
+                // var quantity = $scope.myData[i].quantity;
+                $scope.getTotal += ($scope.myData[i].harga * $scope.myData[i].quantity);
+            }
+
         }
 
 
@@ -97,14 +108,25 @@ app.controller("InvoiceCtrl", function ($scope,$cookies,$interval,$http, $route,
 
 
     $http.get("../apidb/klinik/list_data_layanan_no.php?id="+$scope.idKunjungan).then(function (response) {
-        $scope.myDataLayanan = response.data.event;
-        console.log(response.data.event);
-        // console.log("PANJANG "+$scope.myData.length);
 
-        for(var i = 0; i < $scope.myDataLayanan.length; i++){
-           
-             $scope.getTotalLayanan += ( ($scope.myDataLayanan[i].harga_bahan * 1) + ($scope.myDataLayanan[i].harga_layanan * 1));
+        if (!response.data.event){
+
+            console.log("Data Layanan Kosong");
+
+        }else{
+       
+
+       
+            $scope.myDataLayanan = response.data.event;
+            console.log(response.data.event);
+            // console.log("PANJANG "+$scope.myData.length);
+
+            for(var i = 0; i < $scope.myDataLayanan.length; i++){
+            
+                $scope.getTotalLayanan += ( ($scope.myDataLayanan[i].harga_bahan * 1) + ($scope.myDataLayanan[i].harga_layanan * 1));
+            }
         }
+      
 
 
     });
@@ -114,33 +136,80 @@ app.controller("InvoiceCtrl", function ($scope,$cookies,$interval,$http, $route,
 
         console.log("=== Layanan ===");
 
-        for(var i = 0; i < $scope.myDataLayanan.length; i++){
-           console.log( $scope.myDataLayanan[i].nama_layanan);
-           
-        //    $http({
-        //                 method: 'POST',
-        //                 url:  '../apidb/klinik/submit_obat_kunjungan.php',
-        //                 data: { idKunjungan : $routeParams.idkunjungan,
-        //                         idPasien    : $routeParams.id,
-        //                         namaPasien  : $scope.namaPasien, 
-        //                         idObat      : id_obat,
-        //                         namaObat    : nama_obat ,
-        //                         hargaObat   : harga_obat, 
-        //                         satuanObat  : satuan_obat, 
-        //                         quantityObat: quantity_obat }   
-        //             }).then(function (response) {
-        //                 // on success
-        //                 if(response.status==200){
-                              
-        //                 }
-        //             });
+        if($scope.myData){
+
+            for(var i = 0; i < $scope.myDataLayanan.length; i++){
+            console.log( $scope.myDataLayanan[i].nama_layanan);
+            
+            //    $http({
+            //                 method: 'POST',
+            //                 url:  '../apidb/klinik/submit_obat_kunjungan.php',
+            //                 data: { idKunjungan : $routeParams.idkunjungan,
+            //                         idPasien    : $routeParams.id,
+            //                         namaPasien  : $scope.namaPasien, 
+            //                         idObat      : id_obat,
+            //                         namaObat    : nama_obat ,
+            //                         hargaObat   : harga_obat, 
+            //                         satuanObat  : satuan_obat, 
+            //                         quantityObat: quantity_obat }   
+            //             }).then(function (response) {
+            //                 // on success
+            //                 if(response.status==200){
+                                
+            //                 }
+            //             });
+            }
+
+        } else {
+
+            console.log("Data Layanan Kosong");
+
         }
 
         console.log("=== Obat ===");
 
-        for(var j = 0; j < $scope.myData.length; j++){
-            console.log( $scope.myData[j].nama_obat);    
+        if($scope.myData){
+
+           console.log( "ID KUNJUNGAN " + $routeParams.idkunjungan);
+           console.log( "ID PASIEN "  +  $routeParams.id ); 
+
+            for(var j = 0; j < $scope.myData.length; j++){
+               
+                   // Memasukkan data obat ke database 
+                   var id_obat = $scope.myData[j].id;
+                   var quantity_obat = $scope.myData[j].quantity;
+                   var harga_obat = $scope.myData[j].harga;
+                   var satuan_obat = $scope.myData[j].satuan;
+                   var nama_obat = $scope.myData[j].nama_obat;
+                    $http({
+                        method: 'POST',
+                        url:  '../apidb/klinik/submit_obat_invoice.php',
+                        data: { idKunjungan : $routeParams.idkunjungan,
+                                idPasien    : $routeParams.id,
+                                idObat      : id_obat,
+                                namaObat    : nama_obat,
+                                hargaObat   : harga_obat, 
+                                satuanObat  : satuan_obat, 
+                                quantityObat: quantity_obat }   
+                    }).then(function (response) {
+                        // on success
+                        console.log(response);
+
+                        if(response.status==200){
+                              
+                        }
+                    });
+
+
+
+            }
+
+        }else{
+            
+            console.log("Data Obat Kosong");
         }
+
+       
 
 
     };
