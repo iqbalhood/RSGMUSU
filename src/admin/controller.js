@@ -888,3 +888,20 @@ app.controller("LayananCtrl", function ($scope,$interval,$http, $route,$timeout,
    
  
  });
+
+
+
+ app.controller("SearchCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
+    $scope.tab = 1;
+    $scope.setTab = function(newTab){
+      $scope.tab = newTab;
+    };
+
+    $scope.keyword="";
+
+    $scope.cariKeyword = function(){
+    };
+
+
+
+});

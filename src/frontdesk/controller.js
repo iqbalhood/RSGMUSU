@@ -1442,44 +1442,157 @@ app.controller("LayananCtrl", function ($scope,$interval,$http, $route,$timeout,
                                     $scope.imageUrl38 = JSONDATA[i].url;
                         
                                 }
-    
-            }
-           
-            
-        }, function (response) {
-            
+            }      
+        }, function (response) {            
             // on error
-            console.log(response.data,response.status);
-            
+            console.log(response.data,response.status);            
         });
-    
-    
         //GET DATA REKAM MEDIS 
-    
         $http({
             method: 'POST',    
             url: '../apidb/klinik/get_rekam_medis.php',
             data: {newId: $routeParams.idkunjungan}
         }).then(function (response) {
-            
             // on success
-    
             $scope.rm           =  response.data;
             $scope.namaDokter   =  $scope.rm.nama_dokter;
             $scope.amnese       =  $scope.rm.amnese;
             $scope.diagnosa     =  $scope.rm.diagnosa;
-            
         }, function (response) {
-            
             // on error
-            console.log(response.data,response.status);
+            console.log(response.data,response.status);     
+        });     
+    });
+
+    app.controller("SearchCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window){
+        $scope.tab = 1;
+        $scope.setTab = function(newTab){
+          $scope.tab = newTab;
+        };
+        $scope.totalSearch = 0;
+        $scope.valPasien   = 0;
+        $scope.valLayanan  = 0;
+        $scope.valPerawatan = 0;
+
+        $scope.myDataPasien = [];
+        $scope.myDataLayanan = [];
+        $scope.myDiagnosa = [];
+
+        $scope.keyword="";
+
+        $scope.$watch("keyword", function(newValue, oldValue) {
+
+            if ($scope.keyword.length > 0) {
+
+                $scope.totalSearch = 0;
+                $scope.valPasien   = 0;
+                $scope.valLayanan  = 0;
+                $scope.valPerawatan = 0;
+        
+                $scope.myDataPasien = [];
+                $scope.myDataLayanan = [];
+                $scope.myDiagnosa = [];
+
+
+                $http.get("../apidb/search/search-pasien.php?keyword="+$scope.keyword).then(function (response){
+                    $scope.myDataPasien = response.data.event;
+                    if(response.status == 200 && $scope.myDataPasien ){
+                        $scope.valPasien = $scope.myDataPasien.length;
+                    }
+                
+
+                    $http.get("../apidb/search/search-layanan.php?keyword="+$scope.keyword).then(function (response) {
+                            $scope.myDataLayanan = response.data.event;
+                            if(response.status == 200 && $scope.myDataLayanan){
+                                $scope.valLayanan = $scope.myDataLayanan.length;
+                            }
+
+                            $http.get("../apidb/search/search-perawatan.php?keyword="+$scope.keyword).then(function (response){
+                                    $scope.myDiagnosa = response.data.event;
+                                    if(response.status == 200 && $scope.myDiagnosa ){
+                                        $scope.valPerawatan = $scope.myDiagnosa.length;
+                                    }
+                                    $scope.totalSearch = (parseInt($scope.valPasien) + parseInt($scope.valLayanan) + parseInt($scope.valPerawatan));
+                                }); 
+                        });
+                });  
+            }
+
+
+            if($scope.keyword.length == 0){
+
+                $scope.totalSearch = 0;
+                $scope.valPasien   = 0;
+                $scope.valLayanan  = 0;
+                $scope.valPerawatan = 0;
+        
+                $scope.myDataPasien = [];
+                $scope.myDataLayanan = [];
+                $scope.myDiagnosa = [];
+
+            }
+         
+           
+          });
+
+
+
+        $scope.cariKeyword = function(){
+
+            $scope.totalSearch = 0;
+            $scope.valPasien   = 0;
+            $scope.valLayanan  = 0;
+            $scope.valPerawatan = 0;
+    
+            $scope.myDataPasien = [];
+            $scope.myDataLayanan = [];
+            $scope.myDiagnosa = [];
             
-        });
-    
-    
-      
-    
-    
-        
-        
+            // $http.get("../apidb/search/search-pasien.php?keyword="+$scope.keyword).then(function (response){
+            //     $scope.myDataPasien = response.data.event;
+            //     $scope.valPasien = $scope.myDataPasien.length;
+
+            //     console.log($scope.valPasien);
+            // });  
+            // $http.get("../apidb/search/search-layanan.php?keyword="+$scope.keyword).then(function (response) {
+            //     $scope.myDataLayanan = response.data.event;
+            //     $scope.valLayanan = $scope.myDataLayanan.length;
+            // });  
+            // $http.get("../apidb/search/search-perawatan.php?keyword="+$scope.keyword).then(function (response){
+            //     $scope.myDiagnosa = response.data.event;
+            //     $scope.valPerawatan = $scope.myDiagnosa.length;
+            // });  
+
+            $http.get("../apidb/search/search-pasien.php?keyword="+$scope.keyword).then(function (response){
+                $scope.myDataPasien = response.data.event;
+                if(response.status == 200 && $scope.myDataPasien ){
+                    $scope.valPasien = $scope.myDataPasien.length;
+                }
+               
+
+                $http.get("../apidb/search/search-layanan.php?keyword="+$scope.keyword).then(function (response) {
+                        $scope.myDataLayanan = response.data.event;
+                        if(response.status == 200 && $scope.myDataLayanan){
+                            $scope.valLayanan = $scope.myDataLayanan.length;
+                        }
+
+                        $http.get("../apidb/search/search-perawatan.php?keyword="+$scope.keyword).then(function (response){
+                                $scope.myDiagnosa = response.data.event;
+                                if(response.status == 200 && $scope.myDiagnosa ){
+                                    $scope.valPerawatan = $scope.myDiagnosa.length;
+                                }
+                                $scope.totalSearch = (parseInt($scope.valPasien) + parseInt($scope.valLayanan) + parseInt($scope.valPerawatan));
+                            }); 
+                    });
+            });  
+
+            
+         
+
+
+         //   console.log(" Total Search  =  "+ "+"+ $scope.myDataPasien.length + "+"+ $scope.myDataLayanan.length + "+"+    $scope.myDiagnosa.length);
+        };
+
+       
+       
     });

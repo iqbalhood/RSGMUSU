@@ -68,6 +68,10 @@
           templateUrl : "klinik.html",
           controller  : "KlinikCtrl",
         })
+        .when("/search", {
+          templateUrl : "search.html",
+          controller  : "SearchCtrl",
+         })
         .otherwise({
             templateUrl : "dashboard.html",
             controller  : "HomeCtrl",

@@ -5743,3 +5743,9 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 
 
 
+app.controller("SearchCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
+    $scope.tab = 1;
+    $scope.setTab = function(newTab){
+      $scope.tab = newTab;
+    };
+});

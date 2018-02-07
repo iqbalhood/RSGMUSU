@@ -73,6 +73,10 @@
           templateUrl : "perawatan-radiologi.html",
           controller  : "PerawatanRadiologiCtrl",
         })
+        .when("/search", {
+          templateUrl : "search.html",
+          controller  : "SearchCtrl",
+         })
         .otherwise({
             templateUrl : "dashboard.html",
             controller  : "HomeCtrl",
