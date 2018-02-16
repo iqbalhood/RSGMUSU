@@ -5683,7 +5683,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 
             if($scope.daftarLayanan.length != 0){
                 for(var i = 0; i < $scope.daftarLayanan.length; i++){
-                   // Memasukkan data obat ke database 
+                   // Memasukkan data layanan ke database 
                    var harga_bahan = $scope.daftarLayanan[i].harga;
                    var harga_layanan = $scope.daftarLayanan[i].jasa;
                    var nama_layanan = $scope.daftarLayanan[i].name;
