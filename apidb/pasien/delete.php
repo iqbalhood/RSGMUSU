@@ -9,9 +9,11 @@ if(isset($postdata) && !empty($postdata))
 {
     $request = json_decode($postdata);
 
-    $id  = (int)$request->recordId;
+    $id  = $request->recordId;
 
-    $sql = "DELETE FROM `data_pasien` WHERE `id` = '$id' LIMIT 1";
+    $sql = "DELETE FROM `data_pasien` WHERE `no_rekam_medis` = '$id' LIMIT 1";
+
+    echo $sql;
 
     mysqli_query($connect,$sql);
 }

@@ -31,34 +31,43 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
     $scope.no = Math.floor((Math.random() * 10000) + 1);
     $scope.submitForm = function() {
         
+
         if($scope.id){
+
+            console.log("EDIT");
+            console.log(" ID YANG DIEDIT "+ $scope.no_rekam_medis);
+            console.log("ID "+$scope.id);
             $http({
                 
                  method: 'POST',
                  url:  '../apidb/pasien/postedit.php',
-                 data: {newId: $scope.id, noRekamMedis: $scope.noRekamMedis, tglRegistrasi: $scope.tglreg , newName: $scope.name, tempatLahir: $scope.tptlahir, tanggalLahir: $scope.tgllahir , newKelamin: $scope.kelamin, agama: $scope.agama , alamat: $scope.alamat, rtrw: $scope.rtrw , kelurahan: $scope.kelurahan, kecamatan: $scope.kecamatan, kabupaten: $scope.kabupaten, propinsi: $scope.propinsi, newPhone: $scope.phone, kewarganegaraan: $scope.kewarganegaraan, noKtp: $scope.noktp, pendidikan: $scope.pendidikan , pekerjaan: $scope.pekerjaan, statusPerkawinan: $scope.status_perkawinan , tglPertamamasuk: $scope.tgl_pertama_masuk , caraBayar: $scope.cara_bayar , tujuanKunjunganpertama: $scope.tujuan_kunjungan_pertama, alergi: $scope.alergi , catatan: $scope.catatan, tinggi_badan : $scope.tinggi_badan, berat_badan : $scope.berat_badan,  golongan_darah : $scope.golongan_darah}
+                 data: {newId: $scope.no_rekam_medis,noRekamMedis: $scope.no_rekam_medis, noRegistrasi: $scope.noreg, tglRegistrasi: $scope.tglreg , newName: $scope.name, tempatLahir: $scope.tptlahir, tanggalLahir: $scope.tgllahir , newKelamin: $scope.kelamin, agama: $scope.agama , alamat: $scope.alamat, rtrw: $scope.rtrw , kelurahan: $scope.kelurahan, kecamatan: $scope.kecamatan, kabupaten: $scope.kabupaten, propinsi: $scope.propinsi, newPhone: $scope.phone, kewarganegaraan: $scope.kewarganegaraan, noKtp: $scope.noktp, pendidikan: $scope.pendidikan , pekerjaan: $scope.pekerjaan, statusPerkawinan: $scope.status_perkawinan , tglPertamamasuk: $scope.tgl_pertama_masuk , caraBayar: $scope.cara_bayar , tujuanKunjunganpertama: $scope.tujuan_kunjungan_pertama, alergi: $scope.alergi , catatan: $scope.catatan}
                  
             }).then(function (response) {
 
                 console.log(response);
                 // on success
                 if(response.status==200){
-                    $route.reload();    
+                    $route.reload(); 
+                    alert("Data Pasien Telah Diubah");       
                 }
             });
         }else{
+            console.log("INPUT");
 
             $http({
                 
                  method: 'POST',
                  url:  '../apidb/pasien/post.php',
-                 data: {noRekamMedis: $scope.noRekamMedis, tglRegistrasi: $scope.tglreg , newName: $scope.name, tempatLahir: $scope.tptlahir, tanggalLahir: $scope.tgllahir , newKelamin: $scope.kelamin, agama: $scope.agama , alamat: $scope.alamat, rtrw: $scope.rtrw , kelurahan: $scope.kelurahan, kecamatan: $scope.kecamatan, kabupaten: $scope.kabupaten, propinsi: $scope.propinsi, newPhone: $scope.phone, kewarganegaraan: $scope.kewarganegaraan, noKtp: $scope.noktp, pendidikan: $scope.pendidikan , pekerjaan: $scope.pekerjaan, statusPerkawinan: $scope.status_perkawinan , tglPertamamasuk: $scope.tgl_pertama_masuk , caraBayar: $scope.cara_bayar , tujuanKunjunganpertama: $scope.tujuan_kunjungan_pertama, alergi: $scope.alergi , catatan: $scope.catatan, tinggi_badan : $scope.tinggi_badan, berat_badan : $scope.berat_badan,  golongan_darah : $scope.golongan_darah }
+                 data: {noRekamMedis: $scope.no_rekam_medis, noRegistrasi: $scope.noreg, tglRegistrasi: $scope.tglreg , newName: $scope.name, tempatLahir: $scope.tptlahir, tanggalLahir: $scope.tgllahir , newKelamin: $scope.kelamin, agama: $scope.agama , alamat: $scope.alamat, rtrw: $scope.rtrw , kelurahan: $scope.kelurahan, kecamatan: $scope.kecamatan, kabupaten: $scope.kabupaten, propinsi: $scope.propinsi, newPhone: $scope.phone, kewarganegaraan: $scope.kewarganegaraan, noKtp: $scope.noktp, pendidikan: $scope.pendidikan , pekerjaan: $scope.pekerjaan, statusPerkawinan: $scope.status_perkawinan , tglPertamamasuk: $scope.tgl_pertama_masuk , caraBayar: $scope.cara_bayar , tujuanKunjunganpertama: $scope.tujuan_kunjungan_pertama, alergi: $scope.alergi , catatan: $scope.catatan }
                  
             }).then(function (response) {
                 // on success
                 if(response.status==200){
-                    $route.reload();    
+                    $route.reload();
+                    alert("Data Pasien Telah Ditambahkan");    
                 }
+                //console.log(response);
             });
 
         }
@@ -67,17 +76,13 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
     $scope.showForm = function() {
         $scope.shTable  = false;
         $scope.shForm   = true;
-         //Time Stamp Untuk Rekam Medis
-         var d = new Date();
-         var n = d.getTime();
-         $scope.noRekamMedis = n;
-         $scope.tgllahir = "0000-00-00";
+        $scope.id = "";
     };
 
     $scope.editForm = function(x) {
             $scope.shTable  = false;
             $scope.shForm   = true;
-            console.log("This Is x value "+x);
+            console.log("This Is x value edit "+x);
             $http({
                 method: 'POST',    
                 url: '../apidb/pasien/get.php',
@@ -85,37 +90,33 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
             }).then(function (response) {
                 console.log(response.data);
                 // on success
-                $scope.people                   = response.data;
-                $scope.id                       =  $scope.people.id;
-                $scope.noRekamMedis             =  $scope.people.no_rekam_medis;
-				$scope.tglreg                   =  $scope.people.tgl_registrasi;
-                $scope.name                     =  $scope.people.name;
-				$scope.tptlahir                 =  $scope.people.tempat_lahir;
-				$scope.tgllahir                 =  $scope.people.tanggal_lahir;
-				$scope.kelamin                  =  $scope.people.jenis_kelamin;
-				$scope.agama                    =  $scope.people.agama;
-				$scope.alamat                   =  $scope.people.alamat;
-				$scope.rtrw                     =  $scope.people.rtrw;
-				$scope.kelurahan                =  $scope.people.kelurahan;
-				$scope.kecamatan                =  $scope.people.kecamatan;
-				$scope.kabupaten                =  $scope.people.kabupaten;
-				$scope.propinsi                 =  $scope.people.propinsi;
-				$scope.phone                    =  $scope.people.phone;
-                $scope.kewarganegaraan          =  $scope.people.kewarganegaraan;
-				$scope.noktp                    =  $scope.people.noktp;
-				$scope.pendidikan               =  $scope.people.pendidikan;
-				$scope.pekerjaan                =  $scope.people.pekerjaan;
-				$scope.status_perkawinan        =  $scope.people.status_perkawinan;
-				$scope.tgl_pertama_masuk        =  $scope.people.tgl_pertama_masuk;
-				$scope.cara_bayar               =  $scope.people.cara_bayar;
-				$scope.tujuan_kunjungan_pertama =  $scope.people.tujuan_kunjungan_pertama;
-				$scope.alergi                   =  $scope.people.alergi;
-				$scope.catatan                  =  $scope.people.catatan;
-				$scope.tinggi_badan             =  $scope.people.tinggi_badan;
-				$scope.berat_badan              =  $scope.people.berat_badan;
-                $scope.golongan_darah           =  $scope.people.golongan_darah;
-                
-                console.log("BERAT BADANMU   "+$scope.people.berat_badan);
+                $scope.people           = response.data;
+                $scope.id   =  $scope.people.no_rekam_medis;
+                $scope.no_rekam_medis   =  $scope.people.no_rekam_medis;
+				$scope.noreg    =  $scope.people.no_registrasi;
+				$scope.tglreg   =  $scope.people.tgl_registrasi;
+                $scope.name             =  $scope.people.name;
+				$scope.tptlahir             =  $scope.people.tempat_lahir;
+				$scope.tgllahir             =  $scope.people.tanggal_lahir;
+				$scope.kelamin          =  $scope.people.jenis_kelamin;
+				$scope.agama            =  $scope.people.agama;
+				$scope.alamat            =  $scope.people.alamat;
+				$scope.rtrw            =  $scope.people.rtrw;
+				$scope.kelurahan            =  $scope.people.kelurahan;
+				$scope.kecamatan            =  $scope.people.kecamatan;
+				$scope.kabupaten             =  $scope.people.kabupaten;
+				$scope.propinsi            =  $scope.people.propinsi;
+				$scope.phone            =  $scope.people.phone;
+                $scope.kewarganegaraan            =  $scope.people.kewarganegaraan;
+				$scope.noktp            =  $scope.people.noktp;
+				$scope.pendidikan            =  $scope.people.pendidikan;
+				$scope.pekerjaan            =  $scope.people.pekerjaan;
+				$scope.status_perkawinan            =  $scope.people.status_perkawinan;
+				$scope.tgl_pertama_masuk            =  $scope.people.tgl_pertama_masuk;
+				$scope.cara_bayar            =  $scope.people.cara_bayar;
+				$scope.tujuan_kunjungan_pertama            =  $scope.people.tujuan_kunjungan_pertama;
+				$scope.alergi            =  $scope.people.alergi;
+				$scope.catatan            =  $scope.people.catatan;
                 
                
                 
@@ -130,53 +131,54 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
 
 
     $scope.deleteForm = function(x) {
-       // console.log("This Is delete x value "+x);
+        console.log("This Is delete x value "+x);
+        $scope.combro = x;
         $http({
             
             method: 'POST',
             url:  '../apidb/pasien/delete.php',
-            data: { recordId : x }
+            data: { recordId : $scope.combro }
             
         }).then(function (response) {
-      
-           $route.reload();  
-      
-        }, function (response) {
-            
-            console.log(response.data,response.status);
-            
+            // on success
+            if(response.status==200){
+                $route.reload();
+                alert("Data Pasien Telah Dihapus");    
+            }
+            // console.log("combro"+$scope.combro);
+            // console.log(response);
         });
       };
 
     $scope.cancelForm = function() {
         
-                $scope.shTable                      = true;
-                $scope.shForm                       = false;
-                $scope.id                           =  "";
-				$scope.noreg                        =  "";
-				$scope.tglreg                       =  "";
-                $scope.name                         =  "";
-				$scope.tptlahir                     =  "";
-				$scope.tgllahir                     =  "";
-				$scope.kelamin                      =  "";
-				$scope.agama                        =  "";
-				$scope.alamat                       =  "";
-				$scope.rtrw                         = "";
-				$scope.kelurahan                    =  "";
-				$scope.kecamatan                    =  "";
-				$scope.kabupaten                    =  "";
-				$scope.propinsi                     =  "";
-				$scope.phone                        =  "";
-                $scope.kewarganegaraan              =  "";
-				$scope.noktp                        =  "";
-				$scope.pendidikan                   =  "";
-				$scope.pekerjaan                    =  "";
+        $scope.shTable  = true;
+        $scope.shForm   = false;
+				$scope.no_rekam_medis       =  "";
+				$scope.noreg    =  "";
+				$scope.tglreg   =  "";
+                $scope.name     =  "";
+				$scope.tptlahir =  "";
+				$scope.tgllahir             =  "";
+				$scope.kelamin          =  "";
+				$scope.agama            =  "";
+				$scope.alamat            =  "";
+				$scope.rtrw            = "";
+				$scope.kelurahan            =  "";
+				$scope.kecamatan            =  "";
+				$scope.kabupaten             =  "";
+				$scope.propinsi            =  "";
+				$scope.phone            =  "";
+                $scope.kewarganegaraan            =  "";
+				$scope.noktp            =  "";
+				$scope.pendidikan            =  "";
+				$scope.pekerjaan            =  "";
 				$scope.status_perkawinan            =  "";
 				$scope.tgl_pertama_masuk            =  "";
-				$scope.cara_bayar                   =  "";
-				$scope.tujuan_kunjungan_pertama     = "";
-				$scope.alergi                       = "";
-				$scope.catatan                      =  "";
+				$scope.cara_bayar            =  "";
+				$scope.tujuan_kunjungan_pertama            = "";
+				$scope.alergi            = "";
+				$scope.catatan            =  "";
         
     };
 
@@ -694,10 +696,19 @@ app.controller("DataPasienCtrl", function ($scope,$interval,$http, $route,$timeo
             console.log($scope.dataPerawatanPasien);
         });
 
-        $http.get("../apidb/dokter/list_data.php").then(function (response) {
-            $scope.dataDokter = response.data.event;
-            console.log(response.data.event);
-        });
+        //fungsi untuk query dokter di klinik 
+        $scope.selectDokter = function(){
+            console.log("Klinik Telah Dipilih");
+            console.log("klinik"+$scope.klinik);
+            $scope.dataDokter ="";
+
+            $http.get("../apidb/dokter/list_dokter_get.php?id="+$scope.klinik).then(function (response) {
+                $scope.dataDokter = response.data.event;
+                console.log(response.data.event);
+            });
+        };
+
+       
 
 
         $scope.showKlinik = function() {
@@ -1483,53 +1494,76 @@ app.controller("LayananCtrl", function ($scope,$interval,$http, $route,$timeout,
         $scope.$watch("keyword", function(newValue, oldValue) {
 
             if ($scope.keyword.length > 0) {
+              $scope.totalSearch = 0;
+              $scope.valPasien = 0;
+              $scope.valLayanan = 0;
+              $scope.valPerawatan = 0;
 
-                $scope.totalSearch = 0;
-                $scope.valPasien   = 0;
-                $scope.valLayanan  = 0;
-                $scope.valPerawatan = 0;
-        
-                $scope.myDataPasien = [];
-                $scope.myDataLayanan = [];
-                $scope.myDiagnosa = [];
+              $scope.myDataPasien = [];
+              $scope.myDataLayanan = [];
+              $scope.myDiagnosa = [];
 
+              $http
+                .get(
+                  "../apidb/search/search-pasien.php?keyword=" +
+                    $scope.keyword
+                )
+                .then(function(response) {
+                  $scope.myDataPasien = response.data.event;
+                  if (
+                    response.status == 200 &&
+                    $scope.myDataPasien
+                  ) {
+                    $scope.valPasien = $scope.myDataPasien.length;
+                  }
 
-                $http.get("../apidb/search/search-pasien.php?keyword="+$scope.keyword).then(function (response){
-                    $scope.myDataPasien = response.data.event;
-                    if(response.status == 200 && $scope.myDataPasien ){
-                        $scope.valPasien = $scope.myDataPasien.length;
-                    }
-                
+                  $http
+                    .get(
+                      "../apidb/search/search-layanan.php?keyword=" +
+                        $scope.keyword
+                    )
+                    .then(function(response) {
+                      $scope.myDataLayanan = response.data.event;
+                      if (
+                        response.status == 200 &&
+                        $scope.myDataLayanan
+                      ) {
+                        $scope.valLayanan =
+                          $scope.myDataLayanan.length;
+                      }
 
-                    $http.get("../apidb/search/search-layanan.php?keyword="+$scope.keyword).then(function (response) {
-                            $scope.myDataLayanan = response.data.event;
-                            if(response.status == 200 && $scope.myDataLayanan){
-                                $scope.valLayanan = $scope.myDataLayanan.length;
-                            }
-
-                            $http.get("../apidb/search/search-perawatan.php?keyword="+$scope.keyword).then(function (response){
-                                    $scope.myDiagnosa = response.data.event;
-                                    if(response.status == 200 && $scope.myDiagnosa ){
-                                        $scope.valPerawatan = $scope.myDiagnosa.length;
-                                    }
-                                    $scope.totalSearch = (parseInt($scope.valPasien) + parseInt($scope.valLayanan) + parseInt($scope.valPerawatan));
-                                }); 
+                      $http
+                        .get(
+                          "../apidb/search/search-perawatan.php?keyword=" +
+                            $scope.keyword
+                        )
+                        .then(function(response) {
+                          $scope.myDiagnosa = response.data.event;
+                          if (
+                            response.status == 200 &&
+                            $scope.myDiagnosa
+                          ) {
+                            $scope.valPerawatan =
+                              $scope.myDiagnosa.length;
+                          }
+                          $scope.totalSearch =
+                            parseInt($scope.valPasien) +
+                            parseInt($scope.valLayanan) +
+                            parseInt($scope.valPerawatan);
                         });
-                });  
+                    });
+                });
             }
 
 
-            if($scope.keyword.length == 0){
-
-                $scope.totalSearch = 0;
-                $scope.valPasien   = 0;
-                $scope.valLayanan  = 0;
-                $scope.valPerawatan = 0;
-        
-                $scope.myDataPasien = [];
-                $scope.myDataLayanan = [];
-                $scope.myDiagnosa = [];
-
+            if ($scope.keyword.length == 0) {
+              $scope.totalSearch = 0;
+              $scope.valPasien = 0;
+              $scope.valLayanan = 0;
+              $scope.valPerawatan = 0;
+              $scope.myDataPasien = [];
+              $scope.myDataLayanan = [];
+              $scope.myDiagnosa = [];
             }
          
            

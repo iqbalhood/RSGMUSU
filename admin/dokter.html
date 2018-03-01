@@ -13,7 +13,8 @@
                 <tr>
                   <th  style="width:5%">No </th>            
                   <th  style="width:25%">Nama Dokter</th>
-                  <th  style="width:25%">Jenis Kelamin</th>            
+                  <th  style="width:5%">Jenis Kelamin</th>            
+                  <th  style="width:25%">Klinik</th>            
                   <th  style="width:10%">Phone</th>            
                   <th  style="width:25%">Aksi</th>
                 </tr>
@@ -23,6 +24,18 @@
                       <td>{{ $index + 1 }}</td>  
                       <td>{{ x.nama }}</td>
                       <td><div ng-if="x.jenis_kelamin == 1">Laki-Laki</div> <div ng-if="x.jenis_kelamin == 2">  Perempuan</div></td>
+                      <td>
+                         <div ng-if="x.klinik == 0">  SEMUA KLINIK</div>
+                         <div ng-if="x.klinik == 1">  IKGP/IKGM</div>
+                         <div ng-if="x.klinik == 2">  PERIODONSIA</div>
+                         <div ng-if="x.klinik == 3">  ILMU PENYAKIT MULUT</div>
+                         <div ng-if="x.klinik == 4">  ILMU KEDOKTERAN GIGI ANAK</div>
+                         <div ng-if="x.klinik == 5">  KONSERVASI</div>
+                         <div ng-if="x.klinik == 6">  PROSTODONSIA</div>
+                         <div ng-if="x.klinik == 7">  ILMU BEDAH MULUT</div>
+                         <div ng-if="x.klinik == 8">  ORTODONSIA</div>
+                         <div ng-if="x.klinik == 9">  RADIOLOGI KEDOKTERAN GIGI</div>
+                      </td>                      
                       <td>{{ x.phone }}</td>
                       <td><button class='btn btn-primary' ng-click="editForm(x.id)" >Edit</button>  <button class='btn btn-warning' ng-click="deleteForm(x.id)" >Delete</button></td>
                     </tr>
@@ -42,16 +55,9 @@
 
         <form class="form-horizontal">
             <input type="hidden" class="form-control" ng-model="id">
-            
+            <input type="hidden" class="form-control" ng-model="no">
               <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-id-1">No</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" ng-model="no">
-                </div>
-              </div>
-             
-              <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-id-1">Name</label>
+                  <label class="col-sm-2 control-label" for="input-id-1">Nama Dokter</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" ng-model="name">
                   </div>
@@ -70,6 +76,24 @@
                     <select name="account" class="form-control m-b"  ng-model="kelamin">
                       <option value="1">Laki - Laki</option>
                       <option value="2">Perempuan</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" >Klinik</label>
+                  <div class="col-sm-10">
+                    <select name="account" class="form-control m-b"  ng-model="klinik">
+                      <option value="0">SEMUA KLINIK</option>
+                      <option value="1">IKGP/IKGM</option>
+                      <option value="2">PERIODONSIA</option>
+                      <option value="3">ILMU PENYAKIT MULUT</option>
+                      <option value="4">ILMU KEDOKTERAN GIGI ANAK</option>
+                      <option value="5">KONSERVASI</option>
+                      <option value="6">PROSTODONSIA</option>
+                      <option value="7">ILMU BEDAH MULUT</option>
+                      <option value="8">ORTODONSIA</option>
+                      <option value="9">RADIOLOGI KEDOKTERAN GIGI</option>
                     </select>
                   </div>
                 </div>

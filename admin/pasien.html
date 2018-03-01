@@ -14,10 +14,10 @@
             <th  style="width:5%">No </th>
             <th  style="width:10%">No Rekam Medis</th>
             <th  style="width:15%">Nama Pasien</th>
-            <th  style="width:5%">Jenis Kelamin</th>            
-            <th  style="width:5%">Tanggal Lahir</th>            
-            <th  style="width:5%">Phone</th>            
-            <th  style="width:25%">Aksi</th>
+            <th  style="width:2%">Jenis Kelamin</th>            
+            <th  style="width:2%">Umur</th>            
+            <th  style="width:15%">Alamat</th>            
+            <th  style="width:20%">Aksi</th>
           </tr>
         </thead>
         <tbody>
@@ -25,9 +25,10 @@
                 <td>{{ $index + 1 }}</td>                      
                 <td>{{ x.no_rekam_medis }}</td>
                 <td>{{ x.nama }}</td>
-                <td><div ng-if="x.jenis_kelamin == 1">Laki-Laki</div> <div ng-if="x.jenis_kelamin == 2">  Perempuan</div></td>
-                <td>{{ x.tanggal_lahir }}</td>
-                <td>{{ x.phone }}</td>
+                <td>{{ x.jenis_kelamin }}</td>
+                <!-- <td><div ng-if="x.jenis_kelamin == L">Laki-Laki</div> <div ng-if="x.jenis_kelamin == P">  Perempuan</div></td> -->
+                <td>{{ x.umur }}</td>
+                <td>{{ x.alamat }}</td>
                 <td> <a href="#!/data-pasien/{{x.id}}"><button class='btn btn-success'>View</button></a> <button class='btn btn-primary' ng-click="editForm(x.id)" >Edit</button>  <button class='btn btn-warning' ng-click="deleteForm(x.id)" >Delete</button></td>
               </tr>
         </tbody>
@@ -52,7 +53,7 @@
   <div class="form-group">
             <label class="col-sm-2 control-label" for="input-id-1">Nomor Rekam Medis</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" ng-model="noRekamMedis">
+              <input type="text" class="form-control" ng-model="no_rekam_medis">
             </div>
         </div>
   
@@ -82,8 +83,8 @@
             <label class="col-sm-2 control-label" >Jenis Kelamin</label>
             <div class="col-sm-10">
               <select name="account" class="form-control m-b"  ng-model="kelamin">
-                <option value="1">Laki - Laki</option>
-                <option value="2">Perempuan</option>
+                <option value="L">Laki - Laki</option>
+                <option value="P">Perempuan</option>
               </select>
             </div>
           </div>
@@ -159,7 +160,7 @@
         </div>
   
         <div class="form-group">
-            <label class="col-sm-2 control-label" for="input-id-1">Nomor KTP</label>
+            <label class="col-sm-2 control-label" for="input-id-1">No Identitas</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" ng-model="noktp">
             </div>

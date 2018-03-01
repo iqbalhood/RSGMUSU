@@ -7,6 +7,20 @@ app.controller("HomeCtrl", function ($scope,$cookies,$interval,$http, $route,$ti
         $scope.myData = response.data.event;
         console.log(response.data.event);
        });
+
+       setTimeout(function(){
+        $('#mytableOrder').dataTable({
+            "bPaginate": true,
+            "bLengthChange": true,
+            "aLengthMenu": [ 30, 50, 100 ],
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "bRetrieve": true,
+            "bAutoWidth": false,
+            "sEmptyTable": "",
+        });
+        }, 4000);
 });
 
 app.controller("HistoriCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
@@ -14,6 +28,25 @@ app.controller("HistoriCtrl", function ($scope,$interval,$http, $route,$timeout,
     $scope.cekTanggal = function(){
         alert("WOW KEEREEEENNN");
     };
+
+    $http.get("../apidb/kunjungan/list_data_no.php").then(function (response) {
+        $scope.myData = response.data.event;
+        console.log(response.data.event);
+       });
+
+    setTimeout(function(){
+        $('#mytableOrder').dataTable({
+            "bPaginate": true,
+            "bLengthChange": true,
+            "aLengthMenu": [ 30, 50, 100 ],
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "bRetrieve": true,
+            "bAutoWidth": false,
+            "sEmptyTable": "",
+        });
+        }, 4000);
    
 });
 
@@ -213,13 +246,6 @@ app.controller("InvoiceCtrl", function ($scope,$cookies,$interval,$http, $route,
 
 
     };
-
-
-   
-
-
-
-
 
 
 

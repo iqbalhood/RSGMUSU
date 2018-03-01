@@ -5,15 +5,16 @@
 
 $response = array();
 
-$keyword = $_GET['keyword'];
+
 // include db connect class
 require_once '../../config/db_connect.php';
 
 // ckonekin ke db
 $db = new DB_CONNECT();
+$id = $_GET['id'];
 	 
 	//  get by event
-	$result = mysql_query("SELECT * FROM `data_layanan` WHERE `layanan` LIKE '%$keyword%' ORDER BY `layanan` DESC") or die(mysql_error());
+	$result = mysql_query("SELECT * FROM `data_dokter` WHERE `klinik` = '$id' OR `klinik` = '0'") or die(mysql_error());
 		// cek
 		if (mysql_num_rows($result) > 0) {
 		    // looping hasil
@@ -23,13 +24,10 @@ $db = new DB_CONNECT();
 	  while ($row = mysql_fetch_array($result)) {
 			$event 							    = array();			
 			$event["id"] 						= $row["id"];
-			$event["layanan"] 					= $row["layanan"];
-			$event["bahan"] 					= $row["bahan"];
-			$event["harga_bahan"] 					= $row["harga_bahan"];
-			$event["harga_koas"] 					= $row["harga_koas"];
-			$event["harga_drg"] 					= $row["harga_drg"];
-			$event["harga_drgsp"] 					= $row["harga_drgsp"];
-			
+			$event["nama"] 					    = $row["nama"];
+			$event["jenis_kelamin"] 			= $row["jenis_kelamin"];
+			$event["klinik"] 					= $row["klinik"];
+			$event["phone"] 					= $row["nomor_hp"];
 			
 			array_push($response["event"], $event);
 		 }

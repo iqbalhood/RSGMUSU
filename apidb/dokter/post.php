@@ -9,19 +9,17 @@ if(isset($postdata) && !empty($postdata))
 {
     $request  = json_decode($postdata);
     
-    $newName  = preg_replace('/[^a-zA-Z ]/','',$request->newName);
-    $newPhone = preg_replace('/[^0-9 ]/','',$request->newPhone);
+    $newName  = $request->newName;
+    $newPhone = $request->newPhone;
     $newKelamin = preg_replace('/[^0-9 ]/','',$request->newKelamin);
+    $newKlinik = preg_replace('/[^0-9 ]/','',$request->newKlinik);
     
-    if($newName  == '' ||  $newPhone == ''  ) return;
+    if($newName  == '' && $newKlinik  == '' ) return;
     
-    $newName  = mysqli_real_escape_string($connect,$newName);
-    $newPhone = mysqli_real_escape_string($connect,$newPhone);
-
-    $sql = "INSERT INTO `data_dokter` (`id`, `nama`, `jenis_kelamin`, `nomor_hp`) VALUES (NULL, '$newName', '$newKelamin', '$newPhone')";
+    $sql = "INSERT INTO `data_dokter` (`id`, `nama`,`klinik`, `jenis_kelamin`, `nomor_hp`) 
+    VALUES (NULL, '$newName','$newKlinik', '$newKelamin', '$newPhone')";
 
     mysqli_query($connect,$sql);
-    
 
 }
 exit;

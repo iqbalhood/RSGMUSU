@@ -6,20 +6,20 @@ $connect = connect();
 // Add the new data to the database.
 $postdata = file_get_contents("php://input");
 $request  = json_decode($postdata);
-$newId = preg_replace('/[^0-9 ]/','',$request->newId);
+$newId = $request->newId;
 
 // Get the data
 $people = array();
 
-$sql = "SELECT * FROM data_pasien WHERE `id` = $newId";
-
+$sql = "SELECT * FROM `data_pasien` WHERE `no_rekam_medis` = '$newId'";
+// echo $sql;
 
 if($result = mysqli_query($connect,$sql))
 {
   $count = mysqli_num_rows($result);
   while($row = mysqli_fetch_assoc($result))
   {
-      $people['id']             			= $row['id'];
+      $people['id']             			= $row['no_rekam_medis'];
 	  $people['no_rekam_medis']  			= $row['no_rekam_medis'];
 	  $people['tgl_registrasi'] 			= $row['tgl_registrasi'];
       $people['name']           			= $row['nama'];
@@ -47,7 +47,8 @@ if($result = mysqli_query($connect,$sql))
 	  $people['tinggi_badan']  				= $row['tinggi_badan'];
 	  $people['berat_badan']  				= $row['berat_badan'];
 	  $people['golongan_darah']  			= $row['golongan_darah'];
-	  $people['umur']						= date_diff(date_create($row['tanggal_lahir']), date_create('today'))->y;
+	  $people['umur']  						= $row['umur'];
+	//   $people['umur']						= date_diff(date_create($row['tanggal_lahir']), date_create('today'))->y;
            
   }
 }

@@ -20,6 +20,7 @@ if($result = mysqli_query($connect,$sql))
       $people['id']             = $row['id'];
       $people['name']           = $row['nama'];
       $people['phone']          = $row['nomor_hp'];
+      $people['klinik']          = $row['klinik'];
       $people['jenis_kelamin']  = $row['jenis_kelamin'];     
   }
 }

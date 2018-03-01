@@ -61,38 +61,26 @@
               <br>
             </div>
           <div class="table-responsive" >
-              <table ui-jq="dataTable" class="table  table-striped b-t b-b"   id="mytableDokter">
+              <table ui-jq="dataTable" class="table  table-striped b-t b-b"   id="mytableOrder">
               <thead>
                 <tr>
-                  <th  style="width:5%">No </th>            
-                  <th  style="width:25%">Nomor Kunjungan</th>
-                  <th  style="width:25%">Nama Pasien</th>            
-                  <th  style="width:25%">Klinik</th>            
-                  <th  style="width:10%">Aksi</th>
+                  <th  style="width:5%">No </th>
+                  <th  style="width:10%">ID Kunjungan</th>
+                  <th  style="width:15%">Nama Pasien</th>
+                  <th  style="width:15%">Nama Pendamping</th>            
+                  <th  style="width:15%">Nama Dokter</th>          
+                  <th  style="width:25%">Aksi</th>
                 </tr>
               </thead>
               <tbody>
-                  <tr>
-                      <td>1</td>  
-                      <td>153243392141</td>
-                      <td>Markus Haris Maulana</td>
-                      <td>GIGI dan Mulut</td>
-                      <td>  <a href="#!/invoice-history/11/1514449206314"><button class='btn btn-primary' >Lihat Detail</button></a> </td>
-                  </tr>
-                  <tr>
-                        <td>2</td>  
-                        <td>153243392141</td>
-                        <td>Doni Darmawan</td>
-                        <td>GIGI dan Mulut</td>
-                        <td>  <a href="#!/invoice-history/11/1514449206314"><button class='btn btn-primary' >Lihat Detail</button></a> </td>
-                  </tr>
-                  <tr>
-                        <td>3</td>  
-                        <td>153243392141</td>
-                        <td>Dellie Theresya Dinda</td>
-                        <td>GIGI dan Mulut</td>
-                        <td>  <a href="#!/invoice-history/11/1514449206314"><button class='btn btn-primary' >Lihat Detail</button></a> </td>
-                  </tr>
+                  <tr ng-repeat="x in myData">
+                      <td>{{ $index + 1 }}</td>                      
+                      <td>{{ x.id_kunjungan }}</td>
+                      <td>{{ x.pasien }}</td>
+                      <td>{{ x.dokter_pendamping }}</td>
+                      <td>{{ x.dokter }}</td>
+                      <td>  <a href="#!/invoice/{{x.id_pasien}}/{{x.id_kunjungan}}"><button class='btn btn-success'>Lihat Tagihan</button></a> </td>
+                    </tr>
               </tbody>
             </table>
                       
