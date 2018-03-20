@@ -41,9 +41,7 @@
         <tr>
           <th  style="width:5%">No </th>
           <th  style="width:10%">ID Kunjungan</th>
-          <th  style="width:15%">Nama Pasien</th>
-          <th  style="width:15%">CO ASS / PPDGS</th>            
-          <th  style="width:15%">DPJP</th>          
+          <th  style="width:15%">Nama Pasien</th>   
           <th  style="width:25%">Aksi</th>
         </tr>
       </thead>
@@ -52,13 +50,76 @@
               <td>{{ $index + 1 }}</td>                      
               <td>{{ x.id_kunjungan }}</td>
               <td>{{ x.pasien }}</td>
-              <td>{{ x.dokter_pendamping }}</td>
-              <td>{{ x.dokter }}</td>
-              <td> <a href="#!/data-pasien/{{x.id_pasien}}"><button class='btn btn-success'>Rekam Medis    </button></a> <a href="#!/perawatan/{{x.id_pasien}}/{{x.id_kunjungan}}" ng-if="tipeKlinik != 9"><button class='btn btn-primary' >Perawatan</button></a> <a href="#!/pradiologi/{{x.id_pasien}}/{{x.id_kunjungan}}" ng-if="tipeKlinik == 9"><button class='btn btn-dark' >Perawatan</button></a> </td>
+              <td> <button class='btn btn-dark' ng-click="tentukandokter(x)" >Tentukan CO ASS  dan DPJP</button> </td>
             </tr>
       </tbody>
     </table>
   </div>
+
+
+
+    <!-- #  Panel Pilih Instalasi dan Dokter Mahasiswa Pendamping -->
+            <div class="panel panel-default" ng-show="dokterForm" >
+                <div class="panel-heading font-bold">
+                 Tentukan Dokter
+                </div>
+                <div class="panel-body">
+    
+            <form class="form-horizontal">
+
+               
+
+                <input type="hidden" class="form-control" ng-model="id_pasien">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" >ID KUNJUNGAN</label>
+                  <div class="col-sm-10">
+                     {{id_kunjungan}}
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" >Nama Pasien</label>
+                  <div class="col-sm-10">
+                      {{nama_pasien}}
+                  </div>
+                </div>
+                
+
+                    <div class="form-group">
+                            <label class="col-sm-2 control-label" >CO AS /  PPDGS</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="dokterpendamping">                                
+                            </div>
+                    </div>
+
+                    <div class="form-group">
+                            <label class="col-sm-2 control-label" >Dokter Penanggung Jawab Pasien</label>
+                            <div class="col-sm-10">
+                              <select name="account" class="form-control m-b"  ng-model="dokterpraktisi">
+                                    <option ng-repeat="x in dataDokter" value="{{x.id}}">{{x.nama}}</option>
+                              </select>
+                            </div>
+                    </div>
+    
+                  <div class="line line-dashed b-b line-lg pull-in"></div>
+                  <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-2">
+                      <button type="submit" ng-click="cancelFormKlinik()" class="btn btn-default">Cancel</button>
+                      <button ng-click="submitForm()" class="btn btn-primary">Submit</button>
+                    </div>
+                  </div>
+    
+            </form>
+    
+                </div>
+            </div>
+
+            <!-- #  Panel Pilih Instalasi dan Dokter Mahasiswa Pendamping -->
+    
+
+
+
+
 
   
 

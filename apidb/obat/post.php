@@ -9,14 +9,14 @@ if(isset($postdata) && !empty($postdata))
 {
     $request  = json_decode($postdata);
     
-    $newName  = preg_replace('/[^a-zA-Z ]/','',$request->newName);
+    $newName  = $request->newName;
     $newQuantity = preg_replace('/[^0-9 ]/','',$request->newQuantity);
     $newSatuan = preg_replace('/[^a-zA-Z]/','',$request->newSatuan);
 	$newHarga = preg_replace('/[^0-9 ]/','',$request->newHarga);
     
     if($newName  == '' ||  $newQuantity == '' ||  $newSatuan == ''||  $newHarga == '' ) return;
     
-    $newName  = mysqli_real_escape_string($connect,$newName);
+   
     $newQuantity = mysqli_real_escape_string($connect,$newQuantity);
 	$newSatuan  = mysqli_real_escape_string($connect,$newSatuan);
     $newHarga = mysqli_real_escape_string($connect,$newHarga);

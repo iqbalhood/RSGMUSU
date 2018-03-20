@@ -1,120 +1,127 @@
 <div class="bg-light lter b-b wrapper-md hidden-print">
-    <a href class="btn btn-sm btn-info pull-right" onClick="window.print();">Print</a>
-    <h1 class="m-n font-thin h3">Invoice</h1>
-  </div>
-  <div class="wrapper-md" style="padding-bottom:100px;">
-    <div>
-
-       
-      
-      <div class="row">
-          <div class="col-sm-2 col-xs-2">
-              <img src="../img/rsgmlogo.png" width="100px">
-          </div>
-
-          <div class="col-sm-10 col-xs-10">
-            <center>
-            <h4>KEMENTERIAN RISET, TEKNOLOGI DAN PENDIDIKAN TINGGI</h4>        
-            <h4>UNIVERSITAS SUMATERA UTARA</h4>
-            <h4>FAKULTAS KEDOKTERAN GIGI</h4>
-            <p>Jl. Alumni No.2 Kampus USU Medan
-            </p>
-            <p>
-              Telephone:  +62 61-692-7753 Fax:  +62 61-692-7753
-            </p>
-          </center>
-          </div>
-       
-      </div>
-     
-      <div class="col-xs-6">
-      <p class="m-t m-b">Invoice date       : <strong>{{ idKunjungan * 1 |  date:'dd-MMMM-yyyy'}}</strong><br>
-       DPJP         :  <strong>{{namadokter}}</strong><br>
-       CO ASS/PPDGS :  <strong>{{namadokter}}</strong><br>
-        Klinik  : <strong ng-if="id_klinik == 1" >IKGP/IKGM</strong>
-          <strong ng-if="id_klinik == 2" >PERIODONSIA</strong>
-          <strong ng-if="id_klinik == 3" >ILMU PENYAKIT MULUT</strong>
-          <strong ng-if="id_klinik == 4" >ILMU KEDOKTERAN GIGI ANAK</strong>
-          <strong ng-if="id_klinik == 5" >KONSERVASI</strong>
-          <strong ng-if="id_klinik == 6" >PROSTODONSIA</strong>
-          <strong ng-if="id_klinik == 7" >ILMU BEDAH MULUT</strong>
-          <strong ng-if="id_klinik == 8" >ORTODONSIA</strong>
-          <strong ng-if="id_klinik == 9" >RADIOLOGI KEDOKTERAN GIGI</strong>
-          <br>
-          Pasien  :  <strong>{{nameUser}}</strong><br>
-          Hp Pasien :  <strong>{{phone}}</strong><br>
-      </p>
-      </div>
-      <div class="col-xs-6">
-          <p class="m-t m-b">Invoice date: <strong>{{ idKunjungan * 1 |  date:'dd-MMMM-yyyy'}}</strong><br>
-            Invoice status: <span class="label bg-success">Sudah Bayar</span><br>
-            Invoice ID: <strong>#{{idKunjungan}}</strong>
-          </p>
-      </div>
-      <div class="line"></div>
-      <table class="table table-striped bg-white b-a">
-        <thead>
-          <tr>
-            <th style="width: 60px">No.</th>
-            <th>Biaya Tindakan Medis</th>
-            <th style="width: 240px"><center>HARGA BAHAN | HARGA LAYANAN</center></th>
-            <th style="width: 140px">TOTAL</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="w in myDataLayanan">
-            <td>{{$index + 1}}</td>
-            <td>{{w.nama_layanan}}</td>
-            <td><center>{{w.harga_bahan | currency:'Rp':0}} | {{w.harga_layanan  | currency:'Rp':0 }}</center></td>
-            <td>{{ ((w.harga_bahan * 1 ) + (w.harga_layanan * 1) ) | currency:'Rp':0 }}</td>
-          </tr>
-         
-          <tr>
-            <td colspan="3" class="text-right"><strong>Subtotal</strong></td>
-            <td>{{ getTotalLayanan | currency:'Rp':0  }}</td>
-          </tr>
-          <thead>
-              <tr>
-                <th style="width: 60px">QTY</th>
-                <th>Biaya Farmasi / Obat</th>
-                <th style="width: 100px">UNIT PRICE</th>
-                <th style="width: 150px">TOTAL</th>
-              </tr>
-            </thead>
-              <tr ng-repeat="x in myData">
-                <td>{{x.quantity}}</td>
-                <td>{{x.nama_obat}}</td>
-                <td>{{ x.harga | currency:'Rp':0 }}</td>
-                <td>{{x.quantity * x.harga | currency:'Rp':0}}</td>
-              </tr>
-              <tr>
-                <td colspan="3" class="text-right"><strong>Subtotal</strong></td>
-                <td>{{ getTotal | currency:'Rp':0  }}</td>
-              </tr>
-          <tr>
-            <td colspan="3" class="text-right no-border"><strong>Total</strong></td>
-            <td><strong>{{ (getTotal * 1 + getTotalLayanan * 1) | currency:'Rp':0  }}</strong></td>
-          </tr>
-        </tbody>
-      </table>              
-    </div>
-
-
-        <div class="line line-dashed b-b line-lg pull-in"></div>
-        <div class="form-group">
-            <div class="col-sm-8 ">
-              </div>
-          <div class="col-sm-4 ">
-          
-          </div>
+  <a href class="btn btn-sm btn-info pull-right" onClick="window.print();">Print</a>
+  <h1 class="m-n font-thin h3">Invoice</h1>
+</div>
+<div class="wrapper-md" style="padding-bottom:100px;">
+  <div>
+    
+    <div class="row">
+        <div class="col-sm-2 col-xs-2">
+            <img src="../img/rsgmlogo.png" width="100px">
         </div>
 
-        
-
-
-  
-
-
-
-
+        <div class="col-sm-10 col-xs-10">
+          <center>
+          <p><strong>KEMENTERIAN RISET, TEKNOLOGI DAN PENDIDIKAN TINGGI</strong>  <br/>         
+          <strong>UNIVERSITAS SUMATERA UTARA</strong><br/>
+          <strong>RUMAH SAKIT GIGI DAN MULUT</strong><br/>
+          Jl. Alumni No.2 Kampus USU Medan
+          <br />
+            Telephone:  +62 61-821-6131 Fax:  +62 61-821-3421
+          <br/>
+              Laman : http://rsgm.usu.ac.id
+          </p>
+        </center>
+        </div>
+     
+    </div>
+   
+    <div class="col-xs-6">
+    <p class="m-t m-b">Invoice date       : <strong>{{ idKunjungan * 1 |  date:'dd-MMMM-yyyy'}}</strong><br>
+    DPJP         :  <strong>{{namadokter}}</strong><br>
+    CO ASS/PPDGS :  <strong>{{dokter_pendamping}}</strong><br>
+      Klinik  : <strong ng-if="id_klinik == 1" >IKGP/IKGM</strong>
+        <strong ng-if="id_klinik == 2" >PERIODONSIA</strong>
+        <strong ng-if="id_klinik == 3" >ILMU PENYAKIT MULUT</strong>
+        <strong ng-if="id_klinik == 4" >ILMU KEDOKTERAN GIGI ANAK</strong>
+        <strong ng-if="id_klinik == 5" >KONSERVASI</strong>
+        <strong ng-if="id_klinik == 6" >PROSTODONSIA</strong>
+        <strong ng-if="id_klinik == 7" >ILMU BEDAH MULUT</strong>
+        <strong ng-if="id_klinik == 8" >ORTODONSIA</strong>
+        <strong ng-if="id_klinik == 9" >RADIOLOGI KEDOKTERAN GIGI</strong>
+        <br>
+        Pasien  :  <strong>{{nameUser}}</strong><br>
+        Hp Pasien :  <strong>{{phone}}</strong><br>
+    </p>
+    </div>
+    <div class="col-xs-6">
+        <p class="m-t m-b">Invoice date: <strong>{{ idKunjungan * 1 |  date:'dd-MMMM-yyyy'}}</strong><br>
+          Invoice status: <span class="label bg-success">Sudah Bayar</span><br>
+          Invoice ID: <strong>#{{idKunjungan}}</strong>
+        </p>
+    </div>
+    <div class="line"></div>
+    <table class="table table-striped bg-white b-a">
+      <thead>
+        <tr>
+          <th style="width: 60px">No.</th>
+          <th>Biaya Tindakan Medis</th>
+          <th style="width: 240px"><center>HARGA BAHAN | HARGA LAYANAN</center></th>
+          <th style="width: 140px">TOTAL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="w in myDataLayanan">
+          <td>{{$index + 1}}</td>
+          <td>{{w.nama_layanan}}</td>
+          <td><center>{{w.harga_bahan | currency:'Rp':0}} | {{w.harga_layanan  | currency:'Rp':0 }}</center></td>
+          <td>{{ ((w.harga_bahan * 1 ) + (w.harga_layanan * 1) ) | currency:'Rp':0 }}</td>
+        </tr>
+       
+        <tr>
+          <td colspan="3" class="text-right"><strong>Subtotal</strong></td>
+          <td>{{ getTotalLayanan | currency:'Rp':0  }}</td>
+        </tr>
+        <thead>
+            <tr>
+              <th style="width: 60px">QTY</th>
+              <th>Biaya Farmasi / Obat</th>
+              <th style="width: 100px">UNIT PRICE</th>
+              <th style="width: 150px">TOTAL</th>
+            </tr>
+          </thead>
+            <tr ng-repeat="x in myData">
+              <td>{{x.quantity}}</td>
+              <td>{{x.nama_obat}}</td>
+              <td>{{ x.harga | currency:'Rp':0 }}</td>
+              <td>{{x.quantity * x.harga | currency:'Rp':0}}</td>
+            </tr>
+            <tr>
+              <td colspan="3" class="text-right"><strong>Subtotal</strong></td>
+              <td>{{ getTotal | currency:'Rp':0  }}</td>
+            </tr>
+            <tr>
+              <td colspan="3" class="text-right no-border"><strong>Total</strong></td>
+              <td><strong>{{ (getTotal * 1 + getTotalLayanan * 1) | currency:'Rp':0  }}</strong></td>
+            </tr>
+            <tr>
+              <td colspan="3" class="text-right"><strong>Deposit</strong></td>
+              <td>-{{ 50000 | currency:'Rp':0  }}</td>
+            </tr>
+        <tr>
+          <td colspan="3" class="text-right no-border"><strong>Total</strong></td>
+          <td><strong>{{ (getTotal * 1 + getTotalLayanan * 1) - 50000 | currency:'Rp':0  }}</strong></td>
+        </tr>
+      </tbody>
+    </table>              
   </div>
+
+
+      <div class="line line-dashed b-b line-lg pull-in"></div>
+      <div class="form-group">
+          <div class="col-sm-8 ">
+            </div>
+            <div class="panel-heading font-bold">
+              <a href="#!/home"><button class="btn m-b-xs btn-sm btn-danger btn-addon"  ><i class="fa  fa-arrow-left"></i>Back</button></a>
+            </div>
+      </div>
+
+      
+
+
+
+
+
+
+
+</div>

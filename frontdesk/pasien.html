@@ -58,6 +58,15 @@
               <input type="text" class="form-control" ng-model="no_rekam_medis">
             </div>
         </div>
+
+  <div class="form-group">
+        <label class="col-sm-2 control-label" for="input-id-1">Nomor KTP</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" ng-model="noktp">
+        </div>
+  </div>      
+
+
   
   
   <div class="form-group">
@@ -85,8 +94,8 @@
             <label class="col-sm-2 control-label" >Jenis Kelamin</label>
             <div class="col-sm-10">
               <select name="account" class="form-control m-b"  ng-model="kelamin">
-                <option value="1">Laki - Laki</option>
-                <option value="2">Perempuan</option>
+                <option value="L">Laki - Laki</option>
+                <option value="P">Perempuan</option>
               </select>
             </div>
           </div>
@@ -134,7 +143,7 @@
         </div>
   
   <div class="form-group">
-            <label class="col-sm-2 control-label" for="input-id-1">Kabupaten</label>
+            <label class="col-sm-2 control-label" for="input-id-1">Kabupaten / Kota</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" ng-model="kabupaten">
             </div>

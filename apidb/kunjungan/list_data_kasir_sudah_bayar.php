@@ -5,9 +5,6 @@
 
 $response = array();
 
-$id = $_GET['id'];
-$status = $_GET['status'];
-
 // include db connect class
 require_once '../../config/db_connect.php';
 
@@ -20,27 +17,40 @@ $db = new DB_CONNECT();
 									tabel_kunjugan.dokter_pendamping,
 									tabel_kunjugan.id_dokter,
 									tabel_kunjugan.id_pasien,
+									tabel_kunjugan.status_pembayaran,
 									data_dokter.nama AS nama_dokter,
 									data_pasien.nama AS nama_pasien
 								FROM tabel_kunjugan
 								INNER JOIN data_dokter ON tabel_kunjugan.id_dokter = data_dokter.id
 								INNER JOIN data_pasien ON tabel_kunjugan.id_pasien = data_pasien.no_rekam_medis
-								WHERE tabel_kunjugan.id_klinik = $id AND tabel_kunjugan.status = '1'
-								ORDER BY tabel_kunjugan.id_kunjungan") or die(mysql_error());
+                                WHERE tabel_kunjugan.status_pembayaran = '2' OR tabel_kunjugan.status_pembayaran = '3' ORDER BY tabel_kunjugan.id_kunjungan ") or die(mysql_error());
 		// cek
+
+		
+
+		
 		if (mysql_num_rows($result) > 0) {
 		    // looping hasil
 		    // event node
 		    $response["event"] = array();
 		    
 	  while ($row = mysql_fetch_array($result)) {
-			$event 							        = array();			
+			$event 							        = array();
+			// $event["harga"] = mysql_query("SELECT SUM(harga_layanan+harga_bahan) FROM `tabel_layanan_kunjungan`");
+			
+			$data_kunjungan = jumlah_layanan($row["id_kunjungan"]);
+			$data_obat = jumlah_obat($row["id_kunjungan"]);
+
+			
+			//echo $data;
+			$event["harga"]							= ($data_kunjungan + $data_obat);
 			$event["id_kunjungan"] 					= $row["id_kunjungan"];
 			$event["id_klinik"] 					= $row["id_klinik"];
 			$event["dokter_pendamping"] 			= $row["dokter_pendamping"];
 			$event["id_dokter"] 					= $row["id_dokter"];
 			$event["id_pasien"] 					= $row["id_pasien"];
 			$event["dokter"] 						= $row["nama_dokter"];
+			$event["status_pembayaran"] 			= $row["status_pembayaran"];
 			$event["pasien"] 						= $row["nama_pasien"];
 			
 			array_push($response["event"], $event);
@@ -56,6 +66,21 @@ $db = new DB_CONNECT();
 
 		    echo json_encode($response);
 		}
+
+function jumlah_layanan($id_kunjungan){
+	$k = mysql_query("SELECT SUM(harga_layanan+harga_bahan) as value_sum FROM `tabel_layanan_kunjungan` WHERE id_kunjungan = '$id_kunjungan' ");
+	$row = mysql_fetch_assoc($k); 
+	$sum = $row['value_sum'];
+	return $sum;
+}
+
+function jumlah_obat($id_kunjungan){
+	$k = mysql_query("SELECT SUM(quantity*harga) as value_sum FROM `tabel_obat_kunjungan` WHERE id_kunjungan  = '$id_kunjungan'  ");
+	$row = mysql_fetch_assoc($k); 
+	$sum = $row['value_sum'];
+	return $sum;
+}
+
 
 
 ?>

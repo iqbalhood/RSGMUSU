@@ -21,7 +21,7 @@ $db = new DB_CONNECT();
 									data_pasien.nama AS nama_pasien
 								FROM tabel_kunjugan
 								INNER JOIN data_dokter ON tabel_kunjugan.id_dokter = data_dokter.id
-								INNER JOIN data_pasien ON tabel_kunjugan.id_pasien = data_pasien.id
+								INNER JOIN data_pasien ON tabel_kunjugan.id_pasien = data_pasien.no_rekam_medis
 								ORDER BY tabel_kunjugan.id_kunjungan") or die(mysql_error());
 		// cek
 		if (mysql_num_rows($result) > 0) {

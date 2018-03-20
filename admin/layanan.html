@@ -1,116 +1,121 @@
 <div class="bg-light lter b-b wrapper-md">
-    <h1 class="m-n font-thin h3">Data Layanan</h1>
+  <h1 class="m-n font-thin h3">Data Layanan</h1>
+</div>
+<div class="wrapper-md">
+  <div class="panel panel-default" ng-show="shTable">
+    <div class="panel-heading">
+      Data Layanan Klinik
+      <br>
+    </div>
+    <div class="table-responsive">
+      <table ui-jq="dataTable" class="table  table-striped b-t b-b" id="mytableObat">
+        <thead>
+          <tr>
+            <th style="width:5%">No </th>
+            <th style="width:15%">Nama Layanan</th>
+            <th style="width:10%">Harga Bahan</th>
+            <th style="width:10%">Tarif CO-ASS</th>
+            <th style="width:10%">Tarif PPDGS</th>
+            <th style="width:10%">Tarif DRG</th>
+            <th style="width:10%">Tarif DRG SP</th>
+            <th style="width:15%">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="x in myData">
+            <td>{{ $index + 1 }}</td>
+            <td>{{ x.layanan }}</td>
+            <td>{{ x.harga_bahan | currency:'Rp ':0 }}</td>
+            <td>{{ x.harga_koas | currency:'Rp ':0 }}</td>
+            <td>{{ x.harga_ppdgs | currency:'Rp ':0 }}</td>
+            <td>{{ x.harga_drg | currency:'Rp ':0 }}</td>
+            <td>{{ x.harga_drgsp | currency:'Rp ':0 }}</td>
+
+            <td>
+              <button class='btn btn-primary' ng-click="editForm(x.id)">Edit</button>
+              <button class='btn btn-warning' ng-click="deleteForm(x.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button class='btn btn-black' style="margin:20px;" ng-click="showForm()"> + Add Layanan</button>
+    </div>
   </div>
-  <div class="wrapper-md">
-    <div class="panel panel-default" ng-show="shTable">
-          <div class="panel-heading">
-            Data Layanan Klinik 
-          <br>
+
+  <div class="panel panel-default" ng-show="shForm">
+    <div class="panel-heading font-bold">
+      Form elements
+    </div>
+    <div class="panel-body">
+
+      <form class="form-horizontal">
+        <input type="hidden" class="form-control" ng-model="id">
+        <input type="hidden" class="form-control" ng-model="no">
+
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="input-id-1">Layanan</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" ng-model="name">
+          </div>
         </div>
-      <div class="table-responsive" >
-          <table ui-jq="dataTable" class="table  table-striped b-t b-b"   id="mytableObat">
-          <thead>
-            <tr>
-              <th  style="width:5%">No </th>
-              <th  style="width:20%">Nama Layanan</th>
-			  <th  style="width:20%">Bahan</th>
-              <th  style="width:10%">Harga Bahan</th>
-              <th  style="width:10%">Tarif co-ass</th>   
-			  <th  style="width:10%">Tarif DRG</th>  
-			  <th  style="width:10%">Tarif DRG SP</th>  
-              <th  style="width:15%">Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-              <tr ng-repeat="x in myData">
-                  <td>{{ $index + 1 }}</td> 
-                  <td>{{ x.layanan }}</td>
-				  <td>{{ x.bahan }}</td>
-				  <td>{{ x.harga_bahan | currency:'Rp ':0 }}</td>
-                  <td>{{ x.harga_koas | currency:'Rp ':0 }}</td>
-				  <td>{{ x.harga_drg | currency:'Rp ':0 }}</td>
-				  <td>{{ x.harga_drgsp | currency:'Rp ':0 }}</td>
-                  
-                  <td><button class='btn btn-primary' ng-click="editForm(x.id)" >Edit</button>  <button class='btn btn-warning' ng-click="deleteForm(x.id)" >Delete</button></td>
-                </tr>
-          </tbody>
-        </table>
-         <button  class='btn btn-black' style="margin:20px;" ng-click="showForm()" > + Add Layanan</button>            
-      </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="input-id-1">bahan yang digunakan</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" ng-model="bahan">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="input-id-1">Harga bahan</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" ng-model="harga_bahan">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="input-id-1">Harga Co-ass</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" ng-model="harga_koas">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="input-id-1">Harga PPDGS</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" ng-model="harga_ppdgs">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="input-id-1">Harga drg</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" ng-model="harga_drg">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="input-id-1">Harga drg sp</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" ng-model="harga_drgsp">
+          </div>
+        </div>
+
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="form-group">
+          <div class="col-sm-4 col-sm-offset-2">
+            <button type="submit" ng-click="cancelForm()" class="btn btn-default">Cancel</button>
+            <button ng-click="submitForm()" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+
+      </form>
+
     </div>
 
-<div class="panel panel-default" ng-show="shForm">
-            <div class="panel-heading font-bold">
-              Form elements
-            </div>
-            <div class="panel-body">
-
-        <form class="form-horizontal">
-            <input type="hidden" class="form-control" ng-model="id">
-            
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-id-1">No</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" ng-model="no">
-                </div>
-              </div>
-             
-              <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-id-1">Layanan</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" ng-model="name">
-                  </div>
-              </div>  
-
-			<div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-id-1">bahan yang digunakan</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" ng-model="bahan">
-                  </div>
-              </div> 			  
-			  
-			  <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-id-1">Harga bahan</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" ng-model="harga_bahan">
-                  </div>
-              </div>
-			  
-			  <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-id-1">Harga Co-ass</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" ng-model="harga_koas">
-                  </div>
-              </div>
-			  
-			  <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-id-1">Harga drg</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" ng-model="harga_drg">
-                  </div>
-              </div>
-			  
-			  <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-id-1">Harga drg sp</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" ng-model="harga_drgsp">
-                  </div>
-              </div>
-
-              <div class="line line-dashed b-b line-lg pull-in"></div>
-              <div class="form-group">
-                <div class="col-sm-4 col-sm-offset-2">
-                  <button type="submit" ng-click="cancelForm()" class="btn btn-default">Cancel</button>
-                  <button ng-click="submitForm()" class="btn btn-primary">Submit</button>
-                </div>
-              </div>
-
-        </form>
-
-        </div>
-
   </div>
-        <!-- <h1 class="m-n font-thin h3">Data Layanan Medis</h1>
+  <!-- <h1 class="m-n font-thin h3">Data Layanan Medis</h1>
       </div>
       <div class="wrapper-md">
         <div class="panel panel-default" ng-show="shTable">

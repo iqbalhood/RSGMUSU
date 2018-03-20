@@ -28,6 +28,10 @@
             templateUrl : "dashboard.html",
             controller  : "HomeCtrl",
         })
+        .when("/cicilan",{
+            templateUrl : "cicilan.html",
+            controller  : "CicilanCtrl",
+        })
         .when("/histori",{
             templateUrl : "histori.html",
             controller  : "HistoriCtrl",
@@ -39,7 +43,11 @@
         .when("/invoice-history/:id/:idkunjungan", {
             templateUrl : "invoice-history.html",
             controller  : "InvoiceCtrl",
-        })   
+        })
+        .when("/invoice-cicilan/:id/:idkunjungan", {
+            templateUrl : "invoice-cicilan.html",
+            controller  : "InvoiceCicilanCtrl",
+        })     
         .otherwise({
             templateUrl : "dashboard.html",
             controller  : "HomeCtrl",

@@ -15,13 +15,17 @@ if(isset($postdata) && !empty($postdata))
     $namaDokter     = $request->namaDokter;
     $amnese         = $request->amnese;
     $diagnosa       = $request->diagnosa;
+    $cicilan       = $request->cicilan;
  
     if($idKunjungan  == '' ||  $idPasien == '' || $amnese  == '' || $diagnosa  == '' ) return;
     $sql = "INSERT INTO `rekam_medis` (`id_kunjungan`, `id_pasien`, `id_dokter`, `nama_dokter`, `amnese`, `diagnosa`) VALUES ('$idKunjungan ', '$idPasien', '$idDokter', '$namaDokter', '$amnese', '$diagnosa');";
-    $sql_update = "UPDATE `tabel_kunjugan` SET `status` = '2' WHERE `tabel_kunjugan`.`id_antrian` = '$idAntrian';"; 
+    $sql_update = "UPDATE `tabel_kunjugan` SET `status` = '2' , `status_pembayaran` = '$cicilan' WHERE `tabel_kunjugan`.`id_antrian` = '$idAntrian';"; 
 
+    
 
     mysqli_query($connect,$sql);
     mysqli_query($connect,$sql_update);
+
+    echo $sql_update;
 }
 exit;

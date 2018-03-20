@@ -5,6 +5,83 @@ var app = angular.module('myApp.controller', []);
 app.controller("HomeCtrl", function ($scope,$cookies,$interval,$http, $route,$timeout, $routeParams, $window) {
     var klinikCookie = $cookies.get('klinik');
     $scope.tipeKlinik = klinikCookie;
+    $scope.dokterForm = false;
+
+    
+    $http.get("../apidb/kunjungan/list_data_kunjungan_masuk.php?id="+klinikCookie+"&status=0").then(function (response) {
+        $scope.myData = response.data.event;
+        console.log(response.data.event);
+       });
+
+
+       $http.get("../apidb/dokter/list_dokter_get.php?id="+klinikCookie).then(function (response) {
+        $scope.dataDokter = response.data.event;
+        console.log(response.data.event);
+    });
+
+     
+    $scope.tentukandokter = function(x){
+        $scope.dokterForm = true;
+
+        $scope.id_kunjungan = x.id_kunjungan;
+        $scope.nama_pasien = x.pasien;
+
+    };   
+
+
+
+    $scope.submitForm = function(){
+        $http({
+            
+             method: 'POST',
+             url:  '../apidb/datapasien/submit_dokter_pasien.php',
+             data: {idKunjungan: $scope.id_kunjungan, dokterPendamping: $scope.dokterpendamping, dokterPraktisi: $scope.dokterpraktisi }
+             
+        }).then(function (response) {
+            // on success
+            if(response.status==200){
+
+                $route.reload();
+                alert("Data Dokter Telah Ditambahkan");    
+            }
+            //console.log(response);
+        });
+
+
+
+    };
+
+
+
+
+
+
+
+
+       setTimeout(function(){
+        $('#mytablePasien').dataTable({
+            "bPaginate": true,
+            "bLengthChange": true,
+            "aLengthMenu": [ 30, 50, 100 ],
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "bRetrieve": true,
+            "bAutoWidth": false,
+            "sEmptyTable": "",
+        });
+        }, 4000);
+
+
+
+
+
+
+});
+
+app.controller("AntrianCtrl", function ($scope,$cookies,$interval,$http, $route,$timeout, $routeParams, $window) {
+    var klinikCookie = $cookies.get('klinik');
+    $scope.tipeKlinik = klinikCookie;
 
     
     $http.get("../apidb/kunjungan/list_data.php?id="+klinikCookie+"&status=1").then(function (response) {
@@ -36,7 +113,7 @@ app.controller("RiwayatCtrl", function ($scope,$cookies,$interval,$http, $route,
     $scope.tipeKlinik = klinikCookie;
 
     
-    $http.get("../apidb/kunjungan/list_data.php?id="+klinikCookie+"&status=2").then(function (response) {
+    $http.get("../apidb/kunjungan/list_data_riwayat.php?id="+klinikCookie+"&status=2").then(function (response) {
         $scope.myData = response.data.event;
         console.log(response.data.event);
        });
@@ -77,7 +154,9 @@ app.controller("RiwayatCtrl", function ($scope,$cookies,$interval,$http, $route,
         }).then(function (response) {
             // on success
             if(response.status==200){
-                $route.reload();    
+
+               //console.log(response.data);
+               $route.reload();    
             }
         });
     };  
@@ -119,6 +198,7 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
 
         if($scope.id){
 
+            if($scope.no_rekam_medis && $scope.name ){
             console.log("EDIT");
             console.log(" ID YANG DIEDIT "+ $scope.no_rekam_medis);
             console.log("ID "+$scope.id);
@@ -137,8 +217,20 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
                     alert("Data Pasien Telah Diubah");       
                 }
             });
+            
+            }else{
+
+                alert("Silahkan Isi Nama dan Nomor Rekam Medis");
+
+            }
+        
+
+
+
+
         }else{
             console.log("INPUT");
+            if($scope.no_rekam_medis && $scope.name ){
 
             $http({
                 
@@ -154,6 +246,12 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
                 }
                 //console.log(response);
             });
+
+            }else{
+            
+                alert("Silahkan Isi Nama dan Nomor Rekam Medis");
+            
+            }
 
         }
     };
@@ -228,7 +326,8 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
             // on success
             if(response.status==200){
                 $route.reload();
-                alert("Data Pasien Telah Dihapus");    
+                alert("Data Pasien Telah Dihapus");   
+                $route.reload(); 
             }
             // console.log("combro"+$scope.combro);
             // console.log(response);
@@ -240,19 +339,19 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
         $scope.shTable  = true;
         $scope.shForm   = false;
 				$scope.no_rekam_medis       =  "";
-				$scope.noreg    =  "";
-				$scope.tglreg   =  "";
-                $scope.name     =  "";
-				$scope.tptlahir =  "";
+				$scope.noreg                =  "";
+				$scope.tglreg               =  "";
+                $scope.name                 =  "";
+				$scope.tptlahir             =  "";
 				$scope.tgllahir             =  "";
-				$scope.kelamin          =  "";
-				$scope.agama            =  "";
-				$scope.alamat            =  "";
-				$scope.rtrw            = "";
+				$scope.kelamin              =  "";
+				$scope.agama                =  "";
+				$scope.alamat               =  "";
+				$scope.rtrw                 = "";
 				$scope.kelurahan            =  "";
 				$scope.kecamatan            =  "";
-				$scope.kabupaten             =  "";
-				$scope.propinsi            =  "";
+				$scope.kabupaten            =  "";
+				$scope.propinsi             =  "";
 				$scope.phone            =  "";
                 $scope.kewarganegaraan            =  "";
 				$scope.noktp            =  "";
@@ -685,14 +784,17 @@ app.controller("DataPasienCtrl", function ($scope,$interval,$http, $route,$timeo
         console.log($scope.dataPerawatanPasien);
     });
 
-    $http.get("../apidb/dokter/list_data.php").then(function (response) {
-        $scope.dataDokter = response.data.event;
-        console.log(response.data.event);
-    });
+     //fungsi untuk query dokter di klinik 
+     $scope.selectDokter = function(){
+        console.log("Klinik Telah Dipilih");
+        console.log("klinik"+$scope.klinik);
+        $scope.dataDokter ="";
 
-    $scope.selectDokter=function(){
-        console.log("Choose Doctor");
-    }
+        $http.get("../apidb/dokter/list_dokter_get.php?id="+$scope.klinik).then(function (response) {
+            $scope.dataDokter = response.data.event;
+            console.log(response.data.event);
+        });
+    };
 
     $scope.showKlinik = function() {
         $scope.klinikForm = true;
@@ -726,7 +828,6 @@ app.controller("DataPasienCtrl", function ($scope,$interval,$http, $route,$timeo
         console.log("ID ANTRIAN YANG DIDAPAT "+$scope.idAntrian );
 
         $http({
-            
              method: 'POST',
              url:  '../apidb/datapasien/submit_ke_klinik.php',
              data: {idKunjungan: $scope.id_kunjungan, idAntrian: $scope.idAntrian, idKlinik: $scope.klinik  , dokterPendamping: $scope.dokterpendamping, dokterPendamping: $scope.dokterpendamping, idDokter: $scope.dokterpraktisi, idPasien: $scope.id_pasien }
@@ -734,7 +835,8 @@ app.controller("DataPasienCtrl", function ($scope,$interval,$http, $route,$timeo
         }).then(function (response) {
             // on success
             if(response.status==200){
-                $route.reload();    
+               // console.log(response.data);
+               $route.reload();    
             }
         });
     };  
@@ -1581,13 +1683,13 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
             
         });
 
-
-
+      
         $http({
             method: 'POST',    
             url: '../apidb/kunjungan/get.php',
             data: {newId: $routeParams.idkunjungan}
         }).then(function (response) {
+
             
             // on success
             $scope.datakunjungan    = response.data;
@@ -1595,8 +1697,6 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
             $scope.iddokter         =  $scope.datakunjungan.id_dokter;
             $scope.idAntrian        =  $scope.datakunjungan.id_antrian;
 
-            console.log("Dokternya " + $scope.dokter);
-           
             
         }, function (response) {
             
@@ -1657,6 +1757,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
                 $scope.bahanLayanan     =  $scope.peopleLayanan.bahan;
 				$scope.harga_bahan      =  $scope.peopleLayanan.harga_bahan;
 				$scope.harga_koas       =  $scope.peopleLayanan.harga_koas;
+				$scope.harga_ppdgs       =  $scope.peopleLayanan.harga_ppdgs;
 				$scope.harga_drg        =  $scope.peopleLayanan.harga_drg;
 				$scope.harga_drgsp      =  $scope.peopleLayanan.harga_drgsp;
                 
@@ -1735,14 +1836,21 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
             }
 
             if($scope.pelaksana == '1'){
+                $scope.jasa  = $scope.harga_ppdgs;  
+
+            }
+
+
+            if($scope.pelaksana == '2'){
                 $scope.jasa  = $scope.harga_drg;  
 
             }
 
-            if($scope.pelaksana == '2'){
+            if($scope.pelaksana == '3'){
                 $scope.jasa  = $scope.harga_drgsp;
 
             }
+
 
         };
 
@@ -5598,6 +5706,10 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
         
         $scope.simpanData = function(){
 
+            if($scope.amnese, $scope.element_gigi_mulut, $scope.diagnosa, $scope.cicilan && ($scope.daftarLayanan.length != 0) && ($scope.daftarObat.length != 0) ){
+
+           
+
            
             var myJSON = JSON.stringify($scope.daftarKondisiGigi);
 
@@ -5693,16 +5805,6 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 
 
 
-            $http({
-                method: 'POST',
-                url:  '../apidb/klinik/submit_rekam_medis.php',
-                data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id, idDokter: $scope.iddokter, namaDokter: $scope.namadokter, amnese: $scope.amnese, diagnosa: $scope.diagnosa }
-            }).then(function (response) {
-                // on success
-                if(response.status==200){
-                      
-                }
-            });
            
 
             if($scope.daftarObat.length != 0){
@@ -5734,6 +5836,8 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
             }
 
 
+
+
             if($scope.daftarLayanan.length != 0){
                 for(var i = 0; i < $scope.daftarLayanan.length; i++){
                    // Memasukkan data obat ke database 
@@ -5750,16 +5854,45 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
                                 hargaLayanan  : harga_layanan, 
                                 hargaBahan    : harga_bahan }   
                     }).then(function (response) {
-                        // on success
-                        if(response.status==200){
-                            console.log("Finish Submitting Rekam Medis");  
-                           console.log(response);  
-                           $location.path("/home");
-  
-                        }
+                    
+
+                        console.log("RESPON DIBAWAH INI VVVVV");
+                        console.log(response.data);
                     });
                 }
-            }        
+            }else{
+                alert("Gagal Masukan Layanan");
+            }  
+            
+            
+
+
+            $http({
+                method: 'POST',
+                url:  '../apidb/klinik/submit_rekam_medis.php',
+                data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id, idDokter: $scope.iddokter, namaDokter: $scope.namadokter, amnese: $scope.amnese, diagnosa: $scope.diagnosa, cicilan : $scope.cicilan }
+            }).then(function (response) {
+                // on success
+                if(response.status==200){
+
+                    if($scope.daftarLayanan.length != 0){
+                    
+                          alert("Input Rekam Medis Sukses");
+                          $location.path("/home");
+                    }else{
+                        alert("Silahkan Input Layanan");
+                    }
+                }
+            });
+
+
+
+
+        }else{
+            alert("Silahkan Lengkapi Data Rekam Medis");
+        }
+
+
 
         };
 

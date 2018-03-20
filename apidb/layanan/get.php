@@ -22,6 +22,7 @@ if($result = mysqli_query($connect,$sql))
 	  $people['bahan']  = $row['bahan']; 
 	  $people['harga_bahan']  = $row['harga_bahan']; 	
 	  $people['harga_koas']  = $row['harga_koas']; 
+	  $people['harga_ppdgs']  = $row['harga_ppdgs']; 
 	  $people['harga_drg']  = $row['harga_drg']; 
 	  $people['harga_drgsp']  = $row['harga_drgsp']; 
   }

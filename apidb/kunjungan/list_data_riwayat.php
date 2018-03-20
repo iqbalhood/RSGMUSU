@@ -25,7 +25,7 @@ $db = new DB_CONNECT();
 								FROM tabel_kunjugan
 								INNER JOIN data_dokter ON tabel_kunjugan.id_dokter = data_dokter.id
 								INNER JOIN data_pasien ON tabel_kunjugan.id_pasien = data_pasien.no_rekam_medis
-								WHERE tabel_kunjugan.id_klinik = $id AND tabel_kunjugan.status = '1'
+								WHERE tabel_kunjugan.id_klinik = $id AND tabel_kunjugan.status = '2'
 								ORDER BY tabel_kunjugan.id_kunjungan") or die(mysql_error());
 		// cek
 		if (mysql_num_rows($result) > 0) {

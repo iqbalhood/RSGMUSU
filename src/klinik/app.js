@@ -28,6 +28,10 @@
             templateUrl : "dashboard.html",
             controller  : "HomeCtrl",
         })
+        .when("/antrian", {
+          templateUrl : "antrian.html",
+          controller  : "AntrianCtrl",
+      })
         .when("/login", {
             templateUrl : "login.html",
             controller  : "LoginCtrl",

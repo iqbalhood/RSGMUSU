@@ -8,11 +8,15 @@
                         <div class="col wrapper-lg w-lg bg-light dk r-r">
                             <h4 class="font-thin m-t-none m-b">Basic Info</h4>
                             <div class="">
-                                <a href="" class="thumb-sm m-r">
+                                <!-- <a href="" class="thumb-sm m-r">
                                     <img src="../img/a1.jpg" class="r r-2x" ng-if="kelamin == 1">
                                     <img src="../img/a3.jpg" class="r r-2x" ng-if="kelamin == 2">
-                                </a>
-                                <a href="">{{namaPasien}}</a>
+                                </a> -->
+                                <div class="clear">&nbsp;</div>
+                                <div class="">
+                                    <span class="pull-right text-info">{{namaPasien}}</span>
+                                    <span>Nama</span>
+                                </div>
                                 <div class="clear">&nbsp;</div>
                                 <div class="">
                                     <span class="pull-right text-info">{{phone}}</span>
@@ -25,9 +29,9 @@
                                 </div>
                                 <div class="clear">&nbsp;</div>                        
                                 <div class="">
-                                    <span class="pull-right text-info" ng-if="kelamin == 1">Laki - Laki</span>
-                                    <span class="pull-right text-info" ng-if="kelamin == 2">Perempuan</span>
-                                    <span>Jenis Kelamin</span>
+                                        <span class="pull-right text-info" ng-if="kelamin == 'L'">Laki - Laki</span>
+                                        <span class="pull-right text-info" ng-if="kelamin == 'P'">Perempuan</span>
+                                        <span>Jenis Kelamin</span>
                                 </div>
                                 <div class="clear">&nbsp;</div>                        
                                 <div class="">
@@ -173,76 +177,86 @@
 
     
              
-            <!-- #  Panel Pilih Instalasi dan Dokter Mahasiswa Pendamping -->
-            <div class="panel panel-default" ng-show="klinikForm">
-                <div class="panel-heading font-bold">
-                  Arahkan Ke Klinik
-                </div>
-                <div class="panel-body">
+             <!-- #  Panel Pilih Instalasi dan Dokter Mahasiswa Pendamping -->
+             <div class="panel panel-default" ng-show="klinikForm">
+                    <div class="panel-heading font-bold">
+                      Arahkan Ke Klinik
+                    </div>
+                    <div class="panel-body">
+        
+                <form class="form-horizontal">
     
-            <form class="form-horizontal">
-
-               
-
-                <input type="hidden" class="form-control" ng-model="id_pasien">
-
-                <div class="form-group">
-                        <label class="col-sm-2 control-label" >ID KUNJUNGAN</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" ng-model="id_kunjungan">
+                   
+    
+                    <input type="hidden" class="form-control" ng-model="id_pasien">
+                    <input type="hidden" class="form-control" ng-model="dokterpraktisi">
+                    <input type="hidden" class="form-control" ng-model="dokterpendamping">
+    
+                    <div class="form-group">
+                            <label class="col-sm-2 control-label" >ID KUNJUNGAN</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="id_kunjungan">
+                            </div>
+                    </div>
+                    
+                    
+                
+                      <div class="form-group">
+                          <label class="col-sm-2 control-label" >Klinik</label>
+                          <div class="col-sm-10">
+                            <select name="account" class="form-control m-b"  ng-model="klinik" ng-change="selectDokter()">
+                              <option value="1">IKGP/IKGM</option>
+                              <option value="2">PERIODONSIA</option>
+                              <option value="3">ILMU PENYAKIT MULUT</option>
+                              <option value="4">ILMU KEDOKTERAN GIGI ANAK</option>
+                              <option value="5">KONSERVASI</option>
+                              <option value="6">PROSTODONSIA</option>
+                              <option value="7">ILMU BEDAH MULUT</option>
+                              <option value="8">ORTODONSIA</option>
+                              <option value="9">RADIOLOGI KEDOKTERAN GIGI</option>
+                            </select>
+                          </div>
                         </div>
-                </div>
-                
-                
-            
-                  <div class="form-group">
-                      <label class="col-sm-2 control-label" >Klinik</label>
-                      <div class="col-sm-10">
-                        <select name="account" class="form-control m-b"  ng-model="klinik">
-                          <option value="1">IKGP/IKGM</option>
-                          <option value="2">PERIODONSIA</option>
-                          <option value="3">ILMU PENYAKIT MULUT</option>
-                          <option value="4">ILMU KEDOKTERAN GIGI ANAK</option>
-                          <option value="5">KONSERVASI</option>
-                          <option value="6">PROSTODONSIA</option>
-                          <option value="7">ILMU BEDAH MULUT</option>
-                          <option value="8">ORTODONSIA</option>
-                          <option value="9">RADIOLOGI KEDOKTERAN GIGI</option>
-                        </select>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" >Deposit</label>
+                            <div class="col-sm-10">
+                              Rp. 50.000,-
+                            </div>
+                         </div>
+    
+                        <!-- <div class="form-group">
+                                <label class="col-sm-2 control-label" >CO AS /  PPDGS</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" ng-model="dokterpendamping">                                
+                                </div>
+                        </div>
+    
+                        <div class="form-group">
+                                <label class="col-sm-2 control-label" >Dokter Penanggung Jawab Pasien</label>
+                                <div class="col-sm-10">
+                                  <select name="account" class="form-control m-b"  ng-model="dokterpraktisi">
+                                        <option ng-repeat="x in dataDokter" value="{{x.id}}">{{x.nama}}</option>
+                                  </select>
+                                </div>
+                        </div> -->
+        
+                      <div class="line line-dashed b-b line-lg pull-in"></div>
+                      <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-2">
+                          <button type="submit" ng-click="cancelFormKlinik()" class="btn btn-default">Cancel</button>
+                          <button ng-click="submitForm()" class="btn btn-primary">Submit</button>
+                        </div>
                       </div>
+        
+                </form>
+        
                     </div>
-
-                    <div class="form-group">
-                            <label class="col-sm-2 control-label" >CO AS /  PPDGS</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" ng-model="dokterpendamping">                                
-                            </div>
-                    </div>
-
-                    <div class="form-group">
-                            <label class="col-sm-2 control-label" >Dokter Penanggung Jawab Pasien</label>
-                            <div class="col-sm-10">
-                              <select name="account" class="form-control m-b"  ng-model="dokterpraktisi">
-                                    <option ng-repeat="x in dataDokter" value="{{x.id}}">{{x.nama}}</option>
-                              </select>
-                            </div>
-                    </div>
-    
-                  <div class="line line-dashed b-b line-lg pull-in"></div>
-                  <div class="form-group">
-                    <div class="col-sm-4 col-sm-offset-2">
-                      <button type="submit" ng-click="cancelFormKlinik()" class="btn btn-default">Cancel</button>
-                      <button ng-click="submitForm()" class="btn btn-primary">Submit</button>
-                    </div>
-                  </div>
-    
-            </form>
-    
                 </div>
-            </div>
-
-            <!-- #  Panel Pilih Instalasi dan Dokter Mahasiswa Pendamping -->
     
+                <!-- #  Panel Pilih Instalasi dan Dokter Mahasiswa Pendamping -->
+        
     
           
      

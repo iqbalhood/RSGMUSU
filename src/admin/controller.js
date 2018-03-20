@@ -43,6 +43,7 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
         
 
         if($scope.id){
+            if($scope.no_rekam_medis && $scope.name ){
 
             console.log("EDIT");
             console.log(" ID YANG DIEDIT "+ $scope.no_rekam_medis);
@@ -62,8 +63,15 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
                     alert("Data Pasien Telah Diubah");       
                 }
             });
+            }else{
+                alert("Silahkan Isi Nama dan Nomor Rekam Medis");
+            }
+
+
         }else{
             console.log("INPUT");
+
+            if($scope.no_rekam_medis && $scope.name ){
 
             $http({
                 
@@ -79,6 +87,9 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
                 }
                 //console.log(response);
             });
+            }else{
+                alert("Silahkan Isi Nama dan Nomor Rekam Medis");
+            }
 
         }
     };
@@ -154,6 +165,7 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
             if(response.status==200){
                 $route.reload();
                 alert("Data Pasien Telah Dihapus");    
+                $route.reload();
             }
             // console.log("combro"+$scope.combro);
             // console.log(response);
@@ -794,14 +806,15 @@ app.controller("LayananCtrl", function ($scope,$interval,$http, $route,$timeout,
             }).then(function (response) {
                 console.log(response);
                 // on success
-                $scope.people           = response.data;
-                $scope.id               =  $scope.people.id;
-                $scope.name             =  $scope.people.layanan;            
-                $scope.bahan          =  $scope.people.bahan;
+                $scope.people              = response.data;
+                $scope.id                  =  $scope.people.id;
+                $scope.name                =  $scope.people.layanan;            
+                $scope.bahan               =  $scope.people.bahan;
 				$scope.harga_bahan         =  $scope.people.harga_bahan;
 				$scope.harga_koas          =  $scope.people.harga_koas;
-				$scope.harga_drg          =  $scope.people.harga_drg;
-				$scope.harga_drgsp          =  $scope.people.harga_drgsp;
+				$scope.harga_ppdgs         =  $scope.people.harga_ppdgs;
+				$scope.harga_drg           =  $scope.people.harga_drg;
+				$scope.harga_drgsp         =  $scope.people.harga_drgsp;
                 
             }, function (response) {
                 
@@ -852,7 +865,7 @@ app.controller("LayananCtrl", function ($scope,$interval,$http, $route,$timeout,
                 
                  method: 'POST',
                  url:  '../apidb/layanan/postedit.php',
-                 data: {newId: $scope.id, newName: $scope.name,newBahan: $scope.bahan, newHargabahan: $scope.harga_bahan, newHargakoas: $scope.harga_koas, newHargadrg: $scope.harga_drg,newHargadrgsp: $scope.harga_drgsp}
+                 data: {newId: $scope.id, newName: $scope.name,newBahan: $scope.bahan, newHargabahan: $scope.harga_bahan, newHargakoas: $scope.harga_koas,newHargappdgs: $scope.harga_ppdgs, newHargadrg: $scope.harga_drg,newHargadrgsp: $scope.harga_drgsp}
                  
             }).then(function (response) {
 
@@ -867,7 +880,7 @@ app.controller("LayananCtrl", function ($scope,$interval,$http, $route,$timeout,
                 
                  method: 'POST',
                  url:  '../apidb/layanan/post.php?id='+$routeParams.id,
-                 data: {newName: $scope.name, newBahan: $scope.bahan, newHargabahan: $scope.harga_bahan, newHargakoas: $scope.harga_koas, newHargadrg: $scope.harga_drg, newHargadrgsp: $scope.harga_drgsp}
+                 data: {newName: $scope.name, newBahan: $scope.bahan, newHargabahan: $scope.harga_bahan, newHargakoas: $scope.harga_koas,newHargappdgs: $scope.harga_ppdgs, newHargadrg: $scope.harga_drg, newHargadrgsp: $scope.harga_drgsp}
                  
             }).then(function (response) {
                 // on success

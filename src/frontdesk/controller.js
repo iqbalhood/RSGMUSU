@@ -645,7 +645,7 @@ app.controller("ObatCtrl", function ($scope,$interval,$http, $route,$timeout, $r
  
  });
 
-app.controller("DataPasienCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
+app.controller("DataPasienCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window, $location) {
   
         $scope.klinikForm = false;
         $scope.tablePelayanan = false;
@@ -696,17 +696,17 @@ app.controller("DataPasienCtrl", function ($scope,$interval,$http, $route,$timeo
             console.log($scope.dataPerawatanPasien);
         });
 
-        //fungsi untuk query dokter di klinik 
-        $scope.selectDokter = function(){
-            console.log("Klinik Telah Dipilih");
-            console.log("klinik"+$scope.klinik);
-            $scope.dataDokter ="";
+        // //fungsi untuk query dokter di klinik 
+        // $scope.selectDokter = function(){
+        //     console.log("Klinik Telah Dipilih");
+        //     console.log("klinik"+$scope.klinik);
+        //     $scope.dataDokter ="";
 
-            $http.get("../apidb/dokter/list_dokter_get.php?id="+$scope.klinik).then(function (response) {
-                $scope.dataDokter = response.data.event;
-                console.log(response.data.event);
-            });
-        };
+        //     $http.get("../apidb/dokter/list_dokter_get.php?id="+$scope.klinik).then(function (response) {
+        //         $scope.dataDokter = response.data.event;
+        //         console.log(response.data.event);
+        //     });
+        // };
 
        
 
@@ -751,7 +751,10 @@ app.controller("DataPasienCtrl", function ($scope,$interval,$http, $route,$timeo
             }).then(function (response) {
                 // on success
                 if(response.status==200){
-                    $route.reload();    
+                    ///console.log(response.data);
+                    
+                    alert("Pasien Telah Diarahkan Ke Klinik");
+                    $location.path("/home");
                 }
             });
         };       

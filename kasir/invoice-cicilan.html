@@ -46,7 +46,7 @@
       </div>
       <div class="col-xs-6">
           <p class="m-t m-b">Invoice date: <strong>{{ idKunjungan * 1 |  date:'dd-MMMM-yyyy'}}</strong><br>
-            Invoice status: <span class="label bg-danger">Belum Bayar</span><br>
+            Invoice status: <span class="label bg-warning">Program Cicilan</span><br>
             Invoice ID: <strong>#{{idKunjungan}}</strong>
           </p>
       </div>
@@ -90,22 +90,112 @@
                 <td colspan="3" class="text-right"><strong>Subtotal</strong></td>
                 <td>{{ getTotal | currency:'Rp':0  }}</td>
               </tr>
-              
           <tr>
-                <td colspan="3" class="text-right no-border"><strong>Total</strong></td>
-                <td><strong>{{ (getTotal * 1 + getTotalLayanan * 1) | currency:'Rp':0  }}</strong></td>
-          </tr> 
-          <tr>
-            <td colspan="3" class="text-right no-border"><strong>Deposit</strong></td>
-            <td>-{{ 50000 | currency:'Rp':0  }}</td>
-          </tr>   
-          <tr>
-            <td colspan="3" class="text-right no-border"><strong> Grand Total</strong></td>
-            <td><strong>{{ ((getTotal * 1 + getTotalLayanan * 1) - 50000) | currency:'Rp':0  }}</strong></td>
+            <td colspan="3" class="text-right no-border"><strong>Total</strong></td>
+            <td><strong>{{ (getTotal * 1 + getTotalLayanan * 1) | currency:'Rp':0  }}</strong></td>
           </tr>
+          <tr>
+            <td colspan="3" class="text-right no-border"><strong>Total</strong></td>
+            <td><strong>- {{ 50000 | currency:'Rp':0  }}</strong></td>
+          </tr>
+          <tr>
+            <td colspan="3" class="text-right no-border"><strong>Grand Total </strong></td>
+            <td><strong>{{ (getTotal * 1 + getTotalLayanan * 1) - 50000 | currency:'Rp':0  }}</strong></td>
+          </tr>
+          
         </tbody>
-      </table>              
+
+        
+      </table>
+      
+     
     </div>
+
+
+
+    <table class="table table-striped bg-white b-a">
+        <thead>
+          <tr>
+            <th style="width: 60px">No.</th>
+            <th>Tanggal Pembayaran</th>
+            <th style="width: 240px"><center>Keterangan</center></th>
+            <th style="width: 140px">Biaya</th>
+          </tr>
+        </thead>
+        <tr ng-repeat="z in myDataCicilan">
+            <td>{{$index + 1}}</td>
+            <td>{{z.tanggal}}</td>
+            <td>{{z.keterangan}}</td>
+            <td>{{z.biaya | currency:'Rp':0 }}</td>
+        </tr>
+        <tr>
+            <td colspan="3" class="text-right no-border"><strong>Sisa Pembayaran </strong></td>
+            <td><strong>{{ (getTotal * 1 + getTotalLayanan * 1) - (getTotalCicilan+50000) | currency:'Rp':0  }}</strong></td>
+          </tr>
+        
+    </table>    
+
+    <div class="wrapper-md">
+        <div class="col-sm-12 ">
+          <button type="submit" class="btn btn-black" ng-click="showFormCicilan()">Bayar Cicilan</button>
+        </div>
+      </div>
+
+
+    <div class="line line-dashed b-b line-lg pull-in" style="margin-top:30px;"></div>
+
+   
+
+   
+
+      <!-- #  Panel Pilih Instalasi dan Dokter Mahasiswa Pendamping -->
+      <!-- <div class="panel panel-default" ng-show="klinikForm"> -->
+      <div class="panel panel-default" ng-show="formCicilan" >
+          <div class="panel-heading font-bold">
+            Konfirmasi Bayar Cicilan
+          </div>
+          <div class="panel-body">
+
+      <form class="form-horizontal">
+
+          <div class="form-group">
+              <label class="col-sm-2 control-label" >Jumlah Pembayaran </label>
+              <div class="col-sm-10">
+                  <input type="text" class="form-control" ng-model="pembayaran">
+              </div>
+         </div>
+
+          <div class="form-group">
+                  <label class="col-sm-2 control-label" >Keterangan </label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" ng-model="keterangan">
+                  </div>
+          </div>
+
+          <div class="form-group">
+              <label class="col-sm-2 control-label" >Tanggal Pembayaran</label>
+              <div class="col-sm-4">
+                  <datepicker date-format="yyyy-MM-dd"> <input type="text" class="form-control"  placeholder="Ke Tanggal" ng-model="tglpembayaran"></datepicker>
+              </div>
+          </div>
+          
+          
+
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div class="form-group">
+              <div class="col-sm-4 col-sm-offset-2">
+                <button type="submit" ng-click="cancelFormCicilan()" class="btn btn-default">Cancel</button>
+                <button ng-click="submitCicilan()" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+
+      </form>
+
+          </div>
+      </div>
+
+      <!-- #  Panel Pilih Instalasi dan Dokter Mahasiswa Pendamping -->
+
 
 
         <div class="line line-dashed b-b line-lg pull-in"></div>
@@ -114,12 +204,12 @@
               </div>
           <div class="col-sm-4 ">
             <a href="#!/home"><button type="submit" class="btn btn-black">Back</button></a>
-            <button type="submit" class="btn btn-success" ng-click="submitInvoice()">Complete Order ?</button>
+            <button type="submit" class="btn btn-success" ng-click="submitInvoice()">Lunas</button>
           </div>
         </div>
 
         
-
+        <div class="line line-dashed b-b line-lg pull-in" style="margin-top:80px; margin-bottom:300px;"></div>
 
   
 

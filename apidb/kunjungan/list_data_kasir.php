@@ -5,9 +5,6 @@
 
 $response = array();
 
-$id = $_GET['id'];
-$status = $_GET['status'];
-
 // include db connect class
 require_once '../../config/db_connect.php';
 
@@ -25,15 +22,19 @@ $db = new DB_CONNECT();
 								FROM tabel_kunjugan
 								INNER JOIN data_dokter ON tabel_kunjugan.id_dokter = data_dokter.id
 								INNER JOIN data_pasien ON tabel_kunjugan.id_pasien = data_pasien.no_rekam_medis
-								WHERE tabel_kunjugan.id_klinik = $id AND tabel_kunjugan.status = '1'
-								ORDER BY tabel_kunjugan.id_kunjungan") or die(mysql_error());
+                                WHERE tabel_kunjugan.status_pembayaran = '1' ORDER BY tabel_kunjugan.id_kunjungan ") or die(mysql_error());
 		// cek
 		if (mysql_num_rows($result) > 0) {
 		    // looping hasil
 		    // event node
-		    $response["event"] = array();
+			$response["event"] = array();
+			
+			
 		    
 	  while ($row = mysql_fetch_array($result)) {
+
+		
+
 			$event 							        = array();			
 			$event["id_kunjungan"] 					= $row["id_kunjungan"];
 			$event["id_klinik"] 					= $row["id_klinik"];
@@ -42,8 +43,12 @@ $db = new DB_CONNECT();
 			$event["id_pasien"] 					= $row["id_pasien"];
 			$event["dokter"] 						= $row["nama_dokter"];
 			$event["pasien"] 						= $row["nama_pasien"];
+
+			$k = bill_is_exist($row["id_kunjungan"]);
+			if($k>0){
+				array_push($response["event"], $event);
+			}
 			
-			array_push($response["event"], $event);
 		 }
 		    // sukses
 		    $response["success"] = 1;
@@ -56,6 +61,16 @@ $db = new DB_CONNECT();
 
 		    echo json_encode($response);
 		}
+
+
+	function bill_is_exist($id_kunjungan){
+		$exist = 0;
+		$sql = "SELECT * FROM `tabel_layanan_kunjungan` WHERE `id_kunjungan` = '$id_kunjungan'";
+		if (mysql_num_rows($result) > 0) {
+			$exist = 1;
+		}
+		return $exist;
+	}
 
 
 ?>

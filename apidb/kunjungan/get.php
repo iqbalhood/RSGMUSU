@@ -20,7 +20,7 @@ $sql = "SELECT 	tabel_kunjugan.id_kunjungan,
                 data_pasien.nama AS nama_pasien
                 FROM tabel_kunjugan
                 INNER JOIN data_dokter ON tabel_kunjugan.id_dokter = data_dokter.id
-                INNER JOIN data_pasien ON tabel_kunjugan.id_pasien = data_pasien.id
+                INNER JOIN data_pasien ON tabel_kunjugan.id_pasien = data_pasien.no_rekam_medis
                 WHERE tabel_kunjugan.id_kunjungan = $newId
                 ORDER BY tabel_kunjugan.id_kunjungan";
 

@@ -14,9 +14,8 @@ if(isset($postdata) && !empty($postdata))
     $newKlinik = preg_replace('/[^0-9 ]/','',$request->newKlinik);
     $newKelamin = preg_replace('/[^0-9 ]/','',$request->newKelamin);
     
-    if($newName  == '' ||  $newKlinik == ''  ) return;
 
-    $sql = "UPDATE `data_dokter` SET `nama` = '$newName', `jenis_kelamin` = '$newKelamin', `nomor_hp` = '$newPhone' WHERE `data_dokter`.`id` = $newId;";
+    $sql = "UPDATE `data_dokter` SET `nama` = '$newName', `jenis_kelamin` = '$newKelamin', `nomor_hp` = '$newPhone' , `klinik` = '$newKlinik' WHERE `data_dokter`.`id` = $newId;";
 
     mysqli_query($connect,$sql);
 

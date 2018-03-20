@@ -20,12 +20,10 @@ $db = new DB_CONNECT();
 									tabel_kunjugan.dokter_pendamping,
 									tabel_kunjugan.id_dokter,
 									tabel_kunjugan.id_pasien,
-									data_dokter.nama AS nama_dokter,
 									data_pasien.nama AS nama_pasien
 								FROM tabel_kunjugan
-								INNER JOIN data_dokter ON tabel_kunjugan.id_dokter = data_dokter.id
 								INNER JOIN data_pasien ON tabel_kunjugan.id_pasien = data_pasien.no_rekam_medis
-								WHERE tabel_kunjugan.id_klinik = $id AND tabel_kunjugan.status = '1'
+								WHERE tabel_kunjugan.id_klinik = $id AND tabel_kunjugan.status = '0'
 								ORDER BY tabel_kunjugan.id_kunjungan") or die(mysql_error());
 		// cek
 		if (mysql_num_rows($result) > 0) {
@@ -40,7 +38,6 @@ $db = new DB_CONNECT();
 			$event["dokter_pendamping"] 			= $row["dokter_pendamping"];
 			$event["id_dokter"] 					= $row["id_dokter"];
 			$event["id_pasien"] 					= $row["id_pasien"];
-			$event["dokter"] 						= $row["nama_dokter"];
 			$event["pasien"] 						= $row["nama_pasien"];
 			
 			array_push($response["event"], $event);
