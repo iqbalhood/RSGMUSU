@@ -41,7 +41,7 @@ app.controller("PasienCtrl", function ($scope,$interval,$http, $route,$timeout, 
                 
                  method: 'POST',
                  url:  '../apidb/pasien/postedit.php',
-                 data: {newId: $scope.no_rekam_medis,noRekamMedis: $scope.no_rekam_medis, noRegistrasi: $scope.noreg, tglRegistrasi: $scope.tglreg , newName: $scope.name, tempatLahir: $scope.tptlahir, tanggalLahir: $scope.tgllahir , newKelamin: $scope.kelamin, agama: $scope.agama , alamat: $scope.alamat, rtrw: $scope.rtrw , kelurahan: $scope.kelurahan, kecamatan: $scope.kecamatan, kabupaten: $scope.kabupaten, propinsi: $scope.propinsi, newPhone: $scope.phone, kewarganegaraan: $scope.kewarganegaraan, noKtp: $scope.noktp, pendidikan: $scope.pendidikan , pekerjaan: $scope.pekerjaan, statusPerkawinan: $scope.status_perkawinan , tglPertamamasuk: $scope.tgl_pertama_masuk , caraBayar: $scope.cara_bayar , tujuanKunjunganpertama: $scope.tujuan_kunjungan_pertama, alergi: $scope.alergi , catatan: $scope.catatan}
+                 data: {newId: $scope.id,noRekamMedis: $scope.no_rekam_medis, noRegistrasi: $scope.noreg, tglRegistrasi: $scope.tglreg , newName: $scope.name, tempatLahir: $scope.tptlahir, tanggalLahir: $scope.tgllahir , newKelamin: $scope.kelamin, agama: $scope.agama , alamat: $scope.alamat, rtrw: $scope.rtrw , kelurahan: $scope.kelurahan, kecamatan: $scope.kecamatan, kabupaten: $scope.kabupaten, propinsi: $scope.propinsi, newPhone: $scope.phone, kewarganegaraan: $scope.kewarganegaraan, noKtp: $scope.noktp, pendidikan: $scope.pendidikan , pekerjaan: $scope.pekerjaan, statusPerkawinan: $scope.status_perkawinan , tglPertamamasuk: $scope.tgl_pertama_masuk , caraBayar: $scope.cara_bayar , tujuanKunjunganpertama: $scope.tujuan_kunjungan_pertama, alergi: $scope.alergi , catatan: $scope.catatan}
                  
             }).then(function (response) {
 
@@ -231,7 +231,7 @@ app.controller("KlinikCtrl", function ($scope,$interval,$http, $route,$timeout, 
     $scope.shTable  = true;
     $scope.shForm   = false;
       
-   $http.get("../apidb/kunjungan/list_data.php?id="+$routeParams.id+"&status=1").then(function (response) {
+   $http.get("../apidb/kunjungan/list_data_kunjungan_dashboard.php?id="+$routeParams.id+"&status=0").then(function (response) {
     $scope.myData = response.data.event;
     console.log(response.data.event);
    });
@@ -239,7 +239,19 @@ app.controller("KlinikCtrl", function ($scope,$interval,$http, $route,$timeout, 
    console.log("Controller Works");
 
 
-
+   setTimeout(function(){
+    $('#mytablePasien').dataTable({
+        "bPaginate": true,
+        "bLengthChange": true,
+        "aLengthMenu": [ 30, 50, 100 ],
+        "bFilter": true,
+        "bSort": true,
+        "bInfo": true,
+        "bRetrieve": true,
+        "bAutoWidth": false,
+        "sEmptyTable": "",
+    });
+    }, 4000);
    
  
 });
@@ -742,11 +754,19 @@ app.controller("DataPasienCtrl", function ($scope,$interval,$http, $route,$timeo
 
             console.log("ID ANTRIAN YANG DIDAPAT "+$scope.idAntrian );
 
-            $http({
-                
+            console.log("REKAM MEDIS"+$scope.rekam_medis);
+            if($scope.rekam_medis == true){
+
+                $scope.bRekamMedis = '1';
+
+            }else{
+                $scope.bRekamMedis = '0';
+            }
+
+            $http({    
                  method: 'POST',
                  url:  '../apidb/datapasien/submit_ke_klinik.php',
-                 data: {idKunjungan: $scope.id_kunjungan, idAntrian: $scope.idAntrian, idKlinik: $scope.klinik  , dokterPendamping: $scope.dokterpendamping, dokterPendamping: $scope.dokterpendamping, idDokter: $scope.dokterpraktisi, idPasien: $scope.id_pasien }
+                 data: {newRekamMedis:$scope.bRekamMedis ,idKunjungan: $scope.id_kunjungan, idAntrian: $scope.idAntrian, idKlinik: $scope.klinik  , dokterPendamping: $scope.dokterpendamping, dokterPendamping: $scope.dokterpendamping, idDokter: $scope.dokterpraktisi, idPasien: $scope.id_pasien }
                  
             }).then(function (response) {
                 // on success

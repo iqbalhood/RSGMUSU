@@ -17,7 +17,7 @@
               <th  style="width:10%">No Rekam Medis</th>
               <th  style="width:15%">Nama Pasien</th>
               <th  style="width:2%">Jenis Kelamin</th>            
-              <th  style="width:2%">Umur</th>            
+                      
               <th  style="width:15%">Alamat</th>            
               <th  style="width:20%">Aksi</th>
             </tr>
@@ -29,7 +29,7 @@
                   <td>{{ x.nama }}</td>
                   <td>{{ x.jenis_kelamin }}</td>
                   <!-- <td><div ng-if="x.jenis_kelamin == L">Laki-Laki</div> <div ng-if="x.jenis_kelamin == P">  Perempuan</div></td> -->
-                  <td>{{ x.umur }}</td>
+              
                   <td>{{ x.alamat }}</td>
                   <td> <a href="#!/data-pasien/{{x.id}}"><button class='btn btn-success'>View</button></a> <button class='btn btn-primary' ng-click="editForm(x.id)" >Edit</button>  <button class='btn btn-warning' ng-click="deleteForm(x.id)" >Delete</button></td>
                 </tr>
@@ -50,8 +50,6 @@
   <form class="form-horizontal">
       <input type="hidden" class="form-control" ng-model="id">
       
-    
-  
   <div class="form-group">
             <label class="col-sm-2 control-label" for="input-id-1">Nomor Rekam Medis</label>
             <div class="col-sm-10">
@@ -66,9 +64,6 @@
         </div>
   </div>      
 
-
-  
-  
   <div class="form-group">
             <label class="col-sm-2 control-label" for="input-id-1">Nama</label>
             <div class="col-sm-10">
@@ -170,12 +165,7 @@
             </div>
         </div>
   
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="input-id-1">Nomor KTP</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" ng-model="noktp">
-            </div>
-        </div>
+      
   
   <div class="form-group">
             <label class="col-sm-2 control-label" for="input-id-1">Pendidikan</label>

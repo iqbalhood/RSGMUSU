@@ -73,6 +73,10 @@
           templateUrl : "perawatan.html",
           controller  : "PerawatanCtrl",
         })
+        .when("/edit-rm/:id/:idkunjungan", {
+          templateUrl : "edit-rekam-medis.html",
+          controller  : "EditRekamMedisCtrl",
+        })
         .when("/pradiologi/:id/:idkunjungan", {
           templateUrl : "perawatan-radiologi.html",
           controller  : "PerawatanRadiologiCtrl",

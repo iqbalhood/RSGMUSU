@@ -44,11 +44,11 @@ $db = new DB_CONNECT();
 			$event["dokter"] 						= $row["nama_dokter"];
 			$event["pasien"] 						= $row["nama_pasien"];
 
-			$k = bill_is_exist($row["id_kunjungan"]);
-			if($k>0){
-				array_push($response["event"], $event);
-			}
-			
+			//$k = bill_is_exist($row["id_kunjungan"]);
+			//if($k>0){
+			//	array_push($response["event"], $event);
+			//}
+			array_push($response["event"], $event);
 		 }
 		    // sukses
 		    $response["success"] = 1;

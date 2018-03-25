@@ -8,14 +8,14 @@
               <br>
             </div>
           <div class="table-responsive" >
-              <table ui-jq="dataTable" class="table  table-striped b-t b-b" >
+              <table ui-jq="dataTable" class="table  table-striped b-t b-b" id="mytablePasien">
               <thead>
                 <tr>
                   <th  style="width:5%">No </th>
                   <th  style="width:10%">ID Kunjungan</th>
                   <th  style="width:15%">Nama Pasien</th>
-                  <th  style="width:15%">Nama Pendamping</th>            
-                  <th  style="width:15%">Nama Dokter</th>          
+                  <!-- <th  style="width:15%">Nama Pendamping</th>            
+                  <th  style="width:15%">Nama Dokter</th>           -->
                   <th  style="width:25%">Aksi</th>
                 </tr>
               </thead>
@@ -24,8 +24,8 @@
                       <td>{{ $index + 1 }}</td>                      
                       <td>{{ x.id_kunjungan }}</td>
                       <td>{{ x.pasien }}</td>
-                      <td>{{ x.dokter_pendamping }}</td>
-                      <td>{{ x.dokter }}</td>
+                      <!-- <td>{{ x.dokter_pendamping }}</td>
+                      <td>{{ x.dokter }}</td> -->
                       <td> <a href="#!/data-pasien/{{x.id_pasien}}"><button class='btn btn-success'>Rekam Medis</button></a>  </td>
                     </tr>
               </tbody>

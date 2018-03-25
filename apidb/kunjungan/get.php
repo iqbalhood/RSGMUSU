@@ -16,6 +16,7 @@ $sql = "SELECT 	tabel_kunjugan.id_kunjungan,
                 tabel_kunjugan.dokter_pendamping,
                 tabel_kunjugan.id_dokter,
                 tabel_kunjugan.id_pasien,
+                tabel_kunjugan.biaya_rekam_medis,
                 data_dokter.nama AS nama_dokter,
                 data_pasien.nama AS nama_pasien
                 FROM tabel_kunjugan
@@ -37,6 +38,7 @@ if($result = mysqli_query($connect,$sql))
     $people["id_pasien"] 					= $row["id_pasien"];
     $people["dokter"] 						= $row["nama_dokter"];
     $people["pasien"] 						= $row["nama_pasien"];	  
+    $people["biaya_rekam_medis"] 	= $row["biaya_rekam_medis"];	  
   }
 }
 

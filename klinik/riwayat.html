@@ -39,7 +39,7 @@
               <td>{{ x.dokter_pendamping }}</td>
               <td>{{ x.dokter }}</td>
               <!-- <td> <button class="btn m-b-xs btn-sm btn-danger btn-addon" ng-click="showKlinik(x)"><i class="fa  fa-external-link-square"></i>Arahkan Ke Klinik Lain</button>  </td> -->
-              <td> <button class="btn m-b-xs btn-sm btn-danger btn-addon"><i class="fa  fa-external-link-square"></i>Edit Rekam Medis</button>  </td>
+              <td> <a href="#!/edit-rm/{{x.id_pasien}}/{{x.id_kunjungan}}"><button class="btn m-b-xs btn-sm btn-danger btn-addon"><i class="fa  fa-external-link-square"></i>Edit Rekam Medis</button></a>  </td>
             </tr>
       </tbody>
     </table>

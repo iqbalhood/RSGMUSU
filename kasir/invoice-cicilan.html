@@ -1,5 +1,5 @@
 <div class="bg-light lter b-b wrapper-md hidden-print">
-    <a href class="btn btn-sm btn-info pull-right" onClick="window.print();">Print</a>
+    <a href="{{urlPrint}}" class="btn btn-sm btn-info pull-right" >Print</a> 
     <h1 class="m-n font-thin h3">Invoice</h1>
   </div>
   <div class="wrapper-md" style="padding-bottom:100px;">
@@ -95,7 +95,11 @@
             <td><strong>{{ (getTotal * 1 + getTotalLayanan * 1) | currency:'Rp':0  }}</strong></td>
           </tr>
           <tr>
-            <td colspan="3" class="text-right no-border"><strong>Total</strong></td>
+            <td colspan="3" class="text-right no-border"><strong>Biaya Rekam Medis</strong></td>
+            <td>- {{ rekam_medis_pay | currency:'Rp':0  }}</td>
+          </tr>
+          <tr>
+            <td colspan="3" class="text-right no-border"><strong>Deposit</strong></td>
             <td><strong>- {{ 50000 | currency:'Rp':0  }}</strong></td>
           </tr>
           <tr>

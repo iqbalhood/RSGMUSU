@@ -50,14 +50,6 @@ app.controller("HomeCtrl", function ($scope,$cookies,$interval,$http, $route,$ti
 
 
     };
-
-
-
-
-
-
-
-
        setTimeout(function(){
         $('#mytablePasien').dataTable({
             "bPaginate": true,
@@ -5706,7 +5698,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
         
         $scope.simpanData = function(){
 
-            if($scope.amnese, $scope.element_gigi_mulut, $scope.diagnosa, $scope.cicilan && ($scope.daftarLayanan.length != 0) && ($scope.daftarObat.length != 0) ){
+            if($scope.amnese, $scope.element_gigi_mulut, $scope.diagnosa, $scope.cicilan && ($scope.daftarLayanan.length != 0) ){
 
            
 
@@ -5928,6 +5920,10 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 });
 
 
+
+app.controller("EditRekamMedisCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
+
+});
 
 app.controller("SearchCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
     $scope.tab = 1;

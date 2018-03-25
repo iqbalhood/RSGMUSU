@@ -1,0 +1,811 @@
+        
+         
+            <div class="bg-light lter b-b wrapper-md">
+                <h1 class="m-n font-thin h3"> Data Rekam Medis</h1>
+            </div>
+            <div class="panel hbox hbox-auto-xs no-border">
+                <!-- # Panel Kiri -->
+                <div class="col wrapper-lg w-lg bg-light dk r-r">
+                    <h4 class="font-thin m-t-none m-b">Basic Info</h4>
+                    <div class="">
+                            <!-- <a href="" class="thumb-sm m-r">
+                                <img src="../img/a1.jpg" class="r r-2x" ng-if="kelamin == 1">
+                                <img src="../img/a3.jpg" class="r r-2x" ng-if="kelamin == 2">
+                            </a> -->
+                            <div class="clear">&nbsp;</div>
+                            <div class="">
+                                <span class="pull-right text-info">{{namaPasien}}</span>
+                                <span>Nama</span>
+                            </div>
+                            <div class="clear">&nbsp;</div>
+                            <div class="">
+                                <span class="pull-right text-info">{{phone}}</span>
+                                <span>Nomor Telepon</span>
+                            </div>
+                            <div class="clear">&nbsp;</div>  
+                            <div class="">
+                                <span class="pull-right text-info">{{umur}} Tahun</span>
+                                <span>Umur</span>
+                            </div>
+                            <div class="clear">&nbsp;</div>                        
+                            <div class="">
+                                    <span class="pull-right text-info" ng-if="kelamin == 'L'">Laki - Laki</span>
+                                    <span class="pull-right text-info" ng-if="kelamin == 'P'">Perempuan</span>
+                                    <span>Jenis Kelamin</span>
+                            </div>
+                            <div class="clear">&nbsp;</div>                        
+                            <div class="">
+                                <span class="pull-right text-info">{{tinggi_badan}} cm</span>
+                                <span>Tinggi Badan</span>
+                            </div>
+                            <div class="clear">&nbsp;</div>                        
+                            <div class="">
+                                <span class="pull-right text-info">{{berat_badan}} Kg</span>
+                                <span>Berat Badan</span>
+                            </div>
+                            <div class="clear">&nbsp;</div>                        
+                            <div class="">
+                                <span class="pull-right text-info">{{golongan_darah}}</span>
+                                <span>Golongan Darah</span>
+                            </div>
+    
+                     
+                    </div>
+                    <div class="clear">&nbsp;</div>  
+                    <div class="clear">&nbsp;</div>  
+                    <!-- <button class="btn m-b-xs btn-sm btn-info btn-addon"><i class="fa fa-trash-o"></i>Info</button>
+                    <button class="btn m-b-xs btn-sm btn-info btn-addon"><i class="fa fa-trash-o"></i>Info</button> -->
+                    <div class="m-b-sm">
+                        <div class="btn-group btn-group-justified">
+                        <a href="#!/data-pasien/{{x.id_pasien}}" class="btn btn-danger">Tutup Dialog</a>
+                        </div>
+                      </div>
+                </div>
+                <!-- # End Panel Kiri -->
+    
+                <!-- # Panel Kanan -->     
+                <div class="col wrapper">
+                        <div class="panel-body">
+                        <form class="form-horizontal" method="get">
+                          <div class="form-group">
+                            <label class="col-sm-12 panel-heading"><h3>Dokter Penanggung Jawab</h3></label>
+                            <div class="col-sm-12">
+                               {{namadokter}}                    
+                            </div>  
+                            <br />
+                            <div class="clear">&nbsp;</div>
+                            <div class="clear">&nbsp;</div>
+
+                           
+
+                            <div class="clear">&nbsp;</div>
+
+                            <label class="col-sm-12 panel-heading"><h3>Anamnese</h3></label>
+                            <div class="col-sm-12">
+                                <textarea class="form-control" ng-model="amnese"></textarea>                      
+                            </div>
+
+                            <label class="col-sm-12 panel-heading"><h3>Riwayat Penyakit</h3></label>
+                           
+
+                            <div class="col-sm-12">
+                                    <div class="col-sm-4">
+                                        <div class="input-group m-b">
+                                            <span class="input-group-addon">Penyakit Jantung</span>
+                                        </div>  
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <label class="col-sm-6 control-label">Tidak/Ya</label>
+                                            <div class="col-sm-6">
+                                              <label class="i-switch m-t-xs m-r">
+                                                <input type="checkbox" ng-model="status_jantung" >
+                                                <i></i>
+                                              </label>
+                                            </div> 
+                                            
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Keterangan" ng-model="keterangan_jantung">
+                                    </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                    <div class="col-sm-4">
+                                        <div class="input-group m-b">
+                                            <span class="input-group-addon">Hipertensi</span>
+                                        </div>  
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <label class="col-sm-6 control-label">Tidak/Ya</label>
+                                            <div class="col-sm-6">
+                                              <label class="i-switch m-t-xs m-r">
+                                                <input type="checkbox" ng-model="status_hipertensi" >
+                                                <i></i>
+                                              </label>
+                                            </div> 
+                                            
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Keterangan" ng-model="keterangan_hipertensi">
+                                    </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                    <div class="col-sm-4">
+                                        <div class="input-group m-b">
+                                            <span class="input-group-addon">Diabetes Melitus</span>
+                                        </div>  
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <label class="col-sm-6 control-label">Tidak/Ya</label>
+                                            <div class="col-sm-6">
+                                              <label class="i-switch m-t-xs m-r">
+                                                <input type="checkbox"  ng-model="status_diabetes">
+                                                <i></i>
+                                              </label>
+                                            </div> 
+                                            
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Keterangan" ng-model="keterangan_diabetes">
+                                    </div>
+                            </div>
+                          
+                            <div class="col-sm-12">
+                                    <div class="col-sm-4">
+                                        <div class="input-group m-b">
+                                            <span class="input-group-addon">Alergi</span>
+                                        </div>  
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <label class="col-sm-6 control-label">Tidak/Ya</label>
+                                            <div class="col-sm-6">
+                                              <label class="i-switch m-t-xs m-r">
+                                                <input type="checkbox" ng-model="status_alergi" >
+                                                <i></i>
+                                              </label>
+                                            </div> 
+                                            
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Keterangan" ng-model="keterangan_alergi">
+                                    </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                    <div class="col-sm-4">
+                                        <div class="input-group m-b">
+                                            <span class="input-group-addon">Asma</span>
+                                        </div>  
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <label class="col-sm-6 control-label">Tidak/Ya</label>
+                                            <div class="col-sm-6">
+                                              <label class="i-switch m-t-xs m-r">
+                                                <input type="checkbox" ng-model="status_asma" >
+                                                <i></i>
+                                              </label>
+                                            </div> 
+                                            
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Keterangan"  ng-model="keterangan_asma">
+                                    </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                    <div class="col-sm-4">
+                                        <div class="input-group m-b">
+                                            <span class="input-group-addon">Penyakit Hepar</span>
+                                        </div>  
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <label class="col-sm-6 control-label">Tidak/Ya</label>
+                                            <div class="col-sm-6">
+                                              <label class="i-switch m-t-xs m-r">
+                                                <input type="checkbox" ng-model="status_hepar" >
+                                                <i></i>
+                                              </label>
+                                            </div> 
+                                            
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Keterangan" ng-model="keterangan_hepar">
+                                    </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                    <div class="col-sm-4">
+                                        <div class="input-group m-b">
+                                            <span class="input-group-addon">Penyakit Lambung</span>
+                                        </div>  
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <label class="col-sm-6 control-label">Tidak/Ya</label>
+                                            <div class="col-sm-6">
+                                              <label class="i-switch m-t-xs m-r">
+                                                <input type="checkbox" ng-model="status_lambung" >
+                                                <i></i>
+                                              </label>
+                                            </div> 
+                                            
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Keterangan" ng-model="keterangan_lambung">
+                                    </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                    <div class="col-sm-4">
+                                        <div class="input-group m-b">
+                                            <span class="input-group-addon">Lain-lain</span>
+                                        </div>  
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <label class="col-sm-6 control-label">Tidak/Ya</label>
+                                            <div class="col-sm-6">
+                                              <label class="i-switch m-t-xs m-r">
+                                                <input type="checkbox" ng-model="status_lain" >
+                                                <i></i>
+                                              </label>
+                                            </div> 
+                                            
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <input type="text" class="form-control" placeholder="Keterangan" ng-model="keterangan_lain" >
+                                    </div>
+                            </div>
+
+                            
+                            
+
+                            <label class="col-sm-12 panel-heading"><h3>Pemeriksaan Fisik</h3></label>
+                            <label class="col-sm-12 panel-heading">Tanda Tanda Vital</label>
+                            <div class="col-sm-12">
+                                <div class="input-group m-b">
+                                    <span class="input-group-addon">Kesadaran</span>
+                                    <input type="text" class="form-control" placeholder="....." ng-model="kesadaran">
+                                  </div>    
+                                  
+                                  <div class="input-group m-b">
+                                    <span class="input-group-addon">Kondisi Umum</span>
+                                    <input type="text" class="form-control" placeholder="....." ng-model="kondisi_umum">
+                                  </div>    
+
+
+                                  <div class="input-group m-b">
+                                    <span class="input-group-addon">Tekanan Darah</span>
+                                    <input type="text" class="form-control" placeholder="....." ng-model="tekanan_darah">
+                                  </div>    
+
+                                  <div class="input-group m-b">
+                                    <span class="input-group-addon">Denyut Nadi</span>
+                                    <input type="text" class="form-control" placeholder="....." ng-model="denyut_nadi">
+                                  </div>    
+                                  <div class="input-group m-b">
+                                    <span class="input-group-addon">Pernafasan</span>
+                                    <input type="text" class="form-control" placeholder="....." ng-model="pernafasan">
+                                  </div>    
+
+                                  <div class="input-group m-b">
+                                    <span class="input-group-addon">Suhu</span>
+                                    <input type="text" class="form-control" placeholder="....." ng-model="suhu">
+                                  </div>    
+                            </div>
+
+                            <label class="col-sm-12 panel-heading"><h3>Ekstra Oral</h3></label>
+                            <div class="col-sm-12">
+                                    <label class="col-sm-12 ">Tonus Bibir</label>
+
+                                    <div class="form-group">
+                                           
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-4">
+                                                    <label class="checkbox-inline">
+                                                        <input type="radio" ng-model="tonus_bibir" name="optionsRadios" value="hipotonus"> Hipotonus
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label class="checkbox-inline">
+                                                        <input type="radio" ng-model="tonus_bibir" name="optionsRadios" value="normal"> Normal
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-4">    
+                                                    <label class="checkbox-inline">
+                                                        <input type="radio" ng-model="tonus_bibir" name="optionsRadios" value="hipertonus"> Hipertonus
+                                                    </label>
+                                                </div>
+                                            </div>
+                                    </div>
+
+                                    <label class="col-sm-12 ">TMJ</label>
+
+                                    <div class="form-group">
+                                           
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-6">
+                                                <label class="checkbox-inline">
+                                                    <input type="radio"  ng-model="tmj"  name="optionsTmj"    value="normal"> Normal
+                                                </label>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                <div class="input-group m-b">
+                                                        <span class="input-group-addon">
+                                                              <input type="radio" ng-model="tmj"  name="optionsTmj" value="kelainan">
+                                                        </span>
+                                                              <input type="text"  ng-model="kelainan_tmj" class="form-control" placeholder="Ada Kelainan">
+                                                </div> 
+                                                </div>
+                                            </div>
+                                    </div>
+
+                                    <label class="col-sm-12 ">Kelenjar Limfe</label>
+
+                                    <div class="form-group">
+                                           
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-4">
+                                                    <label class="checkbox-inline">
+                                                        <input type="radio" ng-model="kelenjar_limfe"  name="optionlimfe" value="teraba"> Teraba
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label class="checkbox-inline">
+                                                        <input type="radio" ng-model="kelenjar_limfe"  name="optionlimfe" value="terasasakit"> Teraba Sakit
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label class="checkbox-inline">
+                                                        <input type="radio" ng-model="kelenjar_limfe"  name="optionlimfe" value="tidakteraba"> Tidak Teraba
+                                                    </label>
+                                                </div>
+                                            </div>
+                                    </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                    <row>
+                                        <div class="col-sm-4"><img src="../img/periksaoral1.jpg"/></div>
+                                        <div class="col-sm-4"><textarea class="form-control" style="height: 300px;" ng-model="keterangan_ekstra_oral"></textarea></div>
+                                        <div class="col-sm-4"><img src="../img/periksaoral2.jpg"/></div>
+                                    </row>  
+                            </div>
+
+
+
+                            <label class="col-sm-12 panel-heading"><h3>Pemeriksaan Gigi</h3></label>
+                            <div class="col-sm-12">
+                                <!-- ORDONTOGRAMA INPUT -->
+                               <div style="width:20px;float:left;" ng-click="n18()"> <center>18 <br /><img src="{{imageUrl18}}"   /></center> </div>
+                               <div style="width:20px;float:left;margin-left:20px" ng-click="n17()" > <center>17 <br /><img src="{{imageUrl17}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n16()" > <center>16 <br /><img src="{{imageUrl16}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n15()"> <center>15 <br /><img src="{{imageUrl15}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n14()"> <center>14 <br /><img src="{{imageUrl14}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n13()"> <center>13 <br /><img src="{{imageUrl13}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n12()"> <center>12 <br /><img src="{{imageUrl12}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n11()"> <center>11 <br /><img src="{{imageUrl11}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px">&nbsp;</div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n21()"> <center>21 <br /><img src="{{imageUrl21}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n22()"> <center>22 <br /><img src="{{imageUrl22}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n23()"> <center>23 <br /><img src="{{imageUrl23}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n24()"> <center>24 <br /><img src="{{imageUrl24}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n25()"> <center>25 <br /><img src="{{imageUrl25}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n26()"> <center>26 <br /><img src="{{imageUrl26}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n27()"> <center>27 <br /><img src="{{imageUrl27}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n28()"> <center>28 <br /><img src="{{imageUrl28}}" /></center> </div>
+                        </div>
+                        <div class="col-sm-12">
+                                <!-- ORDONTOGRAMA INPUT -->
+                               <div style="width:20px;float:left;">&nbsp; </div>
+                               <div style="width:20px;float:left;margin-left:20px"> &nbsp;</div>
+                               <div style="width:20px;float:left;margin-left:40px"> &nbsp; </div>
+                               <div style="width:20px;float:left;margin-left:40px"  ng-click="n55()"> <center>55 <br /><img src="{{imageUrl55}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px"  ng-click="n54()"> <center>54 <br /><img src="{{imageUrl54}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px"  ng-click="n53()"> <center>53 <br /><img src="{{imageUrl53}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px"  ng-click="n52()"> <center>52 <br /><img src="{{imageUrl52}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px"  ng-click="n51()"> <center>51 <br /><img src="{{imageUrl51}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px">&nbsp;</div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n61()"> <center>61 <br /><img src="{{imageUrl61}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n62()"> <center>62 <br /><img src="{{imageUrl62}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n63()"> <center>63 <br /><img src="{{imageUrl63}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n64()"> <center>64 <br /><img src="{{imageUrl64}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n65()"> <center>65 <br /><img src="{{imageUrl65}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px"> &nbsp; </div>
+                               <div style="width:20px;float:left;margin-left:40px"> &nbsp; </div>
+                               <div style="width:20px;float:left;margin-left:40px"> &nbsp; </div>
+                        </div>
+                        <div class="col-sm-12">
+                                <!-- ORDONTOGRAMA INPUT -->
+                               <div style="width:20px;float:left;">&nbsp; </div>
+                               <div style="width:20px;float:left;margin-left:20px"> &nbsp;</div>
+                               <div style="width:20px;float:left;margin-left:40px"> &nbsp; </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n85()"> <center>85 <br /><img src="{{imageUrl85}}"/></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n84()"> <center>84 <br /><img src="{{imageUrl84}}"/></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n83()"> <center>83 <br /><img src="{{imageUrl83}}"/></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n82()"> <center>82 <br /><img src="{{imageUrl82}}"/></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n81()"> <center>81 <br /><img src="{{imageUrl81}}"/></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px">&nbsp;</div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n71()" > <center>71 <br /><img src="{{imageUrl71}}"/></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n72()" > <center>72 <br /><img src="{{imageUrl72}}"/></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n73()" > <center>73 <br /><img src="{{imageUrl73}}"/></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n74()" > <center>74 <br /><img src="{{imageUrl74}}"/></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n75()" > <center>75 <br /><img src="{{imageUrl75}}"/></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px"> &nbsp; </div>
+                               <div style="width:20px;float:left;margin-left:40px"> &nbsp; </div>
+                               <div style="width:20px;float:left;margin-left:40px"> &nbsp; </div>
+                        </div>
+                        <div class="col-sm-12">
+                                <!-- ORDONTOGRAMA INPUT -->
+                               <div style="width:20px;float:left;" ng-click="n48()" > <center>48 <br /><img src="{{imageUrl48}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:20px" ng-click="n47()" > <center>47 <br /><img src="{{imageUrl47}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n46()" > <center>46 <br /><img src="{{imageUrl46}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n45()" > <center>45 <br /><img src="{{imageUrl45}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n44()" > <center>44 <br /><img src="{{imageUrl44}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n43()" > <center>43 <br /><img src="{{imageUrl43}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n42()" > <center>42 <br /><img src="{{imageUrl42}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n41()" > <center>41 <br /><img src="{{imageUrl41}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px">&nbsp;</div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n31()"> <center>31 <br /><img src="{{imageUrl31}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n32()"> <center>32 <br /><img src="{{imageUrl32}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n33()"> <center>33 <br /><img src="{{imageUrl33}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n34()"> <center>34 <br /><img src="{{imageUrl34}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n35()"> <center>35 <br /><img src="{{imageUrl35}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n36()"> <center>36 <br /><img src="{{imageUrl36}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n37()"> <center>37 <br /><img src="{{imageUrl37}}" /></center> </div>
+                               <div style="width:20px;float:left;margin-left:40px" ng-click="n38()"> <center>38 <br /><img src="{{imageUrl38}}" /></center> </div>
+                        </div>
+                         
+                                    
+                            <div class="col-sm-12"  >
+                                <div class="line line-dashed b-b line-lg pull-in"></div>
+                                <div class="form-group">
+                                  <div class="col-sm-12">
+									<div class="col-sm-4"><img src="../img/belum_erupsi.png"  ng-click="fungsiBelumErupsi()"/> Tidak / Belum Erupsi</div>
+                                      <div class="col-sm-4"><img src="../img/gigi_hilang.png" ng-click="fungsiGH()"/> Gigi Hilang</div>
+                                      <div class="col-sm-4"><img src="../img/mahkota_non_logam.png" ng-click="fungsiMahkotaNonLogam()"/> Mahkota Non Logam</div>
+                                  </div>
+								  <div class="col-sm-12">
+									<div class="col-sm-4"><img src="../img/erupsi_sebagian.png" ng-click="fungsiErupsiSebagian()" /> Erupsi Sebagian</div>
+                                    <div class="col-sm-4"><img src="../img/karies.png" ng-click="fungsiKaries()"/> Karies/Tambalan Sementara</div>
+                                  </div>
+								  <div class="col-sm-12">
+									<div class="col-sm-4"><img src="../img/anomali_bentuk.png" ng-click="fungsiAnomaliBentuk()"/> Anomali Bentuk</div>
+                                    <div class="col-sm-4"><img src="../img/tambalan_logam.png" ng-click="fungsiTambalanLogam()"/> Tambalan Logam</div>
+                                  </div>
+								  <div class="col-sm-12">
+									<div class="col-sm-4"><img src="../img/non_vital.png" ng-click="fungsiNonVital()"/> Non Vital</div>
+                                    <div class="col-sm-4"><img src="../img/tambalan_non_logam.png" ng-click="fungsiTambalanNonLogam()"/> Tambalan Non Logam</div>
+                                  </div>
+								  <div class="col-sm-12">
+									<div class="col-sm-4"><img src="../img/sisa_akar.png" ng-click="fungsiSisaAkar()"/> Sisa Akar</div>
+                                    <div class="col-sm-4"><img src="../img/gigi_mahkota_logam.png" ng-click="fungsiML()"/> Mahkota Logam</div>
+                                  </div>
+                                  <div class="clear">&nbsp;</div>
+                                  <div class="clear">&nbsp;</div>
+                                  <div class="clear">&nbsp;</div>                     
+                                </div>
+                            </div>
+
+                            <!-- FORM KONDISI GIGI-->
+                            <div class="col-sm-12">
+                                <div class="panel panel-default">
+                                        <div class="panel-heading font-bold">
+                                        Form Pemeriksaan Gigi
+                                        </div>
+                                        <div class="panel-body">
+
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="input-id-1">Elemen Gigi</label>
+                                            <div class="col-sm-10">
+                                                <h5>{{teethValue}}</h5>
+                                            </div>
+                                        </div> 	
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="input-id-1">Kondisi</label>
+                                            <div class="col-sm-10">
+                                                <h5>{{teethExplaination}}</h5>
+                                            </div>
+                                        </div>
+                                      
+                                        <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="input-id-1">Keterangan </label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" ng-model="keterangan_element_gigi">
+                                                    <input type="hidden" class="form-control" ng-model="urlTEETH">
+                                                    
+                                                </div>
+                                        </div>
+                                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                                        <div class="form-group">
+                                            <div class="col-sm-4 col-sm-offset-2">
+                                            <button type="submit" ng-click="cancelFormKondisi()" class="btn btn-default">Cancel</button>
+                                            <button ng-click="submitFormKondisi()" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- FORM KONDISI GIGI-->
+
+                            <div class="col-sm-12">
+                                    <div class="line line-dashed b-b line-lg pull-in"></div>
+                                    <label class="col-sm-12 panel-heading"> Keterangan : </label>
+
+                                    <table class="table table-striped m-b-none" >
+                                            <thead>
+                                              <tr>
+                                                <th style="width:60px;" class="text-center">No</th>
+                                                <th>Elemen Gigi</th>                    
+                                                <th>Keterangan</th>
+                                                <th>Catatan</th>
+                                                <th style="width:20px;">Aksi</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="k in daftarKondisiGigi">
+                                                    <td>{{ $index + 1 }}</td>
+                                                    <td>{{ k.teeth }}</td>
+                                                    <td>{{ k.explaination }}</td>
+                                                    <td>{{ k.keterangan }}</td>
+                                                    <td><i  class="fa fa-times text-danger text"  ng-click="hapusdaftarKondisi($index)"></i></td>
+                                                </tr>
+                                            </tbody>
+                                    </table>
+
+
+
+                                    <div class="form-group">
+                                     
+                                      <div class="clear">&nbsp;</div>
+                                      <div class="clear">&nbsp;</div>
+                                      <div class="clear">&nbsp;</div>                     
+                                    </div>
+                            </div>
+
+                          
+
+                            <div class="line line-dashed b-b line-lg pull-in" style="margin-top:30px;"></div>
+
+                            <label class="col-sm-12 panel-heading"><h3>Jaringan Lunak Mulut</h3></label>
+
+                                <label class="col-sm-12 ">Kebersihan Mulut</label>
+                            
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                            <div class="col-sm-4">
+                                                <label class="checkbox-inline">
+                                                    <input type="radio" ng-model="kebersihan_mulut"  name="kebersihan_mulut" value="baik"> Baik
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label class="checkbox-inline">
+                                                    <input type="radio"  ng-model="kebersihan_mulut"  name="kebersihan_mulut" value="sedang"> Sedang
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">    
+                                                <label class="checkbox-inline">
+                                                    <input type="radio"  ng-model="kebersihan_mulut"  name="kebersihan_mulut" value="buruk"> Buruk
+                                                </label>
+                                            </div>
+                                    </div>
+                                </div>
+
+                                <label class="col-sm-12 ">Mukosa bukal</label>
+                                
+                                <div class="form-group">
+                                     <div class="col-sm-12">
+                                            <div class="col-sm-4">
+                                                <label class="checkbox-inline">
+                                                    <input type="radio"  ng-model="mukosa_bukal" name="mukosa_bukal"  value="normal"> Normal
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                    <div class="input-group m-b">
+                                                            <span class="input-group-addon">
+                                                                    <input type="radio"  ng-model="mukosa_bukal" name="mukosa_bukal" value="kelainan">
+                                                                  </span>
+                                                                  <input type="text" class="form-control" placeholder="Ada Kelainan" ng-model="kelainan_mukosa_bukal">
+                                                    </div> 
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                
+                                <label class="col-sm-12 ">Mukosa labial</label>
+                                    
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                            <div class="col-sm-4">
+                                                <label class="checkbox-inline">
+                                                    <input type="radio"   ng-model="mukosa_labial" name="mukosa_labial" value="normal"> Normal
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="input-group m-b">
+                                                    <span class="input-group-addon">
+                                                        <input type="radio"  ng-model="mukosa_labial" name="mukosa_labial" value="kelainan">
+                                                    </span>
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan" ng-model="kelainan_mukosa_labial">
+                                                </div> 
+                                            </div>
+                                               
+                                    </div>
+                                </div> 
+                                
+                                <label class="col-sm-12 ">Frenulum labial</label>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <label class="checkbox-inline">
+                                                <input type="radio"  ng-model="frenulum_labial" name="frenulum_labial" value="normal"> Normal
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon">
+                                                    <input type="radio"  ng-model="frenulum_labial" name="frenulum_labial" value="kelainan">
+                                                </span>
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan" ng-model="kelainan_frenulum_labial">
+                                                </div> 
+                                            </div>
+                                            
+                                    </div>
+                                </div> 
+                                
+                                <label class="col-sm-12 ">Lidah</label>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <label class="checkbox-inline">
+                                                <input type="radio"    ng-model="lidah" name="lidah" value="normal"> Normal
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon">
+                                                    <input type="radio"  ng-model="lidah" name="lidah" value="kelainan">
+                                                </span>
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan" ng-model="kelainan_lidah">
+                                                </div> 
+                                            </div>
+                                            
+                                    </div>
+                                </div> 
+
+                                <label class="col-sm-12 ">Palatum</label>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <label class="checkbox-inline">
+                                                <input type="radio"  ng-model="palatum" name="palatum" value="normal"> Normal
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon">
+                                                    <input type="radio"   ng-model="palatum" name="palatum" value="kelainan">
+                                                </span>
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan" ng-model="kelainan_palatum">
+                                                </div> 
+                                            </div>
+                                            
+                                    </div>
+                                </div> 
+
+                                <label class="col-sm-12 ">Tonsil</label>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <label class="checkbox-inline">
+                                                <input type="radio"   ng-model="tonsil" name="tonsil" value="normal"> Normal
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon">
+                                                    <input type="radio"   ng-model="tonsil" name="tonsil" value="kelainan">
+                                                </span>
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan" ng-model="kelainan_tonsil">
+                                                </div> 
+                                            </div>
+                                            
+                                    </div>
+                                </div> 
+
+                                <label class="col-sm-12 ">Dasar Mulut</label>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <label class="checkbox-inline">
+                                                <input type="radio"   ng-model="dasar_mulut" name="dasar_mulut" value="normal"> Normal
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon">
+                                                    <input type="radio"   ng-model="dasar_mulut" name="dasar_mulut" value="kelainan">
+                                                </span>
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan" ng-model="kelainan_dasar_mulut">
+                                                </div> 
+                                            </div>
+                                            
+                                    </div>
+                                </div> 
+                                <label class="col-sm-12 ">Gingiva</label>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <label class="checkbox-inline">
+                                                <input type="radio" ng-model="gingiva" name="gingiva" value="normal"> Normal
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon">
+                                                    <input type="radio"  ng-model="gingiva" name="gingiva" value="kelainan">
+                                                </span>
+                                                    <input type="text" class="form-control" placeholder="Ada Kelainan" ng-model="kelainan_gingiva">
+                                                </div> 
+                                            </div>
+                                            
+                                    </div>
+                                </div> 
+
+                            <div class="col-sm-12">
+                                <label class="col-sm-12 panel-heading"><h4> Peta Mukosa dan Jaringan Lunak Mulut</h4></label>
+                                <row>
+                                    <div class="col-sm-4"><img src="../img/mukosa1.jpg"/></div>
+                                    <div class="col-sm-4"><textarea class="form-control" style="height: 300px;" ng-model="keterangan_jaringan_lunak_mulut"></textarea></div>
+                                    <div class="col-sm-4"><img src="../img/mukosa2.jpg"/></div>
+                                </row>  
+                            </div>
+
+
+                            <label class="col-sm-12 panel-heading" style="margin-top:40px;"><h3>Elemen Gigi / Mulut</h3></label>
+                            <div class="col-sm-12">
+                                <textarea class="form-control" ng-model="element_gigi_mulut"></textarea>      
+                            </div>
+
+                            <label class="col-sm-12 panel-heading" style="margin-top:40px;"><h3>Diagnosa</h3></label>
+                            <div class="col-sm-12">
+                                <textarea class="form-control" ng-model="diagnosa"></textarea>      
+                            </div>
+
+                            <label class="col-sm-12 panel-heading" style="margin-top:40px;  text-align:right;"><h3 style="margin-right:20px;">ICD 10</h3></label>
+                            <div class="col-sm-12">
+                                <div class="col-sm-10"></div>
+                                <div class="col-sm-2"><textarea class="form-control" ng-model="icd10"></textarea></div>  
+                            </div>
+
+                         
+
+
+                          
+                  
+    
+                </div>
+                <!-- # End Panel Kanan -->
+
+
+
+               
+
+
+
+
+
+    
+             </div>
+
+
+
+    
+          

@@ -79,9 +79,12 @@ app.controller("InvoiceCtrl", function ($scope,$cookies,$interval,$http, $route,
     console.log("ID KUNJUNGAN" + $routeParams.idkunjungan );
 
     $scope.idKunjungan = $routeParams.idkunjungan;
+    $scope.idPasien = $routeParams.id;
 
     $scope.getTotal =0;
     $scope.getTotalLayanan =0;
+
+    $scope.urlPrint = "../print/print-invoice.php?pasien="+$scope.idPasien+"&kunjungan="+$scope.idKunjungan;
     
     //GET DATA PASIEN
 
@@ -122,6 +125,12 @@ app.controller("InvoiceCtrl", function ($scope,$cookies,$interval,$http, $route,
         $scope.iddokter         =  $scope.datakunjungan.id_dokter;
         $scope.id_klinik        =  $scope.datakunjungan.id_klinik;
         $scope.dokter_pendamping = $scope.datakunjungan.dokter_pendamping;
+        $scope.biaya_rekam_medis = $scope.datakunjungan.biaya_rekam_medis;
+        if($scope.biaya_rekam_medis == '1'){
+            $scope.rekam_medis_pay=4000;
+        }else{
+            $scope.rekam_medis_pay=0;
+        }
          
 
         console.log("Dokternya " + $scope.namadokter);
@@ -214,17 +223,23 @@ app.controller("InvoiceCtrl", function ($scope,$cookies,$interval,$http, $route,
 
 });
 
-app.controller("InvoiceCicilanCtrl", function ($scope,$cookies,$interval,$http, $route,$timeout, $routeParams, $window) {
+app.controller("InvoiceCicilanCtrl", function ($scope,$location,$cookies,$interval,$http, $route,$timeout, $routeParams, $window) {
     
-
+    $scope.rekam_medis_pay = 0;
     console.log("ID PASIEN" + $routeParams.id );
     console.log("ID KUNJUNGAN" + $routeParams.idkunjungan );
 
+   
+
     $scope.idKunjungan = $routeParams.idkunjungan;
+    $scope.idPasien = $routeParams.id;
 
     $scope.getTotal =0;
     $scope.getTotalLayanan =0;
     $scope.getTotalCicilan = 0;
+
+    $scope.urlPrint = "../print/print-invoice-cicilan.php?pasien="+$scope.idPasien+"&kunjungan="+$scope.idKunjungan;
+    
     
     //GET DATA PASIEN
 
@@ -241,7 +256,12 @@ app.controller("InvoiceCicilanCtrl", function ($scope,$cookies,$interval,$http, 
         $scope.phone            =  $scope.people.phone;
         $scope.kelamin          =  $scope.people.jenis_kelamin;
         $scope.alamat           =  $scope.people.alamat;
-       
+        $scope.biaya_rekam_medis = $scope.datakunjungan.biaya_rekam_medis;
+        if($scope.biaya_rekam_medis == '1'){
+            $scope.rekam_medis_pay=4000;
+        }else{
+            $scope.rekam_medis_pay=0;
+        }
         
     }, function (response) {
         
@@ -376,7 +396,6 @@ app.controller("InvoiceCicilanCtrl", function ($scope,$cookies,$interval,$http, 
                             if(response.status==200){
                                 $route.reload(); 
                                 alert("Cicilan Telah Dibayar");
-                                $location.path("/home");
                                 $scope.formCicilan = false;
                             }
                         });      
