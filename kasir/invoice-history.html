@@ -99,12 +99,16 @@
               <td>{{ rekam_medis_pay | currency:'Rp':0  }}</td>
             </tr>
             <tr>
-              <td colspan="3" class="text-right"><strong>Deposit</strong></td>
-              <td>-{{ 50000 | currency:'Rp':0  }}</td>
+              <td colspan="3" class="text-right no-border"><strong>Biaya Rekam Medis</strong></td>
+              <td>- {{ rekam_medis_pay | currency:'Rp':0  }}</td>
+            </tr>
+            <tr>
+              <td colspan="3" class="text-right no-border"><strong>Deposit</strong></td>
+              <td><strong>- {{ 50000 | currency:'Rp':0  }}</strong></td>
             </tr>
         <tr>
           <td colspan="3" class="text-right no-border"><strong>Total</strong></td>
-          <td><strong>{{ (getTotal * 1 + getTotalLayanan * 1) - 50000 | currency:'Rp':0  }}</strong></td>
+          <td><strong>{{ (getTotal * 1 + getTotalLayanan * 1) - (50000 + rekam_medis_pay ) | currency:'Rp':0  }}</strong></td>
         </tr>
       </tbody>
     </table>              
