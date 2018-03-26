@@ -26,6 +26,8 @@
               <th  style="width:15%">Nama Pasien</th>
               <th  style="width:15%">Nama Pendamping</th>            
               <th  style="width:15%">Nama Dokter</th>          
+              <!-- <th  style="width:15%">Status</th>          
+              <th  style="width:15%">Status Pembayaran</th>           -->
               <th  style="width:25%">Aksi</th>
             </tr>
           </thead>
@@ -36,6 +38,8 @@
                   <td>{{ x.pasien }}</td>
                   <td>{{ x.dokter_pendamping }}</td>
                   <td>{{ x.dokter }}</td>
+                  <!-- <td>{{ x.status }}</td>
+                  <td>{{ x.status_pembayaran }}</td> -->
                   <td>  <a href="#!/invoice/{{x.id_pasien}}/{{x.id_kunjungan}}"><button class='btn btn-success'>Lihat Tagihan</button></a> </td>
                 </tr>
           </tbody>

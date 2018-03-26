@@ -17,12 +17,14 @@ $db = new DB_CONNECT();
 									tabel_kunjugan.dokter_pendamping,
 									tabel_kunjugan.id_dokter,
 									tabel_kunjugan.id_pasien,
+									tabel_kunjugan.status,
+									tabel_kunjugan.status_pembayaran,
 									data_dokter.nama AS nama_dokter,
 									data_pasien.nama AS nama_pasien
 								FROM tabel_kunjugan
 								INNER JOIN data_dokter ON tabel_kunjugan.id_dokter = data_dokter.id
 								INNER JOIN data_pasien ON tabel_kunjugan.id_pasien = data_pasien.no_rekam_medis
-                                WHERE tabel_kunjugan.status_pembayaran = '1' ORDER BY tabel_kunjugan.id_kunjungan ") or die(mysql_error());
+                                WHERE tabel_kunjugan.status = '2' AND tabel_kunjugan.status_pembayaran = '1'  ORDER BY tabel_kunjugan.id_kunjungan ") or die(mysql_error());
 		// cek
 		if (mysql_num_rows($result) > 0) {
 		    // looping hasil
@@ -43,11 +45,13 @@ $db = new DB_CONNECT();
 			$event["id_pasien"] 					= $row["id_pasien"];
 			$event["dokter"] 						= $row["nama_dokter"];
 			$event["pasien"] 						= $row["nama_pasien"];
+			$event["status"] 						= $row["status"];
+			$event["status_pembayaran"] 			= $row["status_pembayaran"];
 
-			//$k = bill_is_exist($row["id_kunjungan"]);
-			//if($k>0){
-			//	array_push($response["event"], $event);
-			//}
+			// $k = bill_is_exist($row["id_kunjungan"]);
+			// if($k>0){
+			// 	array_push($response["event"], $event);
+			// }
 			array_push($response["event"], $event);
 		 }
 		    // sukses
