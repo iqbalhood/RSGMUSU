@@ -5923,6 +5923,189 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 
 app.controller("EditRekamMedisCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {
 
+    $scope.idAntrian        = "";
+     //Kode Gambar Gigi Untuk Form Odontograma
+     $scope.imageUrl18 = "../img/G1G1.png";
+     $scope.imageUrl17 = "../img/G1G1.png";
+     $scope.imageUrl16 = "../img/G1G1.png";
+     $scope.imageUrl15 = "../img/G1G1.png";
+     $scope.imageUrl14 = "../img/G1G1.png";
+     $scope.imageUrl13 = "../img/G1G1.png";
+     $scope.imageUrl12 = "../img/G1G1.png";
+     $scope.imageUrl11 = "../img/G1G1.png";
+
+     $scope.imageUrl21 = "../img/G1G1.png";
+     $scope.imageUrl22 = "../img/G1G1.png";
+     $scope.imageUrl23 = "../img/G1G1.png";
+     $scope.imageUrl24 = "../img/G1G1.png";
+     $scope.imageUrl25 = "../img/G1G1.png";
+     $scope.imageUrl26 = "../img/G1G1.png";
+     $scope.imageUrl27 = "../img/G1G1.png";
+     $scope.imageUrl28 = "../img/G1G1.png";
+
+     $scope.imageUrl55 = "../img/G1G1.png";
+     $scope.imageUrl54 = "../img/G1G1.png";
+     $scope.imageUrl53 = "../img/G1G1.png";
+     $scope.imageUrl52 = "../img/G1G1.png";
+     $scope.imageUrl51 = "../img/G1G1.png";
+
+     $scope.imageUrl61 = "../img/G1G1.png";
+     $scope.imageUrl62 = "../img/G1G1.png";
+     $scope.imageUrl63 = "../img/G1G1.png";
+     $scope.imageUrl64 = "../img/G1G1.png";
+     $scope.imageUrl65 = "../img/G1G1.png";
+
+     $scope.imageUrl85 = "../img/G1G1.png";
+     $scope.imageUrl84 = "../img/G1G1.png";
+     $scope.imageUrl83 = "../img/G1G1.png";
+     $scope.imageUrl82 = "../img/G1G1.png";
+     $scope.imageUrl81 = "../img/G1G1.png";
+     
+     $scope.imageUrl71 = "../img/G1G1.png";
+     $scope.imageUrl72 = "../img/G1G1.png";
+     $scope.imageUrl73 = "../img/G1G1.png";
+     $scope.imageUrl74 = "../img/G1G1.png";
+     $scope.imageUrl75 = "../img/G1G1.png";
+
+     $scope.imageUrl48 = "../img/G1G1.png";
+     $scope.imageUrl47 = "../img/G1G1.png";
+     $scope.imageUrl46 = "../img/G1G1.png";
+     $scope.imageUrl45 = "../img/G1G1.png";
+     $scope.imageUrl44 = "../img/G1G1.png";
+     $scope.imageUrl43 = "../img/G1G1.png";
+     $scope.imageUrl42 = "../img/G1G1.png";
+     $scope.imageUrl41 = "../img/G1G1.png";
+
+     $scope.imageUrl31 = "../img/G1G1.png";
+     $scope.imageUrl32 = "../img/G1G1.png";
+     $scope.imageUrl33 = "../img/G1G1.png";
+     $scope.imageUrl34 = "../img/G1G1.png";
+     $scope.imageUrl35 = "../img/G1G1.png";
+     $scope.imageUrl36 = "../img/G1G1.png";
+     $scope.imageUrl37 = "../img/G1G1.png";
+     $scope.imageUrl38 = "../img/G1G1.png";
+
+
+
+    $http({
+        method: 'POST',    
+        url: '../apidb/pasien/get.php',
+        data: {newId: $routeParams.id}
+    }).then(function (response) {
+        
+        // on success
+        $scope.people           =  response.data;
+        $scope.id               =  $scope.people.id;
+        $scope.namaPasien       =  $scope.people.name;
+        $scope.phone            =  $scope.people.phone;
+        $scope.kelamin          =  $scope.people.jenis_kelamin;
+        $scope.umur             =  $scope.people.umur;
+        $scope.tinggi_badan     =  $scope.people.tinggi_badan;
+        $scope.golongan_darah   =  $scope.people.golongan_darah;
+        $scope.berat_badan      =  $scope.people.berat_badan;
+       
+        
+    }, function (response) {
+        
+        // on error
+        console.log(response.data,response.status);
+        
+    });
+
+
+
+    $http({
+        method: 'POST',    
+        url: '../apidb/kunjungan/get.php',
+        data: {newId: $routeParams.idkunjungan}
+    }).then(function (response) {
+
+        
+        // on success
+        $scope.datakunjungan    = response.data;
+        $scope.namadokter       =  $scope.datakunjungan.dokter;
+        $scope.iddokter         =  $scope.datakunjungan.id_dokter;
+        $scope.idAntrian        =  $scope.datakunjungan.id_antrian;
+
+        //console.log($scope.datakunjungan.id_antrian);
+    }, function (response) {
+        
+        // on error
+        console.log(response.data,response.status);
+        
+    });
+
+    
+    console.log($scope.idAntrian);
+
+    $http({
+        method: 'POST',    
+        url: '../apidb/rekam_medis/get_perawatan.php',
+        data: {newId: $scope.idAntrian}
+    }).then(function (response) {
+
+        
+        // on success
+        $scope.dataperawatan            = response.data;
+        $scope.diagnosa                 =  $scope.dataperawatan.diagnosa;
+        $scope.element_gigi_mulut       =  $scope.dataperawatan.element;
+        $scope.icd10                    =  $scope.dataperawatan.icd10;
+
+       console.log($scope.dataperawatan);
+       console.log($scope.idAntrian);
+
+        
+    }, function (response) {
+        
+        // on error
+        console.log(response.data);
+        
+    });
+
+
+
+    
+
+    $http({
+        method: 'POST',    
+        url: '../apidb/rekam_medis/get_rekam_medis.php',
+        data: {newId: $routeParams.idkunjungan}
+    }).then(function (response) {
+
+        
+        // on success
+        $scope.datrm    = response.data;
+        $scope.amnese       =  $scope.datrm.amnese;
+
+        console.log(  $scope.anamnese );
+
+        //console.log($scope.datakunjungan.id_antrian);
+    }, function (response) {
+        
+        // on error
+        console.log(response.data);
+        
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
 
 app.controller("SearchCtrl", function ($scope,$interval,$http, $route,$timeout, $routeParams, $window) {

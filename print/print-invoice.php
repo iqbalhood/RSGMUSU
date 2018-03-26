@@ -1349,7 +1349,7 @@ color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
   mso-element-wrap:around;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:
   page;mso-element-left:2.15pt;mso-element-top:3.6pt;mso-height-rule:exactly'><span
   class=SpellE><span style='font-size:9.0pt'>Rp</span></span><span
-  style='font-size:9.0pt'>. <?php echo $total_obat + $total_layanan; ?><o:p></o:p></span></p>
+  style='font-size:9.0pt'>. <?php $getTOTAL =  $total_obat + $total_layanan; echo number_format($getTOTAL, 0,".","."); ?><o:p></o:p></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:7;height:12.6pt'>
@@ -1414,7 +1414,7 @@ color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
   <p class=MsoNormal style='mso-element:frame;mso-element-frame-hspace:9.0pt;
   mso-element-wrap:around;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:
   page;mso-element-left:2.15pt;mso-element-top:3.6pt;mso-height-rule:exactly'><span
-  style='font-size:9.0pt'>Rp.<?php echo (($total_obat + $total_layanan) - ($rekam_medis+50000)); ?><o:p></o:p></span></p>
+  style='font-size:9.0pt'>Rp.<?php $grandTOTAL =  (($total_obat + $total_layanan) - ($rekam_medis+50000)); echo number_format($grandTOTAL, 0,".",".");  ?><o:p></o:p></span></p>
   </td>
  </tr>
 </table>
