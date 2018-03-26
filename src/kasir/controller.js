@@ -56,6 +56,15 @@ app.controller("HistoriCtrl", function ($scope,$interval,$http, $route,$timeout,
         console.log(response.data.event);
        });
 
+
+       $scope.search = function (){
+            console.log("==============>> SEARCH <<==================");
+            console.log("ID KLINIK "+$scope.id_klinik);
+            $scope.myData = "";
+
+
+       };
+
     setTimeout(function(){
         $('#mytableOrder').dataTable({
             "bPaginate": true,
