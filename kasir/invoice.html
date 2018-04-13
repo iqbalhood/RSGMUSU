@@ -1,133 +1,374 @@
 <div class="bg-light lter b-b wrapper-md hidden-print">
-    <a href="{{urlPrint}}" class="btn btn-sm btn-info pull-right" >Print</a>
-    <h1 class="m-n font-thin h3">Invoice</h1>
-  </div>
-  <div class="wrapper-md" style="padding-bottom:100px;">
-    <div>
-      
-      <div class="row">
-          <div class="col-sm-2 col-xs-2">
-              <img src="../img/rsgmlogo.png" width="100px">
-          </div>
+  <a href="{{urlPrint}}" class="btn btn-sm btn-info pull-right">Print</a>
+  <h1 class="m-n font-thin h3">Invoice</h1>
+</div>
+<div class="wrapper-md" style="padding-bottom:100px;">
+  <div>
 
-          <div class="col-sm-10 col-xs-10">
-            <center>
-            <p><strong>KEMENTERIAN RISET, TEKNOLOGI DAN PENDIDIKAN TINGGI</strong>  <br/>         
-            <strong>UNIVERSITAS SUMATERA UTARA</strong><br/>
-            <strong>RUMAH SAKIT GIGI DAN MULUT</strong><br/>
-            Jl. Alumni No.2 Kampus USU Medan
-            <br />
-              Telephone:  +62 61-821-6131 Fax:  +62 61-821-3421
+    <div class="row">
+      <div class="col-sm-2 col-xs-2">
+        <img src="../img/rsgmlogo.png" width="100px">
+      </div>
+
+      <div class="col-sm-10 col-xs-10">
+        <center>
+          <p>
+            <strong>KEMENTERIAN RISET, TEKNOLOGI DAN PENDIDIKAN TINGGI</strong>
             <br/>
-                Laman : http://rsgm.usu.ac.id
-            </p>
-          </center>
-          </div>
-       
-      </div>
-     
-      <div class="col-xs-6">
-      <p class="m-t m-b">Invoice date       : <strong>{{ idKunjungan * 1 |  date:'dd-MMMM-yyyy'}}</strong><br>
-      DPJP         :  <strong>{{namadokter}}</strong><br>
-      CO ASS/PPDGS :  <strong>{{dokter_pendamping}}</strong><br>
-        Klinik  : <strong ng-if="id_klinik == 1" >IKGP/IKGM</strong>
-          <strong ng-if="id_klinik == 2" >PERIODONSIA</strong>
-          <strong ng-if="id_klinik == 3" >ILMU PENYAKIT MULUT</strong>
-          <strong ng-if="id_klinik == 4" >ILMU KEDOKTERAN GIGI ANAK</strong>
-          <strong ng-if="id_klinik == 5" >KONSERVASI</strong>
-          <strong ng-if="id_klinik == 6" >PROSTODONSIA</strong>
-          <strong ng-if="id_klinik == 7" >ILMU BEDAH MULUT</strong>
-          <strong ng-if="id_klinik == 8" >ORTODONSIA</strong>
-          <strong ng-if="id_klinik == 9" >RADIOLOGI KEDOKTERAN GIGI</strong>
-          <br>
-          Pasien  :  <strong>{{nameUser}}</strong><br>
-          Hp Pasien :  <strong>{{phone}}</strong><br>
-      </p>
-      </div>
-      <div class="col-xs-6">
-          <p class="m-t m-b">Invoice date: <strong>{{ idKunjungan * 1 |  date:'dd-MMMM-yyyy'}}</strong><br>
-            Invoice status: <span class="label bg-danger">Belum Bayar</span><br>
-            Invoice ID: <strong>#{{idKunjungan}}</strong>
+            <strong>UNIVERSITAS SUMATERA UTARA</strong>
+            <br/>
+            <strong>RUMAH SAKIT GIGI DAN MULUT</strong>
+            <br/> Jl. Alumni No.2 Kampus USU Medan
+            <br /> Telephone: +62 61-821-6131 Fax: +62 61-821-3421
+            <br/> Laman : http://rsgm.usu.ac.id
           </p>
+        </center>
       </div>
-      <div class="line"></div>
-      <table class="table table-striped bg-white b-a">
-        <thead>
-          <tr>
-            <th style="width: 60px">No.</th>
-            <th>Biaya Tindakan Medis</th>
-            <th style="width: 240px"><center>HARGA BAHAN | HARGA LAYANAN</center></th>
-            <th style="width: 140px">TOTAL</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="w in myDataLayanan">
-            <td>{{$index + 1}}</td>
-            <td>{{w.nama_layanan}}</td>
-            <td><center>{{w.harga_bahan | currency:'Rp':0}} | {{w.harga_layanan  | currency:'Rp':0 }}</center></td>
-            <td>{{ ((w.harga_bahan * 1 ) + (w.harga_layanan * 1) ) | currency:'Rp':0 }}</td>
-          </tr>
-         
-          <tr>
-            <td colspan="3" class="text-right"><strong>Subtotal</strong></td>
-            <td>{{ getTotalLayanan | currency:'Rp':0  }}</td>
-          </tr>
-          <thead>
-              <tr>
-                <th style="width: 60px">QTY</th>
-                <th>Biaya Farmasi / Obat</th>
-                <th style="width: 100px">UNIT PRICE</th>
-                <th style="width: 150px">TOTAL</th>
-              </tr>
-            </thead>
-              <tr ng-repeat="x in myData">
-                <td>{{x.quantity}}</td>
-                <td>{{x.nama_obat}}</td>
-                <td>{{ x.harga | currency:'Rp':0 }}</td>
-                <td>{{x.quantity * x.harga | currency:'Rp':0}}</td>
-              </tr>
-              <tr>
-                <td colspan="3" class="text-right"><strong>Subtotal</strong></td>
-                <td>{{ getTotal | currency:'Rp':0  }}</td>
-              </tr>
-              
-          <tr>
-                <td colspan="3" class="text-right no-border"><strong>Total</strong></td>
-                <td><strong>{{ (getTotal * 1 + getTotalLayanan * 1) | currency:'Rp':0  }}</strong></td>
-          </tr> 
-          <tr>
-            <td colspan="3" class="text-right no-border"><strong>Biaya Rekam Medis</strong></td>
-            <td>{{ rekam_medis_pay | currency:'Rp':0  }}</td>
-          </tr>  
-          <tr>
-            <td colspan="3" class="text-right no-border"><strong>Deposit</strong></td>
-            <td>-{{ 50000 | currency:'Rp':0  }}</td>
-          </tr>   
-          <tr>
-            <td colspan="3" class="text-right no-border"><strong> Grand Total</strong></td>
-            <td><strong>{{ ((getTotal * 1 + getTotalLayanan * 1) - (50000 + rekam_medis_pay )) | currency:'Rp':0  }}</strong></td>
-          </tr>
-        </tbody>
-      </table>              
+
     </div>
 
+    <div class="col-xs-6">
+      <p class="m-t m-b">Invoice date :
+        <strong>{{ idKunjungan * 1 | date:'dd-MMMM-yyyy'}}</strong>
+        <br> DPJP :
+        <strong>{{namadokter}}</strong>
+        <br> CO ASS/PPDGS :
+        <strong>{{dokter_pendamping}}</strong>
+        <br> Klinik :
+        <strong ng-if="id_klinik == 1">IKGP/IKGM</strong>
+        <strong ng-if="id_klinik == 2">PERIODONSIA</strong>
+        <strong ng-if="id_klinik == 3">ILMU PENYAKIT MULUT</strong>
+        <strong ng-if="id_klinik == 4">ILMU KEDOKTERAN GIGI ANAK</strong>
+        <strong ng-if="id_klinik == 5">KONSERVASI</strong>
+        <strong ng-if="id_klinik == 6">PROSTODONSIA</strong>
+        <strong ng-if="id_klinik == 7">ILMU BEDAH MULUT</strong>
+        <strong ng-if="id_klinik == 8">ORTODONSIA</strong>
+        <strong ng-if="id_klinik == 9">RADIOLOGI KEDOKTERAN GIGI</strong>
+        <br> Pasien :
+        <strong>{{nameUser}}</strong>
+        <br> Hp Pasien :
+        <strong>{{phone}}</strong>
+        <br>
+      </p>
+    </div>
+    <div class="col-xs-6">
+      <p class="m-t m-b">Invoice date:
+        <strong>{{ idKunjungan * 1 | date:'dd-MMMM-yyyy'}}</strong>
+        <br> Invoice status:
+        <span class="label bg-danger">Belum Bayar</span>
+        <br> Invoice ID:
+        <strong>#{{idKunjungan}}</strong>
+      </p>
+    </div>
 
-        <div class="line line-dashed b-b line-lg pull-in"></div>
-        <div class="form-group">
-            <div class="col-sm-8 ">
+<!-- ### Tabel Layanan -->
+
+ <!-- FORM LAYANAN MEDIS-->
+ <div class="col-sm-12" ng-show="shFormLayanan">               
+ <div class="panel panel-default" >
+  <div class="panel-heading font-bold">
+      Form Layanan Medis
+  </div>
+  <div class="panel-body">
+
+      <form class="form-horizontal">
+          <input type="hidden" class="form-control" ng-model="idLayanan">
+          <input type="hidden" class="form-control" ng-model="no">
+          <div class="form-group">
+              <label class="col-sm-2 control-label" for="input-id-1">Layanan</label>
+              <div class="col-sm-10">
+                  <h5>{{nameLayanan}}</h5>
               </div>
-          <div class="col-sm-4 ">
-            <a href="#!/home"><button type="submit" class="btn btn-black">Back</button></a>
-            <button type="submit" class="btn btn-success" ng-click="submitInvoice()">Complete Order ?</button>
           </div>
-        </div>
+          <div class="form-group">
+              <label class="col-sm-2 control-label" for="input-id-1">Bahan yang digunakan</label>
+              <div class="col-sm-10">
+                  <h5>{{bahanLayanan}}</h5>
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="col-sm-2 control-label" for="input-id-1">Bahan yang digunakan</label>
+              <div class="col-sm-10">
+                  <h5>{{harga_bahan | currency:'Rp':0 }}</h5>
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="col-sm-2 control-label" for="input-id-1">Pelaksana</label>
+              <div class="col-sm-10">
+                  <select class="form-control m-b" ng-model="pelaksana" ng-change="updateJasa()">
+                      <option value="0">CO ASS</option>
+                      <option value="1">PPDGS</option>
+                      <option value="2">DRG</option>
+                      <option value="3">DRG SP</option>
+                  </select>
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="col-sm-2 control-label" for="input-id-1">Jasa Medis</label>
+              <div class="col-sm-10">
+                  {{jasa | currency:'Rp':0}}
+              </div>
+          </div>
 
-        
-
-
-  
-
-
-
+          <div class="form-group">
+              <label class="col-sm-2 control-label" for="input-id-1">ICD 9</label>
+              <div class="col-sm-10">
+                  <div class="col-sm-2">
+                      <input type="text" class="form-control" ng-model="icd9">
+                  </div>
+              </div>
+          </div>
+          <input type="hidden" class="form-control" ng-model="jasa">
+          <input type="hidden" class="form-control" ng-model="harga_koas">
+          <input type="hidden" class="form-control" ng-model="harga_drg">
+          <input type="hidden" class="form-control" ng-model="harga_drgsp">
+          <div class="line line-dashed b-b line-lg pull-in"></div>
+          <div class="form-group">
+              <div class="col-sm-4 col-sm-offset-2">
+                  <button type="submit" ng-click="cancelFormLayanan()" class="btn btn-default">Cancel</button>
+                  <button ng-click="submitFormLayanan()" class="btn btn-primary">Submit</button>
+              </div>
+          </div>
+      </form>
 
   </div>
+
+</div>
+</div>    
+                     
+
+
+ <!-- Panel Tambah Tindakan Medis -->
+ <div ng-show="tabelTindakanMedis">
+ <label class="col-sm-12">Pilih Tindakan Medis / Perawatan</label>
+ <div class="col-sm-12">
+     <div class="line line-dashed b-b line-lg pull-in"></div>
+ </div>
+ <div class="col-sm-12">
+
+     <div class="table-responsive">
+         <table ui-jq="dataTable" class="table  table-striped b-t b-b" id="mytableLayanan">
+             <thead>
+                 <tr>
+                     <th style="width:5%">No </th>
+                     <th style="width:90%">Layanan</th>
+                     <th style="width:5%">Aksi</th>
+                 </tr>
+             </thead>
+             <tbody>
+                 <tr ng-repeat="z in layananKlinik">
+                     <td>{{ $index + 1 }}</td>
+                     <td>{{z.layanan }}</td>
+                     <td>
+                         <i ng-click="FormLayanan(z.id)" class="fa fa-check text-success"></i>
+                     </td>
+                 </tr>
+             </tbody>
+         </table>
+     </div>
+ </div>
+</div>
+<!-- ### Tabel Layanan -->
+
+<!-- ### Tabel Obat -->
+ <!-- Panel Tambah Obat -->
+ <div class="col-sm-12" ng-show="shFormObat">
+  <div class="panel panel-default" >
+      <div class="panel-heading font-bold">
+          Form elements
+      </div>
+      <div class="panel-body">
+
+          <form class="form-horizontal">
+              <input type="hidden" class="form-control" ng-model="id_obat">
+
+              <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-id-1">Name</label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" ng-model="nama_obat">
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-id-1">Quantity</label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" ng-model="quantity_obat">
+                  </div>
+              </div>
+
+
+              <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-id-1">Harga</label>
+                  <div class="col-sm-10">
+                      <p> {{harga_obat | currency:'Rp':0 }}</p>
+                  </div>
+
+              </div>
+
+              <input type="hidden" class="form-control" ng-model="harga_obat">
+              <input type="hidden" class="form-control" ng-model="satuan_obat">
+
+
+              <div class="line line-dashed b-b line-lg pull-in"></div>
+              <div class="form-group">
+                  <div class="col-sm-4 col-sm-offset-2">
+                      <button type="submit" ng-click="cancelFormObat()" class="btn btn-default">Cancel</button>
+                      <button ng-click="submitFormObat()" class="btn btn-primary">Submit</button>
+                  </div>
+              </div>
+
+          </form>
+
+      </div>
+
+  </div>
+</div>
+ <!-- Tabel List Obat -->
+ <div class="col-sm-12" ng-show="tabelObat">
+  <div class="col-sm-6 col-md-6">Pilih Daftar Obat</div>
+  <div class="col-sm-6 col-md-6">
+      <button class="btn m-b-xs w-xs btn-danger btn-rounded" style="float:right" ng-click="closeFormObat()" > X Close </button>
+  </div>
+</div>
+<div class="col-sm-12" ng-show="tabelObat">
+  <div class="table-responsive">
+      <table ui-jq="dataTable" class="table  table-striped b-t b-b" id="mytableObat">
+          <thead>
+              <tr>
+                  <th style="width:5%">No </th>
+                  <th style="width:90%">Nama Obat</th>
+                  <th style="width:5%">Aksi</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr ng-repeat="x in dataObat">
+                  <td>{{ $index + 1 }}</td>
+                  <td>{{ x.nama }}</td>
+                  <td>
+                      <i ng-click="FormObat(x.id)" class="fa fa-check text-success"></i>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>
+<!-- ### Tabel Obat -->
+
+    <div class="line"></div>
+    <table class="table table-striped bg-white b-a">
+      <thead>
+        <tr>
+          <th style="width: 60px">No.</th>
+          <th>Biaya Tindakan Medis</th>
+          <th style="width: 240px">
+            <center>HARGA BAHAN | HARGA LAYANAN</center>
+          </th>
+          <th style="width: 140px">TOTAL</th>
+          <th style="width: 150px"> <button class="btn m-b-xs btn-sm btn-success btn-addon" ng-click="ShowFormTambahLayanan()"><i class="fa fa-plus"></i>Add</button></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="w in myDataLayanan">
+          <td>{{$index + 1}}</td>
+          <td>{{w.nama_layanan}}</td>
+          <td>
+            <center>{{w.harga_bahan | currency:'Rp':0}} | {{w.harga_layanan | currency:'Rp':0 }}</center>
+          </td>
+          <td>{{ ((w.harga_bahan * 1 ) + (w.harga_layanan * 1) ) | currency:'Rp':0 }}</td>
+          <td>
+            <button class="btn m-b-xs btn-sm btn-info btn-addon" ng-click="editLayanan(w)">
+              <i class="fa fa-edit"></i>Edit</button>
+            <button class="btn m-b-xs btn-sm btn-danger btn-addon" ng-click="hapusLayanan(w)">
+              <i class="icon icon-close"></i>Delete</button>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="3" class="text-right">
+            <strong>Subtotal</strong>
+          </td>
+          <td>{{ getTotalLayanan | currency:'Rp':0 }}</td>
+          <td></td>
+        </tr>
+        <thead>
+          <tr>
+            <th style="width: 60px">QTY</th>
+            <th>Biaya Farmasi / Obat</th>
+            <th style="width: 100px">UNIT PRICE</th>
+            <th style="width: 150px">TOTAL</th>
+            <th style="width: 150px"><button class="btn m-b-xs btn-sm btn-success btn-addon" ng-click="ShowFormTambahObat()"><i class="fa fa-plus"></i>Add</button></th>
+          </tr>
+        </thead>
+        <tr ng-repeat="x in myData">
+          <td>{{x.quantity}}</td>
+          <td>{{x.nama_obat}}</td>
+          <td>{{ x.harga | currency:'Rp':0 }}</td>
+          <td>{{x.quantity * x.harga | currency:'Rp':0}}</td>
+          <td>
+              <button class="btn m-b-xs btn-sm btn-info btn-addon" ng-click="editObat(x)">
+                <i class="fa fa-edit"></i>Edit</button>
+              <button class="btn m-b-xs btn-sm btn-danger btn-addon" ng-click="hapusObat(x)">
+                <i class="icon icon-close"></i>Delete</button>
+            </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="text-right">
+            <strong>Subtotal</strong>
+          </td>
+          <td>{{ getTotal | currency:'Rp':0 }}</td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td colspan="3" class="text-right no-border">
+            <strong>Total</strong>
+          </td>
+          <td>
+            <strong>{{ (getTotal * 1 + getTotalLayanan * 1) | currency:'Rp':0 }}</strong>
+          </td>
+          <td></td>
+
+        </tr>
+        <tr>
+          <td colspan="3" class="text-right no-border">
+            <strong>Biaya Rekam Medis</strong>
+          </td>
+          <td>{{ rekam_medis_pay | currency:'Rp':0 }}</td>
+          <td></td>
+
+        </tr>
+        <tr>
+          <td colspan="3" class="text-right no-border">
+            <strong>Deposit</strong>
+          </td>
+          <td>-{{ 50000 | currency:'Rp':0 }}</td>
+          <td></td>
+
+        </tr>
+        <tr>
+          <td colspan="3" class="text-right no-border">
+            <strong> Grand Total</strong>
+          </td>
+          <td>
+            <strong>{{ ((getTotal * 1 + getTotalLayanan * 1) - (50000 + rekam_medis_pay )) | currency:'Rp':0 }}</strong>
+          </td>
+          <td></td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="line line-dashed b-b line-lg pull-in"></div>
+  <div class="form-group">
+    <div class="col-sm-8 ">
+    </div>
+    <div class="col-sm-4 ">
+      <a href="#!/home">
+        <button type="submit" class="btn btn-black">Back</button>
+      </a>
+      <button type="submit" class="btn btn-success" ng-click="submitInvoice()">Complete Order ?</button>
+    </div>
+  </div>
+</div>

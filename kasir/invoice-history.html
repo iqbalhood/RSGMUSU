@@ -58,6 +58,7 @@
           <th>Biaya Tindakan Medis</th>
           <th style="width: 240px"><center>HARGA BAHAN | HARGA LAYANAN</center></th>
           <th style="width: 140px">TOTAL</th>
+          <th style="width: 10px"></th>
         </tr>
       </thead>
       <tbody>
@@ -66,6 +67,7 @@
           <td>{{w.nama_layanan}}</td>
           <td><center>{{w.harga_bahan | currency:'Rp':0}} | {{w.harga_layanan  | currency:'Rp':0 }}</center></td>
           <td>{{ ((w.harga_bahan * 1 ) + (w.harga_layanan * 1) ) | currency:'Rp':0 }}</td>
+          <td></td>
         </tr>
        
         <tr>
@@ -78,6 +80,7 @@
               <th>Biaya Farmasi / Obat</th>
               <th style="width: 100px">UNIT PRICE</th>
               <th style="width: 150px">TOTAL</th>
+              <th style="width: 150px"></th>
             </tr>
           </thead>
             <tr ng-repeat="x in myData">
@@ -85,30 +88,37 @@
               <td>{{x.nama_obat}}</td>
               <td>{{ x.harga | currency:'Rp':0 }}</td>
               <td>{{x.quantity * x.harga | currency:'Rp':0}}</td>
+              <td></td>
             </tr>
             <tr>
               <td colspan="3" class="text-right"><strong>Subtotal</strong></td>
               <td>{{ getTotal | currency:'Rp':0  }}</td>
+              <td></td>
             </tr>
             <tr>
               <td colspan="3" class="text-right no-border"><strong>Total</strong></td>
               <td><strong>{{ (getTotal * 1 + getTotalLayanan * 1) | currency:'Rp':0  }}</strong></td>
+              <td></td>
             </tr>
             <tr>
               <td colspan="3" class="text-right no-border"><strong>Biaya Rekam Medis</strong></td>
               <td>{{ rekam_medis_pay | currency:'Rp':0  }}</td>
+              <td></td>
             </tr>
             <tr>
               <td colspan="3" class="text-right no-border"><strong>Biaya Rekam Medis</strong></td>
               <td>- {{ rekam_medis_pay | currency:'Rp':0  }}</td>
+              <td></td>
             </tr>
             <tr>
               <td colspan="3" class="text-right no-border"><strong>Deposit</strong></td>
               <td><strong>- {{ 50000 | currency:'Rp':0  }}</strong></td>
+              <td></td>
             </tr>
         <tr>
           <td colspan="3" class="text-right no-border"><strong>Total</strong></td>
           <td><strong>{{ (getTotal * 1 + getTotalLayanan * 1) - (50000 + rekam_medis_pay ) | currency:'Rp':0  }}</strong></td>
+          <td></td>
         </tr>
       </tbody>
     </table>              

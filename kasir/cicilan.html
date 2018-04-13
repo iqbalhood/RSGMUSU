@@ -22,16 +22,22 @@
       <thead>
           <tr>
               <th  style="width:5%">No </th>
+              <th  style="width:15%">Tanggal</th>
+              <th  style="width:10%">NO RM</th> 
               <th  style="width:10%">ID Kunjungan</th>
-              <th  style="width:15%">Nama Pasien</th>
-              <th  style="width:15%">Nama Pendamping</th>            
+              <th  style="width:10%">Nama Pasien</th>
+              <th  style="width:10%">Nama Pendamping</th>            
               <th  style="width:15%">Nama Dokter</th>          
-              <th  style="width:25%">Aksi</th>
+              <!-- <th  style="width:15%">Status</th>          
+              <th  style="width:15%">Status Pembayaran</th>           -->
+              <th  style="width:15%">Aksi</th>
             </tr>
           </thead>
           <tbody>
               <tr ng-repeat="x in myData">
-                  <td>{{ $index + 1 }}</td>                      
+                  <td>{{ $index + 1 }}</td>   
+                  <td>{{ x.id_kunjungan * 1 |  date:'dd-MMMM-yyyy' }}</td>   
+                  <td>{{ x.id_pasien }}</td>                
                   <td>{{ x.id_kunjungan }}</td>
                   <td>{{ x.pasien }}</td>
                   <td>{{ x.dokter_pendamping }}</td>

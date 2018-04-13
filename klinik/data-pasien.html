@@ -1,234 +1,246 @@
-        
-         
-                <div class="bg-light lter b-b wrapper-md">
-                        <h1 class="m-n font-thin h3"> Detail Data Pasien</h1>
-                    </div>
-                    <div class="panel hbox hbox-auto-xs no-border">
-                        <!-- # Panel Kiri -->
-                        <div class="col wrapper-lg w-lg bg-light dk r-r">
-                            <h4 class="font-thin m-t-none m-b">Basic Info</h4>
-                            <div class="">
-                                <!-- <a href="" class="thumb-sm m-r">
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3"> Detail Data Pasien</h1>
+</div>
+<div class="panel hbox hbox-auto-xs no-border">
+    <!-- # Panel Kiri -->
+    <div class="col wrapper-lg w-lg bg-light dk r-r">
+        <h4 class="font-thin m-t-none m-b">Basic Info</h4>
+        <div class="">
+            <!-- <a href="" class="thumb-sm m-r">
                                     <img src="../img/a1.jpg" class="r r-2x" ng-if="kelamin == 1">
                                     <img src="../img/a3.jpg" class="r r-2x" ng-if="kelamin == 2">
                                 </a> -->
-                                <div class="clear">&nbsp;</div>
-                                <div class="">
-                                    <span class="pull-right text-info">{{namaPasien}}</span>
-                                    <span>Nama</span>
-                                </div>
-                                <div class="clear">&nbsp;</div>
-                                <div class="">
-                                    <span class="pull-right text-info">{{phone}}</span>
-                                    <span>Nomor Telepon</span>
-                                </div>
-                                <div class="clear">&nbsp;</div>  
-                                <div class="">
-                                    <span class="pull-right text-info">{{umur}} Tahun</span>
-                                    <span>Umur</span>
-                                </div>
-                                <div class="clear">&nbsp;</div>                        
-                                <div class="">
-                                        <span class="pull-right text-info" ng-if="kelamin == 'L'">Laki - Laki</span>
-                                        <span class="pull-right text-info" ng-if="kelamin == 'P'">Perempuan</span>
-                                        <span>Jenis Kelamin</span>
-                                </div>
-                                <div class="clear">&nbsp;</div>                        
-                                <div class="">
-                                    <span class="pull-right text-info">{{tinggi_badan}} cm</span>
-                                    <span>Tinggi Badan</span>
-                                </div>
-                                <div class="clear">&nbsp;</div>                        
-                                <div class="">
-                                    <span class="pull-right text-info">{{berat_badan}} Kg</span>
-                                    <span>Berat Badan</span>
-                                </div>
-                                <div class="clear">&nbsp;</div>                        
-                                <div class="">
-                                    <span class="pull-right text-info">{{golongan_darah}}</span>
-                                    <span>Golongan Darah</span>
-                                </div>
-            
-                             
-                            </div>
-                            <div class="clear">&nbsp;</div>  
-                            <div class="clear">&nbsp;</div>  
-                            <!-- <button class="btn m-b-xs btn-sm btn-info btn-addon"><i class="fa fa-trash-o"></i>Info</button>
+            <div class="clear">&nbsp;</div>
+            <div class="">
+                    <span class="pull-right text-info">{{namaPasien}}</span>
+                    <span>Nama</span>
+            </div>
+            <div class="clear">&nbsp;</div>
+            <div class="">
+                <span class="pull-right text-info">{{phone}}</span>
+                <span>Nomor Telepon</span>
+            </div>
+            <div class="clear">&nbsp;</div>
+            <div class="">
+                <span class="pull-right text-info">{{umur}} Tahun</span>
+                <span>Umur</span>
+            </div>
+            <div class="clear">&nbsp;</div>
+            <div class="">
+                <span class="pull-right text-info" ng-if="kelamin == 'L'">Laki - Laki</span>
+                <span class="pull-right text-info" ng-if="kelamin == 'P'">Perempuan</span>
+                <span>Jenis Kelamin</span>
+            </div>
+            <div class="clear">&nbsp;</div>
+            <div class="">
+                <span class="pull-right text-info">{{tinggi_badan}} cm</span>
+                <span>Tinggi Badan</span>
+            </div>
+            <div class="clear">&nbsp;</div>
+            <div class="">
+                <span class="pull-right text-info">{{berat_badan}} Kg</span>
+                <span>Berat Badan</span>
+            </div>
+            <div class="clear">&nbsp;</div>
+            <div class="">
+                <span class="pull-right text-info">{{golongan_darah}}</span>
+                <span>Golongan Darah</span>
+            </div>
+
+
+        </div>
+        <div class="clear">&nbsp;</div>
+        <div class="clear">&nbsp;</div>
+        <!-- <button class="btn m-b-xs btn-sm btn-info btn-addon"><i class="fa fa-trash-o"></i>Info</button>
                             <button class="btn m-b-xs btn-sm btn-info btn-addon"><i class="fa fa-trash-o"></i>Info</button> -->
-                            <div class="m-b-sm">
-                                <div class="btn-group btn-group-justified">
-                                                               
-                                  <a href="#!/pasien" class="btn btn-danger">Tutup Dialog</a>
-                                  <a href="" class="btn btn-success" ng-click="showKlinik()">Go to Klinik</a>
-                                </div>
-                              </div>
-                        </div>
-                        <!-- # End Panel Kiri -->
-            
-                        <!-- # Panel Kanan Berisi Informasi Data List Rekam Medis -->    
-                        <div class="col wrapper">
-                            <i class="fa fa-circle-o text-info m-r-sm pull-right"></i>
-                            <h4 class="font-thin m-t-none m-b-none text-primary-lt">Riwayat Kunjungan</h4>
-                            <div class="clear">&nbsp;</div>                                    
-                            <div class="panel panel-default">
-                                <div class="panel-heading">Daftar Riwayat Kunjungan</div>
-                                <table class="table table-striped m-b-none">
-                                <thead>
-                                    <tr>
-                                    <th style="width:170px;" >Id Kunjungan</th>
-                                    <th style="width:170px;" >Tanggal</th>      
-                                    <th style="width:150px;">Riwayat Kunjungan</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="a in rekamMedisPasien">
-                                        <td>{{a.id_kunjungan}}</td>
-                                        <td>{{a.id_kunjungan * 1 |  date:'dd-MMMM-yyyy'}}</td>
-                                        <td class="text-success">
-                                                 <button class="btn m-b-xs btn-sm btn-success btn-addon" ng-click="showTable(a.id_kunjungan)">
-                                                <i class="icon-size-fullscreen icon pull-right"></i>View Data</button>
-                                        </td>
-                                    </tr>                        
-                                </tbody>
-                                </table>
-                            </div>
+        <div class="m-b-sm">
+            <div class="btn-group btn-group-justified">
 
+                <a href="#!/pasien" class="btn btn-danger">Tutup Dialog</a>
+                <a href="" class="btn btn-success" ng-click="showKlinik()">Go to Klinik</a>
+            </div>
+        </div>
+    </div>
+    <!-- # End Panel Kiri -->
 
-                            <div ng-show="tablePelayanan">
-                              
-                                <i class="icon  icon-close text-danger m-r-sm pull-right" ng-click="hideTable()"></i>
-                                <h4 class="font-thin m-t-none m-b-none text-primary-lt">Daftar Kunjungan Klinik</h4>
-                                <div class="clear">&nbsp;</div>                                    
-                                <div class="panel panel-default">
-                                    <div class="panel-heading"> Klinik {{klinik}} Untuk Kunjungan {{ID}} {{TANGGAL}}</div>
-                                    <table class="table table-striped m-b-none">
-                                    <thead>
-                                            <tr>
-                                                <th style="width:170px;" >Id Kunjungan</th>
-                                                <th style="width:170px;" >Klinik</th>
-                                                <th style="width:170px;" >Tanggal</th>      
-                                                <th style="width:150px;">Detail Kunjungan</th>
-                                             </tr>
-                                    </thead>
-                                    <tbody>
-                                            <tr ng-repeat="v in dataKunjunganKlinik">
-                                                <td style="width:170px;" >{{v.id_kunjungan}}</td>
-                                                <td style="width:170px;" >{{v.nama_klinik}}</td>
-                                                <td style="width:170px;" >{{v.id_kunjungan | date:'dd-MMMM-yyyy'}}</td>      
-                                                <td style="width:150px;">
-                                                        <a href="#!/rekam-medis/{{id}}/{{idRM}}">
-                                                        <button class="btn m-b-xs btn-sm btn-info btn-addon" >
-                                                        <i class="fa fa-arrow-right pull-right"></i>Lihat Data </button>
-                                                        </a>
-                                                </td> 
-                                            </tr>  
-                                            
-                                           
-                                    </tbody>
-                                    </table>
-                                </div>
-                            </div>
+    <!-- # Panel Kanan Berisi Informasi Data List Rekam Medis -->
+    <div class="col wrapper">
+        <div class="row">
+            <div class="col-sm-12" style="margin-bottom:30x;">
+                <a href="#!/rekam-medis/{{id}}">
+                <button class="col-sm-12 btn btn-info btn-addon btn-lg">
+                    <i class="fa fa-stethoscope"></i>Lihat Rekam Medis
+                </button>
+                </a>
+            </div>
+        </div>
+        <div class="clear">&nbsp;</div>
+
+        <i class="fa fa-circle-o text-info m-r-sm pull-right"></i>
+        <h4 class="font-thin m-t-none m-b-none text-primary-lt" ng-show="hideRiwayat">Riwayat Kunjungan</h4>
+        <div class="clear">&nbsp;</div>
+        <div class="clear">&nbsp;</div>
 
 
 
-                            <div>
-                              
-                               
-                                <h4 class="font-thin m-t-none m-b-none text-primary-lt">Data Perawatan</h4>
-                                <div class="clear">&nbsp;</div>                                    
-                                <div class="panel panel-default">
-                                    <div class="panel-heading"> Data Perawatan</div>
-                                    <table class="table table-striped m-b-none">
-                                    <thead>
-                                                <tr>
-                                                    <th style="width:170px;" >Tanggal</th>
-                                                    <th style="width:170px;" >Elemen Gigi / Mulut</th>      
-                                                    <th style="width:150px;">Diagnosa</th>
-                                                    <th style="width:150px;">Perawatan</th>   
-                                                    <th style="width:170px;">Klinik</th>
-                                                    <th style="width:150px;">Nama Dokter</th>
-                                                </tr>
-                                    </thead>
-                                    <tbody>
-                                                <tr ng-repeat="p in dataPerawatanPasien">
-                                                    <td style="width:170px;" >{{p.id_antrian | date:'MM/dd/yyyy' }}</td>
-                                                    <td style="width:170px;" >{{p.element}}</td>
-                                                    <td style="width:170px;" >{{p.diagnosa}}</td>
-                                                    <td style="width:170px;" >{{p.perawatan}}</td>
-                                                    <td style="width:170px;" >{{p.klinik}}</td> 
-                                                    <td style="width:170px;" >{{p.nama_dokter}}</td> 
-                                                </tr>        
-                                    </tbody>
-                                    </table>
-                                </div>
-                            </div>
-            
-                        </div>
-                        <!-- # End Panel Kanan -->
+        <div class="panel panel-default" ng-show="hideRiwayat">
+            <div class="panel-heading">Daftar Riwayat Kunjungan</div>
+            <table class="table table-striped m-b-none">
+                <thead>
+                    <tr>
+                        <th style="width:170px;">Id Kunjungan</th>
+                        <th style="width:170px;">Tanggal</th>
+                        <th style="width:150px;">Riwayat Kunjungan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="a in rekamMedisPasien">
+                        <td>{{a.id_kunjungan}}</td>
+                        <td>{{a.id_kunjungan * 1 | date:'dd-MMMM-yyyy'}}</td>
+                        <td class="text-success">
+                            <button class="btn m-b-xs btn-sm btn-success btn-addon" ng-click="showTable(a.id_kunjungan)">
+                                <i class="icon-size-fullscreen icon pull-right"></i>View Data</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
 
-                        
-                            
-                
-            
-                     </div>
+        <div ng-show="tablePelayanan">
+
+            <i class="icon  icon-close text-danger m-r-sm pull-right" ng-click="hideTable()"></i>
+            <h4 class="font-thin m-t-none m-b-none text-primary-lt">Daftar Kunjungan Klinik</h4>
+            <div class="clear">&nbsp;</div>
+            <div class="panel panel-default">
+                <div class="panel-heading"> Klinik {{klinik}} Untuk Kunjungan {{ID}} {{TANGGAL}}</div>
+                <table class="table table-striped m-b-none">
+                    <thead>
+                        <tr>
+                            <th style="width:170px;">Id Kunjungan</th>
+                            <th style="width:170px;">Klinik</th>
+                            <th style="width:170px;">Tanggal</th>
+                            <th style="width:150px;">Detail Kunjungan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="v in dataKunjunganKlinik">
+                            <td style="width:170px;">{{v.id_kunjungan}}</td>
+                            <td style="width:170px;">{{v.nama_klinik}}</td>
+                            <td style="width:170px;">{{v.id_kunjungan | date:'dd-MMMM-yyyy'}}</td>
+                            <td style="width:150px;">
+                                <a href="#!/rekam-medis/{{id}}/{{idRM}}">
+                                    <button class="btn m-b-xs btn-sm btn-info btn-addon">
+                                        <i class="fa fa-arrow-right pull-right"></i>Lihat Data </button>
+                                </a>
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
 
 
-    
-             
-             <!-- #  Panel Pilih Instalasi dan Dokter Mahasiswa Pendamping -->
-             <div class="panel panel-default" ng-show="klinikForm">
-                <div class="panel-heading font-bold">
-                      Arahkan Ke Klinik
+        <div>
+
+
+            <h4 class="font-thin m-t-none m-b-none text-primary-lt" style="margin-top:20px;">Data Perawatan</h4>
+            <div class="clear">&nbsp;</div>
+            <div class="panel panel-default">
+                <div class="panel-heading"> Data Perawatan</div>
+                <table class="table table-striped m-b-none">
+                    <thead>
+                        <tr>
+                            <th style="width:170px;">Tanggal</th>
+                            <th style="width:170px;">Elemen Gigi / Mulut</th>
+                            <th style="width:150px;">Diagnosa</th>
+                            <th style="width:150px;">Perawatan</th>
+                            <th style="width:170px;">Klinik</th>
+                            <th style="width:150px;">Nama Dokter</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="p in dataPerawatanPasien">
+                            <td style="width:170px;">{{p.id_antrian | date:'MM/dd/yyyy' }}</td>
+                            <td style="width:170px;">{{p.element}}</td>
+                            <td style="width:170px;">{{p.diagnosa}}</td>
+                            <td style="width:170px;">{{p.perawatan}}</td>
+                            <td style="width:170px;">{{p.klinik}}</td>
+                            <td style="width:170px;">{{p.nama_dokter}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <!-- # End Panel Kanan -->
+
+
+
+
+
+
+</div>
+
+
+
+
+
+<!-- #  Panel Pilih Instalasi dan Dokter Mahasiswa Pendamping -->
+<div class="panel panel-default" ng-show="klinikForm">
+    <div class="panel-heading font-bold">
+        Arahkan Ke Klinik
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal">
+            <input type="hidden" class="form-control" ng-model="id_pasien">
+            <input type="hidden" class="form-control" ng-model="dokterpraktisi">
+            <input type="hidden" class="form-control" ng-model="dokterpendamping">
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">ID KUNJUNGAN</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="id_kunjungan">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Klinik</label>
+                <div class="col-sm-10">
+                    <select name="account" class="form-control m-b" ng-model="klinik" ng-change="selectDokter()">
+                        <option value="1">IKGP/IKGM</option>
+                        <option value="2">PERIODONSIA</option>
+                        <option value="3">ILMU PENYAKIT MULUT</option>
+                        <option value="4">ILMU KEDOKTERAN GIGI ANAK</option>
+                        <option value="5">KONSERVASI</option>
+                        <option value="6">PROSTODONSIA</option>
+                        <option value="7">ILMU BEDAH MULUT</option>
+                        <option value="8">ORTODONSIA</option>
+                        <option value="9">RADIOLOGI KEDOKTERAN GIGI</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label"> Kunjungan Pertama? </label>
+                <div class="col-sm-10">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="rekam_medis"> Klik Untuk Menambahkan Biaya Rekam Medis (Rp.4.000,-)
+                        </label>
                     </div>
-                <div class="panel-body">
-                <form class="form-horizontal">
-                    <input type="hidden" class="form-control" ng-model="id_pasien">
-                    <input type="hidden" class="form-control" ng-model="dokterpraktisi">
-                    <input type="hidden" class="form-control" ng-model="dokterpendamping">
-    
-                    <div class="form-group">
-                            <label class="col-sm-2 control-label" >ID KUNJUNGAN</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" ng-model="id_kunjungan">
-                            </div>
-                    </div>     
-                      <div class="form-group">
-                          <label class="col-sm-2 control-label" >Klinik</label>
-                          <div class="col-sm-10">
-                            <select name="account" class="form-control m-b"  ng-model="klinik" ng-change="selectDokter()">
-                              <option value="1">IKGP/IKGM</option>
-                              <option value="2">PERIODONSIA</option>
-                              <option value="3">ILMU PENYAKIT MULUT</option>
-                              <option value="4">ILMU KEDOKTERAN GIGI ANAK</option>
-                              <option value="5">KONSERVASI</option>
-                              <option value="6">PROSTODONSIA</option>
-                              <option value="7">ILMU BEDAH MULUT</option>
-                              <option value="8">ORTODONSIA</option>
-                              <option value="9">RADIOLOGI KEDOKTERAN GIGI</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label" > Kunjungan Pertama? </label>
-                            <div class="col-sm-10">   
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" ng-model="rekam_medis">
-                                        Klik Untuk Menambahkan Biaya Rekam Medis (Rp.4.000,-)
-                                    </label>
-                                </div>  
-                            </div>
-                          </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label" >Deposit</label>
-                            <div class="col-sm-10">
-                              Rp. 50.000,-
-                            </div>
-                         </div>
-    
-                        <!-- <div class="form-group">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Deposit</label>
+                <div class="col-sm-10">
+                    Rp. 50.000,-
+                </div>
+            </div>
+
+            <!-- <div class="form-group">
                                 <label class="col-sm-2 control-label" >CO AS /  PPDGS</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" ng-model="dokterpendamping">                                
@@ -243,24 +255,18 @@
                                   </select>
                                 </div>
                         </div> -->
-        
-                      <div class="line line-dashed b-b line-lg pull-in"></div>
-                      <div class="form-group">
-                        <div class="col-sm-4 col-sm-offset-2">
-                          <button type="submit" ng-click="cancelFormKlinik()" class="btn btn-default">Cancel</button>
-                          <button ng-click="submitForm()" class="btn btn-primary">Submit</button>
-                        </div>
-                      </div>
-        
-                </form>
-        
-                    </div>
+
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-2">
+                    <button type="submit" ng-click="cancelFormKlinik()" class="btn btn-default">Cancel</button>
+                    <button ng-click="submitForm()" class="btn btn-primary">Submit</button>
                 </div>
-    
-                <!-- #  Panel Pilih Instalasi dan Dokter Mahasiswa Pendamping -->
-        
-    
-          
-     
-    
-            
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+<!-- #  Panel Pilih Instalasi dan Dokter Mahasiswa Pendamping -->

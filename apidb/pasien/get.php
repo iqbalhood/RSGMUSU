@@ -47,8 +47,8 @@ if($result = mysqli_query($connect,$sql))
 	  $people['tinggi_badan']  				= $row['tinggi_badan'];
 	  $people['berat_badan']  				= $row['berat_badan'];
 	  $people['golongan_darah']  			= $row['golongan_darah'];
-	  $people['umur']  						= $row['umur'];
-	//   $people['umur']						= date_diff(date_create($row['tanggal_lahir']), date_create('today'))->y;
+	//   $people['umur']  						= $row['umur'];
+	   $people['umur']						= date_diff(date_create($row['tanggal_lahir']), date_create('today'))->y;
            
   }
 }

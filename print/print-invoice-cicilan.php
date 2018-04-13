@@ -1138,8 +1138,7 @@ color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
  <tr style='mso-yfti-irow:1'>
   <td width=297 valign=top style='width:297.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal><span style='font-size:7.5pt;color:black;mso-themecolor:
-  text1'>DPJP : Prof <span class=SpellE>Sondang</span> <span class=SpellE>Pintauli</span>,
-  <span class=SpellE>drg</span>., <span class=SpellE>Ph.D</span><o:p></o:p></span></p>
+  text1'>DPJP :  <?php echo $k['dokter']; ?> <o:p></o:p></span></p>
   </td>
   <td width=297 valign=top style='width:297.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal><span style='font-size:7.5pt;color:black;mso-themecolor:

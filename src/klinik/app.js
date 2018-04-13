@@ -65,7 +65,11 @@
           templateUrl : "riwayat.html",
           controller  : "RiwayatCtrl",
         })
-        .when("/rekam-medis/:id/:idkunjungan", {
+        // .when("/rekam-medis/:id/:idkunjungan", {
+        //   templateUrl : "rekam-medis.html",
+        //   controller  : "RekamMedisCtrl",
+        // })
+        .when("/rekam-medis/:id", {
           templateUrl : "rekam-medis.html",
           controller  : "RekamMedisCtrl",
         })

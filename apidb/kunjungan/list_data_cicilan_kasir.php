@@ -22,7 +22,7 @@ $db = new DB_CONNECT();
 								FROM tabel_kunjugan
 								INNER JOIN data_dokter ON tabel_kunjugan.id_dokter = data_dokter.id
 								INNER JOIN data_pasien ON tabel_kunjugan.id_pasien = data_pasien.no_rekam_medis
-                                WHERE tabel_kunjugan.status_pembayaran = '3' ORDER BY tabel_kunjugan.id_kunjungan ") or die(mysql_error());
+                                WHERE tabel_kunjugan.status_pembayaran = '3' ORDER BY tabel_kunjugan.id_kunjungan DESC ") or die(mysql_error());
 		// cek
 		if (mysql_num_rows($result) > 0) {
 		    // looping hasil

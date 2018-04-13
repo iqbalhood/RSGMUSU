@@ -28,7 +28,7 @@
 
                 <div class="form-group">
                   <label class="sr-only" for="exampleInputPassword2">Klinik</label>
-                  <select class="form-control"  id="selklinik" style="margin-left:5px">
+                  <select class="form-control"  id="selklinik" ng-model="idklinik" style="margin-left:5px">
                     <option value="0">SEMUA KLINIK</option>                                
                     <option value="1">IKGP/IKGM</option>
                     <option value="2">PERIODONSIA</option>
@@ -45,15 +45,17 @@
 
                 <div class="form-group">
                     <label class="sr-only" for="exampleInputPassword2">Klinik</label>
-                    <select class="form-control"  id="seltagihan" style="margin-left:5px">
+                    <select class="form-control"  id="seltagihan" ng-model="carabayar" style="margin-left:5px">
                       <option value="0">SEMUA CARA BAYAR</option>                                
-                      <option value="1">CICILAN</option>
                       <option value="2">LUNAS</option>
+                      <option value="3">CICILAN</option>
                     </select>
                   </div>
 
 
-               <button class="btn btn-primary btn-addon" style="margin-left:5px" ng-click="search()"><i class="fa fa-search"></i>Search</button>
+                  <button class="btn btn-primary btn-addon" style="margin-left:5px" ng-click="search()"><i class="fa fa-search"></i>Cari</button>
+                  <button class="btn btn-success btn-addon" style="margin-left:5px" ng-click="exportExcel()"><i class="fa fa-file-excel-o"></i>Export</button>
+                  <button class="btn btn-info btn-addon" style="margin-left:5px" ng-click="refresh()"><i class="fa fa-refresh"></i>Refresh</button>
               </form>
             </div>
           </div>
@@ -65,7 +67,7 @@
 
           
 
-        <div class="panel panel-default">
+        <div class="panel panel-default" ng-show="tabel_normal">
               <div class="panel-heading">
                 Data Histori Transaksi
               <br>
@@ -76,6 +78,7 @@
                 <tr>
                   <th  style="width:5%">No </th>
                   <th  style="width:10%">Tanggal</th>
+                  <th  style="width:10%">No RM</th>                  
                   <th  style="width:15%">Nama Pasien</th>
                   <th  style="width:15%">Co Ass / PPDGS</th>            
                   <th  style="width:15%">DPJP</th>   
@@ -88,6 +91,7 @@
                   <tr ng-repeat="x in myData">
                       <td>{{ $index + 1 }}</td>                      
                       <td>{{ x.id_kunjungan * 1 |  date:'dd-MMMM-yyyy' }}</td>
+                      <td>{{ x.id_pasien }}</td>                      
                       <td>{{ x.pasien }}</td>
                       <td>{{ x.dokter_pendamping }}</td>
                       <td>{{ x.dokter }}</td>
@@ -100,4 +104,73 @@
                       
           </div>
         </div>
+
+
+        <div class="panel panel-default" ng-show="tabel_cari">
+          <div class="panel-heading">
+            Data Histori Transaksi
+          <br>
+        </div>
+      <div class="table-responsive"  >
+          <table class="table  table-striped b-t b-b">
+          <thead>
+            <tr>
+              <th  style="width:5%">No </th>
+              <th  style="width:10%">Tanggal</th>
+              <th  style="width:15%">Nama Pasien</th>
+              <th  style="width:15%">Co Ass / PPDGS</th>            
+              <th  style="width:15%">DPJP</th>   
+              <th  style="width:15%">Biaya</th>      
+              <th  style="width:15%">Status</th>      
+              <th  style="width:25%">Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr ng-repeat="x in myData">
+                  <td>{{ $index + 1 }}</td>                      
+                  <td>{{ x.id_kunjungan * 1 |  date:'dd-MMMM-yyyy' }}</td>
+                  <td>{{ x.pasien }}</td>
+                  <td>{{ x.dokter_pendamping }}</td>
+                  <td>{{ x.dokter }}</td>
+                  <td>{{x.harga | currency:'Rp ':0 }}</td>
+                  <td><button class='btn btn-warning' ng-if="x.status_pembayaran == '2'">Lunas</button> <button class='btn btn-primary' ng-if="x.status_pembayaran == '3'">Cicilan</button></td>
+                  <td>  <a href="#!/invoice-history/{{x.id_pasien}}/{{x.id_kunjungan}}"><button class='btn btn-default'>Lihat Invoice</button></a> </td>
+                </tr>
+          </tbody>
+        </table>
+                  
+      </div>
+    </div> 
+
+
+    <table id="tableEX" border="1" ng-show="wew">
+      <thead>
+        <tr>
+          <th  style="width:5%">No </th>
+          <th  style="width:10%">Tanggal</th>
+          <th  style="width:15%">Nama Pasien</th>
+          <th  style="width:15%">Co Ass / PPDGS</th>            
+          <th  style="width:15%">DPJP</th>   
+          <th  style="width:15%">Biaya</th>      
+          <th  style="width:15%">Status</th>      
+         
+        </tr>
+      </thead>
+      <tbody>
+          <tr ng-repeat="x in myData">
+              <td>{{ $index + 1 }}</td>                      
+              <td>{{ x.id_kunjungan * 1 |  date:'dd-MMMM-yyyy' }}</td>
+              <td>{{ x.pasien }}</td>
+              <td>{{ x.dokter_pendamping }}</td>
+              <td>{{ x.dokter }}</td>
+              <td>{{x.harga}}</td>
+              <td><span ng-if="x.status_pembayaran == '2'">Lunas</span> <span ng-if="x.status_pembayaran == '3'">Cicilan</span></td>
+            </tr>
+      </tbody>
+    </table>
+
+
+
+
+
       </div>
