@@ -67,11 +67,24 @@
             
                         <!-- # Panel Kanan Berisi Informasi Data List Rekam Medis -->    
                         <div class="col wrapper">
-                            <i class="fa fa-circle-o text-info m-r-sm pull-right"></i>
-                            <h4 class="font-thin m-t-none m-b-none text-primary-lt">Riwayat Kunjungan</h4>
+
+                                <div class="row">
+                                        <div class="col-sm-12" style="margin-bottom:30x;">
+                                            <a href="#!/rekam-medis/{{id}}">
+                                            <button class="col-sm-12 btn btn-info btn-addon btn-lg">
+                                                <i class="fa fa-stethoscope"></i>Lihat Rekam Medis
+                                            </button>
+                                            </a>
+                                        </div>
+                                    </div>
+
+
+
+                           
+                            <h4 class="font-thin m-t-none m-b-none text-primary-lt" ng-show="hideRiwayat">Riwayat Kunjungan</h4>
                             <div class="clear">&nbsp;</div>                                    
-                            <div class="panel panel-default">
-                                <div class="panel-heading">Daftar Riwayat Kunjungan</div>
+                            <div class="panel panel-default" ng-show="hideRiwayat">
+                                <div class="panel-heading">Daftar Riwayat Kunjungan CCCC</div>
                                 <table class="table table-striped m-b-none">
                                 <thead>
                                     <tr>
@@ -141,22 +154,26 @@
                                     <table class="table table-striped m-b-none">
                                     <thead>
                                                 <tr>
-                                                    <th style="width:170px;" >Tanggal</th>
+                                                    <th style="width:50px;" >Tanggal</th>
                                                     <th style="width:170px;" >Elemen Gigi / Mulut</th>      
                                                     <th style="width:150px;">Diagnosa</th>
                                                     <th style="width:150px;">Perawatan</th>   
                                                     <th style="width:170px;">Klinik</th>
+                                                    <th style="width:170px;">ICD 10</th>
                                                     <th style="width:150px;">Nama Dokter</th>
+                                                    <th style="width:150px;">Aksi</th>
                                                 </tr>
                                     </thead>
                                     <tbody>
                                                 <tr ng-repeat="p in dataPerawatanPasien">
-                                                    <td style="width:170px;" >{{p.id_antrian | date:'MM/dd/yyyy' }}</td>
+                                                    <td style="width:50px;" >{{p.id_antrian | date:'MM/dd/yyyy' }}</td>
                                                     <td style="width:170px;" >{{p.element}}</td>
                                                     <td style="width:170px;" >{{p.diagnosa}}</td>
                                                     <td style="width:170px;" >{{p.perawatan}}</td>
                                                     <td style="width:170px;" >{{p.klinik}}</td> 
+                                                    <td style="width:170px;" >{{p.icd10}}</td>                                                     
                                                     <td style="width:170px;" >{{p.nama_dokter}}</td> 
+                                                    <td style="width:170px;" ><a href="#!/edit-perawatan/{{p.id_pasien}}/{{p.id_kunjungan}}/{{p.id_antrian}}"><button class="btn m-b-xs btn-sm btn-success btn-addon"><i class="fa  fa-external-link-square"></i>Edit Perawatan</button></a></td> 
                                                 </tr>        
                                     </tbody>
                                     </table>
@@ -165,17 +182,7 @@
             
                         </div>
                         <!-- # End Panel Kanan -->
-
-
-                        
-                            
-                
-            
                      </div>
-
-
-
-    
              
             <!-- #  Panel Pilih Instalasi dan Dokter Mahasiswa Pendamping -->
             <div class="panel panel-default" ng-show="klinikForm">

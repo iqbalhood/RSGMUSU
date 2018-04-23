@@ -90,11 +90,13 @@ $db = new DB_CONNECT();
 			$event 							    = array();
 			$event["id_antrian"] 			    = $row["id_antrian"];			
 			$event["id_pasien"] 			    = $row["id_pasien"];
+			$event["id_kunjungan"] 			    = get_id_kunjungan($row["id_antrian"]);
 			$event["nama_dokter"] 			    = $row["nama_dokter"];
 			$event["klinik"] 			   		= $klinik;
 			$event["element"] 			   		= $row["element"];
-			$event["diagnosa"] 			   		= $row["diagnosa"];
-			$event["perawatan"] 			   	= $row["perawatan"];
+			$event["diagnosa"] 			   		= $row["diagnosa"];		
+			$event["perawatan"] 			   	= $row["perawatan"];		
+			$event["icd10"] 			   		= $row["icd10"];
 		
 			array_push($response["event"], $event);
 		 }
@@ -111,3 +113,15 @@ $db = new DB_CONNECT();
 		    echo json_encode($response);
 		}
 
+		function get_id_kunjungan($id_antrian){
+			$exist = '';
+			$sql = mysql_query("SELECT * FROM `tabel_kunjugan` WHERE `id_antrian` = '$id_antrian'");
+			if (mysql_num_rows($sql) > 0) {
+				while ($row = mysql_fetch_array($sql)) {
+
+				$exist = $row["id_kunjungan"];	
+				
+			}	
+			}
+			return $exist;
+		}

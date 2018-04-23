@@ -42,7 +42,11 @@
                   <td>{{ x.pasien }}</td>
                   <td>{{ x.dokter_pendamping }}</td>
                   <td>{{ x.dokter }}</td>
-                  <td>  <a href="#!/invoice-cicilan/{{x.id_pasien}}/{{x.id_kunjungan}}"><button class='btn btn-success'>Lihat Tagihan</button></a> </td>
+                  <td> 
+                    
+                     <a href="#!/invoice-cicilan/{{x.id_pasien}}/{{x.id_kunjungan}}"><button class='btn btn-success'>Lihat Tagihan</button></a>
+                     <button class='btn btn-danger' ng-click="hapusTagihan(x)">Hapus</button> 
+                  </td>
                 </tr>
           </tbody>
     </table>

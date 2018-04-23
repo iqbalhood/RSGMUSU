@@ -22,7 +22,7 @@ $people = array();
 */
 
 
-$sql = "SELECT * FROM `rm_riwayat_penyakit` WHERE `id_pasien` LIKE '00206818' LIMIT 1";
+$sql = "SELECT * FROM `rm_riwayat_penyakit` WHERE `id_pasien` LIKE '$newId' LIMIT 1";
 
 if($result = mysqli_query($connect,$sql))
 {

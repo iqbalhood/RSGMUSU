@@ -26,6 +26,7 @@ $db = new DB_CONNECT();
 			$event["nama_layanan"] 			= $row["nama_layanan"];
 			$event["harga_bahan"] 			= $row["harga_bahan"];
 			$event["harga_layanan"] 		= $row["harga_layanan"];
+			$event["icd"] 		= $row["icd"];
 			
 			array_push($response["event"], $event);
 		 }

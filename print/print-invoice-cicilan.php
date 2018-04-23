@@ -1128,11 +1128,11 @@ color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
  <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
   <td width=297 valign=top style='width:297.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal><span style='font-size:7.5pt;color:black;mso-themecolor:
-  text1'>Invoice date : <?php echo  date("d-m-Y", $timestamp); ?><o:p></o:p></span></p>
+  text1'>Invoice date : <?php echo date("d-m-Y"); // date("d-m-Y", $timestamp); ?><o:p></o:p></span></p>
   </td>
   <td width=297 valign=top style='width:297.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal><span style='font-size:7.5pt;color:black;mso-themecolor:
-  text1'>Invoice date: <?php echo  date("d-m-Y", $timestamp); ?><o:p></o:p></span></p>
+  text1'>Invoice date: <?php echo date("d-m-Y"); // date("d-m-Y", $timestamp); ?><o:p></o:p></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:1'>

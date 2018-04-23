@@ -10,7 +10,7 @@ $newId = preg_replace('/[^0-9 ]/','',$request->newId);
 // Get the data
 $people = array();
 
-$sql = "SELECT * FROM `perawatan` WHERE `id_antrian` = '1520919814815'";
+$sql = "SELECT * FROM `perawatan` WHERE `id_antrian` = '$newId'";
 
 if($result = mysqli_query($connect,$sql))
 {

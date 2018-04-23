@@ -1,12 +1,34 @@
 
 var app = angular.module('myApp.controller', []);
 
-app.controller("HomeCtrl", function ($scope, $cookies, $interval, $http, $route, $timeout, $routeParams, $window) {
+app.controller("HomeCtrl", function ($scope, $ngConfirm, $cookies, $interval, $http, $route, $timeout, $routeParams, $window) {
 
     $http.get("../apidb/kunjungan/list_data_kasir.php").then(function (response) {
         $scope.myData = response.data.event;
         console.log(response.data.event);
     });
+
+    $scope.hapusTagihan = function(x){
+
+        //alert("tagihan --- > "+x.id_kunjungan);
+
+
+
+        $http.get("../apidb/kasir/hapus_data_tagihan.php?id="+x.id_kunjungan).then(function (response) {
+         
+            if (!response.data.event) {
+                $ngConfirm('Data Sudah Dihapus');
+                $route.reload();
+            } else {
+                $ngConfirm('There Is Some Problem');
+                $route.reload();
+            }
+        });
+
+    }
+
+
+
 
     setTimeout(function () {
         $('#mytableOrder').dataTable({
@@ -29,6 +51,26 @@ app.controller("CicilanCtrl", function ($scope, $cookies, $interval, $http, $rou
         $scope.myData = response.data.event;
         console.log(response.data.event);
     });
+
+
+    $scope.hapusTagihan = function(x){
+
+        //alert("tagihan --- > "+x.id_kunjungan);
+
+
+
+        $http.get("../apidb/kasir/hapus_data_tagihan.php?id="+x.id_kunjungan).then(function (response) {
+         
+            if (!response.data.event) {
+                $ngConfirm('Data Sudah Dihapus');
+                $route.reload();
+            } else {
+                $ngConfirm('There Is Some Problem');
+                $route.reload();
+            }
+        });
+
+    }
 
     setTimeout(function () {
         $('#mytableOrder').dataTable({

@@ -1,7 +1,7 @@
 (function(){
     "use strict";
 
-    var app = angular.module("myApp", ["ngClickCopy","myApp.controller","ngRoute", "ngCookies","720kb.datepicker"]);
+    var app = angular.module("myApp", ["ngClickCopy", "cp.ngConfirm","myApp.controller","ngRoute", "ngCookies","720kb.datepicker"]);
     app.directive("datepicker", function () {
       return {
         restrict: "A",
@@ -80,6 +80,10 @@
         .when("/edit-rm/:id/:idkunjungan", {
           templateUrl : "edit-rekam-medis.html",
           controller  : "EditRekamMedisCtrl",
+        })
+        .when("/edit-perawatan/:id/:idkunjungan", {
+          templateUrl : "edit-perawatan.html",
+          controller  : "EditPerawatanCtrl",
         })
         .when("/pradiologi/:id/:idkunjungan", {
           templateUrl : "perawatan-radiologi.html",

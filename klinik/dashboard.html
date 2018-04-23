@@ -54,7 +54,10 @@
               <td>{{ x.id_pasien}}</td>                       
               <td>{{ x.id_kunjungan }}</td>
               <td>{{ x.pasien }}</td>
-              <td> <button class='btn btn-dark' ng-click="tentukandokter(x)" >Tentukan CO ASS  dan DPJP</button> </td>
+              <td>
+                 <button class='btn btn-dark' ng-click="tentukandokter(x)" >Tentukan CO ASS  dan DPJP</button>
+                 <button class='btn btn-danger' ng-click="hapusTagihan(x)">Hapus</button>  
+              </td>
             </tr>
       </tbody>
     </table>

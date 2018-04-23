@@ -45,6 +45,7 @@ tabel_kunjugan.id_klinik,
 tabel_kunjugan.dokter_pendamping,
 tabel_kunjugan.id_dokter,
 tabel_kunjugan.id_pasien,
+tabel_kunjugan.tanggal_pembayaran,
 tabel_kunjugan.status_pembayaran,
 tabel_kunjugan.tanggal_kunjungan,
 data_dokter.nama AS nama_dokter,
@@ -85,6 +86,8 @@ while ($row = mysql_fetch_array($result)) {
     $event["dokter"] 						= $row["nama_dokter"];
     $event["status_pembayaran"] 			= $row["status_pembayaran"];
     $event["pasien"] 						= $row["nama_pasien"];
+    $event["tanggal_pembayaran"] 			= $row["tanggal_pembayaran"];
+    $event["perawatan"] 					= get_perawatan($row["id_kunjungan"]);
     
     array_push($response["event"], $event);
  }
@@ -112,6 +115,20 @@ $k = mysql_query("SELECT SUM(quantity*harga) as value_sum FROM `tabel_obat_kunju
 $row = mysql_fetch_assoc($k); 
 $sum = $row['value_sum'];
 return $sum;
+}
+
+
+function get_perawatan($id_kunjungan){
+	$exist = '';
+	$sql = mysql_query("SELECT  perawatan FROM `perawatan` WHERE `id_antrian` = '$id_kunjungan'");
+	if (mysql_num_rows($sql) > 0) {
+		while ($row = mysql_fetch_array($sql)) {
+
+		$exist = $row["perawatan"];	
+		
+	}	
+	}
+	return $exist;
 }
 
 

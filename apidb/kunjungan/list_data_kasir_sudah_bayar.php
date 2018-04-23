@@ -17,6 +17,7 @@ $db = new DB_CONNECT();
 									tabel_kunjugan.dokter_pendamping,
 									tabel_kunjugan.id_dokter,
 									tabel_kunjugan.id_pasien,
+									tabel_kunjugan.tanggal_pembayaran,
 									tabel_kunjugan.status_pembayaran,
 									data_dokter.nama AS nama_dokter,
 									data_pasien.nama AS nama_pasien
@@ -52,6 +53,8 @@ $db = new DB_CONNECT();
 			$event["dokter"] 						= $row["nama_dokter"];
 			$event["status_pembayaran"] 			= $row["status_pembayaran"];
 			$event["pasien"] 						= $row["nama_pasien"];
+			$event["tanggal_pembayaran"] 			= $row["tanggal_pembayaran"];
+			$event["perawatan"] 					= get_perawatan($row["id_kunjungan"]);
 			
 			array_push($response["event"], $event);
 		 }
@@ -79,6 +82,20 @@ function jumlah_obat($id_kunjungan){
 	$row = mysql_fetch_assoc($k); 
 	$sum = $row['value_sum'];
 	return $sum;
+}
+
+
+function get_perawatan($id_kunjungan){
+	$exist = '';
+	$sql = mysql_query("SELECT  perawatan FROM `perawatan` WHERE `id_antrian` = '$id_kunjungan'");
+	if (mysql_num_rows($sql) > 0) {
+		while ($row = mysql_fetch_array($sql)) {
+
+		$exist = $row["perawatan"];	
+		
+	}	
+	}
+	return $exist;
 }
 
 

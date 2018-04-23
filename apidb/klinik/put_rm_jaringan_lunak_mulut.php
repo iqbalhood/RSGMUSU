@@ -11,9 +11,7 @@ $postdata = file_get_contents("php://input");
 if(isset($postdata) && !empty($postdata))
 {
     $request  = json_decode($postdata);
- 
-    $idKunjungan                    = $request->idKunjungan;
-    $idAntrian                      = $request->idAntrian;
+
     $idPasien                       = $request->idPasien;
 
     $kebersihanMulut                = $request->kebersihanMulut;
@@ -45,32 +43,67 @@ if(isset($postdata) && !empty($postdata))
     $keteranganJaringanLunakMulut   = $request->keteranganJaringanLunakMulut;
     
 
+    $result = mysqli_query($connect,"SELECT * FROM `rm_ekstra_oral` WHERE `id_pasien` = '$idPasien'");
 
-    $sql = "INSERT INTO `rm_jaringan_lunak_mulut` (`id`, `id_kunjungan`, `id_antrian`, `id_pasien`, `kebersihan_mulut`, 
-                                                    `mukosa_bukal`, `kelainan_mukosa_bukal`,
-                                                    `mukosa_labial`, `kelainan_mukosa_labial`,
-                                                    `frenulum_labial`, `kelainan_frenulum_labial`,
-                                                    `lidah`, `kelainan_lidah`,
-                                                    `palatum`, `kelainan_palatum`,
-                                                    `tonsil`, `kelainan_tonsil`, 
-                                                    `dasar_mulut`, `kelainan_dasar_mulut`,
-                                                    `gingiva`, `kelainan_gingiva`,
-                                                    `keterangan_jaringan_lunak_mulut`) 
-                                                           
-             VALUES                               (NULL, '$idKunjungan', '$idAntrian', '$idPasien', '$kebersihanMulut',
-                                                     '$mukosaBukal', '$kelainanMukosaLabial',
-                                                     '$mukosaLabial', '$kelainanMukosaLabial',
-                                                     '$frenulumLabial', '$kelainanFrenulumLabial',
-                                                     '$lidah', '$kelainanLidah', 
-                                                     '$palatum', '$kelainanPalatum',
-                                                     '$tonsil', '$kelainanTonsil',
-                                                     '$dasarMulut', '$kelainanDasarMulut', 
-                                                     '$gingiva', '$kelainanGingiva', 
-                                                     '$keteranganJaringanLunakMulut');";
+    if (mysqli_num_rows($result) > 0) {
+
+        $sql = "UPDATE `rm_jaringan_lunak_mulut` SET
+        `kebersihan_mulut`          = '$kebersihanMulut',
+        `mukosa_bukal`              = '$mukosaBukal', 
+        `kelainan_mukosa_bukal`     = '$kelainanMukosaBukal',
+        `mukosa_labial`             = '$mukosaLabial',
+        `kelainan_mukosa_labial`    = '$kelainanMukosaLabial', 
+        `frenulum_labial`           = '$frenulumLabial',
+        `kelainan_frenulum_labial`  = '$kelainanFrenulumLabial',
+        `lidah`                     = '$lidah', 
+        `kelainan_lidah`            = '$kelainanLidah',
+        `palatum`                   = '$palatum', 
+        `kelainan_palatum`          = '$kelainanPalatum',
+        `tonsil`                    = '$tonsil', 
+        `kelainan_tonsil`           = '$kelainanTonsil', 
+        `dasar_mulut`               = '$dasarMulut', 
+        `kelainan_dasar_mulut`      = '$kelainanDasarMulut', 
+        `gingiva`                   = '$gingiva',
+        `kelainan_gingiva`          = '$kelainanGingiva',
+        `keterangan_jaringan_lunak_mulut` = '$keteranganJaringanLunakMulut' 
+                  
+        WHERE `rm_jaringan_lunak_mulut`.`id_pasien` = '$idPasien';";
+
+
+        mysqli_query($connect,$sql);
 
 
 
-    mysqli_query($connect,$sql);
+    }else{
+
+        $sql = "INSERT INTO `rm_jaringan_lunak_mulut` (`id`, `id_kunjungan`, `id_antrian`, `id_pasien`, `kebersihan_mulut`, 
+        `mukosa_bukal`, `kelainan_mukosa_bukal`,
+        `mukosa_labial`, `kelainan_mukosa_labial`,
+        `frenulum_labial`, `kelainan_frenulum_labial`,
+        `lidah`, `kelainan_lidah`,
+        `palatum`, `kelainan_palatum`,
+        `tonsil`, `kelainan_tonsil`, 
+        `dasar_mulut`, `kelainan_dasar_mulut`,
+        `gingiva`, `kelainan_gingiva`,
+        `keterangan_jaringan_lunak_mulut`) 
+               
+        VALUES                               (NULL, '', '', '$idPasien', '$kebersihanMulut',
+         '$mukosaBukal', '$kelainanMukosaLabial',
+         '$mukosaLabial', '$kelainanMukosaLabial',
+         '$frenulumLabial', '$kelainanFrenulumLabial',
+         '$lidah', '$kelainanLidah', 
+         '$palatum', '$kelainanPalatum',
+         '$tonsil', '$kelainanTonsil',
+         '$dasarMulut', '$kelainanDasarMulut', 
+         '$gingiva', '$kelainanGingiva', 
+         '$keteranganJaringanLunakMulut');";
+
+        mysqli_query($connect,$sql);
+
+    }
+
+
+   
     
 
 }
