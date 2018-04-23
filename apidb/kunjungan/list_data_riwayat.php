@@ -16,6 +16,7 @@ $db = new DB_CONNECT();
 	 
 	//  get by event
 	$result = mysql_query("SELECT 	tabel_kunjugan.id_kunjungan,
+									tabel_kunjugan.id_antrian,
 									tabel_kunjugan.id_klinik,
 									tabel_kunjugan.dokter_pendamping,
 									tabel_kunjugan.id_dokter,
@@ -25,8 +26,8 @@ $db = new DB_CONNECT();
 								FROM tabel_kunjugan
 								INNER JOIN data_dokter ON tabel_kunjugan.id_dokter = data_dokter.id
 								INNER JOIN data_pasien ON tabel_kunjugan.id_pasien = data_pasien.no_rekam_medis
-								WHERE tabel_kunjugan.id_klinik = $id AND tabel_kunjugan.status = '2'
-								ORDER BY tabel_kunjugan.id_kunjungan") or die(mysql_error());
+								WHERE tabel_kunjugan.id_klinik = $id AND (tabel_kunjugan.status = '2' OR tabel_kunjugan.status = '1')
+								ORDER BY tabel_kunjugan.id_kunjungan DESC") or die(mysql_error());
 		// cek
 		if (mysql_num_rows($result) > 0) {
 		    // looping hasil
@@ -36,6 +37,7 @@ $db = new DB_CONNECT();
 	  while ($row = mysql_fetch_array($result)) {
 			$event 							        = array();			
 			$event["id_kunjungan"] 					= $row["id_kunjungan"];
+			$event["id_antrian"] 					= $row["id_antrian"];
 			$event["id_klinik"] 					= $row["id_klinik"];
 			$event["dokter_pendamping"] 			= $row["dokter_pendamping"];
 			$event["id_dokter"] 					= $row["id_dokter"];

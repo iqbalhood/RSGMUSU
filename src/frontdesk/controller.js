@@ -2429,15 +2429,373 @@ app.controller("RekamMedisCtrl", function ($scope,$ngConfirm, $interval, $http, 
         ///------------------------------------------------------ Perawatan
 
 
+///------------------------------------------------------ PART ODONTOGRAMA
+
+$scope.daftarKondisiGigi = [];
+
+    //Kode Gambar Gigi Untuk Form Odontograma
+    $scope.imageUrl18 = "../img/G1G1.png";
+    $scope.imageUrl17 = "../img/G1G1.png";
+    $scope.imageUrl16 = "../img/G1G1.png";
+    $scope.imageUrl15 = "../img/G1G1.png";
+    $scope.imageUrl14 = "../img/G1G1.png";
+    $scope.imageUrl13 = "../img/G1G1.png";
+    $scope.imageUrl12 = "../img/G1G1.png";
+    $scope.imageUrl11 = "../img/G1G1.png";
+
+    $scope.imageUrl21 = "../img/G1G1.png";
+    $scope.imageUrl22 = "../img/G1G1.png";
+    $scope.imageUrl23 = "../img/G1G1.png";
+    $scope.imageUrl24 = "../img/G1G1.png";
+    $scope.imageUrl25 = "../img/G1G1.png";
+    $scope.imageUrl26 = "../img/G1G1.png";
+    $scope.imageUrl27 = "../img/G1G1.png";
+    $scope.imageUrl28 = "../img/G1G1.png";
+
+    $scope.imageUrl55 = "../img/G1G1.png";
+    $scope.imageUrl54 = "../img/G1G1.png";
+    $scope.imageUrl53 = "../img/G1G1.png";
+    $scope.imageUrl52 = "../img/G1G1.png";
+    $scope.imageUrl51 = "../img/G1G1.png";
+
+    $scope.imageUrl61 = "../img/G1G1.png";
+    $scope.imageUrl62 = "../img/G1G1.png";
+    $scope.imageUrl63 = "../img/G1G1.png";
+    $scope.imageUrl64 = "../img/G1G1.png";
+    $scope.imageUrl65 = "../img/G1G1.png";
+
+    $scope.imageUrl85 = "../img/G1G1.png";
+    $scope.imageUrl84 = "../img/G1G1.png";
+    $scope.imageUrl83 = "../img/G1G1.png";
+    $scope.imageUrl82 = "../img/G1G1.png";
+    $scope.imageUrl81 = "../img/G1G1.png";
+
+    $scope.imageUrl71 = "../img/G1G1.png";
+    $scope.imageUrl72 = "../img/G1G1.png";
+    $scope.imageUrl73 = "../img/G1G1.png";
+    $scope.imageUrl74 = "../img/G1G1.png";
+    $scope.imageUrl75 = "../img/G1G1.png";
+
+    $scope.imageUrl48 = "../img/G1G1.png";
+    $scope.imageUrl47 = "../img/G1G1.png";
+    $scope.imageUrl46 = "../img/G1G1.png";
+    $scope.imageUrl45 = "../img/G1G1.png";
+    $scope.imageUrl44 = "../img/G1G1.png";
+    $scope.imageUrl43 = "../img/G1G1.png";
+    $scope.imageUrl42 = "../img/G1G1.png";
+    $scope.imageUrl41 = "../img/G1G1.png";
+
+    $scope.imageUrl31 = "../img/G1G1.png";
+    $scope.imageUrl32 = "../img/G1G1.png";
+    $scope.imageUrl33 = "../img/G1G1.png";
+    $scope.imageUrl34 = "../img/G1G1.png";
+    $scope.imageUrl35 = "../img/G1G1.png";
+    $scope.imageUrl36 = "../img/G1G1.png";
+    $scope.imageUrl37 = "../img/G1G1.png";
+    $scope.imageUrl38 = "../img/G1G1.png";
 
 
 
+ // GET DATA ODONTOGRAMA
+ $http({
+    method: 'POST',
+    url: '../apidb/rekam_medis/get_odontograma_perawatan.php',
+    data: { newId: $routeParams.idkunjungan }
+}).then(function (response) {
+
+    // on success
+
+    $scope.og = response.data;
+    $scope.odontoData = $scope.og.keterangan;
+
+    var JSONDATA = JSON.parse($scope.odontoData);
 
 
+    for (var i = 0; i < JSONDATA.length; i++) {
+
+        console.log("ODONTOGRAMA");
+
+        console.log(JSONDATA[i].teeth);
+
+        var obj = { teeth: JSONDATA[i].teeth, explaination: JSONDATA[i].explaination, keterangan: JSONDATA[i].keterangan, url: JSONDATA[i].url };
+        $scope.daftarKondisiGigi.push(obj);
+
+        $scope.teethValue = JSONDATA[i].teeth;
+
+        if ($scope.teethValue == 18) {
+
+            $scope.imageUrl18 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 17) {
+
+            $scope.imageUrl17 = JSONDATA[i].url;
+        }
+
+        if ($scope.teethValue == 16) {
+
+            $scope.imageUrl16 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 15) {
+
+            $scope.imageUrl15 = JSONDATA[i].url;
+        }
+
+        if ($scope.teethValue == 14) {
+
+            $scope.imageUrl14 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 13) {
+
+            $scope.imageUrl13 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 12) {
+
+            $scope.imageUrl12 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 11) {
+
+            $scope.imageUrl11 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 21) {
+
+            $scope.imageUrl21 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 22) {
+
+            $scope.imageUrl22 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 23) {
+
+            $scope.imageUrl23 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 24) {
+
+            $scope.imageUrl24 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 25) {
+
+            $scope.imageUrl25 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 26) {
+
+            $scope.imageUrl26 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 27) {
+
+            $scope.imageUrl27 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 28) {
+
+            $scope.imageUrl28 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 55) {
+
+            $scope.imageUrl55 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 54) {
+
+            $scope.imageUrl54 = JSONDATA[i].url;
+
+        }
 
 
+        if ($scope.teethValue == 53) {
+
+            $scope.imageUrl53 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 52) {
+
+            $scope.imageUrl52 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 51) {
+
+            $scope.imageUrl51 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 61) {
+
+            $scope.imageUrl61 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 62) {
+
+            $scope.imageUrl62 = JSONDATA[i].url;
+
+        }
 
 
+        if ($scope.teethValue == 63) {
+
+            $scope.imageUrl63 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 64) {
+
+            $scope.imageUrl64 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 65) {
+
+            $scope.imageUrl65 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 85) {
+
+            $scope.imageUrl85 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 84) {
+
+            $scope.imageUrl84 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 83) {
+
+            $scope.imageUrl83 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 82) {
+
+            $scope.imageUrl82 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 81) {
+
+            $scope.imageUrl81 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 71) {
+
+            $scope.imageUrl71 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 72) {
+
+            $scope.imageUrl72 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 73) {
+
+            $scope.imageUrl73 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 74) {
+
+            $scope.imageUrl74 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 75) {
+
+            $scope.imageUrl75 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 48) {
+
+            $scope.imageUrl48 = JSONDATA[i].url;
+
+        }
+
+        if ($scope.teethValue == 47) {
+            $scope.imageUrl47 = JSONDATA[i].url;
+        }
+        if ($scope.teethValue == 46) {
+            $scope.imageUrl46 = JSONDATA[i].url;
+        }
+        if ($scope.teethValue == 45) {
+            $scope.imageUrl45 = JSONDATA[i].url;
+        }
+        if ($scope.teethValue == 44) {
+            $scope.imageUrl44 = JSONDATA[i].url;
+        }
+        if ($scope.teethValue == 43) {
+            $scope.imageUrl43 = JSONDATA[i].url;
+        }
+        if ($scope.teethValue == 42) {
+            $scope.imageUrl42 = JSONDATA[i].url;
+        }
+        if ($scope.teethValue == 41) {
+            $scope.imageUrl41 = JSONDATA[i].url;
+        }
+        if ($scope.teethValue == 31) {
+            $scope.imageUrl31 = JSONDATA[i].url;
+        }
+        if ($scope.teethValue == 32) {
+            $scope.imageUrl32 = JSONDATA[i].url;
+        }
+        if ($scope.teethValue == 33) {
+            $scope.imageUrl33 = JSONDATA[i].url;
+        }
+        if ($scope.teethValue == 34) {
+            $scope.imageUrl34 = JSONDATA[i].url;
+        }
+        if ($scope.teethValue == 35) {
+            $scope.imageUrl35 = JSONDATA[i].url;
+        }
+        if ($scope.teethValue == 36) {
+            $scope.imageUrl36 = JSONDATA[i].url;
+        }
+        if ($scope.teethValue == 37) {
+            $scope.imageUrl37 = JSONDATA[i].url;
+        }
+        if ($scope.teethValue == 38) {
+            $scope.imageUrl38 = JSONDATA[i].url;
+        }
+    }
+}, function (response) {
+    // on error
+    console.log(response.data, response.status);
+});
+
+///------------------------------------------------------ PART ODONTOGRAMA
 
 
 
@@ -2553,6 +2911,8 @@ app.controller("RekamMedisCtrl", function ($scope,$ngConfirm, $interval, $http, 
         $scope.editLayanan = function (w) {
             $scope.layananUbah = w;
             $scope.id_edit = w.id;
+            $scope.id_edit = w.id;
+            $scope.nama_layanan_edit = w.nama_layanan;
             $scope.harga_bahan_edit = w.harga_bahan;
             $scope.harga_layanan_edit = w.harga_layanan;
             console.log("========LAYANAN========");
@@ -2566,7 +2926,7 @@ app.controller("RekamMedisCtrl", function ($scope,$ngConfirm, $interval, $http, 
                         btnClass: 'btn-green',
                         action: function (scope, button) {
                             console.log("========LAYANAN UBAH========")
-                            $http.get("../apidb/layanan/edit_layanan_rm_icd.php?id=" + w.id + "&bahan=" + $scope.harga_bahan_edit + "&layanan=" + $scope.harga_layanan_edit + "&icd=" + $scope.icd).then(function (response) {
+                            $http.get("../apidb/layanan/edit_layanan_rm_icd.php?id=" + w.id + "&nama=" + $scope.nama_layanan_edit+ "&bahan=" + $scope.harga_bahan_edit + "&layanan=" + $scope.harga_layanan_edit + "&icd=" + $scope.icd).then(function (response) {
                                 if (!response.data.event) {
                                     $ngConfirm('Layanan Telah Diubah');
                                     $route.reload();
