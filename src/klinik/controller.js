@@ -2,15 +2,23 @@
 var app = angular.module('myApp.controller', []);
 
 
-app.controller("HomeCtrl", function ($scope, $ngConfirm, $cookies, $interval, $http, $route, $timeout, $routeParams, $window) {
+app.controller("HomeCtrl", function ($scope, $ngConfirm, $cookies, $interval, $http, $route, $interval, $timeout, $routeParams, $window) {
     var klinikCookie = $cookies.get('klinik');
     $scope.tipeKlinik = klinikCookie;
     $scope.dokterForm = false;
 
-    $http.get("../apidb/kunjungan/list_data_kunjungan_masuk.php?id=" + klinikCookie + "&status=0").then(function (response) {
-        $scope.myData = response.data.event;
-        console.log(response.data.event);
-    });
+    $interval(function() {
+       
+        $http.get("../apidb/kunjungan/list_data_kunjungan_masuk.php?id=" + klinikCookie + "&status=0").then(function (response) {
+            $scope.myData = response.data.event;
+            console.log(response.data.event);
+        });
+
+    }, 3000);
+
+    
+
+ 
 
     $http.get("../apidb/dokter/list_dokter_get.php?id=" + klinikCookie).then(function (response) {
         $scope.dataDokter = response.data.event;
@@ -24,6 +32,9 @@ app.controller("HomeCtrl", function ($scope, $ngConfirm, $cookies, $interval, $h
         $scope.nama_pasien = x.pasien;
 
     };
+
+
+    
 
     $scope.hapusTagihan = function(x){
         $http.get("../apidb/kasir/hapus_data_tagihan.php?id="+x.id_kunjungan).then(function (response) {
@@ -59,19 +70,19 @@ app.controller("HomeCtrl", function ($scope, $ngConfirm, $cookies, $interval, $h
 
 
     };
-    setTimeout(function () {
-        $('#mytablePasien').dataTable({
-            "bPaginate": true,
-            "bLengthChange": true,
-            "aLengthMenu": [30, 50, 100],
-            "bFilter": true,
-            "bSort": true,
-            "bInfo": true,
-            "bRetrieve": true,
-            "bAutoWidth": false,
-            "sEmptyTable": "",
-        });
-    }, 4000);
+    // setTimeout(function () {
+    //     $('#mytablePasien').dataTable({
+    //         "bPaginate": true,
+    //         "bLengthChange": true,
+    //         "aLengthMenu": [30, 50, 100],
+    //         "bFilter": true,
+    //         "bSort": true,
+    //         "bInfo": true,
+    //         "bRetrieve": true,
+    //         "bAutoWidth": false,
+    //         "sEmptyTable": "",
+    //     });
+    // }, 4000);
 
 });
 

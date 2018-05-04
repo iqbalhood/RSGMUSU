@@ -28,6 +28,10 @@
             templateUrl : "dashboard.html",
             controller  : "HomeCtrl",
         })
+        .when("/pembayaran",{
+            templateUrl : "pembayaran.html",
+            controller  : "PembayaranCtrl",
+        })
         .when("/cicilan",{
             templateUrl : "cicilan.html",
             controller  : "CicilanCtrl",
