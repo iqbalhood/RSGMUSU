@@ -10,6 +10,7 @@ require_once '../../config/db_connect.php';
 
 $dateToday = date("Y-m-d");
 
+$id = $_GET['id'];
 
 // ckonekin ke db
 $db = new DB_CONNECT();
@@ -28,13 +29,19 @@ $db = new DB_CONNECT();
 								FROM tabel_kunjugan
 								INNER JOIN data_dokter ON tabel_kunjugan.id_dokter = data_dokter.id
 								INNER JOIN data_pasien ON tabel_kunjugan.id_pasien = data_pasien.no_rekam_medis
-                                WHERE tabel_kunjugan.status = '2' AND (tabel_kunjugan.status_pembayaran = '1' OR  tabel_kunjugan.status_pembayaran = '3') AND tabel_kunjugan.tanggal_kunjungan = '$dateToday' ORDER BY tabel_kunjugan.id_kunjungan DESC ") or die(mysql_error());
+                                WHERE tabel_kunjugan.status = '2' AND (tabel_kunjugan.status_pembayaran = '1' OR  tabel_kunjugan.status_pembayaran = '3') AND (tabel_kunjugan.id_pasien = '$id' OR data_pasien.nama LIKE '%$id%' )  ORDER BY tabel_kunjugan.id_kunjungan DESC ") or die(mysql_error());
 		// cek
 		if (mysql_num_rows($result) > 0) {
 		    // looping hasil
 		    // event node
 			$response["event"] = array();
+			
+			
+		    
 	  while ($row = mysql_fetch_array($result)) {
+
+		
+
 			$event 							        = array();			
 			$event["id_kunjungan"] 					= $row["id_kunjungan"];
 			$event["id_klinik"] 					= $row["id_klinik"];
@@ -63,6 +70,8 @@ $db = new DB_CONNECT();
 
 		    echo json_encode($response);
 		}
+
+
 	function bill_is_exist($id_kunjungan){
 		$exist = 0;
 		$sql = "SELECT * FROM `tabel_layanan_kunjungan` WHERE `id_kunjungan` = '$id_kunjungan'";

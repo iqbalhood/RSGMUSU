@@ -2,14 +2,14 @@
 var app = angular.module('myApp.controller', []);
 
 app.controller("HomeCtrl", function ($scope, $ngConfirm, $cookies, $interval, $http, $route, $timeout, $routeParams, $window) {
-
-    $interval(function () {
-        $http.get("../apidb/kunjungan/list_data_kasir_today.php").then(function (response) {
-            $scope.myData = "";
-            $scope.myData = response.data.event;
-            console.log(response.data.event);
-        });
-    }, 3000);
+    $scope.tabelPencarian = false;
+    // $interval(function () {
+    //     $http.get("../apidb/kunjungan/list_data_kasir_today.php").then(function (response) {
+    //         $scope.myData = "";
+    //         $scope.myData = response.data.event;
+    //         console.log(response.data.event);
+    //     });
+    // }, 3000);
 
     $scope.hapusTagihan = function (x) {
         $http.get("../apidb/kasir/hapus_data_tagihan.php?id=" + x.id_kunjungan).then(function (response) {
@@ -23,6 +23,28 @@ app.controller("HomeCtrl", function ($scope, $ngConfirm, $cookies, $interval, $h
             }
         });
     }
+
+    $scope.keyword="";
+    $scope.$watch("keyword", function(newValue, oldValue) {
+
+        $scope.tabelPencarian = true;
+
+        if ($scope.keyword.length > 0) {
+          $scope.totalSearch = 0;
+          $http.get("../apidb/kunjungan/list_data_kasir_cari_biasa.php?id="+$scope.keyword).then(function (response) {
+            $scope.DataPencarian = response.data.event;
+            console.log(response.data.event);
+        });
+          
+        }
+
+
+        if ($scope.keyword.length == 0) {
+          $scope.DataPencarian = [];
+        }
+     
+       
+      });
 });
 
 
