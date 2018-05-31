@@ -7,8 +7,8 @@ app.controller("HomeCtrl", function ($scope, $ngConfirm, $cookies, $interval, $h
     $scope.tipeKlinik = klinikCookie;
     $scope.dokterForm = false;
 
-    $interval(function() {
-       
+    $interval(function () {
+
         $http.get("../apidb/kunjungan/list_data_kunjungan_masuk.php?id=" + klinikCookie + "&status=0").then(function (response) {
             $scope.myData = response.data.event;
             console.log(response.data.event);
@@ -16,9 +16,9 @@ app.controller("HomeCtrl", function ($scope, $ngConfirm, $cookies, $interval, $h
 
     }, 3000);
 
-    
 
- 
+
+
 
     $http.get("../apidb/dokter/list_dokter_get.php?id=" + klinikCookie).then(function (response) {
         $scope.dataDokter = response.data.event;
@@ -34,11 +34,11 @@ app.controller("HomeCtrl", function ($scope, $ngConfirm, $cookies, $interval, $h
     };
 
 
-    
 
-    $scope.hapusTagihan = function(x){
-        $http.get("../apidb/kasir/hapus_data_tagihan.php?id="+x.id_kunjungan).then(function (response) {
-        
+
+    $scope.hapusTagihan = function (x) {
+        $http.get("../apidb/kasir/hapus_data_tagihan.php?id=" + x.id_kunjungan).then(function (response) {
+
             if (!response.data.event) {
                 $ngConfirm('Data Sudah Dihapus');
                 $route.reload();
@@ -86,7 +86,7 @@ app.controller("HomeCtrl", function ($scope, $ngConfirm, $cookies, $interval, $h
 
 });
 
-app.controller("AntrianCtrl", function ($scope, $cookies, $interval, $http, $route, $timeout, $routeParams, $window) {
+app.controller("AntrianCtrl", function ($scope,  $ngConfirm,  $cookies, $interval, $http, $route, $timeout, $routeParams, $window) {
     var klinikCookie = $cookies.get('klinik');
     $scope.tipeKlinik = klinikCookie;
 
@@ -95,6 +95,20 @@ app.controller("AntrianCtrl", function ($scope, $cookies, $interval, $http, $rou
         $scope.myData = response.data.event;
         console.log(response.data.event);
     });
+
+    $scope.hapusTagihan = function (x) {
+        $http.get("../apidb/kasir/hapus_data_tagihan.php?id=" + x.id_kunjungan).then(function (response) {
+
+            if (!response.data.event) {
+                $ngConfirm('Data Sudah Dihapus');
+                $route.reload();
+            } else {
+                $ngConfirm('There Is Some Problem');
+                $route.reload();
+            }
+        });
+
+    }
 
     setTimeout(function () {
         $('#mytablePasien').dataTable({
@@ -130,7 +144,7 @@ app.controller("RiwayatCtrl", function ($scope, $ngConfirm, $cookies, $interval,
         console.log(response.data.event);
     });
 
-    
+
 
     $scope.showKlinik = function (x) {
         $scope.dokterpendamping = x.dokter_pendamping;
@@ -169,9 +183,9 @@ app.controller("RiwayatCtrl", function ($scope, $ngConfirm, $cookies, $interval,
         });
     };
 
-    $scope.hapusTagihan = function(x){
-        $http.get("../apidb/kasir/hapus_data_tagihan.php?id="+x.id_kunjungan).then(function (response) {
-        
+    $scope.hapusTagihan = function (x) {
+        $http.get("../apidb/kasir/hapus_data_tagihan.php?id=" + x.id_kunjungan).then(function (response) {
+
             if (!response.data.event) {
                 $ngConfirm('Data Sudah Dihapus');
                 $route.reload();
@@ -868,7 +882,7 @@ app.controller("DataPasienCtrl", function ($scope, $interval, $http, $route, $ti
 });
 
 
-app.controller("RekamMedisCtrl", function ($scope,$ngConfirm, $interval, $http, $route, $timeout, $routeParams, $window) {
+app.controller("RekamMedisCtrl", function ($scope, $ngConfirm, $interval, $http, $route, $timeout, $routeParams, $window) {
 
     $scope.idPasien = $routeParams.id;
     $scope.daftarKondisiGigi = [];
@@ -1300,20 +1314,20 @@ app.controller("RekamMedisCtrl", function ($scope,$ngConfirm, $interval, $http, 
     });
 
 
-     //GET KONDISI VITAL
-     $http({
+    //GET KONDISI VITAL
+    $http({
         method: 'POST',
         url: '../apidb/rekam_medis/get_rm_tanda_vital.php',
         data: { newId: $routeParams.id }
     }).then(function (response) {
         // on success
         $scope.people = response.data;
-        $scope.kesadaran        = $scope.people.kesadaran;
-        $scope.kondisi_umum     = $scope.people.kondisi_umum;
-        $scope.tekanan_darah    = $scope.people.tekanan_darah;
-        $scope.denyut_nadi      = $scope.people.denyut_nadi;
-        $scope.pernafasan       = $scope.people.pernafasan;
-        $scope.suhu             = $scope.people.suhu;
+        $scope.kesadaran = $scope.people.kesadaran;
+        $scope.kondisi_umum = $scope.people.kondisi_umum;
+        $scope.tekanan_darah = $scope.people.tekanan_darah;
+        $scope.denyut_nadi = $scope.people.denyut_nadi;
+        $scope.pernafasan = $scope.people.pernafasan;
+        $scope.suhu = $scope.people.suhu;
     }, function (response) {
 
         // on error
@@ -1329,12 +1343,12 @@ app.controller("RekamMedisCtrl", function ($scope,$ngConfirm, $interval, $http, 
         data: { newId: $routeParams.id }
     }).then(function (response) {
         // on success
-        $scope.people                       = response.data;
-        $scope.tonus_bibir                  = $scope.people.tonus_bibir;
-        $scope.tmj                          = $scope.people.tmj;
-        $scope.kelenjar_limfe               = $scope.people.kelenjar_limfe;
-        $scope.kelainan_tmj                 = $scope.people.kelainan_tmj;
-        $scope.keterangan_ekstra_oral       = $scope.people.keterangan_ekstra_oral;
+        $scope.people = response.data;
+        $scope.tonus_bibir = $scope.people.tonus_bibir;
+        $scope.tmj = $scope.people.tmj;
+        $scope.kelenjar_limfe = $scope.people.kelenjar_limfe;
+        $scope.kelainan_tmj = $scope.people.kelainan_tmj;
+        $scope.keterangan_ekstra_oral = $scope.people.keterangan_ekstra_oral;
     }, function (response) {
 
         // on error
@@ -1349,25 +1363,25 @@ app.controller("RekamMedisCtrl", function ($scope,$ngConfirm, $interval, $http, 
         data: { newId: $routeParams.id }
     }).then(function (response) {
         // on success
-        $scope.people                               = response.data;
-        $scope.kebersihan_mulut                     = $scope.people.kebersihan_mulut;
-        $scope.mukosa_bukal                         = $scope.people.mukosa_bukal;
-        $scope.kelainan_mukosa_bukal                = $scope.people.kelainan_mukosa_bukal;
-        $scope.mukosa_labial                        = $scope.people.mukosa_labial;
-        $scope.kelainan_mukosa_labial               = $scope.people.kelainan_mukosa_labial;
-        $scope.frenulum_labial                      = $scope.people.frenulum_labial;
-        $scope.kelainan_frenulum_labial             = $scope.people.kelainan_frenulum_labial;
-        $scope.lidah                                = $scope.people.lidah;
-        $scope.kelainan_lidah                       = $scope.people.kelainan_lidah;
-        $scope.palatum                              = $scope.people.palatum;
-        $scope.kelainan_palatum                     = $scope.people.kelainan_palatum;
-        $scope.tonsil                               = $scope.people.tonsil;
-        $scope.kelainan_tonsil                      = $scope.people.kelainan_tonsil;
-        $scope.dasar_mulut                          = $scope.people.dasar_mulut;
-        $scope.kelainan_dasar_mulut                 = $scope.people.kelainan_dasar_mulut;
-        $scope.gingiva                              = $scope.people.gingiva;
-        $scope.kelainan_gingiva                     = $scope.people.kelainan_gingiva;
-        $scope.keterangan_jaringan_lunak_mulut      = $scope.people.keterangan_jaringan_lunak_mulut;
+        $scope.people = response.data;
+        $scope.kebersihan_mulut = $scope.people.kebersihan_mulut;
+        $scope.mukosa_bukal = $scope.people.mukosa_bukal;
+        $scope.kelainan_mukosa_bukal = $scope.people.kelainan_mukosa_bukal;
+        $scope.mukosa_labial = $scope.people.mukosa_labial;
+        $scope.kelainan_mukosa_labial = $scope.people.kelainan_mukosa_labial;
+        $scope.frenulum_labial = $scope.people.frenulum_labial;
+        $scope.kelainan_frenulum_labial = $scope.people.kelainan_frenulum_labial;
+        $scope.lidah = $scope.people.lidah;
+        $scope.kelainan_lidah = $scope.people.kelainan_lidah;
+        $scope.palatum = $scope.people.palatum;
+        $scope.kelainan_palatum = $scope.people.kelainan_palatum;
+        $scope.tonsil = $scope.people.tonsil;
+        $scope.kelainan_tonsil = $scope.people.kelainan_tonsil;
+        $scope.dasar_mulut = $scope.people.dasar_mulut;
+        $scope.kelainan_dasar_mulut = $scope.people.kelainan_dasar_mulut;
+        $scope.gingiva = $scope.people.gingiva;
+        $scope.kelainan_gingiva = $scope.people.kelainan_gingiva;
+        $scope.keterangan_jaringan_lunak_mulut = $scope.people.keterangan_jaringan_lunak_mulut;
     }, function (response) {
 
         // on error
@@ -1376,129 +1390,131 @@ app.controller("RekamMedisCtrl", function ($scope,$ngConfirm, $interval, $http, 
     });
 
 
-    $scope.SubmitRiwayatPenyakit=function(){
-        $http({                
+    $scope.SubmitRiwayatPenyakit = function () {
+        $http({
             method: 'POST',
-            url:  '../apidb/klinik/put_rm_riwayat_penyakit.php',
-            data: { idPasien: $routeParams.id ,
-                statusJantung:  $scope.status_jantung,
-                keteranganJantung : $scope.keterangan_jantung,
+            url: '../apidb/klinik/put_rm_riwayat_penyakit.php',
+            data: {
+                idPasien: $routeParams.id,
+                statusJantung: $scope.status_jantung,
+                keteranganJantung: $scope.keterangan_jantung,
 
-                statusHipertensi:  $scope.status_hipertensi,
-                keteranganHipertensi : $scope.keterangan_hipertensi,
+                statusHipertensi: $scope.status_hipertensi,
+                keteranganHipertensi: $scope.keterangan_hipertensi,
 
-                statusDiabetes:  $scope.status_diabetes,
-                keteranganDiabetes : $scope.keterangan_diabetes,
+                statusDiabetes: $scope.status_diabetes,
+                keteranganDiabetes: $scope.keterangan_diabetes,
 
-                statusAlergi:  $scope.status_alergi,
-                keteranganAlergi : $scope.keterangan_alergi,
+                statusAlergi: $scope.status_alergi,
+                keteranganAlergi: $scope.keterangan_alergi,
 
-                statusAsma:  $scope.status_asma,
-                keteranganAsma : $scope.keterangan_asma,
+                statusAsma: $scope.status_asma,
+                keteranganAsma: $scope.keterangan_asma,
 
-                statusHepar:  $scope.status_hepar,
-                keteranganHepar : $scope.keterangan_hepar,
+                statusHepar: $scope.status_hepar,
+                keteranganHepar: $scope.keterangan_hepar,
 
-                statusLambung:  $scope.status_lambung,
-                keteranganLambung : $scope.keterangan_lambung,
+                statusLambung: $scope.status_lambung,
+                keteranganLambung: $scope.keterangan_lambung,
 
-                statusLain:  $scope.status_lain,
-                keteranganLain : $scope.keterangan_lain                    
+                statusLain: $scope.status_lain,
+                keteranganLain: $scope.keterangan_lain
             }
-       }).then(function (response) {
-        $ngConfirm('Input Riwayat Penyakit Sukses', 'RSGM USU');
-           // on success
-           if(response.status==200){
-               $route.reload();    
-           }
-       });
+        }).then(function (response) {
+            $ngConfirm('Input Riwayat Penyakit Sukses', 'RSGM USU');
+            // on success
+            if (response.status == 200) {
+                $route.reload();
+            }
+        });
     }
 
-    $scope.SubmitTandaVital=function(){
-       $http({                
-        method: 'POST',
-        url:  '../apidb/klinik/put_rm_tanda_vital.php',
-        data: { idPasien: $routeParams.id ,
-            kesadaran:  $scope.kesadaran,
-            kondisiUmum : $scope.kondisi_umum,
-            tekananDarah:  $scope.tekanan_darah,
-            denyutNadi : $scope.denyut_nadi,
-            pernafasan : $scope.pernafasan,
-            suhu : $scope.suhu                          
-        }
+    $scope.SubmitTandaVital = function () {
+        $http({
+            method: 'POST',
+            url: '../apidb/klinik/put_rm_tanda_vital.php',
+            data: {
+                idPasien: $routeParams.id,
+                kesadaran: $scope.kesadaran,
+                kondisiUmum: $scope.kondisi_umum,
+                tekananDarah: $scope.tekanan_darah,
+                denyutNadi: $scope.denyut_nadi,
+                pernafasan: $scope.pernafasan,
+                suhu: $scope.suhu
+            }
         }).then(function (response) {
             $ngConfirm('Input Tanda Vital Sukses', 'RSGM USU');
             // on success
-            if(response.status==200){
-                $route.reload();    
+            if (response.status == 200) {
+                $route.reload();
             }
         });
     }
 
-    $scope.SubmitEkstraOral=function(){
-        $http({                
-         method: 'POST',
-         url:  '../apidb/klinik/put_rm_ekstra_oral.php',
-         data: { 
-            idPasien                : $routeParams.id ,
-            tonusBibir              : $scope.tonus_bibir,
-            tmj                     : $scope.tmj,
-            kelainanTmj             : $scope.tekanan_darah,
-            kelenjarLimfe           : $scope.kelenjar_limfe,
-            keteranganEkstraOral    : $scope.keterangan_ekstra_oral                    
-         }
-         }).then(function (response) {
-             $ngConfirm('Input Data Ekstra Oral Sukses', 'RSGM USU');
-             // on success
-             if(response.status==200){
-                 $route.reload();    
-             }
-         });
-     }
-
-     $scope.SubmitJaringanLunakMulut = function(){
-        $http({                
+    $scope.SubmitEkstraOral = function () {
+        $http({
             method: 'POST',
-            url:  '../apidb/klinik/put_rm_jaringan_lunak_mulut.php',
-            data: { 
-               idPasien                       : $routeParams.id ,
-              
-               kebersihanMulut                : $scope.kebersihan_mulut,
-           
-               mukosaBukal                    : $scope.mukosa_bukal,
-               kelainanMukosaBukal            : $scope.kelainan_mukosa_bukal,
-           
-               mukosaLabial                   : $scope.mukosa_labial,
-               kelainanMukosaLabial           : $scope.kelainan_mukosa_labial,
-           
-               frenulumLabial                 : $scope.frenulum_labial,
-               kelainanFrenulumLabial         : $scope.kelainan_frenulum_labial,
-           
-               lidah                          : $scope.lidah,
-               kelainanLidah                  : $scope.kelainan_lidah,
-           
-               palatum                        : $scope.palatum,
-               kelainanPalatum                : $scope.kelainan_palatum,
-               
-               tonsil                         : $scope.tonsil,
-               kelainanTonsil                 : $scope.kelainan_tonsil,
-           
-               dasarMulut                     : $scope.dasar_mulut,
-               kelainanDasarMulut             : $scope.kelainan_dasar_mulut,
-           
-               gingiva                        : $scope.gingiva,
-               kelainanGingiva                : $scope.kelainan_gingiva,
-           
-               keteranganJaringanLunakMulut   : $scope.keterangan_jaringan_lunak_mulut                 
+            url: '../apidb/klinik/put_rm_ekstra_oral.php',
+            data: {
+                idPasien: $routeParams.id,
+                tonusBibir: $scope.tonus_bibir,
+                tmj: $scope.tmj,
+                kelainanTmj: $scope.tekanan_darah,
+                kelenjarLimfe: $scope.kelenjar_limfe,
+                keteranganEkstraOral: $scope.keterangan_ekstra_oral
             }
-            }).then(function (response) {
-                $ngConfirm('Input Data Jaringan Lunak Mulut Sukses', 'RSGM USU');
-                // on success
-                if(response.status==200){
-                    $route.reload();    
-                }
+        }).then(function (response) {
+            $ngConfirm('Input Data Ekstra Oral Sukses', 'RSGM USU');
+            // on success
+            if (response.status == 200) {
+                $route.reload();
+            }
         });
-     }
+    }
+
+    $scope.SubmitJaringanLunakMulut = function () {
+        $http({
+            method: 'POST',
+            url: '../apidb/klinik/put_rm_jaringan_lunak_mulut.php',
+            data: {
+                idPasien: $routeParams.id,
+
+                kebersihanMulut: $scope.kebersihan_mulut,
+
+                mukosaBukal: $scope.mukosa_bukal,
+                kelainanMukosaBukal: $scope.kelainan_mukosa_bukal,
+
+                mukosaLabial: $scope.mukosa_labial,
+                kelainanMukosaLabial: $scope.kelainan_mukosa_labial,
+
+                frenulumLabial: $scope.frenulum_labial,
+                kelainanFrenulumLabial: $scope.kelainan_frenulum_labial,
+
+                lidah: $scope.lidah,
+                kelainanLidah: $scope.kelainan_lidah,
+
+                palatum: $scope.palatum,
+                kelainanPalatum: $scope.kelainan_palatum,
+
+                tonsil: $scope.tonsil,
+                kelainanTonsil: $scope.kelainan_tonsil,
+
+                dasarMulut: $scope.dasar_mulut,
+                kelainanDasarMulut: $scope.kelainan_dasar_mulut,
+
+                gingiva: $scope.gingiva,
+                kelainanGingiva: $scope.kelainan_gingiva,
+
+                keteranganJaringanLunakMulut: $scope.keterangan_jaringan_lunak_mulut
+            }
+        }).then(function (response) {
+            $ngConfirm('Input Data Jaringan Lunak Mulut Sukses', 'RSGM USU');
+            // on success
+            if (response.status == 200) {
+                $route.reload();
+            }
+        });
+    }
 
 });
 
@@ -1880,7 +1896,7 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
     $scope.imageUrl37 = "../img/G1G1.png";
     $scope.imageUrl38 = "../img/G1G1.png";
 
-    
+
 
 
 
@@ -1895,3812 +1911,3812 @@ app.controller("PerawatanCtrl", function ($scope, $cookies, $location, $interval
 
     //-- Fungsi - Fungsi Odontograma
 
-    $scope.submitFormKondisi = function(){
-        var obj = { teeth: $scope.teethValue, explaination: $scope.teethExplaination , keterangan : $scope.keterangan_element_gigi, url:$scope.urlTEETH };
+    $scope.submitFormKondisi = function () {
+        var obj = { teeth: $scope.teethValue, explaination: $scope.teethExplaination, keterangan: $scope.keterangan_element_gigi, url: $scope.urlTEETH };
         $scope.daftarKondisiGigi.push(obj);
     }
 
-    $scope.hapusdaftarKondisi = function(x){
-        $scope.daftarKondisiGigi.splice(x,1);
+    $scope.hapusdaftarKondisi = function (x) {
+        $scope.daftarKondisiGigi.splice(x, 1);
     };
 
-      
-    $scope.fungsiGH = function(){
-            
+
+    $scope.fungsiGH = function () {
+
         $scope.teethExplaination = "Gigi Hilang";
         $scope.urlTEETH = "../img/small/gigi_hilang.png";
 
-        if($scope.teethValue == 18){
+        if ($scope.teethValue == 18) {
 
-            $scope.imageUrl18 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 17){
-
-            $scope.imageUrl17 = "../img/small/gigi_hilang.png";   
-        }
-
-        if($scope.teethValue == 16){
-
-            $scope.imageUrl16 = "../img/small/gigi_hilang.png";   
+            $scope.imageUrl18 = "../img/small/gigi_hilang.png";
 
         }
 
-        if($scope.teethValue == 15){
+        if ($scope.teethValue == 17) {
 
-            $scope.imageUrl15 = "../img/small/gigi_hilang.png";   
+            $scope.imageUrl17 = "../img/small/gigi_hilang.png";
         }
 
-        if($scope.teethValue == 14){
+        if ($scope.teethValue == 16) {
 
-            $scope.imageUrl14 = "../img/small/gigi_hilang.png";    
-
-        }
-
-        if($scope.teethValue == 13){
-
-            $scope.imageUrl13 = "../img/small/gigi_hilang.png";   
+            $scope.imageUrl16 = "../img/small/gigi_hilang.png";
 
         }
 
-        if($scope.teethValue == 12){
+        if ($scope.teethValue == 15) {
 
-            $scope.imageUrl12 = "../img/small/gigi_hilang.png";    
+            $scope.imageUrl15 = "../img/small/gigi_hilang.png";
+        }
+
+        if ($scope.teethValue == 14) {
+
+            $scope.imageUrl14 = "../img/small/gigi_hilang.png";
 
         }
 
-        if($scope.teethValue == 11){
+        if ($scope.teethValue == 13) {
 
-            $scope.imageUrl11 = "../img/small/gigi_hilang.png";    
-
-        }
-
-        if($scope.teethValue == 21){
-
-            $scope.imageUrl21 = "../img/small/gigi_hilang.png";   
+            $scope.imageUrl13 = "../img/small/gigi_hilang.png";
 
         }
 
-        if($scope.teethValue == 22){
+        if ($scope.teethValue == 12) {
 
-            $scope.imageUrl22 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 23){
-
-            $scope.imageUrl23 = "../img/small/gigi_hilang.png";   
+            $scope.imageUrl12 = "../img/small/gigi_hilang.png";
 
         }
 
-        if($scope.teethValue == 24){
+        if ($scope.teethValue == 11) {
 
-            $scope.imageUrl24 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 25){
-
-            $scope.imageUrl25 = "../img/small/gigi_hilang.png";   
+            $scope.imageUrl11 = "../img/small/gigi_hilang.png";
 
         }
 
-        if($scope.teethValue == 26){
+        if ($scope.teethValue == 21) {
 
-            $scope.imageUrl26 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 27){
-
-            $scope.imageUrl27 = "../img/small/gigi_hilang.png";   
+            $scope.imageUrl21 = "../img/small/gigi_hilang.png";
 
         }
 
-        if($scope.teethValue == 28){
+        if ($scope.teethValue == 22) {
 
-            $scope.imageUrl28 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 55){
-
-            $scope.imageUrl55 = "../img/small/gigi_hilang.png";   
+            $scope.imageUrl22 = "../img/small/gigi_hilang.png";
 
         }
 
-        if($scope.teethValue == 54){
+        if ($scope.teethValue == 23) {
 
-            $scope.imageUrl54 = "../img/small/gigi_hilang.png";   
-
-        }
-
-
-        if($scope.teethValue == 53){
-
-            $scope.imageUrl53 = "../img/small/gigi_hilang.png";   
+            $scope.imageUrl23 = "../img/small/gigi_hilang.png";
 
         }
 
-        if($scope.teethValue == 52){
+        if ($scope.teethValue == 24) {
 
-            $scope.imageUrl52 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 51){
-
-            $scope.imageUrl51 = "../img/small/gigi_hilang.png";   
+            $scope.imageUrl24 = "../img/small/gigi_hilang.png";
 
         }
 
-        if($scope.teethValue == 61){
+        if ($scope.teethValue == 25) {
 
-            $scope.imageUrl61 = "../img/small/gigi_hilang.png";   
+            $scope.imageUrl25 = "../img/small/gigi_hilang.png";
 
         }
 
-        if($scope.teethValue == 62){
+        if ($scope.teethValue == 26) {
 
-            $scope.imageUrl62 = "../img/small/gigi_hilang.png";   
+            $scope.imageUrl26 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 27) {
+
+            $scope.imageUrl27 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 28) {
+
+            $scope.imageUrl28 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 55) {
+
+            $scope.imageUrl55 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 54) {
+
+            $scope.imageUrl54 = "../img/small/gigi_hilang.png";
 
         }
 
 
-        if($scope.teethValue == 63){
+        if ($scope.teethValue == 53) {
 
-            $scope.imageUrl63 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 64){
-
-            $scope.imageUrl64 = "../img/small/gigi_hilang.png";   
+            $scope.imageUrl53 = "../img/small/gigi_hilang.png";
 
         }
 
-        if($scope.teethValue == 65){
+        if ($scope.teethValue == 52) {
 
-            $scope.imageUrl65 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 85){
-
-            $scope.imageUrl85 = "../img/small/gigi_hilang.png";   
+            $scope.imageUrl52 = "../img/small/gigi_hilang.png";
 
         }
 
-        if($scope.teethValue == 84){
+        if ($scope.teethValue == 51) {
 
-            $scope.imageUrl84 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 83){
-
-            $scope.imageUrl83 = "../img/small/gigi_hilang.png";   
+            $scope.imageUrl51 = "../img/small/gigi_hilang.png";
 
         }
 
-        if($scope.teethValue == 82){
+        if ($scope.teethValue == 61) {
 
-            $scope.imageUrl82 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 81){
-
-            $scope.imageUrl81 = "../img/small/gigi_hilang.png";   
+            $scope.imageUrl61 = "../img/small/gigi_hilang.png";
 
         }
 
-        if($scope.teethValue == 71){
+        if ($scope.teethValue == 62) {
 
-            $scope.imageUrl71 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 72){
-
-            $scope.imageUrl72 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 73){
-
-            $scope.imageUrl73 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 74){
-
-            $scope.imageUrl74 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 75){
-
-            $scope.imageUrl75 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 48){
-
-            $scope.imageUrl48 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 47){
-
-            $scope.imageUrl47 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 46){
-
-            $scope.imageUrl46 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 45){
-
-            $scope.imageUrl45 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 44){
-
-            $scope.imageUrl44 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 43){
-
-            $scope.imageUrl43 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 42){
-
-            $scope.imageUrl42 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 41){
-
-            $scope.imageUrl41 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 31){
-
-            $scope.imageUrl31 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 32){
-
-            $scope.imageUrl32 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 33){
-
-            $scope.imageUrl33 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 34){
-
-            $scope.imageUrl34 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 35){
-
-            $scope.imageUrl35 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 36){
-
-            $scope.imageUrl36 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 37){
-
-            $scope.imageUrl37 = "../img/small/gigi_hilang.png";   
-
-        }
-
-        if($scope.teethValue == 38){
-
-            $scope.imageUrl38 = "../img/small/gigi_hilang.png";   
+            $scope.imageUrl62 = "../img/small/gigi_hilang.png";
 
         }
 
 
-    
-        
+        if ($scope.teethValue == 63) {
+
+            $scope.imageUrl63 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 64) {
+
+            $scope.imageUrl64 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 65) {
+
+            $scope.imageUrl65 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 85) {
+
+            $scope.imageUrl85 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 84) {
+
+            $scope.imageUrl84 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 83) {
+
+            $scope.imageUrl83 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 82) {
+
+            $scope.imageUrl82 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 81) {
+
+            $scope.imageUrl81 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 71) {
+
+            $scope.imageUrl71 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 72) {
+
+            $scope.imageUrl72 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 73) {
+
+            $scope.imageUrl73 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 74) {
+
+            $scope.imageUrl74 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 75) {
+
+            $scope.imageUrl75 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 48) {
+
+            $scope.imageUrl48 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 47) {
+
+            $scope.imageUrl47 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 46) {
+
+            $scope.imageUrl46 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 45) {
+
+            $scope.imageUrl45 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 44) {
+
+            $scope.imageUrl44 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 43) {
+
+            $scope.imageUrl43 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 42) {
+
+            $scope.imageUrl42 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 41) {
+
+            $scope.imageUrl41 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 31) {
+
+            $scope.imageUrl31 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 32) {
+
+            $scope.imageUrl32 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 33) {
+
+            $scope.imageUrl33 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 34) {
+
+            $scope.imageUrl34 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 35) {
+
+            $scope.imageUrl35 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 36) {
+
+            $scope.imageUrl36 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 37) {
+
+            $scope.imageUrl37 = "../img/small/gigi_hilang.png";
+
+        }
+
+        if ($scope.teethValue == 38) {
+
+            $scope.imageUrl38 = "../img/small/gigi_hilang.png";
+
+        }
+
+
+
+
 
     };
 
-   
-    $scope.fungsiBelumErupsi = function(){
+
+    $scope.fungsiBelumErupsi = function () {
 
         $scope.teethExplaination = "Belum Erupsi";
         $scope.urlTEETH = "../img/small/belum_erupsi.png";
 
-        console.log("Teeeth Value Belum Erupsi "+ $scope.teethValue);
+        console.log("Teeeth Value Belum Erupsi " + $scope.teethValue);
 
-        if($scope.teethValue == 18){
+        if ($scope.teethValue == 18) {
 
-            $scope.imageUrl18 = "../img/small/belum_erupsi.png";   
-
-        }
-
-        if($scope.teethValue == 17){
-
-            $scope.imageUrl17 = "../img/small/belum_erupsi.png";     
-        }
-
-        if($scope.teethValue == 16){
-
-            $scope.imageUrl16 = "../img/small/belum_erupsi.png";     
+            $scope.imageUrl18 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 15){
+        if ($scope.teethValue == 17) {
 
-            $scope.imageUrl15 = "../img/small/belum_erupsi.png";     
+            $scope.imageUrl17 = "../img/small/belum_erupsi.png";
         }
 
-        if($scope.teethValue == 14){
+        if ($scope.teethValue == 16) {
 
-            $scope.imageUrl14 = "../img/small/belum_erupsi.png";      
-
-        }
-
-        if($scope.teethValue == 13){
-
-            $scope.imageUrl13 = "../img/small/belum_erupsi.png";    
+            $scope.imageUrl16 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 12){
+        if ($scope.teethValue == 15) {
 
-            $scope.imageUrl12 = "../img/small/belum_erupsi.png";      
+            $scope.imageUrl15 = "../img/small/belum_erupsi.png";
+        }
+
+        if ($scope.teethValue == 14) {
+
+            $scope.imageUrl14 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 11){
+        if ($scope.teethValue == 13) {
 
-            $scope.imageUrl11 = "../img/small/belum_erupsi.png";    
-
-        }
-
-        if($scope.teethValue == 21){
-
-            $scope.imageUrl21 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl13 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 22){
+        if ($scope.teethValue == 12) {
 
-            $scope.imageUrl22 = "../img/small/belum_erupsi.png";   
-
-        }
-
-        if($scope.teethValue == 23){
-
-            $scope.imageUrl23 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl12 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 24){
+        if ($scope.teethValue == 11) {
 
-            $scope.imageUrl24 = "../img/small/belum_erupsi.png";   
-
-        }
-
-        if($scope.teethValue == 25){
-
-            $scope.imageUrl25 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl11 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 26){
+        if ($scope.teethValue == 21) {
 
-            $scope.imageUrl26 = "../img/small/belum_erupsi.png";   
-
-        }
-
-        if($scope.teethValue == 27){
-
-            $scope.imageUrl27 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl21 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 28){
+        if ($scope.teethValue == 22) {
 
-            $scope.imageUrl28 = "../img/small/belum_erupsi.png";   
-
-        }
-
-        if($scope.teethValue == 55){
-
-            $scope.imageUrl55 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl22 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 54){
+        if ($scope.teethValue == 23) {
 
-            $scope.imageUrl54 = "../img/small/belum_erupsi.png";   
-
-        }
-
-
-        if($scope.teethValue == 53){
-
-            $scope.imageUrl53 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl23 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 52){
+        if ($scope.teethValue == 24) {
 
-            $scope.imageUrl52 = "../img/small/belum_erupsi.png";   
-
-        }
-
-        if($scope.teethValue == 51){
-
-            $scope.imageUrl51 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl24 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 61){
+        if ($scope.teethValue == 25) {
 
-            $scope.imageUrl61 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl25 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 62){
+        if ($scope.teethValue == 26) {
 
-            $scope.imageUrl62 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl26 = "../img/small/belum_erupsi.png";
+
+        }
+
+        if ($scope.teethValue == 27) {
+
+            $scope.imageUrl27 = "../img/small/belum_erupsi.png";
+
+        }
+
+        if ($scope.teethValue == 28) {
+
+            $scope.imageUrl28 = "../img/small/belum_erupsi.png";
+
+        }
+
+        if ($scope.teethValue == 55) {
+
+            $scope.imageUrl55 = "../img/small/belum_erupsi.png";
+
+        }
+
+        if ($scope.teethValue == 54) {
+
+            $scope.imageUrl54 = "../img/small/belum_erupsi.png";
 
         }
 
 
-        if($scope.teethValue == 63){
+        if ($scope.teethValue == 53) {
 
-            $scope.imageUrl63 = "../img/small/belum_erupsi.png";   
-
-        }
-
-        if($scope.teethValue == 64){
-
-            $scope.imageUrl64 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl53 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 65){
+        if ($scope.teethValue == 52) {
 
-            $scope.imageUrl65 = "../img/small/belum_erupsi.png";   
-
-        }
-
-        if($scope.teethValue == 85){
-
-            $scope.imageUrl85 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl52 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 84){
+        if ($scope.teethValue == 51) {
 
-            $scope.imageUrl84 = "../img/small/belum_erupsi.png";   
-
-        }
-
-        if($scope.teethValue == 83){
-
-            $scope.imageUrl83 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl51 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 82){
+        if ($scope.teethValue == 61) {
 
-            $scope.imageUrl82 = "../img/small/belum_erupsi.png";   
-
-        }
-
-        if($scope.teethValue == 81){
-
-            $scope.imageUrl81 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl61 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 71){
+        if ($scope.teethValue == 62) {
 
-            $scope.imageUrl71 = "../img/small/belum_erupsi.png";   
-
-        }
-
-        if($scope.teethValue == 72){
-
-            $scope.imageUrl72 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl62 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 73){
 
-            $scope.imageUrl73 = "../img/small/belum_erupsi.png";   
+        if ($scope.teethValue == 63) {
 
-        }
-
-        if($scope.teethValue == 74){
-
-            $scope.imageUrl74 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl63 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 75){
+        if ($scope.teethValue == 64) {
 
-            $scope.imageUrl75 = "../img/small/belum_erupsi.png";   
-
-        }
-
-        if($scope.teethValue == 48){
-
-            $scope.imageUrl48 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl64 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 47){
+        if ($scope.teethValue == 65) {
 
-            $scope.imageUrl47 = "../img/small/belum_erupsi.png";   
-
-        }
-
-        if($scope.teethValue == 46){
-
-            $scope.imageUrl46 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl65 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 45){
+        if ($scope.teethValue == 85) {
 
-            $scope.imageUrl45 = "../img/small/belum_erupsi.png";   
-
-        }
-
-        if($scope.teethValue == 44){
-
-            $scope.imageUrl44 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl85 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 43){
+        if ($scope.teethValue == 84) {
 
-            $scope.imageUrl43 = "../img/small/belum_erupsi.png";   
-
-        }
-
-        if($scope.teethValue == 42){
-
-            $scope.imageUrl42 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl84 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 41){
+        if ($scope.teethValue == 83) {
 
-            $scope.imageUrl41 = "../img/small/belum_erupsi.png";   
-
-        }
-
-        if($scope.teethValue == 31){
-
-            $scope.imageUrl31 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl83 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 32){
+        if ($scope.teethValue == 82) {
 
-            $scope.imageUrl32 = "../img/small/belum_erupsi.png";   
-
-        }
-
-        if($scope.teethValue == 33){
-
-            $scope.imageUrl33 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl82 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 34){
+        if ($scope.teethValue == 81) {
 
-            $scope.imageUrl34 = "../img/small/belum_erupsi.png";   
-
-        }
-
-        if($scope.teethValue == 35){
-
-            $scope.imageUrl35 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl81 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 36){
+        if ($scope.teethValue == 71) {
 
-            $scope.imageUrl36 = "../img/small/belum_erupsi.png";   
-
-        }
-
-        if($scope.teethValue == 37){
-
-            $scope.imageUrl37 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl71 = "../img/small/belum_erupsi.png";
 
         }
 
-        if($scope.teethValue == 38){
+        if ($scope.teethValue == 72) {
 
-            $scope.imageUrl38 = "../img/small/belum_erupsi.png";   
+            $scope.imageUrl72 = "../img/small/belum_erupsi.png";
+
+        }
+
+        if ($scope.teethValue == 73) {
+
+            $scope.imageUrl73 = "../img/small/belum_erupsi.png";
+
+        }
+
+        if ($scope.teethValue == 74) {
+
+            $scope.imageUrl74 = "../img/small/belum_erupsi.png";
+
+        }
+
+        if ($scope.teethValue == 75) {
+
+            $scope.imageUrl75 = "../img/small/belum_erupsi.png";
+
+        }
+
+        if ($scope.teethValue == 48) {
+
+            $scope.imageUrl48 = "../img/small/belum_erupsi.png";
+
+        }
+
+        if ($scope.teethValue == 47) {
+
+            $scope.imageUrl47 = "../img/small/belum_erupsi.png";
+
+        }
+
+        if ($scope.teethValue == 46) {
+
+            $scope.imageUrl46 = "../img/small/belum_erupsi.png";
+
+        }
+
+        if ($scope.teethValue == 45) {
+
+            $scope.imageUrl45 = "../img/small/belum_erupsi.png";
+
+        }
+
+        if ($scope.teethValue == 44) {
+
+            $scope.imageUrl44 = "../img/small/belum_erupsi.png";
+
+        }
+
+        if ($scope.teethValue == 43) {
+
+            $scope.imageUrl43 = "../img/small/belum_erupsi.png";
+
+        }
+
+        if ($scope.teethValue == 42) {
+
+            $scope.imageUrl42 = "../img/small/belum_erupsi.png";
+
+        }
+
+        if ($scope.teethValue == 41) {
+
+            $scope.imageUrl41 = "../img/small/belum_erupsi.png";
+
+        }
+
+        if ($scope.teethValue == 31) {
+
+            $scope.imageUrl31 = "../img/small/belum_erupsi.png";
+
+        }
+
+        if ($scope.teethValue == 32) {
+
+            $scope.imageUrl32 = "../img/small/belum_erupsi.png";
+
+        }
+
+        if ($scope.teethValue == 33) {
+
+            $scope.imageUrl33 = "../img/small/belum_erupsi.png";
+
+        }
+
+        if ($scope.teethValue == 34) {
+
+            $scope.imageUrl34 = "../img/small/belum_erupsi.png";
+
+        }
+
+        if ($scope.teethValue == 35) {
+
+            $scope.imageUrl35 = "../img/small/belum_erupsi.png";
+
+        }
+
+        if ($scope.teethValue == 36) {
+
+            $scope.imageUrl36 = "../img/small/belum_erupsi.png";
+
+        }
+
+        if ($scope.teethValue == 37) {
+
+            $scope.imageUrl37 = "../img/small/belum_erupsi.png";
+
+        }
+
+        if ($scope.teethValue == 38) {
+
+            $scope.imageUrl38 = "../img/small/belum_erupsi.png";
 
         }
 
 
     };
 
-    $scope.fungsiErupsiSebagian = function(){
+    $scope.fungsiErupsiSebagian = function () {
 
         $scope.teethExplaination = "Erupsi Sebagian";
         $scope.urlTEETH = "../img/small/erupsi_sebagian.png";
 
-        if($scope.teethValue == 18){
+        if ($scope.teethValue == 18) {
 
-            $scope.imageUrl18 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 17){
-
-            $scope.imageUrl17 = "../img/small/erupsi_sebagian.png";     
-        }
-
-        if($scope.teethValue == 16){
-
-            $scope.imageUrl16 = "../img/small/erupsi_sebagian.png";     
+            $scope.imageUrl18 = "../img/small/erupsi_sebagian.png";
 
         }
 
-        if($scope.teethValue == 15){
+        if ($scope.teethValue == 17) {
 
-            $scope.imageUrl15 = "../img/small/erupsi_sebagian.png";     
+            $scope.imageUrl17 = "../img/small/erupsi_sebagian.png";
         }
 
-        if($scope.teethValue == 14){
+        if ($scope.teethValue == 16) {
 
-            $scope.imageUrl14 = "../img/small/erupsi_sebagian.png";      
-
-        }
-
-        if($scope.teethValue == 13){
-
-            $scope.imageUrl13 = "../img/small/erupsi_sebagian.png";    
+            $scope.imageUrl16 = "../img/small/erupsi_sebagian.png";
 
         }
 
-        if($scope.teethValue == 12){
+        if ($scope.teethValue == 15) {
 
-            $scope.imageUrl12 = "../img/small/erupsi_sebagian.png";      
+            $scope.imageUrl15 = "../img/small/erupsi_sebagian.png";
+        }
+
+        if ($scope.teethValue == 14) {
+
+            $scope.imageUrl14 = "../img/small/erupsi_sebagian.png";
 
         }
 
-        if($scope.teethValue == 11){
+        if ($scope.teethValue == 13) {
 
-            $scope.imageUrl11 = "../img/small/erupsi_sebagian.png";    
-
-        }
-
-        if($scope.teethValue == 21){
-
-            $scope.imageUrl21 = "../img/small/erupsi_sebagian.png";   
+            $scope.imageUrl13 = "../img/small/erupsi_sebagian.png";
 
         }
 
-        if($scope.teethValue == 22){
+        if ($scope.teethValue == 12) {
 
-            $scope.imageUrl22 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 23){
-
-            $scope.imageUrl23 = "../img/small/erupsi_sebagian.png";   
+            $scope.imageUrl12 = "../img/small/erupsi_sebagian.png";
 
         }
 
-        if($scope.teethValue == 24){
+        if ($scope.teethValue == 11) {
 
-            $scope.imageUrl24 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 25){
-
-            $scope.imageUrl25 = "../img/small/erupsi_sebagian.png";   
+            $scope.imageUrl11 = "../img/small/erupsi_sebagian.png";
 
         }
 
-        if($scope.teethValue == 26){
+        if ($scope.teethValue == 21) {
 
-            $scope.imageUrl26 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 27){
-
-            $scope.imageUrl27 = "../img/small/erupsi_sebagian.png";   
+            $scope.imageUrl21 = "../img/small/erupsi_sebagian.png";
 
         }
 
-        if($scope.teethValue == 28){
+        if ($scope.teethValue == 22) {
 
-            $scope.imageUrl28 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 55){
-
-            $scope.imageUrl55 = "../img/small/erupsi_sebagian.png";   
+            $scope.imageUrl22 = "../img/small/erupsi_sebagian.png";
 
         }
 
-        if($scope.teethValue == 54){
+        if ($scope.teethValue == 23) {
 
-            $scope.imageUrl54 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-
-        if($scope.teethValue == 53){
-
-            $scope.imageUrl53 = "../img/small/erupsi_sebagian.png";   
+            $scope.imageUrl23 = "../img/small/erupsi_sebagian.png";
 
         }
 
-        if($scope.teethValue == 52){
+        if ($scope.teethValue == 24) {
 
-            $scope.imageUrl52 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 51){
-
-            $scope.imageUrl51 = "../img/small/erupsi_sebagian.png";   
+            $scope.imageUrl24 = "../img/small/erupsi_sebagian.png";
 
         }
 
-        if($scope.teethValue == 61){
+        if ($scope.teethValue == 25) {
 
-            $scope.imageUrl61 = "../img/small/erupsi_sebagian.png";   
+            $scope.imageUrl25 = "../img/small/erupsi_sebagian.png";
 
         }
 
-        if($scope.teethValue == 62){
+        if ($scope.teethValue == 26) {
 
-            $scope.imageUrl62 = "../img/small/erupsi_sebagian.png";   
+            $scope.imageUrl26 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 27) {
+
+            $scope.imageUrl27 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 28) {
+
+            $scope.imageUrl28 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 55) {
+
+            $scope.imageUrl55 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 54) {
+
+            $scope.imageUrl54 = "../img/small/erupsi_sebagian.png";
 
         }
 
 
-        if($scope.teethValue == 63){
+        if ($scope.teethValue == 53) {
 
-            $scope.imageUrl63 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 64){
-
-            $scope.imageUrl64 = "../img/small/erupsi_sebagian.png";   
+            $scope.imageUrl53 = "../img/small/erupsi_sebagian.png";
 
         }
 
-        if($scope.teethValue == 65){
+        if ($scope.teethValue == 52) {
 
-            $scope.imageUrl65 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 85){
-
-            $scope.imageUrl85 = "../img/small/erupsi_sebagian.png";   
+            $scope.imageUrl52 = "../img/small/erupsi_sebagian.png";
 
         }
 
-        if($scope.teethValue == 84){
+        if ($scope.teethValue == 51) {
 
-            $scope.imageUrl84 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 83){
-
-            $scope.imageUrl83 = "../img/small/erupsi_sebagian.png";   
+            $scope.imageUrl51 = "../img/small/erupsi_sebagian.png";
 
         }
 
-        if($scope.teethValue == 82){
+        if ($scope.teethValue == 61) {
 
-            $scope.imageUrl82 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 81){
-
-            $scope.imageUrl81 = "../img/small/erupsi_sebagian.png";   
+            $scope.imageUrl61 = "../img/small/erupsi_sebagian.png";
 
         }
 
-        if($scope.teethValue == 71){
+        if ($scope.teethValue == 62) {
 
-            $scope.imageUrl71 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 72){
-
-            $scope.imageUrl72 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 73){
-
-            $scope.imageUrl73 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 74){
-
-            $scope.imageUrl74 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 75){
-
-            $scope.imageUrl75 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 48){
-
-            $scope.imageUrl48 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 47){
-
-            $scope.imageUrl47 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 46){
-
-            $scope.imageUrl46 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 45){
-
-            $scope.imageUrl45 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 44){
-
-            $scope.imageUrl44 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 43){
-
-            $scope.imageUrl43 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 42){
-
-            $scope.imageUrl42 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 41){
-
-            $scope.imageUrl41 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 31){
-
-            $scope.imageUrl31 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 32){
-
-            $scope.imageUrl32 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 33){
-
-            $scope.imageUrl33 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 34){
-
-            $scope.imageUrl34 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 35){
-
-            $scope.imageUrl35 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 36){
-
-            $scope.imageUrl36 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 37){
-
-            $scope.imageUrl37 = "../img/small/erupsi_sebagian.png";   
-
-        }
-
-        if($scope.teethValue == 38){
-
-            $scope.imageUrl38 = "../img/small/erupsi_sebagian.png";   
+            $scope.imageUrl62 = "../img/small/erupsi_sebagian.png";
 
         }
 
 
-    };  
+        if ($scope.teethValue == 63) {
 
-    $scope.fungsiKaries = function(){
+            $scope.imageUrl63 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 64) {
+
+            $scope.imageUrl64 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 65) {
+
+            $scope.imageUrl65 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 85) {
+
+            $scope.imageUrl85 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 84) {
+
+            $scope.imageUrl84 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 83) {
+
+            $scope.imageUrl83 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 82) {
+
+            $scope.imageUrl82 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 81) {
+
+            $scope.imageUrl81 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 71) {
+
+            $scope.imageUrl71 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 72) {
+
+            $scope.imageUrl72 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 73) {
+
+            $scope.imageUrl73 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 74) {
+
+            $scope.imageUrl74 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 75) {
+
+            $scope.imageUrl75 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 48) {
+
+            $scope.imageUrl48 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 47) {
+
+            $scope.imageUrl47 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 46) {
+
+            $scope.imageUrl46 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 45) {
+
+            $scope.imageUrl45 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 44) {
+
+            $scope.imageUrl44 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 43) {
+
+            $scope.imageUrl43 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 42) {
+
+            $scope.imageUrl42 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 41) {
+
+            $scope.imageUrl41 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 31) {
+
+            $scope.imageUrl31 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 32) {
+
+            $scope.imageUrl32 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 33) {
+
+            $scope.imageUrl33 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 34) {
+
+            $scope.imageUrl34 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 35) {
+
+            $scope.imageUrl35 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 36) {
+
+            $scope.imageUrl36 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 37) {
+
+            $scope.imageUrl37 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+        if ($scope.teethValue == 38) {
+
+            $scope.imageUrl38 = "../img/small/erupsi_sebagian.png";
+
+        }
+
+
+    };
+
+    $scope.fungsiKaries = function () {
 
         $scope.teethExplaination = "Karies";
         $scope.urlTEETH = "../img/small/karies.png";
-        
 
-        if($scope.teethValue == 18){
 
-            $scope.imageUrl18 = "../img/small/karies.png";   
+        if ($scope.teethValue == 18) {
 
-        }
-
-        if($scope.teethValue == 17){
-
-            $scope.imageUrl17 = "../img/small/karies.png";     
-        }
-
-        if($scope.teethValue == 16){
-
-            $scope.imageUrl16 = "../img/small/karies.png";     
+            $scope.imageUrl18 = "../img/small/karies.png";
 
         }
 
-        if($scope.teethValue == 15){
+        if ($scope.teethValue == 17) {
 
-            $scope.imageUrl15 = "../img/small/karies.png";     
+            $scope.imageUrl17 = "../img/small/karies.png";
         }
 
-        if($scope.teethValue == 14){
+        if ($scope.teethValue == 16) {
 
-            $scope.imageUrl14 = "../img/small/karies.png";      
-
-        }
-
-        if($scope.teethValue == 13){
-
-            $scope.imageUrl13 = "../img/small/karies.png";    
+            $scope.imageUrl16 = "../img/small/karies.png";
 
         }
 
-        if($scope.teethValue == 12){
+        if ($scope.teethValue == 15) {
 
-            $scope.imageUrl12 = "../img/small/karies.png";      
+            $scope.imageUrl15 = "../img/small/karies.png";
+        }
+
+        if ($scope.teethValue == 14) {
+
+            $scope.imageUrl14 = "../img/small/karies.png";
 
         }
 
-        if($scope.teethValue == 11){
+        if ($scope.teethValue == 13) {
 
-            $scope.imageUrl11 = "../img/small/karies.png";    
-
-        }
-
-        if($scope.teethValue == 21){
-
-            $scope.imageUrl21 = "../img/small/karies.png";   
+            $scope.imageUrl13 = "../img/small/karies.png";
 
         }
 
-        if($scope.teethValue == 22){
+        if ($scope.teethValue == 12) {
 
-            $scope.imageUrl22 = "../img/small/karies.png";   
-
-        }
-
-        if($scope.teethValue == 23){
-
-            $scope.imageUrl23 = "../img/small/karies.png";   
+            $scope.imageUrl12 = "../img/small/karies.png";
 
         }
 
-        if($scope.teethValue == 24){
+        if ($scope.teethValue == 11) {
 
-            $scope.imageUrl24 = "../img/small/karies.png";   
-
-        }
-
-        if($scope.teethValue == 25){
-
-            $scope.imageUrl25 = "../img/small/karies.png";   
+            $scope.imageUrl11 = "../img/small/karies.png";
 
         }
 
-        if($scope.teethValue == 26){
+        if ($scope.teethValue == 21) {
 
-            $scope.imageUrl26 = "../img/small/karies.png";   
-
-        }
-
-        if($scope.teethValue == 27){
-
-            $scope.imageUrl27 = "../img/small/karies.png";   
+            $scope.imageUrl21 = "../img/small/karies.png";
 
         }
 
-        if($scope.teethValue == 28){
+        if ($scope.teethValue == 22) {
 
-            $scope.imageUrl28 = "../img/small/karies.png";   
-
-        }
-
-        if($scope.teethValue == 55){
-
-            $scope.imageUrl55 = "../img/small/karies.png";   
+            $scope.imageUrl22 = "../img/small/karies.png";
 
         }
 
-        if($scope.teethValue == 54){
+        if ($scope.teethValue == 23) {
 
-            $scope.imageUrl54 = "../img/small/karies.png";   
-
-        }
-
-
-        if($scope.teethValue == 53){
-
-            $scope.imageUrl53 = "../img/small/karies.png";   
+            $scope.imageUrl23 = "../img/small/karies.png";
 
         }
 
-        if($scope.teethValue == 52){
+        if ($scope.teethValue == 24) {
 
-            $scope.imageUrl52 = "../img/small/karies.png";   
-
-        }
-
-        if($scope.teethValue == 51){
-
-            $scope.imageUrl51 = "../img/small/karies.png";   
+            $scope.imageUrl24 = "../img/small/karies.png";
 
         }
 
-        if($scope.teethValue == 61){
+        if ($scope.teethValue == 25) {
 
-            $scope.imageUrl61 = "../img/small/karies.png";   
+            $scope.imageUrl25 = "../img/small/karies.png";
 
         }
 
-        if($scope.teethValue == 62){
+        if ($scope.teethValue == 26) {
 
-            $scope.imageUrl62 = "../img/small/karies.png";   
+            $scope.imageUrl26 = "../img/small/karies.png";
+
+        }
+
+        if ($scope.teethValue == 27) {
+
+            $scope.imageUrl27 = "../img/small/karies.png";
+
+        }
+
+        if ($scope.teethValue == 28) {
+
+            $scope.imageUrl28 = "../img/small/karies.png";
+
+        }
+
+        if ($scope.teethValue == 55) {
+
+            $scope.imageUrl55 = "../img/small/karies.png";
+
+        }
+
+        if ($scope.teethValue == 54) {
+
+            $scope.imageUrl54 = "../img/small/karies.png";
 
         }
 
 
-        if($scope.teethValue == 63){
+        if ($scope.teethValue == 53) {
 
-            $scope.imageUrl63 = "../img/small/karies.png";   
-
-        }
-
-        if($scope.teethValue == 64){
-
-            $scope.imageUrl64 = "../img/small/karies.png";   
+            $scope.imageUrl53 = "../img/small/karies.png";
 
         }
 
-        if($scope.teethValue == 65){
+        if ($scope.teethValue == 52) {
 
-            $scope.imageUrl65 = "../img/small/karies.png";   
-
-        }
-
-        if($scope.teethValue == 85){
-
-            $scope.imageUrl85 = "../img/small/karies.png";   
+            $scope.imageUrl52 = "../img/small/karies.png";
 
         }
 
-        if($scope.teethValue == 84){
+        if ($scope.teethValue == 51) {
 
-            $scope.imageUrl84 = "../img/small/karies.png";   
-
-        }
-
-        if($scope.teethValue == 83){
-
-            $scope.imageUrl83 = "../img/small/karies.png";   
+            $scope.imageUrl51 = "../img/small/karies.png";
 
         }
 
-        if($scope.teethValue == 82){
+        if ($scope.teethValue == 61) {
 
-            $scope.imageUrl82 = "../img/small/karies.png";   
-
-        }
-
-        if($scope.teethValue == 81){
-
-            $scope.imageUrl81 = "../img/small/karies.png";   
+            $scope.imageUrl61 = "../img/small/karies.png";
 
         }
 
-        if($scope.teethValue == 71){
+        if ($scope.teethValue == 62) {
 
-            $scope.imageUrl71 = "../img/small/karies.png";   
-
-        }
-
-        if($scope.teethValue == 72){
-
-            $scope.imageUrl72 = "../img/small/karies.png";   
-
-        }
-
-        if($scope.teethValue == 73){
-
-            $scope.imageUrl73 = "../img/small/karies.png";   
-
-        }
-
-        if($scope.teethValue == 74){
-
-            $scope.imageUrl74 = "../img/small/karies.png";   
-
-        }
-
-        if($scope.teethValue == 75){
-
-            $scope.imageUrl75 = "../img/small/karies.png";   
+            $scope.imageUrl62 = "../img/small/karies.png";
 
         }
 
 
-        if($scope.teethValue == 48){
+        if ($scope.teethValue == 63) {
 
-            $scope.imageUrl48 = "../img/small/karies.png";   
-
-        }
-
-        if($scope.teethValue == 47){
-
-            $scope.imageUrl47 = "../img/small/karies.png";   
+            $scope.imageUrl63 = "../img/small/karies.png";
 
         }
 
-        if($scope.teethValue == 46){
+        if ($scope.teethValue == 64) {
 
-            $scope.imageUrl46 = "../img/small/karies.png";   
-
-        }
-
-        if($scope.teethValue == 45){
-
-            $scope.imageUrl45 = "../img/small/karies.png";   
+            $scope.imageUrl64 = "../img/small/karies.png";
 
         }
 
-        if($scope.teethValue == 44){
+        if ($scope.teethValue == 65) {
 
-            $scope.imageUrl44 = "../img/small/karies.png";   
-
-        }
-
-        if($scope.teethValue == 43){
-
-            $scope.imageUrl43 = "../img/small/karies.png";   
+            $scope.imageUrl65 = "../img/small/karies.png";
 
         }
 
-        if($scope.teethValue == 42){
+        if ($scope.teethValue == 85) {
 
-            $scope.imageUrl42 = "../img/small/karies.png";   
-
-        }
-
-        if($scope.teethValue == 41){
-
-            $scope.imageUrl41 = "../img/small/karies.png";   
+            $scope.imageUrl85 = "../img/small/karies.png";
 
         }
 
-        if($scope.teethValue == 31){
+        if ($scope.teethValue == 84) {
 
-            $scope.imageUrl31 = "../img/small/karies.png";   
-
-        }
-
-        if($scope.teethValue == 32){
-
-            $scope.imageUrl32 = "../img/small/karies.png";   
+            $scope.imageUrl84 = "../img/small/karies.png";
 
         }
 
-        if($scope.teethValue == 33){
+        if ($scope.teethValue == 83) {
 
-            $scope.imageUrl33 = "../img/small/karies.png";   
-
-        }
-
-        if($scope.teethValue == 34){
-
-            $scope.imageUrl34 = "../img/small/karies.png";   
+            $scope.imageUrl83 = "../img/small/karies.png";
 
         }
 
-        if($scope.teethValue == 35){
+        if ($scope.teethValue == 82) {
 
-            $scope.imageUrl35 = "../img/small/karies.png";   
-
-        }
-
-        if($scope.teethValue == 36){
-
-            $scope.imageUrl36 = "../img/small/karies.png";   
+            $scope.imageUrl82 = "../img/small/karies.png";
 
         }
 
-        if($scope.teethValue == 37){
+        if ($scope.teethValue == 81) {
 
-            $scope.imageUrl37 = "../img/small/karies.png";   
+            $scope.imageUrl81 = "../img/small/karies.png";
 
         }
 
-        if($scope.teethValue == 38){
+        if ($scope.teethValue == 71) {
 
-            $scope.imageUrl38 = "../img/small/karies.png";   
+            $scope.imageUrl71 = "../img/small/karies.png";
+
+        }
+
+        if ($scope.teethValue == 72) {
+
+            $scope.imageUrl72 = "../img/small/karies.png";
+
+        }
+
+        if ($scope.teethValue == 73) {
+
+            $scope.imageUrl73 = "../img/small/karies.png";
+
+        }
+
+        if ($scope.teethValue == 74) {
+
+            $scope.imageUrl74 = "../img/small/karies.png";
+
+        }
+
+        if ($scope.teethValue == 75) {
+
+            $scope.imageUrl75 = "../img/small/karies.png";
+
+        }
+
+
+        if ($scope.teethValue == 48) {
+
+            $scope.imageUrl48 = "../img/small/karies.png";
+
+        }
+
+        if ($scope.teethValue == 47) {
+
+            $scope.imageUrl47 = "../img/small/karies.png";
+
+        }
+
+        if ($scope.teethValue == 46) {
+
+            $scope.imageUrl46 = "../img/small/karies.png";
+
+        }
+
+        if ($scope.teethValue == 45) {
+
+            $scope.imageUrl45 = "../img/small/karies.png";
+
+        }
+
+        if ($scope.teethValue == 44) {
+
+            $scope.imageUrl44 = "../img/small/karies.png";
+
+        }
+
+        if ($scope.teethValue == 43) {
+
+            $scope.imageUrl43 = "../img/small/karies.png";
+
+        }
+
+        if ($scope.teethValue == 42) {
+
+            $scope.imageUrl42 = "../img/small/karies.png";
+
+        }
+
+        if ($scope.teethValue == 41) {
+
+            $scope.imageUrl41 = "../img/small/karies.png";
+
+        }
+
+        if ($scope.teethValue == 31) {
+
+            $scope.imageUrl31 = "../img/small/karies.png";
+
+        }
+
+        if ($scope.teethValue == 32) {
+
+            $scope.imageUrl32 = "../img/small/karies.png";
+
+        }
+
+        if ($scope.teethValue == 33) {
+
+            $scope.imageUrl33 = "../img/small/karies.png";
+
+        }
+
+        if ($scope.teethValue == 34) {
+
+            $scope.imageUrl34 = "../img/small/karies.png";
+
+        }
+
+        if ($scope.teethValue == 35) {
+
+            $scope.imageUrl35 = "../img/small/karies.png";
+
+        }
+
+        if ($scope.teethValue == 36) {
+
+            $scope.imageUrl36 = "../img/small/karies.png";
+
+        }
+
+        if ($scope.teethValue == 37) {
+
+            $scope.imageUrl37 = "../img/small/karies.png";
+
+        }
+
+        if ($scope.teethValue == 38) {
+
+            $scope.imageUrl38 = "../img/small/karies.png";
 
         }
 
     };
 
-$scope.fungsiAnomaliBentuk = function(){
+    $scope.fungsiAnomaliBentuk = function () {
 
-    $scope.teethExplaination = "Anomali Bentuk";
-    $scope.urlTEETH = "../img/small/anomali_bentuk.png";
+        $scope.teethExplaination = "Anomali Bentuk";
+        $scope.urlTEETH = "../img/small/anomali_bentuk.png";
 
-    if($scope.teethValue == 18){
+        if ($scope.teethValue == 18) {
 
-        $scope.imageUrl18 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl18 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 17){
+        if ($scope.teethValue == 17) {
 
-        $scope.imageUrl17 = "../img/small/anomali_bentuk.png";     
-    }
+            $scope.imageUrl17 = "../img/small/anomali_bentuk.png";
+        }
 
-    if($scope.teethValue == 16){
+        if ($scope.teethValue == 16) {
 
-        $scope.imageUrl16 = "../img/small/anomali_bentuk.png";     
+            $scope.imageUrl16 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 15){
+        if ($scope.teethValue == 15) {
 
-        $scope.imageUrl15 = "../img/small/anomali_bentuk.png";     
-    }
+            $scope.imageUrl15 = "../img/small/anomali_bentuk.png";
+        }
 
-    if($scope.teethValue == 14){
+        if ($scope.teethValue == 14) {
 
-        $scope.imageUrl14 = "../img/small/anomali_bentuk.png";      
+            $scope.imageUrl14 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 13){
+        if ($scope.teethValue == 13) {
 
-        $scope.imageUrl13 = "../img/small/anomali_bentuk.png";    
+            $scope.imageUrl13 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 12){
+        if ($scope.teethValue == 12) {
 
-        $scope.imageUrl12 = "../img/small/anomali_bentuk.png";      
+            $scope.imageUrl12 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 11){
+        if ($scope.teethValue == 11) {
 
-        $scope.imageUrl11 = "../img/small/anomali_bentuk.png";    
+            $scope.imageUrl11 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 21){
+        if ($scope.teethValue == 21) {
 
-        $scope.imageUrl21 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl21 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 22){
+        if ($scope.teethValue == 22) {
 
-        $scope.imageUrl22 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl22 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 23){
+        if ($scope.teethValue == 23) {
 
-        $scope.imageUrl23 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl23 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 24){
+        if ($scope.teethValue == 24) {
 
-        $scope.imageUrl24 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl24 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 25){
+        if ($scope.teethValue == 25) {
 
-        $scope.imageUrl25 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl25 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 26){
+        if ($scope.teethValue == 26) {
 
-        $scope.imageUrl26 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl26 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 27){
+        if ($scope.teethValue == 27) {
 
-        $scope.imageUrl27 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl27 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 28){
+        if ($scope.teethValue == 28) {
 
-        $scope.imageUrl28 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl28 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 55){
+        if ($scope.teethValue == 55) {
 
-        $scope.imageUrl55 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl55 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 54){
+        if ($scope.teethValue == 54) {
 
-        $scope.imageUrl54 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl54 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
 
-    if($scope.teethValue == 53){
+        if ($scope.teethValue == 53) {
 
-        $scope.imageUrl53 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl53 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 52){
+        if ($scope.teethValue == 52) {
 
-        $scope.imageUrl52 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl52 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 51){
+        if ($scope.teethValue == 51) {
 
-        $scope.imageUrl51 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl51 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 61){
+        if ($scope.teethValue == 61) {
 
-        $scope.imageUrl61 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl61 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 62){
+        if ($scope.teethValue == 62) {
 
-        $scope.imageUrl62 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl62 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
 
-    if($scope.teethValue == 63){
+        if ($scope.teethValue == 63) {
 
-        $scope.imageUrl63 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl63 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 64){
+        if ($scope.teethValue == 64) {
 
-        $scope.imageUrl64 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl64 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 65){
+        if ($scope.teethValue == 65) {
 
-        $scope.imageUrl65 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl65 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 85){
+        if ($scope.teethValue == 85) {
 
-        $scope.imageUrl85 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl85 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 84){
+        if ($scope.teethValue == 84) {
 
-        $scope.imageUrl84 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl84 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 83){
+        if ($scope.teethValue == 83) {
 
-        $scope.imageUrl83 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl83 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 82){
+        if ($scope.teethValue == 82) {
 
-        $scope.imageUrl82 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl82 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 81){
+        if ($scope.teethValue == 81) {
 
-        $scope.imageUrl81 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl81 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 71){
+        if ($scope.teethValue == 71) {
 
-        $scope.imageUrl71 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl71 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 72){
+        if ($scope.teethValue == 72) {
 
-        $scope.imageUrl72 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl72 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 73){
+        if ($scope.teethValue == 73) {
 
-        $scope.imageUrl73 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl73 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 74){
+        if ($scope.teethValue == 74) {
 
-        $scope.imageUrl74 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl74 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 75){
+        if ($scope.teethValue == 75) {
 
-        $scope.imageUrl75 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl75 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 48){
+        if ($scope.teethValue == 48) {
 
-        $scope.imageUrl48 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl48 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 47){
+        if ($scope.teethValue == 47) {
 
-        $scope.imageUrl47 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl47 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 46){
+        if ($scope.teethValue == 46) {
 
-        $scope.imageUrl46 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl46 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 45){
+        if ($scope.teethValue == 45) {
 
-        $scope.imageUrl45 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl45 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 44){
+        if ($scope.teethValue == 44) {
 
-        $scope.imageUrl44 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl44 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 43){
+        if ($scope.teethValue == 43) {
 
-        $scope.imageUrl43 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl43 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 42){
+        if ($scope.teethValue == 42) {
 
-        $scope.imageUrl42 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl42 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 41){
+        if ($scope.teethValue == 41) {
 
-        $scope.imageUrl41 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl41 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 31){
+        if ($scope.teethValue == 31) {
 
-        $scope.imageUrl31 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl31 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 32){
+        if ($scope.teethValue == 32) {
 
-        $scope.imageUrl32 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl32 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 33){
+        if ($scope.teethValue == 33) {
 
-        $scope.imageUrl33 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl33 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 34){
+        if ($scope.teethValue == 34) {
 
-        $scope.imageUrl34 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl34 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 35){
+        if ($scope.teethValue == 35) {
 
-        $scope.imageUrl35 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl35 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 36){
+        if ($scope.teethValue == 36) {
 
-        $scope.imageUrl36 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl36 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 37){
+        if ($scope.teethValue == 37) {
 
-        $scope.imageUrl37 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl37 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-    if($scope.teethValue == 38){
+        if ($scope.teethValue == 38) {
 
-        $scope.imageUrl38 = "../img/small/anomali_bentuk.png";   
+            $scope.imageUrl38 = "../img/small/anomali_bentuk.png";
 
-    }
+        }
 
-};
+    };
 
-$scope.fungsiTambalanLogam = function(){
+    $scope.fungsiTambalanLogam = function () {
 
-    $scope.teethExplaination = "Tambalan Logam";
-    $scope.urlTEETH = "../img/small/tambalan_logam.png";
+        $scope.teethExplaination = "Tambalan Logam";
+        $scope.urlTEETH = "../img/small/tambalan_logam.png";
 
-    if($scope.teethValue == 18){
+        if ($scope.teethValue == 18) {
 
-        $scope.imageUrl18 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl18 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 17){
+        if ($scope.teethValue == 17) {
 
-        $scope.imageUrl17 = "../img/small/tambalan_logam.png";     
-    }
+            $scope.imageUrl17 = "../img/small/tambalan_logam.png";
+        }
 
-    if($scope.teethValue == 16){
+        if ($scope.teethValue == 16) {
 
-        $scope.imageUrl16 = "../img/small/tambalan_logam.png";     
+            $scope.imageUrl16 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 15){
+        if ($scope.teethValue == 15) {
 
-        $scope.imageUrl15 = "../img/small/tambalan_logam.png";     
-    }
+            $scope.imageUrl15 = "../img/small/tambalan_logam.png";
+        }
 
-    if($scope.teethValue == 14){
+        if ($scope.teethValue == 14) {
 
-        $scope.imageUrl14 = "../img/small/tambalan_logam.png";      
+            $scope.imageUrl14 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 13){
+        if ($scope.teethValue == 13) {
 
-        $scope.imageUrl13 = "../img/small/tambalan_logam.png";    
+            $scope.imageUrl13 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 12){
+        if ($scope.teethValue == 12) {
 
-        $scope.imageUrl12 = "../img/small/tambalan_logam.png";      
+            $scope.imageUrl12 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 11){
+        if ($scope.teethValue == 11) {
 
-        $scope.imageUrl11 = "../img/small/tambalan_logam.png";    
+            $scope.imageUrl11 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 21){
+        if ($scope.teethValue == 21) {
 
-        $scope.imageUrl21 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl21 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 22){
+        if ($scope.teethValue == 22) {
 
-        $scope.imageUrl22 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl22 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 23){
+        if ($scope.teethValue == 23) {
 
-        $scope.imageUrl23 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl23 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 24){
+        if ($scope.teethValue == 24) {
 
-        $scope.imageUrl24 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl24 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 25){
+        if ($scope.teethValue == 25) {
 
-        $scope.imageUrl25 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl25 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 26){
+        if ($scope.teethValue == 26) {
 
-        $scope.imageUrl26 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl26 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 27){
+        if ($scope.teethValue == 27) {
 
-        $scope.imageUrl27 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl27 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 28){
+        if ($scope.teethValue == 28) {
 
-        $scope.imageUrl28 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl28 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 55){
+        if ($scope.teethValue == 55) {
 
-        $scope.imageUrl55 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl55 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 54){
+        if ($scope.teethValue == 54) {
 
-        $scope.imageUrl54 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl54 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
 
-    if($scope.teethValue == 53){
+        if ($scope.teethValue == 53) {
 
-        $scope.imageUrl53 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl53 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 52){
+        if ($scope.teethValue == 52) {
 
-        $scope.imageUrl52 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl52 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 51){
+        if ($scope.teethValue == 51) {
 
-        $scope.imageUrl51 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl51 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 61){
+        if ($scope.teethValue == 61) {
 
-        $scope.imageUrl61 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl61 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 62){
+        if ($scope.teethValue == 62) {
 
-        $scope.imageUrl62 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl62 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
 
-    if($scope.teethValue == 63){
+        if ($scope.teethValue == 63) {
 
-        $scope.imageUrl63 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl63 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 64){
+        if ($scope.teethValue == 64) {
 
-        $scope.imageUrl64 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl64 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 65){
+        if ($scope.teethValue == 65) {
 
-        $scope.imageUrl65 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl65 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 85){
+        if ($scope.teethValue == 85) {
 
-        $scope.imageUrl85 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl85 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 84){
+        if ($scope.teethValue == 84) {
 
-        $scope.imageUrl84 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl84 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 83){
+        if ($scope.teethValue == 83) {
 
-        $scope.imageUrl83 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl83 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 82){
+        if ($scope.teethValue == 82) {
 
-        $scope.imageUrl82 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl82 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 81){
+        if ($scope.teethValue == 81) {
 
-        $scope.imageUrl81 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl81 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 71){
+        if ($scope.teethValue == 71) {
 
-        $scope.imageUrl71 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl71 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 72){
+        if ($scope.teethValue == 72) {
 
-        $scope.imageUrl72 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl72 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 73){
+        if ($scope.teethValue == 73) {
 
-        $scope.imageUrl73 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl73 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 74){
+        if ($scope.teethValue == 74) {
 
-        $scope.imageUrl74 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl74 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 75){
+        if ($scope.teethValue == 75) {
 
-        $scope.imageUrl75 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl75 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 48){
+        if ($scope.teethValue == 48) {
 
-        $scope.imageUrl48 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl48 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 47){
+        if ($scope.teethValue == 47) {
 
-        $scope.imageUrl47 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl47 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 46){
+        if ($scope.teethValue == 46) {
 
-        $scope.imageUrl46 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl46 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 45){
+        if ($scope.teethValue == 45) {
 
-        $scope.imageUrl45 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl45 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 44){
+        if ($scope.teethValue == 44) {
 
-        $scope.imageUrl44 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl44 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 43){
+        if ($scope.teethValue == 43) {
 
-        $scope.imageUrl43 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl43 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 42){
+        if ($scope.teethValue == 42) {
 
-        $scope.imageUrl42 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl42 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 41){
+        if ($scope.teethValue == 41) {
 
-        $scope.imageUrl41 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl41 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 31){
+        if ($scope.teethValue == 31) {
 
-        $scope.imageUrl31 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl31 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 32){
+        if ($scope.teethValue == 32) {
 
-        $scope.imageUrl32 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl32 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 33){
+        if ($scope.teethValue == 33) {
 
-        $scope.imageUrl33 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl33 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 34){
+        if ($scope.teethValue == 34) {
 
-        $scope.imageUrl34 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl34 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 35){
+        if ($scope.teethValue == 35) {
 
-        $scope.imageUrl35 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl35 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 36){
+        if ($scope.teethValue == 36) {
 
-        $scope.imageUrl36 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl36 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 37){
+        if ($scope.teethValue == 37) {
 
-        $scope.imageUrl37 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl37 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-    if($scope.teethValue == 38){
+        if ($scope.teethValue == 38) {
 
-        $scope.imageUrl38 = "../img/small/tambalan_logam.png";   
+            $scope.imageUrl38 = "../img/small/tambalan_logam.png";
 
-    }
+        }
 
-};
+    };
 
 
-    $scope.fungsiNonVital = function(){
+    $scope.fungsiNonVital = function () {
 
         $scope.teethExplaination = "Non Vital";
         $scope.urlTEETH = "../img/small/non_vital.png";
 
-        if($scope.teethValue == 18){
+        if ($scope.teethValue == 18) {
 
-            $scope.imageUrl18 = "../img/small/non_vital.png";   
-
-        }
-
-        if($scope.teethValue == 17){
-
-            $scope.imageUrl17 = "../img/small/non_vital.png";     
-        }
-
-        if($scope.teethValue == 16){
-
-            $scope.imageUrl16 = "../img/small/non_vital.png";     
+            $scope.imageUrl18 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 15){
+        if ($scope.teethValue == 17) {
 
-            $scope.imageUrl15 = "../img/small/non_vital.png";     
+            $scope.imageUrl17 = "../img/small/non_vital.png";
         }
 
-        if($scope.teethValue == 14){
+        if ($scope.teethValue == 16) {
 
-            $scope.imageUrl14 = "../img/small/non_vital.png";      
-
-        }
-
-        if($scope.teethValue == 13){
-
-            $scope.imageUrl13 = "../img/small/non_vital.png";    
+            $scope.imageUrl16 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 12){
+        if ($scope.teethValue == 15) {
 
-            $scope.imageUrl12 = "../img/small/non_vital.png";      
+            $scope.imageUrl15 = "../img/small/non_vital.png";
+        }
+
+        if ($scope.teethValue == 14) {
+
+            $scope.imageUrl14 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 11){
+        if ($scope.teethValue == 13) {
 
-            $scope.imageUrl11 = "../img/small/non_vital.png";    
-
-        }
-
-        if($scope.teethValue == 21){
-
-            $scope.imageUrl21 = "../img/small/non_vital.png";   
+            $scope.imageUrl13 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 22){
+        if ($scope.teethValue == 12) {
 
-            $scope.imageUrl22 = "../img/small/non_vital.png";   
-
-        }
-
-        if($scope.teethValue == 23){
-
-            $scope.imageUrl23 = "../img/small/non_vital.png";   
+            $scope.imageUrl12 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 24){
+        if ($scope.teethValue == 11) {
 
-            $scope.imageUrl24 = "../img/small/non_vital.png";   
-
-        }
-
-        if($scope.teethValue == 25){
-
-            $scope.imageUrl25 = "../img/small/non_vital.png";   
+            $scope.imageUrl11 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 26){
+        if ($scope.teethValue == 21) {
 
-            $scope.imageUrl26 = "../img/small/non_vital.png";   
-
-        }
-
-        if($scope.teethValue == 27){
-
-            $scope.imageUrl27 = "../img/small/non_vital.png";   
+            $scope.imageUrl21 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 28){
+        if ($scope.teethValue == 22) {
 
-            $scope.imageUrl28 = "../img/small/non_vital.png";   
-
-        }
-
-        if($scope.teethValue == 55){
-
-            $scope.imageUrl55 = "../img/small/non_vital.png";   
+            $scope.imageUrl22 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 54){
+        if ($scope.teethValue == 23) {
 
-            $scope.imageUrl54 = "../img/small/non_vital.png";   
-
-        }
-
-
-        if($scope.teethValue == 53){
-
-            $scope.imageUrl53 = "../img/small/non_vital.png";   
+            $scope.imageUrl23 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 52){
+        if ($scope.teethValue == 24) {
 
-            $scope.imageUrl52 = "../img/small/non_vital.png";   
-
-        }
-
-        if($scope.teethValue == 51){
-
-            $scope.imageUrl51 = "../img/small/non_vital.png";   
+            $scope.imageUrl24 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 61){
+        if ($scope.teethValue == 25) {
 
-            $scope.imageUrl61 = "../img/small/non_vital.png";   
+            $scope.imageUrl25 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 62){
+        if ($scope.teethValue == 26) {
 
-            $scope.imageUrl62 = "../img/small/non_vital.png";   
+            $scope.imageUrl26 = "../img/small/non_vital.png";
+
+        }
+
+        if ($scope.teethValue == 27) {
+
+            $scope.imageUrl27 = "../img/small/non_vital.png";
+
+        }
+
+        if ($scope.teethValue == 28) {
+
+            $scope.imageUrl28 = "../img/small/non_vital.png";
+
+        }
+
+        if ($scope.teethValue == 55) {
+
+            $scope.imageUrl55 = "../img/small/non_vital.png";
+
+        }
+
+        if ($scope.teethValue == 54) {
+
+            $scope.imageUrl54 = "../img/small/non_vital.png";
 
         }
 
 
-        if($scope.teethValue == 63){
+        if ($scope.teethValue == 53) {
 
-            $scope.imageUrl63 = "../img/small/non_vital.png";   
-
-        }
-
-        if($scope.teethValue == 64){
-
-            $scope.imageUrl64 = "../img/small/non_vital.png";   
+            $scope.imageUrl53 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 65){
+        if ($scope.teethValue == 52) {
 
-            $scope.imageUrl65 = "../img/small/non_vital.png";   
-
-        }
-
-        if($scope.teethValue == 85){
-
-            $scope.imageUrl85 = "../img/small/non_vital.png";   
+            $scope.imageUrl52 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 84){
+        if ($scope.teethValue == 51) {
 
-            $scope.imageUrl84 = "../img/small/non_vital.png";   
-
-        }
-
-        if($scope.teethValue == 83){
-
-            $scope.imageUrl83 = "../img/small/non_vital.png";   
+            $scope.imageUrl51 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 82){
+        if ($scope.teethValue == 61) {
 
-            $scope.imageUrl82 = "../img/small/non_vital.png";   
-
-        }
-
-        if($scope.teethValue == 81){
-
-            $scope.imageUrl81 = "../img/small/non_vital.png";   
+            $scope.imageUrl61 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 71){
+        if ($scope.teethValue == 62) {
 
-            $scope.imageUrl71 = "../img/small/non_vital.png";   
-
-        }
-
-        if($scope.teethValue == 72){
-
-            $scope.imageUrl72 = "../img/small/non_vital.png";   
+            $scope.imageUrl62 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 73){
 
-            $scope.imageUrl73 = "../img/small/non_vital.png";   
+        if ($scope.teethValue == 63) {
 
-        }
-
-        if($scope.teethValue == 74){
-
-            $scope.imageUrl74 = "../img/small/non_vital.png";   
+            $scope.imageUrl63 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 75){
+        if ($scope.teethValue == 64) {
 
-            $scope.imageUrl75 = "../img/small/non_vital.png";   
-
-        }
-
-        if($scope.teethValue == 48){
-
-            $scope.imageUrl48 = "../img/small/non_vital.png";   
+            $scope.imageUrl64 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 47){
+        if ($scope.teethValue == 65) {
 
-            $scope.imageUrl47 = "../img/small/non_vital.png";   
-
-        }
-
-        if($scope.teethValue == 46){
-
-            $scope.imageUrl46 = "../img/small/non_vital.png";   
+            $scope.imageUrl65 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 45){
+        if ($scope.teethValue == 85) {
 
-            $scope.imageUrl45 = "../img/small/non_vital.png";   
-
-        }
-
-        if($scope.teethValue == 44){
-
-            $scope.imageUrl44 = "../img/small/non_vital.png";   
+            $scope.imageUrl85 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 43){
+        if ($scope.teethValue == 84) {
 
-            $scope.imageUrl43 = "../img/small/non_vital.png";   
-
-        }
-
-        if($scope.teethValue == 42){
-
-            $scope.imageUrl42 = "../img/small/non_vital.png";   
+            $scope.imageUrl84 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 41){
+        if ($scope.teethValue == 83) {
 
-            $scope.imageUrl41 = "../img/small/non_vital.png";   
-
-        }
-
-        if($scope.teethValue == 31){
-
-            $scope.imageUrl31 = "../img/small/non_vital.png";   
+            $scope.imageUrl83 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 32){
+        if ($scope.teethValue == 82) {
 
-            $scope.imageUrl32 = "../img/small/non_vital.png";   
-
-        }
-
-        if($scope.teethValue == 33){
-
-            $scope.imageUrl33 = "../img/small/non_vital.png";   
+            $scope.imageUrl82 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 34){
+        if ($scope.teethValue == 81) {
 
-            $scope.imageUrl34 = "../img/small/non_vital.png";   
-
-        }
-
-        if($scope.teethValue == 35){
-
-            $scope.imageUrl35 = "../img/small/non_vital.png";   
+            $scope.imageUrl81 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 36){
+        if ($scope.teethValue == 71) {
 
-            $scope.imageUrl36 = "../img/small/non_vital.png";   
-
-        }
-
-        if($scope.teethValue == 37){
-
-            $scope.imageUrl37 = "../img/small/non_vital.png";   
+            $scope.imageUrl71 = "../img/small/non_vital.png";
 
         }
 
-        if($scope.teethValue == 38){
+        if ($scope.teethValue == 72) {
 
-            $scope.imageUrl38 = "../img/small/non_vital.png";   
+            $scope.imageUrl72 = "../img/small/non_vital.png";
+
+        }
+
+        if ($scope.teethValue == 73) {
+
+            $scope.imageUrl73 = "../img/small/non_vital.png";
+
+        }
+
+        if ($scope.teethValue == 74) {
+
+            $scope.imageUrl74 = "../img/small/non_vital.png";
+
+        }
+
+        if ($scope.teethValue == 75) {
+
+            $scope.imageUrl75 = "../img/small/non_vital.png";
+
+        }
+
+        if ($scope.teethValue == 48) {
+
+            $scope.imageUrl48 = "../img/small/non_vital.png";
+
+        }
+
+        if ($scope.teethValue == 47) {
+
+            $scope.imageUrl47 = "../img/small/non_vital.png";
+
+        }
+
+        if ($scope.teethValue == 46) {
+
+            $scope.imageUrl46 = "../img/small/non_vital.png";
+
+        }
+
+        if ($scope.teethValue == 45) {
+
+            $scope.imageUrl45 = "../img/small/non_vital.png";
+
+        }
+
+        if ($scope.teethValue == 44) {
+
+            $scope.imageUrl44 = "../img/small/non_vital.png";
+
+        }
+
+        if ($scope.teethValue == 43) {
+
+            $scope.imageUrl43 = "../img/small/non_vital.png";
+
+        }
+
+        if ($scope.teethValue == 42) {
+
+            $scope.imageUrl42 = "../img/small/non_vital.png";
+
+        }
+
+        if ($scope.teethValue == 41) {
+
+            $scope.imageUrl41 = "../img/small/non_vital.png";
+
+        }
+
+        if ($scope.teethValue == 31) {
+
+            $scope.imageUrl31 = "../img/small/non_vital.png";
+
+        }
+
+        if ($scope.teethValue == 32) {
+
+            $scope.imageUrl32 = "../img/small/non_vital.png";
+
+        }
+
+        if ($scope.teethValue == 33) {
+
+            $scope.imageUrl33 = "../img/small/non_vital.png";
+
+        }
+
+        if ($scope.teethValue == 34) {
+
+            $scope.imageUrl34 = "../img/small/non_vital.png";
+
+        }
+
+        if ($scope.teethValue == 35) {
+
+            $scope.imageUrl35 = "../img/small/non_vital.png";
+
+        }
+
+        if ($scope.teethValue == 36) {
+
+            $scope.imageUrl36 = "../img/small/non_vital.png";
+
+        }
+
+        if ($scope.teethValue == 37) {
+
+            $scope.imageUrl37 = "../img/small/non_vital.png";
+
+        }
+
+        if ($scope.teethValue == 38) {
+
+            $scope.imageUrl38 = "../img/small/non_vital.png";
 
         }
 
     };
 
-    
 
-    $scope.fungsiTambalanNonLogam = function(){
+
+    $scope.fungsiTambalanNonLogam = function () {
 
         $scope.teethExplaination = "Tambalan Logam";
         $scope.urlTEETH = "../img/small/tambalan_non_logam.png";
 
-        if($scope.teethValue == 18){
+        if ($scope.teethValue == 18) {
 
-            $scope.imageUrl18 = "../img/small/tambalan_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 17){
-
-            $scope.imageUrl17 = "../img/small/tambalan_non_logam.png";     
-        }
-
-        if($scope.teethValue == 16){
-
-            $scope.imageUrl16 = "../img/small/tambalan_non_logam.png";     
+            $scope.imageUrl18 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 15){
+        if ($scope.teethValue == 17) {
 
-            $scope.imageUrl15 = "../img/small/tambalan_non_logam.png";     
+            $scope.imageUrl17 = "../img/small/tambalan_non_logam.png";
         }
 
-        if($scope.teethValue == 14){
+        if ($scope.teethValue == 16) {
 
-            $scope.imageUrl14 = "../img/small/tambalan_non_logam.png";      
-
-        }
-
-        if($scope.teethValue == 13){
-
-            $scope.imageUrl13 = "../img/small/tambalan_non_logam.png";    
+            $scope.imageUrl16 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 12){
+        if ($scope.teethValue == 15) {
 
-            $scope.imageUrl12 = "../img/small/tambalan_non_logam.png";      
+            $scope.imageUrl15 = "../img/small/tambalan_non_logam.png";
+        }
+
+        if ($scope.teethValue == 14) {
+
+            $scope.imageUrl14 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 11){
+        if ($scope.teethValue == 13) {
 
-            $scope.imageUrl11 = "../img/small/tambalan_non_logam.png";    
-
-        }
-
-        if($scope.teethValue == 21){
-
-            $scope.imageUrl21 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl13 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 22){
+        if ($scope.teethValue == 12) {
 
-            $scope.imageUrl22 = "../img/small/tambalan_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 23){
-
-            $scope.imageUrl23 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl12 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 24){
+        if ($scope.teethValue == 11) {
 
-            $scope.imageUrl24 = "../img/small/tambalan_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 25){
-
-            $scope.imageUrl25 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl11 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 26){
+        if ($scope.teethValue == 21) {
 
-            $scope.imageUrl26 = "../img/small/tambalan_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 27){
-
-            $scope.imageUrl27 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl21 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 28){
+        if ($scope.teethValue == 22) {
 
-            $scope.imageUrl28 = "../img/small/tambalan_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 55){
-
-            $scope.imageUrl55 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl22 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 54){
+        if ($scope.teethValue == 23) {
 
-            $scope.imageUrl54 = "../img/small/tambalan_non_logam.png";   
-
-        }
-
-
-        if($scope.teethValue == 53){
-
-            $scope.imageUrl53 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl23 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 52){
+        if ($scope.teethValue == 24) {
 
-            $scope.imageUrl52 = "../img/small/tambalan_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 51){
-
-            $scope.imageUrl51 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl24 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 61){
+        if ($scope.teethValue == 25) {
 
-            $scope.imageUrl61 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl25 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 62){
+        if ($scope.teethValue == 26) {
 
-            $scope.imageUrl62 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl26 = "../img/small/tambalan_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 27) {
+
+            $scope.imageUrl27 = "../img/small/tambalan_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 28) {
+
+            $scope.imageUrl28 = "../img/small/tambalan_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 55) {
+
+            $scope.imageUrl55 = "../img/small/tambalan_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 54) {
+
+            $scope.imageUrl54 = "../img/small/tambalan_non_logam.png";
 
         }
 
 
-        if($scope.teethValue == 63){
+        if ($scope.teethValue == 53) {
 
-            $scope.imageUrl63 = "../img/small/tambalan_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 64){
-
-            $scope.imageUrl64 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl53 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 65){
+        if ($scope.teethValue == 52) {
 
-            $scope.imageUrl65 = "../img/small/tambalan_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 85){
-
-            $scope.imageUrl85 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl52 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 84){
+        if ($scope.teethValue == 51) {
 
-            $scope.imageUrl84 = "../img/small/tambalan_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 83){
-
-            $scope.imageUrl83 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl51 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 82){
+        if ($scope.teethValue == 61) {
 
-            $scope.imageUrl82 = "../img/small/tambalan_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 81){
-
-            $scope.imageUrl81 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl61 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 71){
+        if ($scope.teethValue == 62) {
 
-            $scope.imageUrl71 = "../img/small/tambalan_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 72){
-
-            $scope.imageUrl72 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl62 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 73){
 
-            $scope.imageUrl73 = "../img/small/tambalan_non_logam.png";   
+        if ($scope.teethValue == 63) {
 
-        }
-
-        if($scope.teethValue == 74){
-
-            $scope.imageUrl74 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl63 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 75){
+        if ($scope.teethValue == 64) {
 
-            $scope.imageUrl75 = "../img/small/tambalan_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 48){
-
-            $scope.imageUrl48 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl64 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 47){
+        if ($scope.teethValue == 65) {
 
-            $scope.imageUrl47 = "../img/small/tambalan_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 46){
-
-            $scope.imageUrl46 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl65 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 45){
+        if ($scope.teethValue == 85) {
 
-            $scope.imageUrl45 = "../img/small/tambalan_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 44){
-
-            $scope.imageUrl44 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl85 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 43){
+        if ($scope.teethValue == 84) {
 
-            $scope.imageUrl43 = "../img/small/tambalan_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 42){
-
-            $scope.imageUrl42 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl84 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 41){
+        if ($scope.teethValue == 83) {
 
-            $scope.imageUrl41 = "../img/small/tambalan_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 31){
-
-            $scope.imageUrl31 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl83 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 32){
+        if ($scope.teethValue == 82) {
 
-            $scope.imageUrl32 = "../img/small/tambalan_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 33){
-
-            $scope.imageUrl33 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl82 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 34){
+        if ($scope.teethValue == 81) {
 
-            $scope.imageUrl34 = "../img/small/tambalan_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 35){
-
-            $scope.imageUrl35 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl81 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 36){
+        if ($scope.teethValue == 71) {
 
-            $scope.imageUrl36 = "../img/small/tambalan_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 37){
-
-            $scope.imageUrl37 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl71 = "../img/small/tambalan_non_logam.png";
 
         }
 
-        if($scope.teethValue == 38){
+        if ($scope.teethValue == 72) {
 
-            $scope.imageUrl38 = "../img/small/tambalan_non_logam.png";   
+            $scope.imageUrl72 = "../img/small/tambalan_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 73) {
+
+            $scope.imageUrl73 = "../img/small/tambalan_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 74) {
+
+            $scope.imageUrl74 = "../img/small/tambalan_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 75) {
+
+            $scope.imageUrl75 = "../img/small/tambalan_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 48) {
+
+            $scope.imageUrl48 = "../img/small/tambalan_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 47) {
+
+            $scope.imageUrl47 = "../img/small/tambalan_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 46) {
+
+            $scope.imageUrl46 = "../img/small/tambalan_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 45) {
+
+            $scope.imageUrl45 = "../img/small/tambalan_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 44) {
+
+            $scope.imageUrl44 = "../img/small/tambalan_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 43) {
+
+            $scope.imageUrl43 = "../img/small/tambalan_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 42) {
+
+            $scope.imageUrl42 = "../img/small/tambalan_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 41) {
+
+            $scope.imageUrl41 = "../img/small/tambalan_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 31) {
+
+            $scope.imageUrl31 = "../img/small/tambalan_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 32) {
+
+            $scope.imageUrl32 = "../img/small/tambalan_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 33) {
+
+            $scope.imageUrl33 = "../img/small/tambalan_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 34) {
+
+            $scope.imageUrl34 = "../img/small/tambalan_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 35) {
+
+            $scope.imageUrl35 = "../img/small/tambalan_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 36) {
+
+            $scope.imageUrl36 = "../img/small/tambalan_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 37) {
+
+            $scope.imageUrl37 = "../img/small/tambalan_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 38) {
+
+            $scope.imageUrl38 = "../img/small/tambalan_non_logam.png";
 
         }
 
     };
 
-    $scope.fungsiSisaAkar = function(){
+    $scope.fungsiSisaAkar = function () {
 
         $scope.teethExplaination = "Sisa Akar";
         $scope.urlTEETH = "../img/small/sisa_akar.png";
 
-        if($scope.teethValue == 18){
+        if ($scope.teethValue == 18) {
 
-            $scope.imageUrl18 = "../img/small/sisa_akar.png";   
-
-        }
-
-        if($scope.teethValue == 17){
-
-            $scope.imageUrl17 = "../img/small/sisa_akar.png";     
-        }
-
-        if($scope.teethValue == 16){
-
-            $scope.imageUrl16 = "../img/small/sisa_akar.png";     
+            $scope.imageUrl18 = "../img/small/sisa_akar.png";
 
         }
 
-        if($scope.teethValue == 15){
+        if ($scope.teethValue == 17) {
 
-            $scope.imageUrl15 = "../img/small/sisa_akar.png";     
+            $scope.imageUrl17 = "../img/small/sisa_akar.png";
         }
 
-        if($scope.teethValue == 14){
+        if ($scope.teethValue == 16) {
 
-            $scope.imageUrl14 = "../img/small/sisa_akar.png";      
-
-        }
-
-        if($scope.teethValue == 13){
-
-            $scope.imageUrl13 = "../img/small/sisa_akar.png";    
+            $scope.imageUrl16 = "../img/small/sisa_akar.png";
 
         }
 
-        if($scope.teethValue == 12){
+        if ($scope.teethValue == 15) {
 
-            $scope.imageUrl12 = "../img/small/sisa_akar.png";      
+            $scope.imageUrl15 = "../img/small/sisa_akar.png";
+        }
+
+        if ($scope.teethValue == 14) {
+
+            $scope.imageUrl14 = "../img/small/sisa_akar.png";
 
         }
 
-        if($scope.teethValue == 11){
+        if ($scope.teethValue == 13) {
 
-            $scope.imageUrl11 = "../img/small/sisa_akar.png";    
-
-        }
-
-
-        if($scope.teethValue == 21){
-
-            $scope.imageUrl21 = "../img/small/sisa_akar.png";   
+            $scope.imageUrl13 = "../img/small/sisa_akar.png";
 
         }
 
-        if($scope.teethValue == 22){
+        if ($scope.teethValue == 12) {
 
-            $scope.imageUrl22 = "../img/small/sisa_akar.png";   
-
-        }
-
-        if($scope.teethValue == 23){
-
-            $scope.imageUrl23 = "../img/small/sisa_akar.png";   
+            $scope.imageUrl12 = "../img/small/sisa_akar.png";
 
         }
 
-        if($scope.teethValue == 24){
+        if ($scope.teethValue == 11) {
 
-            $scope.imageUrl24 = "../img/small/sisa_akar.png";   
-
-        }
-
-        if($scope.teethValue == 25){
-
-            $scope.imageUrl25 = "../img/small/sisa_akar.png";   
-
-        }
-
-        if($scope.teethValue == 26){
-
-            $scope.imageUrl26 = "../img/small/sisa_akar.png";   
-
-        }
-
-        if($scope.teethValue == 27){
-
-            $scope.imageUrl27 = "../img/small/sisa_akar.png";   
-
-        }
-
-        if($scope.teethValue == 28){
-
-            $scope.imageUrl28 = "../img/small/sisa_akar.png";   
-
-        }
-
-        if($scope.teethValue == 55){
-
-            $scope.imageUrl55 = "../img/small/sisa_akar.png";   
-
-        }
-
-        if($scope.teethValue == 54){
-
-            $scope.imageUrl54 = "../img/small/sisa_akar.png";   
+            $scope.imageUrl11 = "../img/small/sisa_akar.png";
 
         }
 
 
-        if($scope.teethValue == 53){
+        if ($scope.teethValue == 21) {
 
-            $scope.imageUrl53 = "../img/small/sisa_akar.png";   
-
-        }
-
-        if($scope.teethValue == 52){
-
-            $scope.imageUrl52 = "../img/small/sisa_akar.png";   
+            $scope.imageUrl21 = "../img/small/sisa_akar.png";
 
         }
 
-        if($scope.teethValue == 51){
+        if ($scope.teethValue == 22) {
 
-            $scope.imageUrl51 = "../img/small/sisa_akar.png";   
-
-        }
-
-        if($scope.teethValue == 61){
-
-            $scope.imageUrl61 = "../img/small/sisa_akar.png";   
+            $scope.imageUrl22 = "../img/small/sisa_akar.png";
 
         }
 
-        if($scope.teethValue == 62){
+        if ($scope.teethValue == 23) {
 
-            $scope.imageUrl62 = "../img/small/sisa_akar.png";   
+            $scope.imageUrl23 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 24) {
+
+            $scope.imageUrl24 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 25) {
+
+            $scope.imageUrl25 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 26) {
+
+            $scope.imageUrl26 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 27) {
+
+            $scope.imageUrl27 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 28) {
+
+            $scope.imageUrl28 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 55) {
+
+            $scope.imageUrl55 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 54) {
+
+            $scope.imageUrl54 = "../img/small/sisa_akar.png";
 
         }
 
 
-        if($scope.teethValue == 63){
+        if ($scope.teethValue == 53) {
 
-            $scope.imageUrl63 = "../img/small/sisa_akar.png";   
-
-        }
-
-        if($scope.teethValue == 64){
-
-            $scope.imageUrl64 = "../img/small/sisa_akar.png";   
+            $scope.imageUrl53 = "../img/small/sisa_akar.png";
 
         }
 
-        if($scope.teethValue == 65){
+        if ($scope.teethValue == 52) {
 
-            $scope.imageUrl65 = "../img/small/sisa_akar.png";   
-
-        }
-
-        if($scope.teethValue == 85){
-
-            $scope.imageUrl85 = "../img/small/sisa_akar.png";   
+            $scope.imageUrl52 = "../img/small/sisa_akar.png";
 
         }
 
-        if($scope.teethValue == 84){
+        if ($scope.teethValue == 51) {
 
-            $scope.imageUrl84 = "../img/small/sisa_akar.png";   
-
-        }
-
-        if($scope.teethValue == 83){
-
-            $scope.imageUrl83 = "../img/small/sisa_akar.png";   
+            $scope.imageUrl51 = "../img/small/sisa_akar.png";
 
         }
 
-        if($scope.teethValue == 82){
+        if ($scope.teethValue == 61) {
 
-            $scope.imageUrl82 = "../img/small/sisa_akar.png";   
-
-        }
-
-        if($scope.teethValue == 81){
-
-            $scope.imageUrl81 = "../img/small/sisa_akar.png";   
+            $scope.imageUrl61 = "../img/small/sisa_akar.png";
 
         }
 
-        if($scope.teethValue == 71){
+        if ($scope.teethValue == 62) {
 
-            $scope.imageUrl71 = "../img/small/sisa_akar.png";   
-
-        }
-
-        if($scope.teethValue == 72){
-
-            $scope.imageUrl72 = "../img/small/sisa_akar.png";   
+            $scope.imageUrl62 = "../img/small/sisa_akar.png";
 
         }
 
-        if($scope.teethValue == 73){
 
-            $scope.imageUrl73 = "../img/small/sisa_akar.png";   
+        if ($scope.teethValue == 63) {
 
-        }
-
-        if($scope.teethValue == 74){
-
-            $scope.imageUrl74 = "../img/small/sisa_akar.png";   
+            $scope.imageUrl63 = "../img/small/sisa_akar.png";
 
         }
 
-        if($scope.teethValue == 75){
+        if ($scope.teethValue == 64) {
 
-            $scope.imageUrl75 = "../img/small/sisa_akar.png";   
-
-        }
-
-        if($scope.teethValue == 48){
-
-            $scope.imageUrl48 = "../img/small/sisa_akar.png";   
+            $scope.imageUrl64 = "../img/small/sisa_akar.png";
 
         }
 
-        if($scope.teethValue == 47){
+        if ($scope.teethValue == 65) {
 
-            $scope.imageUrl47 = "../img/small/sisa_akar.png";   
-
-        }
-
-        if($scope.teethValue == 46){
-
-            $scope.imageUrl46 = "../img/small/sisa_akar.png";   
+            $scope.imageUrl65 = "../img/small/sisa_akar.png";
 
         }
 
-        if($scope.teethValue == 45){
+        if ($scope.teethValue == 85) {
 
-            $scope.imageUrl45 = "../img/small/sisa_akar.png";   
-
-        }
-
-        if($scope.teethValue == 44){
-
-            $scope.imageUrl44 = "../img/small/sisa_akar.png";   
+            $scope.imageUrl85 = "../img/small/sisa_akar.png";
 
         }
 
-        if($scope.teethValue == 43){
+        if ($scope.teethValue == 84) {
 
-            $scope.imageUrl43 = "../img/small/sisa_akar.png";   
-
-        }
-
-        if($scope.teethValue == 42){
-
-            $scope.imageUrl42 = "../img/small/sisa_akar.png";   
+            $scope.imageUrl84 = "../img/small/sisa_akar.png";
 
         }
 
-        if($scope.teethValue == 41){
+        if ($scope.teethValue == 83) {
 
-            $scope.imageUrl41 = "../img/small/sisa_akar.png";   
-
-        }
-
-        if($scope.teethValue == 31){
-
-            $scope.imageUrl31 = "../img/small/sisa_akar.png";   
+            $scope.imageUrl83 = "../img/small/sisa_akar.png";
 
         }
 
-        if($scope.teethValue == 32){
+        if ($scope.teethValue == 82) {
 
-            $scope.imageUrl32 = "../img/small/sisa_akar.png";   
-
-        }
-
-        if($scope.teethValue == 33){
-
-            $scope.imageUrl33 = "../img/small/sisa_akar.png";   
+            $scope.imageUrl82 = "../img/small/sisa_akar.png";
 
         }
 
-        if($scope.teethValue == 34){
+        if ($scope.teethValue == 81) {
 
-            $scope.imageUrl34 = "../img/small/sisa_akar.png";   
-
-        }
-
-        if($scope.teethValue == 35){
-
-            $scope.imageUrl35 = "../img/small/sisa_akar.png";   
+            $scope.imageUrl81 = "../img/small/sisa_akar.png";
 
         }
 
-        if($scope.teethValue == 36){
+        if ($scope.teethValue == 71) {
 
-            $scope.imageUrl36 = "../img/small/sisa_akar.png";   
-
-        }
-
-        if($scope.teethValue == 37){
-
-            $scope.imageUrl37 = "../img/small/sisa_akar.png";   
+            $scope.imageUrl71 = "../img/small/sisa_akar.png";
 
         }
 
-        if($scope.teethValue == 38){
+        if ($scope.teethValue == 72) {
 
-            $scope.imageUrl38 = "../img/small/sisa_akar.png";   
+            $scope.imageUrl72 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 73) {
+
+            $scope.imageUrl73 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 74) {
+
+            $scope.imageUrl74 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 75) {
+
+            $scope.imageUrl75 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 48) {
+
+            $scope.imageUrl48 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 47) {
+
+            $scope.imageUrl47 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 46) {
+
+            $scope.imageUrl46 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 45) {
+
+            $scope.imageUrl45 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 44) {
+
+            $scope.imageUrl44 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 43) {
+
+            $scope.imageUrl43 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 42) {
+
+            $scope.imageUrl42 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 41) {
+
+            $scope.imageUrl41 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 31) {
+
+            $scope.imageUrl31 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 32) {
+
+            $scope.imageUrl32 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 33) {
+
+            $scope.imageUrl33 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 34) {
+
+            $scope.imageUrl34 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 35) {
+
+            $scope.imageUrl35 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 36) {
+
+            $scope.imageUrl36 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 37) {
+
+            $scope.imageUrl37 = "../img/small/sisa_akar.png";
+
+        }
+
+        if ($scope.teethValue == 38) {
+
+            $scope.imageUrl38 = "../img/small/sisa_akar.png";
 
         }
 
     };
 
-    $scope.fungsiML = function(){
+    $scope.fungsiML = function () {
 
         $scope.teethExplaination = "Mahkota Logam";
         $scope.urlTEETH = "../img/small/gigi_mahkota_logam.png";
 
-        if($scope.teethValue == 18){
+        if ($scope.teethValue == 18) {
 
-            $scope.imageUrl18 = "../img/small/gigi_mahkota_logam.png";   
-
-        }
-
-        if($scope.teethValue == 17){
-
-            $scope.imageUrl17 = "../img/small/gigi_mahkota_logam.png";     
-        }
-
-        if($scope.teethValue == 16){
-
-            $scope.imageUrl16 = "../img/small/gigi_mahkota_logam.png";     
+            $scope.imageUrl18 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
-        if($scope.teethValue == 15){
+        if ($scope.teethValue == 17) {
 
-            $scope.imageUrl15 = "../img/small/gigi_mahkota_logam.png";     
+            $scope.imageUrl17 = "../img/small/gigi_mahkota_logam.png";
         }
 
-        if($scope.teethValue == 14){
+        if ($scope.teethValue == 16) {
 
-            $scope.imageUrl14 = "../img/small/gigi_mahkota_logam.png";      
-
-        }
-
-        if($scope.teethValue == 13){
-
-            $scope.imageUrl13 = "../img/small/gigi_mahkota_logam.png";    
+            $scope.imageUrl16 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
-        if($scope.teethValue == 12){
+        if ($scope.teethValue == 15) {
 
-            $scope.imageUrl12 = "../img/small/gigi_mahkota_logam.png";      
+            $scope.imageUrl15 = "../img/small/gigi_mahkota_logam.png";
+        }
+
+        if ($scope.teethValue == 14) {
+
+            $scope.imageUrl14 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
-        if($scope.teethValue == 11){
+        if ($scope.teethValue == 13) {
 
-            $scope.imageUrl11 = "../img/small/gigi_mahkota_logam.png";    
-
-        }
-
-
-        if($scope.teethValue == 21){
-
-            $scope.imageUrl21 = "../img/small/gigi_mahkota_logam.png";   
+            $scope.imageUrl13 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
-        if($scope.teethValue == 22){
+        if ($scope.teethValue == 12) {
 
-            $scope.imageUrl22 = "../img/small/gigi_mahkota_logam.png";   
-
-        }
-
-        if($scope.teethValue == 23){
-
-            $scope.imageUrl23 = "../img/small/gigi_mahkota_logam.png";   
+            $scope.imageUrl12 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
-        if($scope.teethValue == 24){
+        if ($scope.teethValue == 11) {
 
-            $scope.imageUrl24 = "../img/small/gigi_mahkota_logam.png";   
-
-        }
-
-        if($scope.teethValue == 25){
-
-            $scope.imageUrl25 = "../img/small/gigi_mahkota_logam.png";   
-
-        }
-
-        if($scope.teethValue == 26){
-
-            $scope.imageUrl26 = "../img/small/gigi_mahkota_logam.png";   
-
-        }
-
-        if($scope.teethValue == 27){
-
-            $scope.imageUrl27 = "../img/small/gigi_mahkota_logam.png";   
-
-        }
-
-        if($scope.teethValue == 28){
-
-            $scope.imageUrl28 = "../img/small/gigi_mahkota_logam.png";   
-
-        }
-
-        if($scope.teethValue == 55){
-
-            $scope.imageUrl55 = "../img/small/gigi_mahkota_logam.png";   
-
-        }
-
-        if($scope.teethValue == 54){
-
-            $scope.imageUrl54 = "../img/small/gigi_mahkota_logam.png";   
+            $scope.imageUrl11 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
 
-        if($scope.teethValue == 53){
+        if ($scope.teethValue == 21) {
 
-            $scope.imageUrl53 = "../img/small/gigi_mahkota_logam.png";   
-
-        }
-
-        if($scope.teethValue == 52){
-
-            $scope.imageUrl52 = "../img/small/gigi_mahkota_logam.png";   
+            $scope.imageUrl21 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
-        if($scope.teethValue == 51){
+        if ($scope.teethValue == 22) {
 
-            $scope.imageUrl51 = "../img/small/gigi_mahkota_logam.png";   
-
-        }
-
-        if($scope.teethValue == 61){
-
-            $scope.imageUrl61 = "../img/small/gigi_mahkota_logam.png";   
+            $scope.imageUrl22 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
-        if($scope.teethValue == 62){
+        if ($scope.teethValue == 23) {
 
-            $scope.imageUrl62 = "../img/small/gigi_mahkota_logam.png";   
+            $scope.imageUrl23 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 24) {
+
+            $scope.imageUrl24 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 25) {
+
+            $scope.imageUrl25 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 26) {
+
+            $scope.imageUrl26 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 27) {
+
+            $scope.imageUrl27 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 28) {
+
+            $scope.imageUrl28 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 55) {
+
+            $scope.imageUrl55 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 54) {
+
+            $scope.imageUrl54 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
 
-        if($scope.teethValue == 63){
+        if ($scope.teethValue == 53) {
 
-            $scope.imageUrl63 = "../img/small/gigi_mahkota_logam.png";   
-
-        }
-
-        if($scope.teethValue == 64){
-
-            $scope.imageUrl64 = "../img/small/gigi_mahkota_logam.png";   
+            $scope.imageUrl53 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
-        if($scope.teethValue == 65){
+        if ($scope.teethValue == 52) {
 
-            $scope.imageUrl65 = "../img/small/gigi_mahkota_logam.png";   
-
-        }
-
-        if($scope.teethValue == 85){
-
-            $scope.imageUrl85 = "../img/small/gigi_mahkota_logam.png";   
+            $scope.imageUrl52 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
-        if($scope.teethValue == 84){
+        if ($scope.teethValue == 51) {
 
-            $scope.imageUrl84 = "../img/small/gigi_mahkota_logam.png";   
-
-        }
-
-        if($scope.teethValue == 83){
-
-            $scope.imageUrl83 = "../img/small/gigi_mahkota_logam.png";   
+            $scope.imageUrl51 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
-        if($scope.teethValue == 82){
+        if ($scope.teethValue == 61) {
 
-            $scope.imageUrl82 = "../img/small/gigi_mahkota_logam.png";   
-
-        }
-
-        if($scope.teethValue == 81){
-
-            $scope.imageUrl81 = "../img/small/gigi_mahkota_logam.png";   
+            $scope.imageUrl61 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
-        if($scope.teethValue == 71){
+        if ($scope.teethValue == 62) {
 
-            $scope.imageUrl71 = "../img/small/gigi_mahkota_logam.png";   
-
-        }
-
-        if($scope.teethValue == 72){
-
-            $scope.imageUrl72 = "../img/small/gigi_mahkota_logam.png";   
+            $scope.imageUrl62 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
-        if($scope.teethValue == 73){
 
-            $scope.imageUrl73 = "../img/small/gigi_mahkota_logam.png";   
+        if ($scope.teethValue == 63) {
 
-        }
-
-        if($scope.teethValue == 74){
-
-            $scope.imageUrl74 = "../img/small/gigi_mahkota_logam.png";   
+            $scope.imageUrl63 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
-        if($scope.teethValue == 75){
+        if ($scope.teethValue == 64) {
 
-            $scope.imageUrl75 = "../img/small/gigi_mahkota_logam.png";   
-
-        }
-
-        if($scope.teethValue == 48){
-
-            $scope.imageUrl48 = "../img/small/gigi_mahkota_logam.png";   
+            $scope.imageUrl64 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
-        if($scope.teethValue == 47){
+        if ($scope.teethValue == 65) {
 
-            $scope.imageUrl47 = "../img/small/gigi_mahkota_logam.png";   
-
-        }
-
-        if($scope.teethValue == 46){
-
-            $scope.imageUrl46 = "../img/small/gigi_mahkota_logam.png";   
+            $scope.imageUrl65 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
-        if($scope.teethValue == 45){
+        if ($scope.teethValue == 85) {
 
-            $scope.imageUrl45 = "../img/small/gigi_mahkota_logam.png";   
-
-        }
-
-        if($scope.teethValue == 44){
-
-            $scope.imageUrl44 = "../img/small/gigi_mahkota_logam.png";   
+            $scope.imageUrl85 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
-        if($scope.teethValue == 43){
+        if ($scope.teethValue == 84) {
 
-            $scope.imageUrl43 = "../img/small/gigi_mahkota_logam.png";   
-
-        }
-
-        if($scope.teethValue == 42){
-
-            $scope.imageUrl42 = "../img/small/gigi_mahkota_logam.png";   
+            $scope.imageUrl84 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
-        if($scope.teethValue == 41){
+        if ($scope.teethValue == 83) {
 
-            $scope.imageUrl41 = "../img/small/gigi_mahkota_logam.png";   
-
-        }
-
-        if($scope.teethValue == 31){
-
-            $scope.imageUrl31 = "../img/small/gigi_mahkota_logam.png";   
+            $scope.imageUrl83 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
-        if($scope.teethValue == 32){
+        if ($scope.teethValue == 82) {
 
-            $scope.imageUrl32 = "../img/small/gigi_mahkota_logam.png";   
-
-        }
-
-        if($scope.teethValue == 33){
-
-            $scope.imageUrl33 = "../img/small/gigi_mahkota_logam.png";   
+            $scope.imageUrl82 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
-        if($scope.teethValue == 34){
+        if ($scope.teethValue == 81) {
 
-            $scope.imageUrl34 = "../img/small/gigi_mahkota_logam.png";   
-
-        }
-
-        if($scope.teethValue == 35){
-
-            $scope.imageUrl35 = "../img/small/gigi_mahkota_logam.png";   
+            $scope.imageUrl81 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
-        if($scope.teethValue == 36){
+        if ($scope.teethValue == 71) {
 
-            $scope.imageUrl36 = "../img/small/gigi_mahkota_logam.png";   
-
-        }
-
-        if($scope.teethValue == 37){
-
-            $scope.imageUrl37 = "../img/small/gigi_mahkota_logam.png";   
+            $scope.imageUrl71 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
-        if($scope.teethValue == 38){
+        if ($scope.teethValue == 72) {
 
-            $scope.imageUrl38 = "../img/small/gigi_mahkota_logam.png";   
+            $scope.imageUrl72 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 73) {
+
+            $scope.imageUrl73 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 74) {
+
+            $scope.imageUrl74 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 75) {
+
+            $scope.imageUrl75 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 48) {
+
+            $scope.imageUrl48 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 47) {
+
+            $scope.imageUrl47 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 46) {
+
+            $scope.imageUrl46 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 45) {
+
+            $scope.imageUrl45 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 44) {
+
+            $scope.imageUrl44 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 43) {
+
+            $scope.imageUrl43 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 42) {
+
+            $scope.imageUrl42 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 41) {
+
+            $scope.imageUrl41 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 31) {
+
+            $scope.imageUrl31 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 32) {
+
+            $scope.imageUrl32 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 33) {
+
+            $scope.imageUrl33 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 34) {
+
+            $scope.imageUrl34 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 35) {
+
+            $scope.imageUrl35 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 36) {
+
+            $scope.imageUrl36 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 37) {
+
+            $scope.imageUrl37 = "../img/small/gigi_mahkota_logam.png";
+
+        }
+
+        if ($scope.teethValue == 38) {
+
+            $scope.imageUrl38 = "../img/small/gigi_mahkota_logam.png";
 
         }
 
     };
 
-    $scope.fungsiMahkotaNonLogam = function(){
+    $scope.fungsiMahkotaNonLogam = function () {
 
         $scope.teethExplaination = "Mahkota Non Logam";
         $scope.urlTEETH = "../img/small/mahkota_non_logam.png";
 
-        if($scope.teethValue == 18){
+        if ($scope.teethValue == 18) {
 
-            $scope.imageUrl18 = "../img/small/mahkota_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 17){
-
-            $scope.imageUrl17 = "../img/small/mahkota_non_logam.png";     
-        }
-
-        if($scope.teethValue == 16){
-
-            $scope.imageUrl16 = "../img/small/mahkota_non_logam.png";     
+            $scope.imageUrl18 = "../img/small/mahkota_non_logam.png";
 
         }
 
-        if($scope.teethValue == 15){
+        if ($scope.teethValue == 17) {
 
-            $scope.imageUrl15 = "../img/small/mahkota_non_logam.png";     
+            $scope.imageUrl17 = "../img/small/mahkota_non_logam.png";
         }
 
-        if($scope.teethValue == 14){
+        if ($scope.teethValue == 16) {
 
-            $scope.imageUrl14 = "../img/small/mahkota_non_logam.png";      
-
-        }
-
-        if($scope.teethValue == 13){
-
-            $scope.imageUrl13 = "../img/small/mahkota_non_logam.png";    
+            $scope.imageUrl16 = "../img/small/mahkota_non_logam.png";
 
         }
 
-        if($scope.teethValue == 12){
+        if ($scope.teethValue == 15) {
 
-            $scope.imageUrl12 = "../img/small/mahkota_non_logam.png";      
+            $scope.imageUrl15 = "../img/small/mahkota_non_logam.png";
+        }
+
+        if ($scope.teethValue == 14) {
+
+            $scope.imageUrl14 = "../img/small/mahkota_non_logam.png";
 
         }
 
-        if($scope.teethValue == 11){
+        if ($scope.teethValue == 13) {
 
-            $scope.imageUrl11 = "../img/small/mahkota_non_logam.png";    
-
-        }
-
-
-        if($scope.teethValue == 21){
-
-            $scope.imageUrl21 = "../img/small/mahkota_non_logam.png";   
+            $scope.imageUrl13 = "../img/small/mahkota_non_logam.png";
 
         }
 
-        if($scope.teethValue == 22){
+        if ($scope.teethValue == 12) {
 
-            $scope.imageUrl22 = "../img/small/mahkota_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 23){
-
-            $scope.imageUrl23 = "../img/small/mahkota_non_logam.png";   
+            $scope.imageUrl12 = "../img/small/mahkota_non_logam.png";
 
         }
 
-        if($scope.teethValue == 24){
+        if ($scope.teethValue == 11) {
 
-            $scope.imageUrl24 = "../img/small/mahkota_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 25){
-
-            $scope.imageUrl25 = "../img/small/mahkota_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 26){
-
-            $scope.imageUrl26 = "../img/small/mahkota_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 27){
-
-            $scope.imageUrl27 = "../img/small/mahkota_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 28){
-
-            $scope.imageUrl28 = "../img/small/mahkota_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 55){
-
-            $scope.imageUrl55 = "../img/small/mahkota_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 54){
-
-            $scope.imageUrl54 = "../img/small/mahkota_non_logam.png";   
+            $scope.imageUrl11 = "../img/small/mahkota_non_logam.png";
 
         }
 
 
-        if($scope.teethValue == 53){
+        if ($scope.teethValue == 21) {
 
-            $scope.imageUrl53 = "../img/small/mahkota_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 52){
-
-            $scope.imageUrl52 = "../img/small/mahkota_non_logam.png";   
+            $scope.imageUrl21 = "../img/small/mahkota_non_logam.png";
 
         }
 
-        if($scope.teethValue == 51){
+        if ($scope.teethValue == 22) {
 
-            $scope.imageUrl51 = "../img/small/mahkota_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 61){
-
-            $scope.imageUrl61 = "../img/small/mahkota_non_logam.png";   
+            $scope.imageUrl22 = "../img/small/mahkota_non_logam.png";
 
         }
 
-        if($scope.teethValue == 62){
+        if ($scope.teethValue == 23) {
 
-            $scope.imageUrl62 = "../img/small/mahkota_non_logam.png";   
+            $scope.imageUrl23 = "../img/small/mahkota_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 24) {
+
+            $scope.imageUrl24 = "../img/small/mahkota_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 25) {
+
+            $scope.imageUrl25 = "../img/small/mahkota_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 26) {
+
+            $scope.imageUrl26 = "../img/small/mahkota_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 27) {
+
+            $scope.imageUrl27 = "../img/small/mahkota_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 28) {
+
+            $scope.imageUrl28 = "../img/small/mahkota_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 55) {
+
+            $scope.imageUrl55 = "../img/small/mahkota_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 54) {
+
+            $scope.imageUrl54 = "../img/small/mahkota_non_logam.png";
 
         }
 
 
-        if($scope.teethValue == 63){
+        if ($scope.teethValue == 53) {
 
-            $scope.imageUrl63 = "../img/small/mahkota_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 64){
-
-            $scope.imageUrl64 = "../img/small/mahkota_non_logam.png";   
+            $scope.imageUrl53 = "../img/small/mahkota_non_logam.png";
 
         }
 
-        if($scope.teethValue == 65){
+        if ($scope.teethValue == 52) {
 
-            $scope.imageUrl65 = "../img/small/mahkota_non_logam.png";   
-
-        }
-//
-        if($scope.teethValue == 85){
-
-            $scope.imageUrl85 = "../img/small/mahkota_non_logam.png";   
+            $scope.imageUrl52 = "../img/small/mahkota_non_logam.png";
 
         }
 
-        if($scope.teethValue == 84){
+        if ($scope.teethValue == 51) {
 
-            $scope.imageUrl84 = "../img/small/mahkota_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 83){
-
-            $scope.imageUrl83 = "../img/small/mahkota_non_logam.png";   
+            $scope.imageUrl51 = "../img/small/mahkota_non_logam.png";
 
         }
 
-        if($scope.teethValue == 82){
+        if ($scope.teethValue == 61) {
 
-            $scope.imageUrl82 = "../img/small/mahkota_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 81){
-
-            $scope.imageUrl81 = "../img/small/mahkota_non_logam.png";   
+            $scope.imageUrl61 = "../img/small/mahkota_non_logam.png";
 
         }
 
-        if($scope.teethValue == 71){
+        if ($scope.teethValue == 62) {
 
-            $scope.imageUrl71 = "../img/small/mahkota_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 72){
-
-            $scope.imageUrl72 = "../img/small/mahkota_non_logam.png";   
+            $scope.imageUrl62 = "../img/small/mahkota_non_logam.png";
 
         }
 
-        if($scope.teethValue == 73){
 
-            $scope.imageUrl73 = "../img/small/mahkota_non_logam.png";   
+        if ($scope.teethValue == 63) {
 
-        }
-
-        if($scope.teethValue == 74){
-
-            $scope.imageUrl74 = "../img/small/mahkota_non_logam.png";   
+            $scope.imageUrl63 = "../img/small/mahkota_non_logam.png";
 
         }
 
-        if($scope.teethValue == 75){
+        if ($scope.teethValue == 64) {
 
-            $scope.imageUrl75 = "../img/small/mahkota_non_logam.png";   
-
-        }
-//
-        if($scope.teethValue == 48){
-
-            $scope.imageUrl48 = "../img/small/mahkota_non_logam.png";   
+            $scope.imageUrl64 = "../img/small/mahkota_non_logam.png";
 
         }
 
-        if($scope.teethValue == 47){
+        if ($scope.teethValue == 65) {
 
-            $scope.imageUrl47 = "../img/small/mahkota_non_logam.png";   
+            $scope.imageUrl65 = "../img/small/mahkota_non_logam.png";
+
+        }
+        //
+        if ($scope.teethValue == 85) {
+
+            $scope.imageUrl85 = "../img/small/mahkota_non_logam.png";
 
         }
 
-        if($scope.teethValue == 46){
+        if ($scope.teethValue == 84) {
 
-            $scope.imageUrl46 = "../img/small/mahkota_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 45){
-
-            $scope.imageUrl45 = "../img/small/mahkota_non_logam.png";   
+            $scope.imageUrl84 = "../img/small/mahkota_non_logam.png";
 
         }
 
-        if($scope.teethValue == 44){
+        if ($scope.teethValue == 83) {
 
-            $scope.imageUrl44 = "../img/small/mahkota_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 43){
-
-            $scope.imageUrl43 = "../img/small/mahkota_non_logam.png";   
+            $scope.imageUrl83 = "../img/small/mahkota_non_logam.png";
 
         }
 
-        if($scope.teethValue == 42){
+        if ($scope.teethValue == 82) {
 
-            $scope.imageUrl42 = "../img/small/mahkota_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 41){
-
-            $scope.imageUrl41 = "../img/small/mahkota_non_logam.png";   
+            $scope.imageUrl82 = "../img/small/mahkota_non_logam.png";
 
         }
 
-        if($scope.teethValue == 31){
+        if ($scope.teethValue == 81) {
 
-            $scope.imageUrl31 = "../img/small/mahkota_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 32){
-
-            $scope.imageUrl32 = "../img/small/mahkota_non_logam.png";   
+            $scope.imageUrl81 = "../img/small/mahkota_non_logam.png";
 
         }
 
-        if($scope.teethValue == 33){
+        if ($scope.teethValue == 71) {
 
-            $scope.imageUrl33 = "../img/small/mahkota_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 34){
-
-            $scope.imageUrl34 = "../img/small/mahkota_non_logam.png";   
+            $scope.imageUrl71 = "../img/small/mahkota_non_logam.png";
 
         }
 
-        if($scope.teethValue == 35){
+        if ($scope.teethValue == 72) {
 
-            $scope.imageUrl35 = "../img/small/mahkota_non_logam.png";   
-
-        }
-
-        if($scope.teethValue == 36){
-
-            $scope.imageUrl36 = "../img/small/mahkota_non_logam.png";   
+            $scope.imageUrl72 = "../img/small/mahkota_non_logam.png";
 
         }
 
-        if($scope.teethValue == 37){
+        if ($scope.teethValue == 73) {
 
-            $scope.imageUrl37 = "../img/small/mahkota_non_logam.png";   
+            $scope.imageUrl73 = "../img/small/mahkota_non_logam.png";
 
         }
 
-        if($scope.teethValue == 38){
+        if ($scope.teethValue == 74) {
 
-            $scope.imageUrl38 = "../img/small/mahkota_non_logam.png";   
+            $scope.imageUrl74 = "../img/small/mahkota_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 75) {
+
+            $scope.imageUrl75 = "../img/small/mahkota_non_logam.png";
+
+        }
+        //
+        if ($scope.teethValue == 48) {
+
+            $scope.imageUrl48 = "../img/small/mahkota_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 47) {
+
+            $scope.imageUrl47 = "../img/small/mahkota_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 46) {
+
+            $scope.imageUrl46 = "../img/small/mahkota_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 45) {
+
+            $scope.imageUrl45 = "../img/small/mahkota_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 44) {
+
+            $scope.imageUrl44 = "../img/small/mahkota_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 43) {
+
+            $scope.imageUrl43 = "../img/small/mahkota_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 42) {
+
+            $scope.imageUrl42 = "../img/small/mahkota_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 41) {
+
+            $scope.imageUrl41 = "../img/small/mahkota_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 31) {
+
+            $scope.imageUrl31 = "../img/small/mahkota_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 32) {
+
+            $scope.imageUrl32 = "../img/small/mahkota_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 33) {
+
+            $scope.imageUrl33 = "../img/small/mahkota_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 34) {
+
+            $scope.imageUrl34 = "../img/small/mahkota_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 35) {
+
+            $scope.imageUrl35 = "../img/small/mahkota_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 36) {
+
+            $scope.imageUrl36 = "../img/small/mahkota_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 37) {
+
+            $scope.imageUrl37 = "../img/small/mahkota_non_logam.png";
+
+        }
+
+        if ($scope.teethValue == 38) {
+
+            $scope.imageUrl38 = "../img/small/mahkota_non_logam.png";
 
         }
 
     };
-    
 
 
-    $scope.n18 = function(){
-        $scope.imageUrl18 = "../img/G1G1.png";  
-        $scope.teethValue = 18;  
-        console.log("Teeeth Value "+ $scope.teethValue);
+
+    $scope.n18 = function () {
+        $scope.imageUrl18 = "../img/G1G1.png";
+        $scope.teethValue = 18;
+        console.log("Teeeth Value " + $scope.teethValue);
     }
 
-    $scope.n17 = function(){
+    $scope.n17 = function () {
         $scope.imageUrl17 = "../img/G1G1.png";
-        $scope.teethValue = 17;  
-        console.log("Teeeth Value "+ $scope.teethValue);
+        $scope.teethValue = 17;
+        console.log("Teeeth Value " + $scope.teethValue);
     }
 
-    $scope.n16= function(){
+    $scope.n16 = function () {
         $scope.imageUrl16 = "../img/G1G1.png";
-        $scope.teethValue = 16;  
+        $scope.teethValue = 16;
     }
 
-    $scope.n15= function(){
+    $scope.n15 = function () {
         $scope.imageUrl15 = "../img/G1G1.png";
-        $scope.teethValue = 15;  
+        $scope.teethValue = 15;
     }
 
-    $scope.n14= function(){
+    $scope.n14 = function () {
         $scope.imageUrl14 = "../img/G1G1.png";
-        $scope.teethValue = 14;  
+        $scope.teethValue = 14;
     }
 
-    $scope.n13= function(){
+    $scope.n13 = function () {
         $scope.imageUrl13 = "../img/G1G1.png";
-        $scope.teethValue = 13;  
+        $scope.teethValue = 13;
     }
 
-    $scope.n12= function(){
+    $scope.n12 = function () {
         $scope.imageUrl12 = "../img/G1G1.png";
-        $scope.teethValue = 12;  
+        $scope.teethValue = 12;
     }
 
-    $scope.n11= function(){
+    $scope.n11 = function () {
         $scope.imageUrl11 = "../img/G1G1.png";
-        $scope.teethValue = 11;  
+        $scope.teethValue = 11;
     }
 
-    $scope.n21= function(){
+    $scope.n21 = function () {
         $scope.imageUrl21 = "../img/G1G1.png";
-        $scope.teethValue = 21;  
+        $scope.teethValue = 21;
     }
 
-    $scope.n22= function(){
+    $scope.n22 = function () {
         $scope.imageUrl22 = "../img/G1G1.png";
-        $scope.teethValue = 22;  
+        $scope.teethValue = 22;
     }
 
-    $scope.n23= function(){
+    $scope.n23 = function () {
         $scope.imageUrl23 = "../img/G1G1.png";
-        $scope.teethValue = 23;  
+        $scope.teethValue = 23;
     }
 
 
-    $scope.n24= function(){
+    $scope.n24 = function () {
         $scope.imageUrl24 = "../img/G1G1.png";
-        $scope.teethValue = 24;  
+        $scope.teethValue = 24;
     }
 
 
-    $scope.n25= function(){
+    $scope.n25 = function () {
         $scope.imageUrl25 = "../img/G1G1.png";
-        $scope.teethValue = 25;  
+        $scope.teethValue = 25;
     }
 
 
-    $scope.n26= function(){
+    $scope.n26 = function () {
         $scope.imageUrl26 = "../img/G1G1.png";
-        $scope.teethValue = 26;  
+        $scope.teethValue = 26;
     }
 
 
-    $scope.n27= function(){
+    $scope.n27 = function () {
         $scope.imageUrl27 = "../img/G1G1.png";
-        $scope.teethValue = 27;  
+        $scope.teethValue = 27;
     }
 
-    $scope.n28= function(){
+    $scope.n28 = function () {
         $scope.imageUrl28 = "../img/G1G1.png";
-        $scope.teethValue = 28;  
+        $scope.teethValue = 28;
     }
 
 
-    $scope.n55= function(){
+    $scope.n55 = function () {
         $scope.imageUrl55 = "../img/G1G1.png";
-        $scope.teethValue = 55;  
+        $scope.teethValue = 55;
     }
 
-    $scope.n54= function(){
+    $scope.n54 = function () {
         $scope.imageUrl54 = "../img/G1G1.png";
-        $scope.teethValue = 54;  
+        $scope.teethValue = 54;
     }
 
-    $scope.n53= function(){
+    $scope.n53 = function () {
         $scope.imageUrl53 = "../img/G1G1.png";
-        $scope.teethValue = 53;  
+        $scope.teethValue = 53;
     }
 
-    $scope.n52= function(){
+    $scope.n52 = function () {
         $scope.imageUrl52 = "../img/G1G1.png";
-        $scope.teethValue = 52;  
+        $scope.teethValue = 52;
     }
 
-    $scope.n51= function(){
+    $scope.n51 = function () {
         $scope.imageUrl51 = "../img/G1G1.png";
-        $scope.teethValue = 51;  
+        $scope.teethValue = 51;
     }
 
 
-    $scope.n61= function(){
+    $scope.n61 = function () {
         $scope.imageUrl61 = "../img/G1G1.png";
-        $scope.teethValue = 61;  
+        $scope.teethValue = 61;
     }
 
-    $scope.n62= function(){
+    $scope.n62 = function () {
         $scope.imageUrl62 = "../img/G1G1.png";
-        $scope.teethValue = 62;  
+        $scope.teethValue = 62;
     }
 
-    $scope.n63= function(){
+    $scope.n63 = function () {
         $scope.imageUrl63 = "../img/G1G1.png";
-        $scope.teethValue = 63;  
+        $scope.teethValue = 63;
     }
 
-    $scope.n64= function(){
+    $scope.n64 = function () {
         $scope.imageUrl64 = "../img/G1G1.png";
-        $scope.teethValue = 64;  
+        $scope.teethValue = 64;
     }
 
-    $scope.n65= function(){
+    $scope.n65 = function () {
         $scope.imageUrl65 = "../img/G1G1.png";
-        $scope.teethValue = 65;  
+        $scope.teethValue = 65;
     }
 
 
-    $scope.n85= function(){
+    $scope.n85 = function () {
         $scope.imageUrl85 = "../img/G1G1.png";
-        $scope.teethValue = 85;  
+        $scope.teethValue = 85;
     }
 
-    $scope.n84= function(){
+    $scope.n84 = function () {
         $scope.imageUrl84 = "../img/G1G1.png";
-        $scope.teethValue = 84;  
+        $scope.teethValue = 84;
     }
 
-    $scope.n83= function(){
+    $scope.n83 = function () {
         $scope.imageUrl83 = "../img/G1G1.png";
-        $scope.teethValue = 83;  
+        $scope.teethValue = 83;
     }
 
-    $scope.n82= function(){
+    $scope.n82 = function () {
         $scope.imageUrl82 = "../img/G1G1.png";
-        $scope.teethValue = 82;  
+        $scope.teethValue = 82;
     }
-    $scope.n81= function(){
+    $scope.n81 = function () {
         $scope.imageUrl81 = "../img/G1G1.png";
-        $scope.teethValue = 81;  
+        $scope.teethValue = 81;
     }
 
-    $scope.n71= function(){
+    $scope.n71 = function () {
         $scope.imageUrl71 = "../img/G1G1.png";
-        $scope.teethValue = 71;  
+        $scope.teethValue = 71;
     }
 
-    $scope.n72= function(){
+    $scope.n72 = function () {
         $scope.imageUrl72 = "../img/G1G1.png";
-        $scope.teethValue = 72;  
+        $scope.teethValue = 72;
     }
 
-    $scope.n73= function(){
+    $scope.n73 = function () {
         $scope.imageUrl73 = "../img/G1G1.png";
-        $scope.teethValue = 73;  
+        $scope.teethValue = 73;
     }
 
-    $scope.n74= function(){
+    $scope.n74 = function () {
         $scope.imageUrl74 = "../img/G1G1.png";
-        $scope.teethValue = 74;  
+        $scope.teethValue = 74;
     }
 
-    $scope.n75= function(){
+    $scope.n75 = function () {
         $scope.imageUrl75 = "../img/G1G1.png";
-        $scope.teethValue = 75;  
+        $scope.teethValue = 75;
     }
 
-    $scope.n48= function(){
+    $scope.n48 = function () {
         $scope.imageUrl48 = "../img/G1G1.png";
-        $scope.teethValue = 48;  
+        $scope.teethValue = 48;
     }
 
-    $scope.n47= function(){
+    $scope.n47 = function () {
         $scope.imageUrl47 = "../img/G1G1.png";
-        $scope.teethValue = 47;  
+        $scope.teethValue = 47;
     }
 
-    $scope.n46= function(){
+    $scope.n46 = function () {
         $scope.imageUrl46 = "../img/G1G1.png";
-        $scope.teethValue = 46;  
+        $scope.teethValue = 46;
     }
 
-    $scope.n45= function(){
+    $scope.n45 = function () {
         $scope.imageUrl45 = "../img/G1G1.png";
-        $scope.teethValue = 45;  
+        $scope.teethValue = 45;
     }
 
-    $scope.n44= function(){
+    $scope.n44 = function () {
         $scope.imageUrl44 = "../img/G1G1.png";
-        $scope.teethValue = 44;  
+        $scope.teethValue = 44;
     }
 
-    $scope.n43= function(){
+    $scope.n43 = function () {
         $scope.imageUrl43 = "../img/G1G1.png";
-        $scope.teethValue = 43;  
+        $scope.teethValue = 43;
     }
 
-    $scope.n42= function(){
+    $scope.n42 = function () {
         $scope.imageUrl42 = "../img/G1G1.png";
-        $scope.teethValue = 42;  
+        $scope.teethValue = 42;
     }
 
-    $scope.n41= function(){
+    $scope.n41 = function () {
         $scope.imageUrl41 = "../img/G1G1.png";
-        $scope.teethValue = 41;  
+        $scope.teethValue = 41;
     }
 
-    $scope.n31= function(){
+    $scope.n31 = function () {
         $scope.imageUrl31 = "../img/G1G1.png";
-        $scope.teethValue = 31;  
+        $scope.teethValue = 31;
     }
 
-    $scope.n32= function(){
+    $scope.n32 = function () {
         $scope.imageUrl32 = "../img/G1G1.png";
-        $scope.teethValue = 32;  
+        $scope.teethValue = 32;
     }
 
-    $scope.n33= function(){
+    $scope.n33 = function () {
         $scope.imageUrl33 = "../img/G1G1.png";
-        $scope.teethValue = 33;  
+        $scope.teethValue = 33;
     }
 
-    $scope.n34= function(){
+    $scope.n34 = function () {
         $scope.imageUrl34 = "../img/G1G1.png";
-        $scope.teethValue = 34;  
+        $scope.teethValue = 34;
     }
 
-    $scope.n35= function(){
+    $scope.n35 = function () {
         $scope.imageUrl35 = "../img/G1G1.png";
-        $scope.teethValue = 35;  
+        $scope.teethValue = 35;
     }
 
-    $scope.n36= function(){
+    $scope.n36 = function () {
         $scope.imageUrl36 = "../img/G1G1.png";
-        $scope.teethValue = 36;  
+        $scope.teethValue = 36;
     }
 
-    $scope.n37= function(){
+    $scope.n37 = function () {
         $scope.imageUrl37 = "../img/G1G1.png";
-        $scope.teethValue = 37;  
+        $scope.teethValue = 37;
     }
 
-    $scope.n38= function(){
+    $scope.n38 = function () {
         $scope.imageUrl38 = "../img/G1G1.png";
-        $scope.teethValue = 38;  
+        $scope.teethValue = 38;
     }
-  
+
 
 
 
@@ -5947,29 +5963,31 @@ $scope.fungsiTambalanLogam = function(){
 
     $scope.simpanData = function () {
 
-       
+
 
         if ($scope.amnese, $scope.element_gigi_mulut, $scope.diagnosa, $scope.cicilan && ($scope.daftarLayanan.length != 0)) {
 
 
-            if($scope.daftarKondisiGigi){
+            if ($scope.daftarKondisiGigi) {
                 var myJSON = JSON.stringify($scope.daftarKondisiGigi);
 
                 //INPUT DATA ODONTOGRAMA
                 $http({
                     method: 'POST',
-                    url:  '../apidb/klinik/put_odontograma.php',
-                    data: {idKunjungan: $routeParams.idkunjungan,idAntrian: $scope.idAntrian, idPasien: $routeParams.id,
-                           keterangan : myJSON }
+                    url: '../apidb/klinik/put_odontograma.php',
+                    data: {
+                        idKunjungan: $routeParams.idkunjungan, idAntrian: $scope.idAntrian, idPasien: $routeParams.id,
+                        keterangan: myJSON
+                    }
                 }).then(function (response) {
                     // on success
-                    if(response.status==200){
-                       console.log("Simpan Odontograma Sukses...!!!");   
+                    if (response.status == 200) {
+                        console.log("Simpan Odontograma Sukses...!!!");
                     }
                 });
 
             }
-          
+
 
 
             $http({
@@ -6369,7 +6387,7 @@ app.controller("EditPerawatanCtrl", function ($scope, $ngConfirm, $cookies, $int
         console.log(response.data.event);
     });
 
-    
+
     $scope.FormObat = function (x) {
         $scope.shTable = false;
         $scope.shForm = true;
@@ -6470,397 +6488,397 @@ app.controller("EditPerawatanCtrl", function ($scope, $ngConfirm, $cookies, $int
 
     });
 
-    $scope.submitEditPerawatan = function(){
-     
+    $scope.submitEditPerawatan = function () {
+
         $http({
             method: 'POST',
             url: '../apidb/rekam_medis/update_perawatan_form.php',
-            data: { id_antrian: $routeParams.idantrian, id_kunjungan: $routeParams.idkunjungan, element:$scope.element_gigi_mulut ,diagnosa: $scope.diagnosa, icd10: $scope.icd10, amnese : $scope.amnese }
+            data: { id_antrian: $routeParams.idantrian, id_kunjungan: $routeParams.idkunjungan, element: $scope.element_gigi_mulut, diagnosa: $scope.diagnosa, icd10: $scope.icd10, amnese: $scope.amnese }
         }).then(function (response) {
-    
-    
+
+
             // on success
             $ngConfirm('Data Berhasil Diubah');
-         $route.reload();
-    
-    
+            $route.reload();
+
+
         }, function (response) {
-    
+
             // on error
             console.log(response.data);
-    
+
         });
     }
     ///------------------------------------------------------ Perawatan
 
 
-///------------------------------------------------------ PART ODONTOGRAMA
+    ///------------------------------------------------------ PART ODONTOGRAMA
 
-$scope.daftarKondisiGigi = [];
+    $scope.daftarKondisiGigi = [];
 
-//Kode Gambar Gigi Untuk Form Odontograma
-$scope.imageUrl18 = "../img/G1G1.png";
-$scope.imageUrl17 = "../img/G1G1.png";
-$scope.imageUrl16 = "../img/G1G1.png";
-$scope.imageUrl15 = "../img/G1G1.png";
-$scope.imageUrl14 = "../img/G1G1.png";
-$scope.imageUrl13 = "../img/G1G1.png";
-$scope.imageUrl12 = "../img/G1G1.png";
-$scope.imageUrl11 = "../img/G1G1.png";
+    //Kode Gambar Gigi Untuk Form Odontograma
+    $scope.imageUrl18 = "../img/G1G1.png";
+    $scope.imageUrl17 = "../img/G1G1.png";
+    $scope.imageUrl16 = "../img/G1G1.png";
+    $scope.imageUrl15 = "../img/G1G1.png";
+    $scope.imageUrl14 = "../img/G1G1.png";
+    $scope.imageUrl13 = "../img/G1G1.png";
+    $scope.imageUrl12 = "../img/G1G1.png";
+    $scope.imageUrl11 = "../img/G1G1.png";
 
-$scope.imageUrl21 = "../img/G1G1.png";
-$scope.imageUrl22 = "../img/G1G1.png";
-$scope.imageUrl23 = "../img/G1G1.png";
-$scope.imageUrl24 = "../img/G1G1.png";
-$scope.imageUrl25 = "../img/G1G1.png";
-$scope.imageUrl26 = "../img/G1G1.png";
-$scope.imageUrl27 = "../img/G1G1.png";
-$scope.imageUrl28 = "../img/G1G1.png";
+    $scope.imageUrl21 = "../img/G1G1.png";
+    $scope.imageUrl22 = "../img/G1G1.png";
+    $scope.imageUrl23 = "../img/G1G1.png";
+    $scope.imageUrl24 = "../img/G1G1.png";
+    $scope.imageUrl25 = "../img/G1G1.png";
+    $scope.imageUrl26 = "../img/G1G1.png";
+    $scope.imageUrl27 = "../img/G1G1.png";
+    $scope.imageUrl28 = "../img/G1G1.png";
 
-$scope.imageUrl55 = "../img/G1G1.png";
-$scope.imageUrl54 = "../img/G1G1.png";
-$scope.imageUrl53 = "../img/G1G1.png";
-$scope.imageUrl52 = "../img/G1G1.png";
-$scope.imageUrl51 = "../img/G1G1.png";
+    $scope.imageUrl55 = "../img/G1G1.png";
+    $scope.imageUrl54 = "../img/G1G1.png";
+    $scope.imageUrl53 = "../img/G1G1.png";
+    $scope.imageUrl52 = "../img/G1G1.png";
+    $scope.imageUrl51 = "../img/G1G1.png";
 
-$scope.imageUrl61 = "../img/G1G1.png";
-$scope.imageUrl62 = "../img/G1G1.png";
-$scope.imageUrl63 = "../img/G1G1.png";
-$scope.imageUrl64 = "../img/G1G1.png";
-$scope.imageUrl65 = "../img/G1G1.png";
+    $scope.imageUrl61 = "../img/G1G1.png";
+    $scope.imageUrl62 = "../img/G1G1.png";
+    $scope.imageUrl63 = "../img/G1G1.png";
+    $scope.imageUrl64 = "../img/G1G1.png";
+    $scope.imageUrl65 = "../img/G1G1.png";
 
-$scope.imageUrl85 = "../img/G1G1.png";
-$scope.imageUrl84 = "../img/G1G1.png";
-$scope.imageUrl83 = "../img/G1G1.png";
-$scope.imageUrl82 = "../img/G1G1.png";
-$scope.imageUrl81 = "../img/G1G1.png";
+    $scope.imageUrl85 = "../img/G1G1.png";
+    $scope.imageUrl84 = "../img/G1G1.png";
+    $scope.imageUrl83 = "../img/G1G1.png";
+    $scope.imageUrl82 = "../img/G1G1.png";
+    $scope.imageUrl81 = "../img/G1G1.png";
 
-$scope.imageUrl71 = "../img/G1G1.png";
-$scope.imageUrl72 = "../img/G1G1.png";
-$scope.imageUrl73 = "../img/G1G1.png";
-$scope.imageUrl74 = "../img/G1G1.png";
-$scope.imageUrl75 = "../img/G1G1.png";
+    $scope.imageUrl71 = "../img/G1G1.png";
+    $scope.imageUrl72 = "../img/G1G1.png";
+    $scope.imageUrl73 = "../img/G1G1.png";
+    $scope.imageUrl74 = "../img/G1G1.png";
+    $scope.imageUrl75 = "../img/G1G1.png";
 
-$scope.imageUrl48 = "../img/G1G1.png";
-$scope.imageUrl47 = "../img/G1G1.png";
-$scope.imageUrl46 = "../img/G1G1.png";
-$scope.imageUrl45 = "../img/G1G1.png";
-$scope.imageUrl44 = "../img/G1G1.png";
-$scope.imageUrl43 = "../img/G1G1.png";
-$scope.imageUrl42 = "../img/G1G1.png";
-$scope.imageUrl41 = "../img/G1G1.png";
+    $scope.imageUrl48 = "../img/G1G1.png";
+    $scope.imageUrl47 = "../img/G1G1.png";
+    $scope.imageUrl46 = "../img/G1G1.png";
+    $scope.imageUrl45 = "../img/G1G1.png";
+    $scope.imageUrl44 = "../img/G1G1.png";
+    $scope.imageUrl43 = "../img/G1G1.png";
+    $scope.imageUrl42 = "../img/G1G1.png";
+    $scope.imageUrl41 = "../img/G1G1.png";
 
-$scope.imageUrl31 = "../img/G1G1.png";
-$scope.imageUrl32 = "../img/G1G1.png";
-$scope.imageUrl33 = "../img/G1G1.png";
-$scope.imageUrl34 = "../img/G1G1.png";
-$scope.imageUrl35 = "../img/G1G1.png";
-$scope.imageUrl36 = "../img/G1G1.png";
-$scope.imageUrl37 = "../img/G1G1.png";
-$scope.imageUrl38 = "../img/G1G1.png";
+    $scope.imageUrl31 = "../img/G1G1.png";
+    $scope.imageUrl32 = "../img/G1G1.png";
+    $scope.imageUrl33 = "../img/G1G1.png";
+    $scope.imageUrl34 = "../img/G1G1.png";
+    $scope.imageUrl35 = "../img/G1G1.png";
+    $scope.imageUrl36 = "../img/G1G1.png";
+    $scope.imageUrl37 = "../img/G1G1.png";
+    $scope.imageUrl38 = "../img/G1G1.png";
 
 
 
-// GET DATA ODONTOGRAMA
-$http({
-method: 'POST',
-url: '../apidb/rekam_medis/get_odontograma_perawatan.php',
-data: { newId: $routeParams.idkunjungan }
-}).then(function (response) {
+    // GET DATA ODONTOGRAMA
+    $http({
+        method: 'POST',
+        url: '../apidb/rekam_medis/get_odontograma_perawatan.php',
+        data: { newId: $routeParams.idkunjungan }
+    }).then(function (response) {
 
-// on success
+        // on success
 
-$scope.og = response.data;
-$scope.odontoData = $scope.og.keterangan;
+        $scope.og = response.data;
+        $scope.odontoData = $scope.og.keterangan;
 
-var JSONDATA = JSON.parse($scope.odontoData);
+        var JSONDATA = JSON.parse($scope.odontoData);
 
 
-for (var i = 0; i < JSONDATA.length; i++) {
+        for (var i = 0; i < JSONDATA.length; i++) {
 
 
 
-    console.log(JSONDATA[i].teeth);
+            console.log(JSONDATA[i].teeth);
 
-    var obj = { teeth: JSONDATA[i].teeth, explaination: JSONDATA[i].explaination, keterangan: JSONDATA[i].keterangan, url: JSONDATA[i].url };
-    $scope.daftarKondisiGigi.push(obj);
+            var obj = { teeth: JSONDATA[i].teeth, explaination: JSONDATA[i].explaination, keterangan: JSONDATA[i].keterangan, url: JSONDATA[i].url };
+            $scope.daftarKondisiGigi.push(obj);
 
-    $scope.teethValue = JSONDATA[i].teeth;
+            $scope.teethValue = JSONDATA[i].teeth;
 
-    if ($scope.teethValue == 18) {
+            if ($scope.teethValue == 18) {
 
-        $scope.imageUrl18 = JSONDATA[i].url;
+                $scope.imageUrl18 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 17) {
+            if ($scope.teethValue == 17) {
 
-        $scope.imageUrl17 = JSONDATA[i].url;
-    }
+                $scope.imageUrl17 = JSONDATA[i].url;
+            }
 
-    if ($scope.teethValue == 16) {
+            if ($scope.teethValue == 16) {
 
-        $scope.imageUrl16 = JSONDATA[i].url;
+                $scope.imageUrl16 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 15) {
+            if ($scope.teethValue == 15) {
 
-        $scope.imageUrl15 = JSONDATA[i].url;
-    }
+                $scope.imageUrl15 = JSONDATA[i].url;
+            }
 
-    if ($scope.teethValue == 14) {
+            if ($scope.teethValue == 14) {
 
-        $scope.imageUrl14 = JSONDATA[i].url;
+                $scope.imageUrl14 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 13) {
+            if ($scope.teethValue == 13) {
 
-        $scope.imageUrl13 = JSONDATA[i].url;
+                $scope.imageUrl13 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 12) {
+            if ($scope.teethValue == 12) {
 
-        $scope.imageUrl12 = JSONDATA[i].url;
+                $scope.imageUrl12 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 11) {
+            if ($scope.teethValue == 11) {
 
-        $scope.imageUrl11 = JSONDATA[i].url;
+                $scope.imageUrl11 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 21) {
+            if ($scope.teethValue == 21) {
 
-        $scope.imageUrl21 = JSONDATA[i].url;
+                $scope.imageUrl21 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 22) {
+            if ($scope.teethValue == 22) {
 
-        $scope.imageUrl22 = JSONDATA[i].url;
+                $scope.imageUrl22 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 23) {
+            if ($scope.teethValue == 23) {
 
-        $scope.imageUrl23 = JSONDATA[i].url;
+                $scope.imageUrl23 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 24) {
+            if ($scope.teethValue == 24) {
 
-        $scope.imageUrl24 = JSONDATA[i].url;
+                $scope.imageUrl24 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 25) {
+            if ($scope.teethValue == 25) {
 
-        $scope.imageUrl25 = JSONDATA[i].url;
+                $scope.imageUrl25 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 26) {
+            if ($scope.teethValue == 26) {
 
-        $scope.imageUrl26 = JSONDATA[i].url;
+                $scope.imageUrl26 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 27) {
+            if ($scope.teethValue == 27) {
 
-        $scope.imageUrl27 = JSONDATA[i].url;
+                $scope.imageUrl27 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 28) {
+            if ($scope.teethValue == 28) {
 
-        $scope.imageUrl28 = JSONDATA[i].url;
+                $scope.imageUrl28 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 55) {
+            if ($scope.teethValue == 55) {
 
-        $scope.imageUrl55 = JSONDATA[i].url;
+                $scope.imageUrl55 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 54) {
+            if ($scope.teethValue == 54) {
 
-        $scope.imageUrl54 = JSONDATA[i].url;
+                $scope.imageUrl54 = JSONDATA[i].url;
 
-    }
+            }
 
 
-    if ($scope.teethValue == 53) {
+            if ($scope.teethValue == 53) {
 
-        $scope.imageUrl53 = JSONDATA[i].url;
+                $scope.imageUrl53 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 52) {
+            if ($scope.teethValue == 52) {
 
-        $scope.imageUrl52 = JSONDATA[i].url;
+                $scope.imageUrl52 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 51) {
+            if ($scope.teethValue == 51) {
 
-        $scope.imageUrl51 = JSONDATA[i].url;
+                $scope.imageUrl51 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 61) {
+            if ($scope.teethValue == 61) {
 
-        $scope.imageUrl61 = JSONDATA[i].url;
+                $scope.imageUrl61 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 62) {
+            if ($scope.teethValue == 62) {
 
-        $scope.imageUrl62 = JSONDATA[i].url;
+                $scope.imageUrl62 = JSONDATA[i].url;
 
-    }
+            }
 
 
-    if ($scope.teethValue == 63) {
+            if ($scope.teethValue == 63) {
 
-        $scope.imageUrl63 = JSONDATA[i].url;
+                $scope.imageUrl63 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 64) {
+            if ($scope.teethValue == 64) {
 
-        $scope.imageUrl64 = JSONDATA[i].url;
+                $scope.imageUrl64 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 65) {
+            if ($scope.teethValue == 65) {
 
-        $scope.imageUrl65 = JSONDATA[i].url;
+                $scope.imageUrl65 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 85) {
+            if ($scope.teethValue == 85) {
 
-        $scope.imageUrl85 = JSONDATA[i].url;
+                $scope.imageUrl85 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 84) {
+            if ($scope.teethValue == 84) {
 
-        $scope.imageUrl84 = JSONDATA[i].url;
+                $scope.imageUrl84 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 83) {
+            if ($scope.teethValue == 83) {
 
-        $scope.imageUrl83 = JSONDATA[i].url;
+                $scope.imageUrl83 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 82) {
+            if ($scope.teethValue == 82) {
 
-        $scope.imageUrl82 = JSONDATA[i].url;
+                $scope.imageUrl82 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 81) {
+            if ($scope.teethValue == 81) {
 
-        $scope.imageUrl81 = JSONDATA[i].url;
+                $scope.imageUrl81 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 71) {
+            if ($scope.teethValue == 71) {
 
-        $scope.imageUrl71 = JSONDATA[i].url;
+                $scope.imageUrl71 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 72) {
+            if ($scope.teethValue == 72) {
 
-        $scope.imageUrl72 = JSONDATA[i].url;
+                $scope.imageUrl72 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 73) {
+            if ($scope.teethValue == 73) {
 
-        $scope.imageUrl73 = JSONDATA[i].url;
+                $scope.imageUrl73 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 74) {
+            if ($scope.teethValue == 74) {
 
-        $scope.imageUrl74 = JSONDATA[i].url;
+                $scope.imageUrl74 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 75) {
+            if ($scope.teethValue == 75) {
 
-        $scope.imageUrl75 = JSONDATA[i].url;
+                $scope.imageUrl75 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 48) {
+            if ($scope.teethValue == 48) {
 
-        $scope.imageUrl48 = JSONDATA[i].url;
+                $scope.imageUrl48 = JSONDATA[i].url;
 
-    }
+            }
 
-    if ($scope.teethValue == 47) {
-        $scope.imageUrl47 = JSONDATA[i].url;
-    }
-    if ($scope.teethValue == 46) {
-        $scope.imageUrl46 = JSONDATA[i].url;
-    }
-    if ($scope.teethValue == 45) {
-        $scope.imageUrl45 = JSONDATA[i].url;
-    }
-    if ($scope.teethValue == 44) {
-        $scope.imageUrl44 = JSONDATA[i].url;
-    }
-    if ($scope.teethValue == 43) {
-        $scope.imageUrl43 = JSONDATA[i].url;
-    }
-    if ($scope.teethValue == 42) {
-        $scope.imageUrl42 = JSONDATA[i].url;
-    }
-    if ($scope.teethValue == 41) {
-        $scope.imageUrl41 = JSONDATA[i].url;
-    }
-    if ($scope.teethValue == 31) {
-        $scope.imageUrl31 = JSONDATA[i].url;
-    }
-    if ($scope.teethValue == 32) {
-        $scope.imageUrl32 = JSONDATA[i].url;
-    }
-    if ($scope.teethValue == 33) {
-        $scope.imageUrl33 = JSONDATA[i].url;
-    }
-    if ($scope.teethValue == 34) {
-        $scope.imageUrl34 = JSONDATA[i].url;
-    }
-    if ($scope.teethValue == 35) {
-        $scope.imageUrl35 = JSONDATA[i].url;
-    }
-    if ($scope.teethValue == 36) {
-        $scope.imageUrl36 = JSONDATA[i].url;
-    }
-    if ($scope.teethValue == 37) {
-        $scope.imageUrl37 = JSONDATA[i].url;
-    }
-    if ($scope.teethValue == 38) {
-        $scope.imageUrl38 = JSONDATA[i].url;
-    }
-}
-}, function (response) {
-// on error
-console.log(response.data, response.status);
-});
+            if ($scope.teethValue == 47) {
+                $scope.imageUrl47 = JSONDATA[i].url;
+            }
+            if ($scope.teethValue == 46) {
+                $scope.imageUrl46 = JSONDATA[i].url;
+            }
+            if ($scope.teethValue == 45) {
+                $scope.imageUrl45 = JSONDATA[i].url;
+            }
+            if ($scope.teethValue == 44) {
+                $scope.imageUrl44 = JSONDATA[i].url;
+            }
+            if ($scope.teethValue == 43) {
+                $scope.imageUrl43 = JSONDATA[i].url;
+            }
+            if ($scope.teethValue == 42) {
+                $scope.imageUrl42 = JSONDATA[i].url;
+            }
+            if ($scope.teethValue == 41) {
+                $scope.imageUrl41 = JSONDATA[i].url;
+            }
+            if ($scope.teethValue == 31) {
+                $scope.imageUrl31 = JSONDATA[i].url;
+            }
+            if ($scope.teethValue == 32) {
+                $scope.imageUrl32 = JSONDATA[i].url;
+            }
+            if ($scope.teethValue == 33) {
+                $scope.imageUrl33 = JSONDATA[i].url;
+            }
+            if ($scope.teethValue == 34) {
+                $scope.imageUrl34 = JSONDATA[i].url;
+            }
+            if ($scope.teethValue == 35) {
+                $scope.imageUrl35 = JSONDATA[i].url;
+            }
+            if ($scope.teethValue == 36) {
+                $scope.imageUrl36 = JSONDATA[i].url;
+            }
+            if ($scope.teethValue == 37) {
+                $scope.imageUrl37 = JSONDATA[i].url;
+            }
+            if ($scope.teethValue == 38) {
+                $scope.imageUrl38 = JSONDATA[i].url;
+            }
+        }
+    }, function (response) {
+        // on error
+        console.log(response.data, response.status);
+    });
 
-///------------------------------------------------------ PART ODONTOGRAMA
+    ///------------------------------------------------------ PART ODONTOGRAMA
 
 
 
@@ -6991,7 +7009,7 @@ console.log(response.data, response.status);
                     btnClass: 'btn-green',
                     action: function (scope, button) {
                         console.log("========LAYANAN UBAH========")
-                        $http.get("../apidb/layanan/edit_layanan_rm_icd.php?id=" + w.id + "&nama=" + $scope.nama_layanan_edit+ "&bahan=" + $scope.harga_bahan_edit + "&layanan=" + $scope.harga_layanan_edit + "&icd=" + $scope.icd).then(function (response) {
+                        $http.get("../apidb/layanan/edit_layanan_rm_icd.php?id=" + w.id + "&nama=" + $scope.nama_layanan_edit + "&bahan=" + $scope.harga_bahan_edit + "&layanan=" + $scope.harga_layanan_edit + "&icd=" + $scope.icd).then(function (response) {
                             if (!response.data.event) {
                                 $ngConfirm('Layanan Telah Diubah');
                                 $route.reload();
@@ -7043,8 +7061,8 @@ console.log(response.data, response.status);
                     btnClass: 'btn-green',
                     action: function (scope, button) {
                         // console.log("========LAYANAN UBAH========")
-                       // console.log("../apidb/layanan/edit_obat_rm.php?id=" + $scope.id_edit+ "&nama=" + $scope.nama_obat_edit + "&quantity=" + $scope.quantity_obat_edit+ "&harga=" + $scope.harga_obat_edit);
-                        $http.get("../apidb/layanan/edit_obat_rm.php?id=" + $scope.id_edit+ "&nama=" + $scope.nama_obat_edit + "&quantity=" + $scope.quantity_obat_edit+ "&harga=" + $scope.harga_obat_edit).then(function (response) {
+                        // console.log("../apidb/layanan/edit_obat_rm.php?id=" + $scope.id_edit+ "&nama=" + $scope.nama_obat_edit + "&quantity=" + $scope.quantity_obat_edit+ "&harga=" + $scope.harga_obat_edit);
+                        $http.get("../apidb/layanan/edit_obat_rm.php?id=" + $scope.id_edit + "&nama=" + $scope.nama_obat_edit + "&quantity=" + $scope.quantity_obat_edit + "&harga=" + $scope.harga_obat_edit).then(function (response) {
                             if (!response.data.event) {
                                 $ngConfirm('Obat Telah Diubah');
                                 $route.reload();
@@ -7087,12 +7105,12 @@ console.log(response.data, response.status);
         $scope.tabelObat = true;
     };
 
-    $scope.closeFormObat = function (){
+    $scope.closeFormObat = function () {
         $scope.tabelObat = false;
         $scope.FormObat = false;
     }
 
-    $scope.closeFormLayanan = function (){
+    $scope.closeFormLayanan = function () {
         $scope.tabelTindakanMedis = false;
         $scope.shFormLayanan = false;
     }
