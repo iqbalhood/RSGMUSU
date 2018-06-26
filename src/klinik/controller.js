@@ -7,14 +7,19 @@ app.controller("HomeCtrl", function ($scope, $ngConfirm, $cookies, $interval, $h
     $scope.tipeKlinik = klinikCookie;
     $scope.dokterForm = false;
 
-    $interval(function () {
+    // $interval(function () {
 
-        $http.get("../apidb/kunjungan/list_data_kunjungan_masuk.php?id=" + klinikCookie + "&status=0").then(function (response) {
-            $scope.myData = response.data.event;
-            console.log(response.data.event);
-        });
+    //     $http.get("../apidb/kunjungan/list_data_kunjungan_masuk.php?id=" + klinikCookie + "&status=0").then(function (response) {
+    //         $scope.myData = response.data.event;
+    //         console.log(response.data.event);
+    //     });
 
-    }, 3000);
+    // }, 3000);
+
+    $http.get("../apidb/kunjungan/list_data_kunjungan_masuk.php?id=" + klinikCookie + "&status=0").then(function (response) {
+        $scope.myData = response.data.event;
+        console.log(response.data.event);
+    });
 
 
 
@@ -70,19 +75,27 @@ app.controller("HomeCtrl", function ($scope, $ngConfirm, $cookies, $interval, $h
 
 
     };
-    // setTimeout(function () {
-    //     $('#mytablePasien').dataTable({
-    //         "bPaginate": true,
-    //         "bLengthChange": true,
-    //         "aLengthMenu": [30, 50, 100],
-    //         "bFilter": true,
-    //         "bSort": true,
-    //         "bInfo": true,
-    //         "bRetrieve": true,
-    //         "bAutoWidth": false,
-    //         "sEmptyTable": "",
-    //     });
-    // }, 4000);
+
+
+
+    $scope.refreshData = function(){
+
+        $route.reload();
+
+    }
+    setTimeout(function () {
+        $('#mytablePasien').dataTable({
+            "bPaginate": true,
+            "bLengthChange": true,
+            "aLengthMenu": [30, 50, 100],
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "bRetrieve": true,
+            "bAutoWidth": false,
+            "sEmptyTable": "",
+        });
+    }, 4000);
 
 });
 
