@@ -1088,7 +1088,7 @@ table.MsoTableGrid
  </o:shapelayout></xml><![endif]-->
 </head>
 
-<body lang=EN-US link="#0563C1" vlink="#954F72" style='tab-interval:36.0pt'>
+<body lang=EN-US link="#0563C1" vlink="#954F72" style='tab-interval:36.0pt' onload="myFunction()">
 
 <div class=WordSection1>
 
@@ -1132,7 +1132,7 @@ color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
   </td>
   <td width=297 valign=top style='width:297.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal><span style='font-size:7.5pt;color:black;mso-themecolor:
-  text1'>Invoice date: <?php echo date("d-m-Y"); // echo  date("d-m-Y", $timestamp); ?><o:p></o:p></span></p>
+  text1'>No. Identitas / Ktp: <?php echo $people['noktp'];  // echo  date("d-m-Y", $timestamp); ?><o:p></o:p></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:1'>
@@ -1182,8 +1182,8 @@ color:black;mso-themecolor:text1'><o:p>&nbsp;</o:p></span></p>
  <tr style='mso-yfti-irow:5;mso-yfti-lastrow:yes'>
   <td width=297 valign=top style='width:297.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal><span class=SpellE><span style='font-size:7.5pt;
-  color:black;mso-themecolor:text1'>Hp</span></span><span style='font-size:
-  7.5pt;color:black;mso-themecolor:text1'> <span class=SpellE>Pasien</span> : <?php echo $row['name']; ?> <o:p></o:p></span></p>
+  color:black;mso-themecolor:text1'>Nomor</span></span><span style='font-size:
+  7.5pt;color:black;mso-themecolor:text1'> <span class=SpellE>Rekam Medis</span> : <?php echo $k['id_pasien']; ?> <o:p></o:p></span></p>
   </td>
   <td width=297 valign=top style='width:297.25pt;padding:0cm 5.4pt 0cm 5.4pt'>
   <p class=MsoNormal><span style='font-size:7.5pt;color:black;mso-themecolor:
@@ -1447,6 +1447,12 @@ text1'><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&
 text1'><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><o:p></o:p></span></p>
 
 </div>
+
+<script>
+function myFunction() {
+  window.print();
+}
+</script>
 
 </body>
 

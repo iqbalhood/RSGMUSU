@@ -1,63 +1,94 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm">
+  <!-- main -->
+  <div class="col">
+    <!-- main header -->
+    <div class="bg-light lter b-b wrapper-md">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <h1 class="m-n font-thin h3 text-black">Dashboard Kasir</h1>
+          <small class="text-muted">Antrian Pasien</small>
+        </div>
+        <div class="col-sm-6 text-c hidden-xs">
 
-<div class="hbox hbox-auto-xs hbox-auto-sm" >
-<!-- main -->
-<div class="col">
-<!-- main header -->
-<div class="bg-light lter b-b wrapper-md">
-  <div class="row">
-    <div class="col-sm-6 col-xs-12">
-      <h1 class="m-n font-thin h3 text-black">Dashboard Kasir</h1>
-      <small class="text-muted">Antrian Pasien</small>
+        </div>
+      </div>
     </div>
-    <div class="col-sm-6 text-c hidden-xs">
-      
+    <!-- / main header -->
+    <div class="wrapper-md">
+      <button class="btn m-b-xs btn-sm btn-primary btn-addon">Pencarian</button>
+
+      <div class="input-group">
+        <input type="text" class="form-control input-lg" placeholder="Ketik Nomor Rekam Medis Disini" ng-model="keyword">
+        <span class="input-group-btn">
+          <button class="btn btn-lg btn-default" type="button" ng-click="cariKeyword()">Search</button>
+        </span>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          &nbsp;
+        </div>
+      </div>
+
+      <div ng-show="tabelPencarian">
+
+        <button class="btn m-b-xs btn-sm btn-success btn-addon ">
+          <i class="fa fa-search"></i>Hasil Pencarian</button>
+
+
+        <div class="row ">
+          <div class="col-sm-6 col-xs-12 ">
+            &nbsp;
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table  table-striped b-t b-b">
+            <thead>
+              <tr>
+                <th style="width:5%">No </th>
+                <th style="width:10%">Tanggal</th>
+                <th style="width:10%">Status Pembayaran</th>
+                <th style="width:10%">NO RM</th>
+                <th style="width:10%">ID Kunjungan</th>
+                <th style="width:10%">Nama Pasien</th>
+                <th style="width:10%">Nama Pendamping</th>
+                <th style="width:15%">Nama Dokter</th>
+                <!-- <th  style="width:15%">Status</th>          
+                <th  style="width:15%">Status Pembayaran</th>           -->
+                <th style="width:15%">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="p in DataPencarian ">
+                <td>{{ $index + 1 }}</td>
+                <td>{{ p.id_kunjungan * 1 | date:'dd-MMMM-yyyy' }}</td>
+                <td><span ng-if="p.status_pembayaran == '1'">Normal</span> <span ng-if="p.status_pembayaran == '3'" >Cicilan</span></td>
+                <td>{{ p.id_pasien }}</td>
+                <td>{{ p.id_kunjungan }}</td>
+                <td>{{ p.pasien }}</td>
+                <td>{{ p.dokter_pendamping }}</td>
+                <td>{{ p.dokter }}</td>
+                <td>
+                  <a href="#!/invoice/{{p.id_pasien}}/{{p.id_kunjungan}}" ng-if="p.status_pembayaran == '1'">
+                    <button class='btn btn-success'>Lihat Tagihan</button>
+                  </a>
+
+                  <a href="#!/invoice-cicilan/{{p.id_pasien}}/{{p.id_kunjungan}}"  ng-if="p.status_pembayaran == '3'"><button class='btn btn-warning'>Lihat Tagihan</button></a>
+                  <button class='btn btn-danger' ng-click="hapusTagihan(p)">Hapus</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          &nbsp;
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<!-- / main header -->
-<div class="wrapper-md" >
-  
-  <div class="table-responsive" >
-      <table ui-jq="dataTable" class="table  table-striped b-t b-b" id="mytableOrder" >
-      <thead>
-          <tr>
-              <th  style="width:5%">No </th>
-              <th  style="width:15%">Tanggal</th>
-              <th  style="width:10%">NO RM</th>              
-              <th  style="width:10%">ID Kunjungan</th>
-              <th  style="width:10%">Nama Pasien</th>
-              <th  style="width:10%">Nama Pendamping</th>            
-              <th  style="width:15%">Nama Dokter</th>          
-              <!-- <th  style="width:15%">Status</th>          
-              <th  style="width:15%">Status Pembayaran</th>           -->
-              <th  style="width:15%">Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-              <tr ng-repeat="x in myData ">
-                  <td>{{ $index + 1 }}</td>   
-                  <td>{{ x.id_kunjungan * 1 |  date:'dd-MMMM-yyyy' }}</td>                   
-                  <td>{{ x.id_pasien }}</td>
-                  <td>{{ x.id_kunjungan }}</td>
-                  <td>{{ x.pasien }}</td>
-                  <td>{{ x.dokter_pendamping }}</td>
-                  <td>{{ x.dokter }}</td>
-                  <!-- <td>{{ x.status }}</td>
-                  <td>{{ x.status_pembayaran }}</td> -->
-                  <td>  
-                    <a href="#!/invoice/{{x.id_pasien}}/{{x.id_kunjungan}}"><button class='btn btn-success'>Lihat Tagihan</button></a>
-                        <button class='btn btn-danger' ng-click="hapusTagihan(x)">Hapus</button>
-                  </td>
-                </tr>
-          </tbody>
-    </table>
-  </div>
-
-  
-
- 
-</div>
-</div>
-<!-- / main -->
+  <!-- / main -->
 
 </div>

@@ -2,20 +2,18 @@
 var app = angular.module('myApp.controller', []);
 
 app.controller("HomeCtrl", function ($scope, $ngConfirm, $cookies, $interval, $http, $route, $timeout, $routeParams, $window) {
+    $scope.tabelPencarian = false;
+    // $interval(function () {
+    //     $http.get("../apidb/kunjungan/list_data_kasir_today.php").then(function (response) {
+    //         $scope.myData = "";
+    //         $scope.myData = response.data.event;
+    //         console.log(response.data.event);
+    //     });
+    // }, 3000);
 
-    $http.get("../apidb/kunjungan/list_data_kasir.php").then(function (response) {
-        $scope.myData = response.data.event;
-        console.log(response.data.event);
-    });
+    $scope.hapusTagihan = function (x) {
+        $http.get("../apidb/kasir/hapus_data_tagihan.php?id=" + x.id_kunjungan).then(function (response) {
 
-    $scope.hapusTagihan = function(x){
-
-        //alert("tagihan --- > "+x.id_kunjungan);
-
-
-
-        $http.get("../apidb/kasir/hapus_data_tagihan.php?id="+x.id_kunjungan).then(function (response) {
-         
             if (!response.data.event) {
                 $ngConfirm('Data Sudah Dihapus');
                 $route.reload();
@@ -24,17 +22,63 @@ app.controller("HomeCtrl", function ($scope, $ngConfirm, $cookies, $interval, $h
                 $route.reload();
             }
         });
-
     }
 
+    $scope.keyword="";
+    $scope.$watch("keyword", function(newValue, oldValue) {
 
+        $scope.tabelPencarian = true;
+
+        if ($scope.keyword.length > 0) {
+          $scope.totalSearch = 0;
+          $http.get("../apidb/kunjungan/list_data_kasir_cari_biasa.php?id="+$scope.keyword).then(function (response) {
+            $scope.DataPencarian = response.data.event;
+            console.log(response.data.event);
+        });
+          
+        }
+
+
+        if ($scope.keyword.length == 0) {
+          $scope.DataPencarian = [];
+        }
+     
+       
+      });
+});
+
+
+
+app.controller("PembayaranCtrl", function ($scope, $ngConfirm, $cookies, $interval, $http, $route, $timeout, $routeParams, $window) {
+
+
+
+    $http.get("../apidb/kunjungan/list_data_kasir.php").then(function (response) {
+        $scope.myData = response.data.event;
+        console.log(response.data.event);
+    });
+
+
+
+    $scope.hapusTagihan = function (x) {
+        $http.get("../apidb/kasir/hapus_data_tagihan.php?id=" + x.id_kunjungan).then(function (response) {
+
+            if (!response.data.event) {
+                $ngConfirm('Data Sudah Dihapus');
+                $route.reload();
+            } else {
+                $ngConfirm('There Is Some Problem');
+                $route.reload();
+            }
+        });
+    }
 
 
     setTimeout(function () {
         $('#mytableOrder').dataTable({
             "bPaginate": true,
             "bLengthChange": true,
-            "aLengthMenu": [30, 50, 100],
+            "aLengthMenu": [20, 40, 80, 100],
             "bFilter": true,
             "bSort": true,
             "bInfo": true,
@@ -43,6 +87,7 @@ app.controller("HomeCtrl", function ($scope, $ngConfirm, $cookies, $interval, $h
             "sEmptyTable": "",
         });
     }, 4000);
+
 });
 
 app.controller("CicilanCtrl", function ($scope, $cookies, $interval, $http, $route, $timeout, $routeParams, $window) {
@@ -53,14 +98,14 @@ app.controller("CicilanCtrl", function ($scope, $cookies, $interval, $http, $rou
     });
 
 
-    $scope.hapusTagihan = function(x){
+    $scope.hapusTagihan = function (x) {
 
         //alert("tagihan --- > "+x.id_kunjungan);
 
 
 
-        $http.get("../apidb/kasir/hapus_data_tagihan.php?id="+x.id_kunjungan).then(function (response) {
-         
+        $http.get("../apidb/kasir/hapus_data_tagihan.php?id=" + x.id_kunjungan).then(function (response) {
+
             if (!response.data.event) {
                 $ngConfirm('Data Sudah Dihapus');
                 $route.reload();
@@ -254,7 +299,7 @@ app.controller("InvoiceCtrl", function ($scope, $ngConfirm, $cookies, $interval,
         console.log(response.data.event);
     });
 
-    
+
     $scope.FormObat = function (x) {
         $scope.shTable = false;
         $scope.shForm = true;
@@ -486,8 +531,8 @@ app.controller("InvoiceCtrl", function ($scope, $ngConfirm, $cookies, $interval,
                     btnClass: 'btn-green',
                     action: function (scope, button) {
                         // console.log("========LAYANAN UBAH========")
-                       // console.log("../apidb/layanan/edit_obat_rm.php?id=" + $scope.id_edit+ "&nama=" + $scope.nama_obat_edit + "&quantity=" + $scope.quantity_obat_edit+ "&harga=" + $scope.harga_obat_edit);
-                        $http.get("../apidb/layanan/edit_obat_rm.php?id=" + $scope.id_edit+ "&nama=" + $scope.nama_obat_edit + "&quantity=" + $scope.quantity_obat_edit+ "&harga=" + $scope.harga_obat_edit).then(function (response) {
+                        // console.log("../apidb/layanan/edit_obat_rm.php?id=" + $scope.id_edit+ "&nama=" + $scope.nama_obat_edit + "&quantity=" + $scope.quantity_obat_edit+ "&harga=" + $scope.harga_obat_edit);
+                        $http.get("../apidb/layanan/edit_obat_rm.php?id=" + $scope.id_edit + "&nama=" + $scope.nama_obat_edit + "&quantity=" + $scope.quantity_obat_edit + "&harga=" + $scope.harga_obat_edit).then(function (response) {
                             if (!response.data.event) {
                                 $ngConfirm('Obat Telah Diubah');
                                 $route.reload();
@@ -530,14 +575,19 @@ app.controller("InvoiceCtrl", function ($scope, $ngConfirm, $cookies, $interval,
         $scope.tabelObat = true;
     };
 
-    $scope.closeFormObat = function (){
+    $scope.closeFormObat = function () {
         $scope.tabelObat = false;
         $scope.FormObat = false;
     }
 
-    $scope.closeFormLayanan = function (){
+    $scope.closeFormLayanan = function () {
         $scope.tabelTindakanMedis = false;
         $scope.shFormLayanan = false;
+    }
+
+
+    $scope.tutupForm = function () {
+        $route.reload();
     }
 
     setTimeout(function () {
@@ -599,7 +649,7 @@ app.controller("InvoiceCicilanCtrl", function ($scope, $ngConfirm, $location, $c
         $scope.phone = $scope.people.phone;
         $scope.kelamin = $scope.people.jenis_kelamin;
         $scope.alamat = $scope.people.alamat;
-      
+
     }, function (response) {
         // on error
         console.log(response.data, response.status);
@@ -923,8 +973,8 @@ app.controller("InvoiceCicilanCtrl", function ($scope, $ngConfirm, $location, $c
                     btnClass: 'btn-green',
                     action: function (scope, button) {
                         // console.log("========LAYANAN UBAH========")
-                       // console.log("../apidb/layanan/edit_obat_rm.php?id=" + $scope.id_edit+ "&nama=" + $scope.nama_obat_edit + "&quantity=" + $scope.quantity_obat_edit+ "&harga=" + $scope.harga_obat_edit);
-                        $http.get("../apidb/layanan/edit_obat_rm.php?id=" + $scope.id_edit+ "&nama=" + $scope.nama_obat_edit + "&quantity=" + $scope.quantity_obat_edit+ "&harga=" + $scope.harga_obat_edit).then(function (response) {
+                        // console.log("../apidb/layanan/edit_obat_rm.php?id=" + $scope.id_edit+ "&nama=" + $scope.nama_obat_edit + "&quantity=" + $scope.quantity_obat_edit+ "&harga=" + $scope.harga_obat_edit);
+                        $http.get("../apidb/layanan/edit_obat_rm.php?id=" + $scope.id_edit + "&nama=" + $scope.nama_obat_edit + "&quantity=" + $scope.quantity_obat_edit + "&harga=" + $scope.harga_obat_edit).then(function (response) {
                             if (!response.data.event) {
                                 $ngConfirm('Obat Telah Diubah');
                                 $route.reload();
@@ -967,12 +1017,12 @@ app.controller("InvoiceCicilanCtrl", function ($scope, $ngConfirm, $location, $c
         $scope.tabelObat = true;
     };
 
-    $scope.closeFormObat = function (){
+    $scope.closeFormObat = function () {
         $scope.tabelObat = false;
         $scope.FormObat = false;
     }
 
-    $scope.closeFormLayanan = function (){
+    $scope.closeFormLayanan = function () {
         $scope.tabelTindakanMedis = false;
         $scope.shFormLayanan = false;
     }

@@ -22,21 +22,21 @@
       <small class="text-muted">Antrian Pasien</small>
     </div>
     <div class="col-sm-6 text-c hidden-xs">
-      
+      <button class='btn btn-success' ng-click="refreshData()"><i class="fa  fa-refresh"></i>    Klik Disini Jika Data Yang Dicari Belum Ada</button>  
     </div>
   </div>
 </div>
 <!-- / main header -->
 
-<a href="#!/search">
+<!-- <a href="#!/search">
 <div class="bg-light lter b-b wrapper-md">
   <h1 class="m-n font-thin h3"><i class="icon-magnifier i-sm m-r-sm"></i> Search</h1>
 </div>
-</a>
+</a> -->
 <div class="wrapper-md" >
   
   <div class="table-responsive" >
-      <table ui-jq="dataTable" class="table  table-striped b-t b-b" id="mytablePasien" >
+      <table  class="table  table-striped b-t b-b" id="mytablePasien" >
       <thead>
         <tr>
           <th  style="width:5%">No </th>

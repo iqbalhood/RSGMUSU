@@ -81,7 +81,7 @@
           templateUrl : "edit-rekam-medis.html",
           controller  : "EditRekamMedisCtrl",
         })
-        .when("/edit-perawatan/:id/:idkunjungan", {
+        .when("/edit-perawatan/:id/:idkunjungan/:idantrian", {
           templateUrl : "edit-perawatan.html",
           controller  : "EditPerawatanCtrl",
         })

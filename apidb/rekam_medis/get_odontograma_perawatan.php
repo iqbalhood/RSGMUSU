@@ -11,7 +11,7 @@ $newId = $request->newId;
 // Get the data
 $people = array();
 
-$sql = "SELECT * FROM `ondontograma` WHERE `id_pasien` = '$newId'";
+$sql = "SELECT * FROM `ondontograma` WHERE `id_kunjungan` = '$newId'";
 
 
 if($result = mysqli_query($connect,$sql))
