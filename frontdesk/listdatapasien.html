@@ -1,0 +1,315 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3"> Daftar Data Pasien</h1>
+</div>
+
+
+
+
+
+<div class="wrapper-md">
+
+
+    <div class="alert alert-info" ng-show="loading">
+
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+                style="width:100%">
+                Loading Data....
+            </div>
+        </div>
+
+    </div>
+
+    <button class='btn btn-black' style="margin:20px;" ng-click="showForm()"> + Add Pasien</button>
+
+    <div class="panel panel-default" ng-show="shTable">
+        <div class="panel-heading">
+            Data Pasien
+            <br>
+        </div>
+        <div class="table-responsive">
+            <table ui-jq="dataTable" class="table  table-striped b-t b-b" id="mytablePasien">
+                <thead>
+                    <tr>
+                        <th style="width:5%">No </th>
+                        <th style="width:10%">No Rekam Medis</th>
+                        <th style="width:15%">Nama Pasien</th>
+                        <th style="width:2%">Jenis Kelamin</th>
+
+                        <th style="width:15%">Alamat</th>
+                        <th style="width:20%">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="x in myData">
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ x.no_rekam_medis }}</td>
+                        <td>{{ x.nama }}</td>
+                        <td>{{ x.jenis_kelamin }}</td>
+                        <!-- <td><div ng-if="x.jenis_kelamin == L">Laki-Laki</div> <div ng-if="x.jenis_kelamin == P">  Perempuan</div></td> -->
+
+                        <td>{{ x.alamat }}</td>
+                        <td>
+                            <a href="#!/data-pasien/{{x.no_rekam_medis}}">
+                                <button class='btn btn-success'>View</button>
+                            </a>
+                            <button class='btn btn-primary' ng-click="editForm(x.no_rekam_medis)">Edit</button>
+                            <button class='btn btn-warning' ng-click="deleteForm(x.no_rekam_medis)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class='btn btn-black' style="margin:20px;" ng-click="showForm()"> + Add Pasien</button>
+
+            <footer class="panel-footer">
+                    <div paging page="1" page-size="15" total="totalData" paging-action="setPage(page)" show-prev-next="true"
+                        show-first-last="true">
+                    </div>
+                </footer>
+
+
+        </div>
+    </div>
+
+
+
+    <div class="panel panel-default" ng-show="shForm">
+        <div class="panel-heading font-bold">
+            <button class="btn m-b-xs btn-sm btn-danger btn-addon" ng-click="cancelForm()">
+                <i class="fa  fa-arrow-left"></i>Back</button>
+        </div>
+        <div class="panel-body">
+
+            <form class="form-horizontal">
+                <input type="hidden" class="form-control" ng-model="id">
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-id-1">Nomor Rekam Medis</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="no_rekam_medis">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-id-1">Nomor KTP</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="noktp">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-id-1">Nama</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-id-1">Tempat lahir</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="tptlahir">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-id-1">Tanggal lahir </label>
+                    <div class="col-sm-10">
+                        <datepicker date-format="yyyy-MM-dd">
+                            <input type="text" class="form-control" ng-model="tgllahir">
+                        </datepicker>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Jenis Kelamin</label>
+                    <div class="col-sm-10">
+                        <select name="account" class="form-control m-b" ng-model="kelamin">
+                            <option value="L">Laki - Laki</option>
+                            <option value="P">Perempuan</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Agama</label>
+                    <div class="col-sm-10">
+                        <select name="account" class="form-control m-b" ng-model="agama">
+                            <option value="1">Islam</option>
+                            <option value="2">Kristen</option>
+                            <option value="3">Katolik</option>
+                            <option value="4">Hindu</option>
+                            <option value="5">Budha</option>
+                            <option value="6">Lainnya</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-id-1">Alamat</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="alamat">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-id-1">RT/RW</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="rtrw">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-id-1">Kelurahan</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="kelurahan">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-id-1">Kecamatan</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="kecamatan">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-id-1">Kabupaten / Kota</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="kabupaten">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-id-1">Propinsi</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="propinsi">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-id-1">Nomor HP</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="phone">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-id-1">Kewarganegaraan</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="kewarganegaraan">
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-id-1">Pendidikan</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="pendidikan">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-id-1">Pekerjaan</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="pekerjaan">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-id-1">Status Perkawinan</label>
+                    <div class="col-sm-10">
+                        <select name="account" class="form-control m-b" ng-model="status_perkawinan">
+                            <option value="1">BELUM KAWIN</option>
+                            <option value="2">KAWIN</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-id-1">Tanggal Pertama Masuk</label>
+                    <div class="col-sm-10">
+                        <datepicker date-format="yyyy-MM-dd">
+                            <input type="text" class="form-control" ng-model="tgl_pertama_masuk"> </datepicker>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Cara Bayar</label>
+                    <div class="col-sm-10">
+                        <select name="account" class="form-control m-b" ng-model="cara_bayar">
+                            <option value="1">Umum</option>
+                            <option value="2">BPJS</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-show="klinik_tujuan">
+                    <label class="col-sm-2 control-label">Klinik Yang Dituju</label>
+                    <div class="col-sm-10">
+                        <select name="account" class="form-control m-b" ng-model="tujuan_kunjungan_pertama">
+                            <option value="1">IKGP/IKGM</option>
+                            <option value="2">PERIODONSIA</option>
+                            <option value="3">ILMU PENYAKIT MULUT</option>
+                            <option value="4">ILMU KEDOKTERAN GIGI ANAK</option>
+                            <option value="5">KONSERVASI</option>
+                            <option value="6">PROSTODONSIA</option>
+                            <option value="7">ILMU BEDAH MULUT</option>
+                            <option value="8">ORTODONSIA</option>
+                            <option value="9">RADIOLOGI KEDOKTERAN GIGI</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-id-1">Tinggi Badan (Cm)</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="tinggi_badan">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-id-1">Berat Badan (Kg)</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="berat_badan">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Golongan Darah</label>
+                    <div class="col-sm-10">
+                        <select name="account" class="form-control m-b" ng-model="golongan_darah">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="AB">AB</option>
+                            <option value="O">O</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-id-1">Riwayat Alergi</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="alergi">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-id-1">Catatan</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="catatan">
+                    </div>
+                </div>
+
+                <div class="line line-dashed b-b line-lg pull-in"></div>
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-2">
+                        <button type="submit" ng-click="cancelForm()" class="btn btn-default">Cancel</button>
+                        <button ng-click="submitForm()" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>

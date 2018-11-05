@@ -27,9 +27,9 @@ $db = new DB_CONNECT();
 									data_dokter.nama AS nama_dokter,
 									data_pasien.nama AS nama_pasien
 								FROM tabel_kunjugan
-								INNER JOIN data_dokter ON tabel_kunjugan.id_dokter = data_dokter.id
-								INNER JOIN data_pasien ON tabel_kunjugan.id_pasien = data_pasien.no_rekam_medis
-                                WHERE tabel_kunjugan.status = '2' AND (tabel_kunjugan.status_pembayaran = '1' OR  tabel_kunjugan.status_pembayaran = '3') AND (tabel_kunjugan.id_pasien = '$id' OR data_pasien.nama LIKE '%$id%' )  ORDER BY tabel_kunjugan.id_kunjungan DESC ") or die(mysql_error());
+								LEFT JOIN data_dokter ON tabel_kunjugan.id_dokter = data_dokter.id
+								LEFT JOIN data_pasien ON tabel_kunjugan.id_pasien = data_pasien.no_rekam_medis
+                                WHERE tabel_kunjugan.status = '2' AND (tabel_kunjugan.status_pembayaran = '1' OR  tabel_kunjugan.status_pembayaran = '3') AND (tabel_kunjugan.id_pasien LIKE '%$id%' OR data_pasien.nama LIKE '%$id%' )  ORDER BY tabel_kunjugan.id_kunjungan DESC ") or die(mysql_error());
 		// cek
 		if (mysql_num_rows($result) > 0) {
 		    // looping hasil

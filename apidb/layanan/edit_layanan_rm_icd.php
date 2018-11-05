@@ -8,7 +8,10 @@ $connect = connect();
     $nama  = $_GET['nama'];
     $bahan  = $_GET['bahan'];
     $layanan  = $_GET['layanan'];
-    $icd  = $_GET['icd'];
+    $icd  = "0";
+    if($_GET['icd']){
+        $icd  = $_GET['icd'];
+    }
 
     $sql = "UPDATE `tabel_layanan_kunjungan` SET `nama_layanan` = '$nama',  `harga_bahan` = '$bahan',  `icd` = '$icd', `harga_layanan` = '$layanan' WHERE `tabel_layanan_kunjungan`.`id` = '$id';";
 

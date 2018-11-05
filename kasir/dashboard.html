@@ -24,6 +24,8 @@
         </span>
       </div>
 
+
+
       <div class="row">
         <div class="col-sm-6 col-xs-12">
           &nbsp;
@@ -63,18 +65,19 @@
               <tr ng-repeat="p in DataPencarian ">
                 <td>{{ $index + 1 }}</td>
                 <td>{{ p.id_kunjungan * 1 | date:'dd-MMMM-yyyy' }}</td>
-                <td><span ng-if="p.status_pembayaran == '1'">Normal</span> <span ng-if="p.status_pembayaran == '3'" >Cicilan</span></td>
+                <td><span ng-if="p.status_pembayaran == '1'">Normal</span> <span ng-if="p.status_pembayaran == '3'">Cicilan</span></td>
                 <td>{{ p.id_pasien }}</td>
                 <td>{{ p.id_kunjungan }}</td>
                 <td>{{ p.pasien }}</td>
                 <td>{{ p.dokter_pendamping }}</td>
                 <td>{{ p.dokter }}</td>
                 <td>
-                  <a href="#!/invoice/{{p.id_pasien}}/{{p.id_kunjungan}}" ng-if="p.status_pembayaran == '1'">
+                  <a href="#!/invoice/{{p.id_pasien}}/{{p.id_kunjungan}}" target="_blank" ng-if="p.status_pembayaran == '1'">
                     <button class='btn btn-success'>Lihat Tagihan</button>
                   </a>
 
-                  <a href="#!/invoice-cicilan/{{p.id_pasien}}/{{p.id_kunjungan}}"  ng-if="p.status_pembayaran == '3'"><button class='btn btn-warning'>Lihat Tagihan</button></a>
+                  <a href="#!/invoice-cicilan/{{p.id_pasien}}/{{p.id_kunjungan}}" target="_blank" ng-if="p.status_pembayaran == '3'"><button
+                      class='btn btn-warning'>Lihat Tagihan</button></a>
                   <button class='btn btn-danger' ng-click="hapusTagihan(p)">Hapus</button>
                 </td>
               </tr>

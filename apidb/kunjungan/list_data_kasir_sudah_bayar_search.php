@@ -1,13 +1,14 @@
 <?php
 
 $bagianWhere = "";
-
+$klinik = "";
 if (isset($_GET['klinik']))
 {
     $klinik = $_GET['klinik'];
-    if($klinik != 'undefined' && $klinik != '0' ){
-        $bagianWhere .= "AND tabel_kunjugan.id_klinik = '$klinik'";
-    }
+    // if($klinik != 'undefined' && $klinik != '0' ){
+    //    // $bagianWhere .= "AND tabel_kunjugan.id_klinik = '$klinik'";
+    //     $bagianWhere .= "AND tabel_kunjugan.id_klinik LIKE '%$klinik%'";
+    // }
    
 }
 
@@ -15,14 +16,18 @@ if (isset($_GET['klinik']))
 if (isset($_GET['status']))
 {
    $status = $_GET['status'];
-   if($status != 'undefined' && $klinik != '0' ){
-   $bagianWhere .= "AND tabel_kunjugan.status_pembayaran = '$status'";
+   //echo $status;
+   if($status !== '0' && $status !== 'undefined'  ){
+//    if(($status !== 'undefined' || $status !== '0') && $klinik !== '0' ){
+
+    $bagianWhere .= "AND status_pembayaran = '$status'";
+
    }else{
-    $bagianWhere .= "AND (tabel_kunjugan.status_pembayaran = '2' OR tabel_kunjugan.status_pembayaran = '3')";       
+    //   echo "lalala";
+    $bagianWhere .= "AND (status_pembayaran = '2' OR status_pembayaran = '3')";       
    }
-  
 }else{
-    $bagianWhere .= "AND (tabel_kunjugan.status_pembayaran = '2' OR tabel_kunjugan.status_pembayaran = '3')";
+    $bagianWhere .= "AND (status_pembayaran = '2' OR status_pembayaran = '3')";
 }
 
 $tawal = $_GET['tawal'];
@@ -40,7 +45,40 @@ $db = new DB_CONNECT();
 
 
 
-$query = "SELECT 	tabel_kunjugan.id_kunjungan,
+// $query = "SELECT 	tabel_kunjugan.id_kunjungan,
+// tabel_kunjugan.id_klinik,
+// tabel_kunjugan.dokter_pendamping,
+// tabel_kunjugan.id_dokter,
+// tabel_kunjugan.id_pasien,
+// tabel_kunjugan.tanggal_pembayaran,
+// tabel_kunjugan.status_pembayaran,
+// tabel_kunjugan.tanggal_kunjungan,
+// data_dokter.nama AS nama_dokter,
+// data_pasien.nama AS nama_pasien
+// FROM tabel_kunjugan
+// LEFT JOIN data_dokter ON tabel_kunjugan.id_dokter = data_dokter.id
+// LEFT JOIN data_pasien ON tabel_kunjugan.id_pasien = data_pasien.no_rekam_medis
+// WHERE  tabel_kunjugan.id_klinik LIKE '%$klinik%' AND tabel_kunjugan.tanggal_kunjungan BETWEEN '$tawal' AND '$takhir'  ".$bagianWhere." ORDER BY tabel_kunjugan.id_kunjungan ";
+$query = "";
+if($klinik == "0" || $klinik == "undefined"){
+    $query = "SELECT 	tabel_kunjugan.id_kunjungan,
+    tabel_kunjugan.id_klinik,
+    tabel_kunjugan.dokter_pendamping,
+    tabel_kunjugan.id_dokter,
+    tabel_kunjugan.id_pasien,
+    tabel_kunjugan.tanggal_pembayaran,
+    tabel_kunjugan.status_pembayaran,
+    tabel_kunjugan.tanggal_kunjungan,
+    data_dokter.nama AS nama_dokter,
+    data_pasien.nama AS nama_pasien
+    FROM tabel_kunjugan
+    LEFT JOIN data_dokter ON tabel_kunjugan.id_dokter = data_dokter.id
+    LEFT JOIN data_pasien ON tabel_kunjugan.id_pasien = data_pasien.no_rekam_medis
+    WHERE   `tanggal_kunjungan` BETWEEN '$tawal' AND '$takhir'  ".$bagianWhere." ";
+    
+    
+}else{
+    $query = "SELECT 	tabel_kunjugan.id_kunjungan,
 tabel_kunjugan.id_klinik,
 tabel_kunjugan.dokter_pendamping,
 tabel_kunjugan.id_dokter,
@@ -51,9 +89,15 @@ tabel_kunjugan.tanggal_kunjungan,
 data_dokter.nama AS nama_dokter,
 data_pasien.nama AS nama_pasien
 FROM tabel_kunjugan
-INNER JOIN data_dokter ON tabel_kunjugan.id_dokter = data_dokter.id
-INNER JOIN data_pasien ON tabel_kunjugan.id_pasien = data_pasien.no_rekam_medis
-WHERE tabel_kunjugan.tanggal_kunjungan BETWEEN '$tawal' AND '$takhir'  ".$bagianWhere." ORDER BY tabel_kunjugan.id_kunjungan ";
+LEFT JOIN data_dokter ON tabel_kunjugan.id_dokter = data_dokter.id
+LEFT JOIN data_pasien ON tabel_kunjugan.id_pasien = data_pasien.no_rekam_medis
+WHERE  id_klinik LIKE '%$klinik%' AND `tanggal_kunjungan` BETWEEN '$tawal' AND '$takhir'  ".$bagianWhere." ";
+
+
+}
+
+
+
 
 
 

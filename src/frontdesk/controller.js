@@ -215,6 +215,11 @@ app.controller("BodyCtrl", function ($scope,$cookies,$window) {
         $window.location.href = "index.html";
     };
 
+    $scope.$on('LOAD', function () {
+        $scope.loading = true
+    });
+    $scope.$on('UNLOAD', function () { $scope.loading = false });
+
 });
 
 
@@ -2917,7 +2922,7 @@ $scope.daftarKondisiGigi = [];
             $scope.harga_layanan_edit = w.harga_layanan;
             console.log("========LAYANAN========");
             $ngConfirm({
-                title: 'Ubah Layanan',
+                title: 'Ubah Tindakan Medis',
                 contentUrl: '../form/edit_layanan_icd.html',
                 scope: $scope,
                 buttons: {
@@ -2928,7 +2933,7 @@ $scope.daftarKondisiGigi = [];
                             console.log("========LAYANAN UBAH========")
                             $http.get("../apidb/layanan/edit_layanan_rm_icd.php?id=" + w.id + "&nama=" + $scope.nama_layanan_edit+ "&bahan=" + $scope.harga_bahan_edit + "&layanan=" + $scope.harga_layanan_edit + "&icd=" + $scope.icd).then(function (response) {
                                 if (!response.data.event) {
-                                    $ngConfirm('Layanan Telah Diubah');
+                                    $ngConfirm('Tindakan Medis Telah Diubah');
                                     $route.reload();
                                 } else {
                                     $ngConfirm('There Is Some Problem');

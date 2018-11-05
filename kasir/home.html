@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html  ng-app="myApp" lang="en" >
+<html ng-app="myApp" lang="en">
+
 <head>
   <meta charset="utf-8" />
   <title>RSGM USU</title>
@@ -10,20 +11,42 @@
   <link rel="stylesheet" href="../libs/assets/simple-line-icons/css/simple-line-icons.css" type="text/css" />
   <link rel="stylesheet" href="../libs/jquery/bootstrap/dist/css/bootstrap.css" type="text/css" />
   <link rel="stylesheet" href="../js/datatables2/datable.css" type="text/css" />
-  
+
   <link rel="stylesheet" href="../css/font.css" type="text/css" />
   <link rel="stylesheet" href="../css/app.css" type="text/css" />
   <link href="../css/angular-datepicker.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="../js/confirm/angular-confirm.min.css" type="text/css" />
 
-   
+  <style>
+    .buttonload {
+      background-color: #4CAF50;
+      /* Green background */
+      border: none;
+      /* Remove borders */
+      color: white;
+      /* White text */
+      padding: 12px 24px;
+      /* Some padding */
+      font-size: 16px;
+      /* Set a font-size */
+    }
+
+    /* Add a right margin to each icon */
+    .fa {
+      margin-left: -12px;
+      margin-right: 8px;
+    }
+  </style>
+
+
 </head>
+
 <body>
-<div class="app app-header-fixed " ng-controller="BodyCtrl" >
-  
+  <div class="app app-header-fixed " ng-controller="BodyCtrl">
+
 
     <!-- header -->
-  <header id="header" class="app-header navbar" role="menu">
+    <header id="header" class="app-header navbar" role="menu">
       <!-- navbar header -->
       <div class="navbar-header bg-dark">
         <button class="pull-right visible-xs dk" ui-toggle-class="show" target=".navbar-collapse">
@@ -35,7 +58,7 @@
         <!-- brand -->
         <a href="#/" class="navbar-brand text-lt">
           <!-- <i class="fa fa-btc"></i> -->
-          <img src="../img/rsgmlogo.png" alt="." >
+          <img src="../img/rsgmlogo.png" alt=".">
           <span class="hidden-folded m-l-xs">RSGM USU</span>
         </a>
         <!-- / brand -->
@@ -44,22 +67,22 @@
 
       <!-- navbar collapse -->
       <div class="collapse pos-rlt navbar-collapse box-shadow bg-white-only">
-        
-       <!-- buttons -->
+
+        <!-- buttons -->
         <div class="nav navbar-nav hidden-xs">
           <a href="#" class="btn no-shadow navbar-btn" ui-toggle-class="app-aside-folded" target=".app">
             <i class="fa fa-dedent fa-fw text"></i>
             <i class="fa fa-indent fa-fw text-active"></i>
           </a>
-          
+
         </div>
         <!-- / buttons -->
 
-       
+
 
         <!-- nabar right -->
         <ul class="nav navbar-nav navbar-right">
-         
+
           <li class="dropdown">
             <a href="" data-toggle="dropdown" class="dropdown-toggle clear" data-toggle="dropdown">
               <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
@@ -74,10 +97,10 @@
                 <div>
                   <p>Dashboard Kasir</p>
                 </div>
-                
+
               </li>
-           
-              
+
+
               <li>
                 <a ng-click="logout()">Logout</a>
               </li>
@@ -88,25 +111,25 @@
         <!-- / navbar right -->
       </div>
       <!-- / navbar collapse -->
-  </header>
-  <!-- / header -->
+    </header>
+    <!-- / header -->
 
 
     <!-- aside -->
-  <aside id="aside" class="app-aside hidden-xs bg-dark">
+    <aside id="aside" class="app-aside hidden-xs bg-dark">
       <div class="aside-wrap">
         <div class="navi-wrap">
-          
+
 
           <!-- nav -->
           <nav ui-nav class="navi clearfix">
             <ul class="nav">
-                   
-              
 
-              <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">          
+
+
+              <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
                 <span>Panel Kasir</span>
-              </li>  
+              </li>
               <li>
                 <a href="#!/home">
                   <i class="icon-user icon text-success-lter"></i>
@@ -120,76 +143,77 @@
                 </a>
               </li>
               <li>
-                  <a href="#!/cicilan">
-                    <i class="icon-user icon text-success-lter"></i>
-                    <span> Pembayaran Cicilan</span>
-                  </a>
-                </li>
+                <a href="#!/cicilan">
+                  <i class="icon-user icon text-success-lter"></i>
+                  <span> Pembayaran Cicilan</span>
+                </a>
+              </li>
               <li>
-                  <a href="#!/histori">
-                    <i class="fa-history fa text-success-lter"></i>
-                    <span>Histori Transaksi</span>
-                  </a>
-                </li>
+                <a href="#!/histori">
+                  <i class="fa-history fa text-success-lter"></i>
+                  <span>Histori Transaksi</span>
+                </a>
+              </li>
             </ul>
           </nav>
           <!-- nav -->
 
-          
+
         </div>
       </div>
-  </aside>
-  <!-- / aside -->
+    </aside>
+    <!-- / aside -->
 
 
-  <!-- content -->
-  <div id="content" class="app-content" role="main">
-  	<div class="app-content-body ">
+    <!-- content -->
+    <div id="content" class="app-content" role="main">
+      <div class="app-content-body ">
 
         <!-- Kontent Untuk Bagian Body -->
-       <div ng-view></div>
+        <div ng-view></div>
         <!-- Kontent Untuk Bagian Body -->
 
 
+      </div>
     </div>
+    <!-- /content -->
+
+    <!-- footer -->
+    <footer id="footer" class="app-footer" role="footer">
+      <div class="wrapper b-t bg-light">
+        <span class="pull-right">alpha ver 0.0.1 <a href ui-scroll="app" class="m-l-sm text-muted"><i class="fa fa-long-arrow-up"></i></a></span>
+        &copy; Sadorateam 2017 Copyright.
+      </div>
+    </footer>
+    <!-- / footer -->
+
+
+
   </div>
-  <!-- /content -->
-  
-  <!-- footer -->
-  <footer id="footer" class="app-footer" role="footer">
-    <div class="wrapper b-t bg-light">
-      <span class="pull-right">alpha ver 0.0.1 <a href ui-scroll="app" class="m-l-sm text-muted"><i class="fa fa-long-arrow-up"></i></a></span>
-      &copy; Sadorateam 2017 Copyright.
-    </div>
-  </footer>
-  <!-- / footer -->
+  <!-- Angular -->
+  <script src="../libs/jquery/jquery/dist/jquery.js"></script>
+  <script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="../src/angular/angular.min.js"></script>
+  <script src="../src/angular/angular-route.min.js"></script>
+  <script src="../src/angular/angular-cookies.js"></script>
 
-
-
-</div>
-<!-- Angular -->
-<script src="../libs/jquery/jquery/dist/jquery.js"></script>
-<script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
-<script src="../src/angular/angular.min.js"></script>
-<script src="../src/angular/angular-route.min.js"></script>
-<script src="../src/angular/angular-cookies.js"></script>
-
-<script src="../js/angular-datepicker.js"></script>
-<script src="../js/confirm/angular-confirm.min.js"></script>
-<script src="../js/ui-load.js"></script>
-<script src="../js/ui-jp.config.js"></script>
-<script src="../js/ui-jp.js"></script>
-<script src="../js/ui-nav.js"></script>
-<script src="../js/ui-toggle.js"></script>
-<script src="../js/ui-client.js"></script>
-<script src="../js/datatables2/datable.js"></script>
-<script src='../js/datatables2/jquert_datable.js'></script>
-<script src="../src/ngClickCopy.js"></script>
-<script src="../src/kasir/app.js"></script>
-<script src="../src/kasir/controller.js"></script>
+  <script src="../js/angular-datepicker.js"></script>
+  <script src="../js/confirm/angular-confirm.min.js"></script>
+  <script src="../js/ui-load.js"></script>
+  <script src="../js/ui-jp.config.js"></script>
+  <script src="../js/ui-jp.js"></script>
+  <script src="../js/ui-nav.js"></script>
+  <script src="../js/ui-toggle.js"></script>
+  <script src="../js/ui-client.js"></script>
+  <script src="../js/datatables2/datable.js"></script>
+  <script src='../js/datatables2/jquert_datable.js'></script>
+  <script src="../src/ngClickCopy.js"></script>
+  <script src="../src/kasir/app.js"></script>
+  <script src="../src/kasir/controller.js"></script>
 
 
 
 
 </body>
+
 </html>

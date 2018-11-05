@@ -24,27 +24,27 @@ app.controller("HomeCtrl", function ($scope, $ngConfirm, $cookies, $interval, $h
         });
     }
 
-    $scope.keyword="";
-    $scope.$watch("keyword", function(newValue, oldValue) {
+    $scope.keyword = "";
+    $scope.$watch("keyword", function (newValue, oldValue) {
 
         $scope.tabelPencarian = true;
 
         if ($scope.keyword.length > 0) {
-          $scope.totalSearch = 0;
-          $http.get("../apidb/kunjungan/list_data_kasir_cari_biasa.php?id="+$scope.keyword).then(function (response) {
-            $scope.DataPencarian = response.data.event;
-            console.log(response.data.event);
-        });
-          
+            $scope.totalSearch = 0;
+            $http.get("../apidb/kunjungan/list_data_kasir_cari_biasa.php?id=" + $scope.keyword).then(function (response) {
+                $scope.DataPencarian = response.data.event;
+                console.log(response.data.event);
+            });
+
         }
 
 
         if ($scope.keyword.length == 0) {
-          $scope.DataPencarian = [];
+            $scope.DataPencarian = [];
         }
-     
-       
-      });
+
+
+    });
 });
 
 
@@ -138,11 +138,11 @@ app.controller("HistoriCtrl", function ($scope, $interval, $http, $route, $timeo
         alert("WOW KEEREEEENNN");
     };
 
-    $http.get("../apidb/kunjungan/list_data_kasir_sudah_bayar.php").then(function (response) {
-        $scope.myData = response.data.event;
-        console.log(response.data.event);
-        $scope.tabel_normal = true;
-    });
+    // $http.get("../apidb/kunjungan/list_data_kasir_sudah_bayar.php").then(function (response) {
+    //     $scope.myData = response.data.event;
+    //     console.log(response.data.event);
+    //     $scope.tabel_normal = true;
+    // });
 
 
     $scope.search = function () {
@@ -151,16 +151,38 @@ app.controller("HistoriCtrl", function ($scope, $interval, $http, $route, $timeo
         $scope.myData = [];
         console.log($scope.tglawal + " -- " + $scope.tglakhir);
 
+
+
         if (($scope.tglawal != 'Invalid Date') && ($scope.tglakhir != 'Invalid Date')) {
+
+            $scope.loading = true;
 
 
             $http.get("../apidb/kunjungan/list_data_kasir_sudah_bayar_search.php?tawal=" + $scope.tglawal + "&takhir=" + $scope.tglakhir + "&klinik=" + $scope.idklinik + "&status=" + $scope.carabayar).then(function (response) {
+
+                console.log("../apidb/kunjungan/list_data_kasir_sudah_bayar_search.php?tawal=" + $scope.tglawal + "&takhir=" + $scope.tglakhir + "&klinik=" + $scope.idklinik + "&status=" + $scope.carabayar);
+
+
                 $scope.myData = response.data.event;
                 console.log(response.data);
                 //$('#mytableOrder').reload;
                 // $('#mytableOrder').DataTable().ajax.reload();
                 $scope.tabel_normal = false;
                 $scope.tabel_cari = true;
+
+                if (response.data.message) {
+                    $scope.loading = false;
+                    alert("Data Yang Anda Cari Tidak Ada");
+                }
+
+
+                if ($scope.myData) {
+                    $scope.loading = false;
+
+                }
+
+
+
 
             });
 
@@ -199,19 +221,19 @@ app.controller("HistoriCtrl", function ($scope, $interval, $http, $route, $timeo
 
     }
 
-    setTimeout(function () {
-        $('#mytableOrder').dataTable({
-            "bPaginate": true,
-            "bLengthChange": true,
-            "aLengthMenu": [30, 50, 100],
-            "bFilter": true,
-            "bSort": true,
-            "bInfo": true,
-            "bRetrieve": true,
-            "bAutoWidth": false,
-            "sEmptyTable": "",
-        });
-    }, 4000);
+    // setTimeout(function () {
+    //     $('#mytableOrder').dataTable({
+    //         "bPaginate": true,
+    //         "bLengthChange": true,
+    //         "aLengthMenu": [30, 50, 100],
+    //         "bFilter": true,
+    //         "bSort": true,
+    //         "bInfo": true,
+    //         "bRetrieve": true,
+    //         "bAutoWidth": false,
+    //         "sEmptyTable": "",
+    //     });
+    // }, 4000);
 
 });
 
