@@ -1,0 +1,288 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model DataDokter {
+  id            Int    @id @default(autoincrement())
+  nama          String @db.VarChar(300)
+  jenis_kelamin String @db.VarChar(1)
+  nomor_hp      String @db.VarChar(24)
+
+  @@map("data_dokter")
+}
+
+model DataLayanan {
+  id          Int    @id @default(autoincrement())
+  layanan     String @db.VarChar(300)
+  bahan       String @db.Text
+  harga_bahan Int
+  idklinik    Int
+  harga_koas  Int
+  harga_drg   Int
+  harga_drgsp Int
+
+  @@map("data_layanan")
+}
+
+model DataObat {
+  id       Int    @id @default(autoincrement())
+  nama     String @db.VarChar(300)
+  quantity String @db.VarChar(300)
+  satuan   String @db.VarChar(300)
+  harga    Int
+
+  @@map("data_obat")
+}
+
+model DataPasien {
+  id                       Int      @id @default(autoincrement())
+  no_rekam_medis           String   @unique @db.VarChar(20)
+  tgl_registrasi           DateTime @db.Date
+  nama                     String   @db.VarChar(200)
+  tempat_lahir             String   @db.VarChar(20)
+  tanggal_lahir            DateTime @db.Date
+  jenis_kelamin            String   @db.VarChar(200)
+  agama                    String   @db.VarChar(20)
+  alamat                   String   @db.VarChar(200)
+  rtrw                     String   @db.VarChar(10)
+  kelurahan                String   @db.VarChar(20)
+  kecamatan                String   @db.VarChar(20)
+  kabupaten                String   @db.VarChar(20)
+  propinsi                 String   @db.VarChar(20)
+  nomor_hp                 String   @db.VarChar(200)
+  kewarganegaraan          String   @db.VarChar(20)
+  noktp                    String   @db.VarChar(50)
+  pendidikan               String   @db.VarChar(20)
+  pekerjaan                String   @db.VarChar(20)
+  status_perkawinan        String   @db.VarChar(30)
+  tgl_pertama_masuk        DateTime @db.Date
+  cara_bayar               String   @db.VarChar(20)
+  tujuan_kunjungan_pertama String   @db.VarChar(50)
+  alergi                   String   @db.VarChar(100)
+  catatan                  String   @db.Text
+  tinggi_badan             String   @db.VarChar(20)
+  berat_badan              String   @db.VarChar(20)
+  golongan_darah           String   @db.VarChar(2)
+
+  @@map("data_pasien")
+}
+
+model DcaUser {
+  id       Int     @id @default(autoincrement())
+  username String? @db.VarChar(50)
+  password String? @db.VarChar(255)
+  akses    String  @db.VarChar(50)
+
+  @@map("dca_users")
+}
+
+model TabelKunjugan {
+  id                 Int       @id @default(autoincrement())
+  id_kunjungan       String    @db.VarChar(200)
+  id_antrian         String    @db.VarChar(200)
+  id_klinik          Int
+  dokter_pendamping  String    @db.VarChar(300)
+  id_dokter          Int
+  id_pasien          Int
+  status             String    @db.VarChar(1)
+  status_pembayaran  String?   @db.VarChar(1)
+  tanggal_pembayaran DateTime? @db.Date
+  biaya_rekam_medis  String?   @db.VarChar(50)
+  tanggal_kunjungan  DateTime? @db.Date
+
+  @@index([id_klinik, status])
+  @@index([status_pembayaran])
+  @@map("tabel_kunjugan")
+}
+
+model RekamMedis {
+  id_kunjungan String @id @db.VarChar(20)
+  id_pasien    String @db.VarChar(20)
+  id_dokter    String @db.VarChar(20)
+  nama_dokter  String @db.Text
+  amnese       String @db.Text
+  diagnosa     String @db.Text
+
+  @@index([id_pasien])
+  @@map("rekam_medis")
+}
+
+model Perawatan {
+  id          Int    @id @default(autoincrement())
+  id_pasien   String @db.VarChar(30)
+  id_antrian  String @db.VarChar(30)
+  id_klinik   String @db.VarChar(30)
+  element     String @db.Text
+  diagnosa    String @db.Text
+  perawatan   String @db.Text
+  id_dokter   String @db.VarChar(30)
+  nama_dokter String @db.Text
+  icd10       String @db.VarChar(30)
+
+  @@map("perawatan")
+}
+
+model Ondontograma {
+  id           Int    @id @default(autoincrement())
+  id_kunjungan String @db.VarChar(30)
+  id_antrian   String @db.VarChar(30)
+  id_pasien    String @db.VarChar(30)
+  keterangan   String @db.Text
+
+  @@map("ondontograma")
+}
+
+model RmTandaVital {
+  id            Int    @id @default(autoincrement())
+  id_kunjungan  String @db.VarChar(30)
+  id_antrian    String @db.VarChar(30)
+  id_pasien     String @db.VarChar(30)
+  kesadaran     String @db.Text
+  kondisi_umum  String @db.Text
+  tekanan_darah String @db.Text
+  denyut_nadi   String @db.Text
+  pernafasan    String @db.Text
+  suhu          String @db.Text
+
+  @@map("rm_tanda_vital")
+}
+
+model RmRiwayatPenyakit {
+  id                    Int    @id @default(autoincrement())
+  id_kunjungan          String @db.VarChar(30)
+  id_antrian            String @db.VarChar(30)
+  id_pasien             String @db.VarChar(300)
+  status_jantung        Int
+  keterangan_jantung    String @db.Text
+  status_hipertensi     Int
+  keterangan_hipertensi String @db.Text
+  status_diabetes       Int
+  keterangan_diabetes   String @db.Text
+  status_alergi         Int
+  keterangan_alergi     String @db.Text
+  status_asma           Int
+  keterangan_asma       String @db.Text
+  status_hepar          Int
+  keterangan_hepar      String @db.Text
+  status_lambung        Int
+  keterangan_lambung    String @db.Text
+  status_lain           Int
+  keterangan_lain       String @db.Text
+
+  @@map("rm_riwayat_penyakit")
+}
+
+model RmEkstraOral {
+  id                     Int    @id @default(autoincrement())
+  id_antrian             String @db.VarChar(30)
+  id_kunjungan           String @db.VarChar(30)
+  id_pasien              String @db.VarChar(30)
+  tonus_bibir            String @db.VarChar(300)
+  tmj                    String @db.VarChar(300)
+  kelenjar_limfe         String @db.VarChar(300)
+  kelainan_tmj           String @db.Text
+  keterangan_ekstra_oral String @db.Text
+
+  @@map("rm_ekstra_oral")
+}
+
+model RmJaringanLunakMulut {
+  id                              Int    @id @default(autoincrement())
+  id_kunjungan                    String @db.VarChar(30)
+  id_antrian                      String @db.VarChar(30)
+  id_pasien                       String @db.VarChar(30)
+  kebersihan_mulut                String @db.VarChar(30)
+  mukosa_bukal                    String @db.VarChar(30)
+  kelainan_mukosa_bukal           String @db.Text
+  mukosa_labial                   String @db.VarChar(30)
+  kelainan_mukosa_labial          String @db.Text
+  frenulum_labial                 String @db.VarChar(30)
+  kelainan_frenulum_labial        String @db.Text
+  lidah                           String @db.VarChar(30)
+  kelainan_lidah                  String @db.Text
+  palatum                         String @db.VarChar(30)
+  kelainan_palatum                String @db.Text
+  tonsil                          String @db.VarChar(30)
+  kelainan_tonsil                 String @db.Text
+  dasar_mulut                     String @db.VarChar(30)
+  kelainan_dasar_mulut            String @db.Text
+  gingiva                         String @db.VarChar(30)
+  kelainan_gingiva                String @db.Text
+  keterangan_jaringan_lunak_mulut String @db.Text
+
+  @@map("rm_jaringan_lunak_mulut")
+}
+
+model TabelLayananKunjungan {
+  id            Int    @id @default(autoincrement())
+  id_pasien     String @db.VarChar(10)
+  nama_pasien   String @db.VarChar(30)
+  id_kunjungan  String @db.VarChar(200)
+  id_antrian    String @db.VarChar(200)
+  nama_layanan  String @db.Text
+  harga_bahan   String @db.VarChar(100)
+  harga_layanan String @db.VarChar(100)
+  status        String @db.VarChar(1)
+
+  @@index([id_kunjungan])
+  @@map("tabel_layanan_kunjungan")
+}
+
+model TabelObatKunjungan {
+  id           Int    @id @default(autoincrement())
+  id_pasien    String @db.VarChar(10)
+  nama_pasien  String @db.VarChar(30)
+  id_kunjungan String @db.VarChar(200)
+  id_antrian   String @db.VarChar(200)
+  id_obat      String @db.VarChar(10)
+  nama_obat    String @db.Text
+  satuan       String @db.VarChar(20)
+  quantity     String @db.VarChar(20)
+  harga        String @db.VarChar(100)
+  status       String @db.VarChar(1)
+
+  @@index([id_kunjungan])
+  @@map("tabel_obat_kunjungan")
+}
+
+model TabelObatInvoice {
+  id           Int      @id @default(autoincrement())
+  id_pasien    String   @db.VarChar(10)
+  id_kunjungan String   @db.VarChar(200)
+  id_obat      String   @db.VarChar(10)
+  nama_obat    String   @db.Text
+  satuan       String   @db.VarChar(20)
+  quantity     String   @db.VarChar(20)
+  harga        String   @db.VarChar(100)
+  tanggal      DateTime @db.Date
+
+  @@map("tabel_obat_invoice")
+}
+
+model TabelCicilan {
+  id           Int      @id @default(autoincrement())
+  id_kunjugan  String   @db.VarChar(200)
+  keterangan   String   @db.Text
+  biaya        String   @db.VarChar(50)
+  tanggal      DateTime @db.Date
+
+  @@map("tabel_cicilan")
+}
+
+model TidakanMedis {
+  id                     Int    @id @default(autoincrement())
+  nama_tindakan          String @db.Text
+  klinik                 Int
+  harga_bahan            Int
+  harga_tindakan_medis_1 Int
+  harga_tindakan_medis_2 Int
+  harga_tindakan_medis_3 Int
+  harga_tindakan_medis_4 Int
+
+  @@map("tidakan_medis")
+}
