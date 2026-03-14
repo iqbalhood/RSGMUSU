@@ -17,9 +17,5 @@
             "memory": 1024,
             "maxDuration": 10
         }
-    },
-    "env": {
-        "DATABASE_URL": "@tidb-url",
-        "JWT_SECRET": "@jwt-secret"
     }
 }
