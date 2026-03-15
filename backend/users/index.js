@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs')
-const prisma = require('../../_lib/db')
-const { requireAuth } = require('../../_lib/auth')
+const prisma = require('../_lib/db')
+const { requireAuth } = require('../_lib/auth')
 
 // GET /api/users | POST /api/users
 module.exports = requireAuth(async (req, res) => {

@@ -1,5 +1,5 @@
-const prisma = require('../../_lib/db')
-const { requireAuth } = require('../../_lib/auth')
+const prisma = require('../_lib/db')
+const { requireAuth } = require('../_lib/auth')
 
 // GET /api/pasien/:id  — id = numeric id
 // PUT /api/pasien/:id

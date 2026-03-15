@@ -1,5 +1,5 @@
-const prisma = require('../../_lib/db')
-const { requireAuth } = require('../../_lib/auth')
+const prisma = require('../_lib/db')
+const { requireAuth } = require('../_lib/auth')
 
 // GET /api/kunjungan/kasir/paid?tawal=&takhir=&klinik=&status=  — paid visits search
 // GET /api/kunjungan/kasir/today                                  — paid today

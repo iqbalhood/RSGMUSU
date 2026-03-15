@@ -1,5 +1,5 @@
-const prisma = require('../../_lib/db')
-const { requireAuth } = require('../../_lib/auth')
+const prisma = require('../_lib/db')
+const { requireAuth } = require('../_lib/auth')
 
 // PUT /api/layanan/:id   — update layanan line
 // DELETE /api/layanan/:id — delete layanan line or master

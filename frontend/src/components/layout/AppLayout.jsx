@@ -16,6 +16,7 @@ import {
     Search,
     History,
     BarChart3,
+    Bell,
 } from 'lucide-react'
 import { getUser, getAkses, clearAuth } from '@/lib/auth'
 import { cn } from '@/lib/utils'
@@ -46,23 +47,32 @@ const MENU_BY_ROLE = {
     ],
 }
 
-function SidebarItem({ to, label, icon: Icon, end }) {
+function SidebarItem({ to, label, icon: Icon, end, collapsed }) {
     return (
         <NavLink
             to={to}
             end={end}
             className={({ isActive }) =>
                 cn(
-                    'flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 group',
+                    'flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 group relative',
+                    collapsed ? 'justify-center w-11 h-11 mx-auto px-0' : '',
                     isActive
-                        ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30'
+                        ? 'bg-teal-600 text-white shadow-md shadow-teal-600/20'
                         : 'text-slate-400 hover:bg-slate-800 hover:text-white'
                 )
             }
         >
-            <Icon size={18} />
-            <span>{label}</span>
-            <ChevronRight size={14} className="ml-auto opacity-0 group-hover:opacity-50 transition-opacity" />
+            <Icon size={18} className={collapsed ? '' : 'flex-shrink-0'} />
+            {!collapsed && <span className="truncate">{label}</span>}
+            {!collapsed && (
+                <ChevronRight size={14} className="ml-auto opacity-0 group-hover:opacity-50 transition-opacity" />
+            )}
+            {/* Active Indicator Left Border */}
+            {({ isActive }) =>
+                isActive && !collapsed && (
+                    <div className="absolute left-0 top-1/2 -translate-y-1/2 h-6 w-1 bg-teal-300 rounded-r-full" />
+                )
+            }
         </NavLink>
     )
 }
@@ -80,76 +90,51 @@ export default function AppLayout() {
     }
 
     return (
-        <div className="flex h-screen bg-[hsl(224_71.4%_4.1%)] overflow-hidden">
+        <div className="flex h-screen bg-slate-50 overflow-hidden text-slate-900">
             {/* Sidebar */}
             <aside
                 className={cn(
-                    'flex flex-col bg-slate-900 border-r border-slate-800 transition-all duration-300 flex-shrink-0',
-                    sidebarOpen ? 'w-64' : 'w-16'
+                    'flex flex-col bg-slate-900 border-r border-slate-800 transition-all duration-300 flex-shrink-0 z-20 h-full overflow-y-auto sticky top-0',
+                    sidebarOpen ? 'w-[240px] min-w-[240px]' : 'w-16 min-w-[16px]'
                 )}
             >
                 {/* Logo */}
-                <div className="flex items-center gap-3 h-16 px-4 border-b border-slate-800">
-                    <div className="flex-shrink-0 w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                <div className="flex items-center gap-3 h-16 px-4 border-b border-slate-800 flex-shrink-0">
+                    <div className="flex-shrink-0 w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center shadow-lg shadow-teal-600/20">
                         <Stethoscope size={16} className="text-white" />
                     </div>
                     {sidebarOpen && (
                         <div className="min-w-0">
-                            <p className="text-sm font-bold text-white truncate">RSGM USU</p>
-                            <p className="text-xs text-slate-500 truncate">Sistem Informasi</p>
+                            <p className="text-sm font-bold font-display text-white truncate">RSGM USU</p>
+                            <p className="text-[10px] text-slate-400 tracking-wider truncate">SISTEM INFORMASI</p>
                         </div>
                     )}
-                    <button
-                        onClick={() => setSidebarOpen(!sidebarOpen)}
-                        className="ml-auto flex-shrink-0 text-slate-500 hover:text-white transition-colors"
-                    >
-                        {sidebarOpen ? <X size={18} /> : <Menu size={18} />}
-                    </button>
                 </div>
 
                 {/* Nav */}
                 <nav className="flex-1 overflow-y-auto p-3 space-y-1">
-                    {menuItems.map((item) =>
-                        sidebarOpen ? (
-                            <SidebarItem key={item.to} {...item} />
-                        ) : (
-                            <NavLink
-                                key={item.to}
-                                to={item.to}
-                                end={item.end}
-                                title={item.label}
-                                className={({ isActive }) =>
-                                    cn(
-                                        'flex items-center justify-center w-10 h-10 rounded-xl mx-auto transition-all',
-                                        isActive
-                                            ? 'bg-blue-600 text-white'
-                                            : 'text-slate-400 hover:bg-slate-800 hover:text-white'
-                                    )
-                                }
-                            >
-                                <item.icon size={18} />
-                            </NavLink>
-                        )
-                    )}
+                    {menuItems.map((item) => (
+                        <SidebarItem key={item.to} {...item} collapsed={!sidebarOpen} />
+                    ))}
                 </nav>
 
                 {/* User / Logout */}
-                <div className="p-3 border-t border-slate-800">
+                <div className="p-3 border-t border-slate-800 flex-shrink-0">
                     {sidebarOpen ? (
-                        <div className="flex items-center gap-3 px-3 py-2">
-                            <div className="w-8 h-8 rounded-full bg-blue-600/20 flex items-center justify-center text-blue-400 text-xs font-bold flex-shrink-0">
+                        <div className="flex items-center gap-3 px-3 py-2 bg-slate-800/30 rounded-xl">
+                            <div className="w-8 h-8 rounded-full bg-teal-600/20 flex items-center justify-center text-teal-400 text-xs font-bold flex-shrink-0 border border-teal-500/20">
                                 {user?.username?.charAt(0).toUpperCase() || '?'}
                             </div>
                             <div className="min-w-0 flex-1">
-                                <p className="text-sm font-medium text-white truncate">{user?.username || 'User'}</p>
-                                <p className="text-xs text-slate-500">
-                                    {akses === '1' ? 'Admin' : akses === '2' ? 'Dokter' : 'Frontdesk'}
+                                <p className="text-sm font-semibold text-white truncate">{user?.username || 'User'}</p>
+                                <p className="text-xs text-slate-400">
+                                    {akses === '1' ? 'Admin' : akses === '2' ? 'Dokter' : 'Staff'}
                                 </p>
                             </div>
                             <button
                                 onClick={handleLogout}
                                 title="Logout"
-                                className="text-slate-500 hover:text-red-400 transition-colors flex-shrink-0"
+                                className="text-slate-400 hover:text-red-400 transition-colors flex-shrink-0"
                             >
                                 <LogOut size={16} />
                             </button>
@@ -158,7 +143,7 @@ export default function AppLayout() {
                         <button
                             onClick={handleLogout}
                             title="Logout"
-                            className="flex items-center justify-center w-10 h-10 rounded-xl mx-auto text-slate-500 hover:bg-slate-800 hover:text-red-400 transition-all"
+                            className="flex items-center justify-center w-10 h-10 rounded-xl mx-auto text-slate-400 hover:bg-slate-800 hover:text-red-400 transition-all font-medium"
                         >
                             <LogOut size={18} />
                         </button>
@@ -166,12 +151,33 @@ export default function AppLayout() {
                 </div>
             </aside>
 
-            {/* Main content */}
-            <main className="flex-1 overflow-auto bg-[hsl(224_71.4%_4.1%)]">
-                <div className="min-h-full">
-                    <Outlet />
-                </div>
-            </main>
+            {/* Content Area */}
+            <div className="flex-1 flex flex-col w-full ml-0 min-w-0 overflow-hidden">
+                {/* Topbar */}
+                <header className="h-16 bg-white border-b border-slate-100 px-6 flex items-center justify-between flex-shrink-0 shadow-sm z-10">
+                    <button
+                        onClick={() => setSidebarOpen(!sidebarOpen)}
+                        className="text-slate-500 hover:text-slate-700 hover:bg-slate-50 p-2 rounded-xl transition-all"
+                    >
+                        {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
+                    </button>
+
+                    <div className="flex items-center gap-4">
+                        <button className="text-slate-500 hover:text-slate-700 p-2 rounded-xl hover:bg-slate-50 relative">
+                            <Bell size={20} />
+                            <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
+                        </button>
+                    </div>
+                </header>
+
+                {/* Main content */}
+                <main className="flex-1 overflow-y-auto bg-slate-50 p-6">
+                    <div className="min-h-full">
+                        <Outlet />
+                    </div>
+                </main>
+            </div>
         </div>
     )
 }
+

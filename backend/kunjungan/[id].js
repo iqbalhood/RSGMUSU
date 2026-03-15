@@ -1,5 +1,5 @@
-const prisma = require('../../_lib/db')
-const { requireAuth } = require('../../_lib/auth')
+const prisma = require('../_lib/db')
+const { requireAuth } = require('../_lib/auth')
 
 // GET /api/kunjungan/:id  — get one visit full (+ pasien summary)
 // PUT /api/kunjungan/:id/complete — mark as paid

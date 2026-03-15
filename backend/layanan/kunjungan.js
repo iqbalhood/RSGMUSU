@@ -1,5 +1,5 @@
-const prisma = require('../../_lib/db')
-const { requireAuth } = require('../../_lib/auth')
+const prisma = require('../_lib/db')
+const { requireAuth } = require('../_lib/auth')
 
 // GET /api/layanan/kunjungan?id_kunjungan=  — list layanan lines for a visit
 // POST /api/layanan/kunjungan               — add layanan line to visit

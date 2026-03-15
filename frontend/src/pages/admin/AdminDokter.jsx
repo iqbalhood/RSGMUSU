@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Stethoscope, Plus, Edit, Trash2, Loader2, X } from 'lucide-react'
+import { Plus, Edit, Trash2 } from 'lucide-react'
 import api from '@/lib/api'
+import PageHeader from '@/components/ui/PageHeader'
+import DataTable from '@/components/ui/DataTable'
+import Button from '@/components/ui/Button'
+import Modal from '@/components/ui/Modal'
+import FormField from '@/components/ui/FormField'
+import Badge from '@/components/ui/Badge'
 
 const EMPTY = { nama: '', jenis_kelamin: 'L', nomor_hp: '' }
 
@@ -14,8 +20,12 @@ export default function AdminDokter() {
 
     function load() {
         setLoading(true)
-        api.get('/dokter').then(r => setData(r.data.event || [])).catch(() => { }).finally(() => setLoading(false))
+        api.get('/dokter')
+            .then(r => setData(r.data.event || []))
+            .catch(() => { })
+            .finally(() => setLoading(false))
     }
+
     useEffect(() => { load() }, [])
 
     function openNew() { setForm(EMPTY); setEditId(null); setShowForm(true) }
@@ -26,7 +36,7 @@ export default function AdminDokter() {
         try {
             editId ? await api.put(`/dokter/${editId}`, form) : await api.post('/dokter', form)
             setShowForm(false); load()
-        } catch (err) { alert(err.response?.data?.message || 'Gagal') }
+        } catch (err) { alert(err.response?.data?.message || 'Gagal menyimpan') }
         finally { setSaving(false) }
     }
 
@@ -35,88 +45,104 @@ export default function AdminDokter() {
         await api.delete(`/dokter/${d.id}`); load()
     }
 
-    const F = ({ label, name, type = 'text', options }) => (
-        <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1">{label}</label>
-            {options ? (
-                <select value={form[name]} onChange={e => setForm(f => ({ ...f, [name]: e.target.value }))}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    {options.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
-                </select>
-            ) : (
-                <input type={type} value={form[name]} onChange={e => setForm(f => ({ ...f, [name]: e.target.value }))}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-            )}
-        </div>
-    )
+    const columns = [
+        { header: 'Nama Lengkap', key: 'nama', cellClassName: 'font-medium text-slate-900' },
+        {
+            header: 'Jenis Kelamin',
+            key: 'jenis_kelamin',
+            cell: (row) => (
+                <Badge variant={row.jenis_kelamin === 'L' ? 'info' : 'warning'}>
+                    {row.jenis_kelamin === 'L' ? 'Laki-laki' : 'Perempuan'}
+                </Badge>
+            )
+        },
+        { header: 'Nomor HP', key: 'nomor_hp' },
+        {
+            header: '',
+            key: 'actions',
+            className: 'w-20',
+            cell: (row) => (
+                <div className="flex items-center gap-1 justify-end">
+                    <Button
+                        size="sm"
+                        variant="ghost"
+                        icon={Edit}
+                        onClick={() => openEdit(row)}
+                        className="text-slate-400 hover:text-teal-600 hover:bg-teal-50"
+                    />
+                    <Button
+                        size="sm"
+                        variant="ghost"
+                        icon={Trash2}
+                        onClick={() => handleDelete(row)}
+                        className="text-slate-400 hover:text-red-600 hover:bg-red-50"
+                    />
+                </div>
+            )
+        }
+    ]
 
     return (
-        <div className="p-6 space-y-4 animate-fadeIn">
-            <div className="flex items-center justify-between">
-                <div>
-                    <h2 className="text-2xl font-bold text-white flex items-center gap-2"><Stethoscope size={22} /> Data Dokter</h2>
-                    <p className="text-slate-400 text-sm mt-1">Manajemen data dokter</p>
-                </div>
-                <button onClick={openNew} className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-xl text-sm font-semibold transition-all">
-                    <Plus size={16} /> Dokter Baru
-                </button>
+        <div className="animate-fadeIn">
+            <PageHeader
+                title="Data Dokter"
+                subtitle="Daftar seluruh dokter spesialis yang terregistrasi di RSGM USU."
+                actions={
+                    <Button icon={Plus} size="sm" onClick={openNew}>
+                        Tambah Dokter
+                    </Button>
+                }
+            />
+
+            <div className="p-6">
+                <DataTable
+                    columns={columns}
+                    data={data}
+                    loading={loading}
+                    emptyText="Tidak ada data dokter ditemukan."
+                />
             </div>
 
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
-                <table className="w-full text-sm">
-                    <thead><tr className="border-b border-slate-800 text-slate-400">
-                        <th className="text-left px-4 py-3 font-medium">Nama</th>
-                        <th className="text-left px-4 py-3 font-medium">JK</th>
-                        <th className="text-left px-4 py-3 font-medium">No. HP</th>
-                        <th className="px-4 py-3" />
-                    </tr></thead>
-                    <tbody>
-                        {loading ? (
-                            <tr><td colSpan={4} className="text-center py-8 text-slate-500"><Loader2 className="animate-spin inline" /></td></tr>
-                        ) : data.length === 0 ? (
-                            <tr><td colSpan={4} className="text-center py-8 text-slate-500">Tidak ada dokter</td></tr>
-                        ) : data.map(d => (
-                            <tr key={d.id} className="border-b border-slate-800/50 hover:bg-slate-800/30 transition-colors">
-                                <td className="px-4 py-3 text-white font-medium">{d.nama}</td>
-                                <td className="px-4 py-3 text-slate-400">{d.jenis_kelamin}</td>
-                                <td className="px-4 py-3 text-slate-400">{d.nomor_hp}</td>
-                                <td className="px-4 py-3">
-                                    <div className="flex items-center gap-2 justify-end">
-                                        <button onClick={() => openEdit(d)} className="text-slate-400 hover:text-blue-400 transition-colors"><Edit size={15} /></button>
-                                        <button onClick={() => handleDelete(d)} className="text-slate-400 hover:text-red-400 transition-colors"><Trash2 size={15} /></button>
-                                    </div>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-
-            {showForm && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-                    <div className="w-full max-w-md bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl animate-fadeIn">
-                        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800">
-                            <h3 className="text-white font-semibold">{editId ? 'Edit' : 'Tambah'} Dokter</h3>
-                            <button onClick={() => setShowForm(false)} className="text-slate-500 hover:text-white transition-colors"><X size={20} /></button>
-                        </div>
-                        <form onSubmit={handleSave} className="p-6 space-y-4">
-                            <F label="Nama Lengkap" name="nama" />
-                            <F label="No. HP" name="nomor_hp" />
-                            <F label="Jenis Kelamin" name="jenis_kelamin"
-                                options={[{ value: 'L', label: 'Laki-laki' }, { value: 'P', label: 'Perempuan' }]} />
-                            <div className="flex gap-3 pt-2">
-                                <button type="button" onClick={() => setShowForm(false)}
-                                    className="flex-1 bg-slate-800 hover:bg-slate-700 text-white py-2.5 rounded-xl text-sm font-medium transition-all">Batal</button>
-                                <button type="submit" disabled={saving}
-                                    className="flex-1 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white py-2.5 rounded-xl text-sm font-semibold transition-all disabled:opacity-60">
-                                    {saving && <Loader2 size={16} className="animate-spin" />}
-                                    {saving ? 'Menyimpan...' : 'Simpan'}
-                                </button>
-                            </div>
-                        </form>
+            <Modal
+                isOpen={showForm}
+                onClose={() => setShowForm(false)}
+                title={editId ? 'Edit Dokter' : 'Tambah Dokter Baru'}
+                description="Lengkapi data dokter yang akan disimpan pada sistem."
+                footer={
+                    <div className="flex gap-2 w-full">
+                        <Button variant="secondary" className="flex-1" onClick={() => setShowForm(false)}>
+                            Batal
+                        </Button>
+                        <Button variant="primary" className="flex-1" loading={saving} onClick={handleSave}>
+                            Simpan
+                        </Button>
                     </div>
-                </div>
-            )}
+                }
+            >
+                <form onSubmit={handleSave} className="space-y-4">
+                    <FormField
+                        label="Nama Lengkap"
+                        value={form.nama}
+                        onChange={e => setForm(f => ({ ...f, nama: e.target.value }))}
+                        required
+                    />
+                    <FormField
+                        label="Nomor HP"
+                        value={form.nomor_hp}
+                        onChange={e => setForm(f => ({ ...f, nomor_hp: e.target.value }))}
+                        required
+                    />
+                    <FormField
+                        label="Jenis Kelamin"
+                        as="select"
+                        value={form.jenis_kelamin}
+                        onChange={e => setForm(f => ({ ...f, jenis_kelamin: e.target.value }))}
+                    >
+                        <option value="L">Laki-laki</option>
+                        <option value="P">Perempuan</option>
+                    </FormField>
+                </form>
+            </Modal>
         </div>
     )
 }

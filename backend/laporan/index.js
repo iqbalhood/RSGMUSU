@@ -1,5 +1,5 @@
-const prisma = require('../../_lib/db')
-const { requireAuth } = require('../../_lib/auth')
+const prisma = require('../_lib/db')
+const { requireAuth } = require('../_lib/auth')
 
 // GET /api/laporan?type=summary|daily|klinik
 // Summary: total pasien, kunjungan bulan ini, pendapatan bulan ini

@@ -1,5 +1,5 @@
-const prisma = require('../../_lib/db')
-const { requireAuth } = require('../../_lib/auth')
+const prisma = require('../_lib/db')
+const { requireAuth } = require('../_lib/auth')
 
 // PUT /api/obat/:id?context=kunjungan  — update obat visit line
 // DELETE /api/obat/:id?context=kunjungan — delete obat visit line

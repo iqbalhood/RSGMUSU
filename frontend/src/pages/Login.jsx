@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Stethoscope, Eye, EyeOff, Loader2 } from 'lucide-react'
+import { Stethoscope, Eye, EyeOff, Lock, User } from 'lucide-react'
 import api from '@/lib/api'
 import { setToken, setUser, getRoleRoute } from '@/lib/auth'
+import FormField from '@/components/ui/FormField'
+import Button from '@/components/ui/Button'
 
 export default function Login() {
     const navigate = useNavigate()
@@ -32,84 +34,91 @@ export default function Login() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-[hsl(224_71.4%_6%)] to-slate-900 p-4">
-            <div className="w-full max-w-sm animate-fadeIn">
-                {/* Logo */}
-                <div className="text-center mb-8">
-                    <div className="inline-flex items-center justify-center w-14 h-14 bg-blue-600 rounded-2xl mb-4 shadow-2xl shadow-blue-600/40">
-                        <Stethoscope size={28} className="text-white" />
-                    </div>
-                    <h1 className="text-2xl font-extrabold text-white">RSGM USU</h1>
-                    <p className="text-slate-500 text-sm mt-1">Masuk ke sistem</p>
-                </div>
+        <div className="min-h-screen flex bg-slate-50">
+            {/* Left Column: Atmospheric Visuals */}
+            <div className="hidden lg:flex lg:w-1/2 bg-slate-900 relative items-center justify-center p-12 overflow-hidden">
+                <div className="absolute inset-0 bg-[linear-gradient(to_bottom_right,rgba(13,148,136,0.1),transparent)]" />
+                <div className="absolute -top-12 -left-12 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl"></div>
+                <div className="absolute -bottom-12 -right-12 w-64 h-64 bg-teal-500/5 rounded-full blur-3xl"></div>
 
-                {/* Card */}
-                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-2xl">
+                <div className="relative text-center max-w-md animate-fadeIn">
+                    <div className="inline-flex items-center justify-center w-20 h-20 bg-teal-600 rounded-3xl mb-6 shadow-2xl shadow-teal-600/30">
+                        <Stethoscope size={40} className="text-white" />
+                    </div>
+                    <h1 className="text-4xl font-bold text-white tracking-tight mb-4">
+                        RSGM Universitas Sumatera Utara
+                    </h1>
+                    <p className="text-slate-400 text-base leading-relaxed">
+                        Rumah Sakit Gigi dan Mulut terintegrasi yang melayani dengan standar akademik dan profesionalisme terbaik demi senyuman sehat Indonesia.
+                    </p>
+                </div>
+                <p className="absolute bottom-8 left-12 text-xs text-slate-500 font-medium">
+                    © 2025 RSGM USU. All rights reserved.
+                </p>
+            </div>
+
+            {/* Right Column: Form Panel */}
+            <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 animate-fadeIn">
+                <div className="w-full max-w-sm space-y-8">
+                    <div className="text-center lg:text-left">
+                        <div className="lg:hidden inline-flex items-center justify-center w-14 h-14 bg-teal-600 rounded-2xl mb-4 shadow-xl shadow-teal-600/20">
+                            <Stethoscope size={28} className="text-white" />
+                        </div>
+                        <h2 className="text-3xl font-bold text-slate-900 leading-none">Selamat Datang</h2>
+                        <p className="text-slate-400 text-sm mt-2">Masuk ke Sistem Informasi RSGM USU</p>
+                    </div>
+
                     {error && (
-                        <div className="mb-4 px-4 py-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-sm">
-                            {error}
+                        <div className="p-4 bg-red-50 border border-red-100 rounded-2xl text-red-600 text-xs font-medium flex gap-2 items-center">
+                            <span>{error}</span>
                         </div>
                     )}
 
-                    <form onSubmit={handleSubmit} className="space-y-5">
-                        <div>
-                            <label className="block text-sm font-medium text-slate-400 mb-2">
-                                Username
-                            </label>
-                            <input
-                                type="text"
-                                autoFocus
-                                value={form.username}
-                                onChange={(e) => setForm((f) => ({ ...f, username: e.target.value }))}
-                                placeholder="Masukkan username"
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        <FormField
+                            label="Username"
+                            icon={User}
+                            type="text"
+                            autoFocus
+                            value={form.username}
+                            onChange={(e) => setForm((f) => ({ ...f, username: e.target.value }))}
+                            placeholder="Masukkan username"
+                            required
+                        />
+
+                        <div className="relative">
+                            <FormField
+                                label="Password"
+                                icon={Lock}
+                                type={showPw ? 'text' : 'password'}
+                                value={form.password}
+                                onChange={(e) => setForm((f) => ({ ...f, password: e.target.value }))}
+                                placeholder="Masukkan password"
                                 required
-                                className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder:text-slate-600 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                             />
+                            <button
+                                type="button"
+                                onClick={() => setShowPw(!showPw)}
+                                className="absolute right-3.5 top-[34px] text-slate-400 hover:text-slate-600 transition-colors"
+                            >
+                                {showPw ? <EyeOff size={16} /> : <Eye size={16} />}
+                            </button>
                         </div>
 
-                        <div>
-                            <label className="block text-sm font-medium text-slate-400 mb-2">
-                                Password
-                            </label>
-                            <div className="relative">
-                                <input
-                                    type={showPw ? 'text' : 'password'}
-                                    value={form.password}
-                                    onChange={(e) => setForm((f) => ({ ...f, password: e.target.value }))}
-                                    placeholder="Masukkan password"
-                                    required
-                                    className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 pr-12 text-white placeholder:text-slate-600 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                                />
-                                <button
-                                    type="button"
-                                    onClick={() => setShowPw(!showPw)}
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors"
-                                >
-                                    {showPw ? <EyeOff size={18} /> : <Eye size={18} />}
-                                </button>
-                            </div>
-                        </div>
-
-                        <button
+                        <Button
                             type="submit"
-                            disabled={loading}
-                            className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold rounded-xl py-3 text-sm transition-all duration-200 shadow-lg shadow-blue-600/30 hover:shadow-blue-500/40"
+                            variant="primary"
+                            loading={loading}
+                            className="w-full py-3 mt-2 font-semibold tracking-wide"
                         >
-                            {loading ? (
-                                <>
-                                    <Loader2 size={18} className="animate-spin" />
-                                    Memproses...
-                                </>
-                            ) : (
-                                'Masuk'
-                            )}
-                        </button>
+                            Masuk
+                        </Button>
                     </form>
-                </div>
 
-                <p className="text-center mt-6 text-slate-600 text-xs">
-                    © 2025 RSGM USU — Sistem Informasi Rumah Sakit
-                </p>
+                    <p className="text-center lg:hidden mt-8 text-slate-400 text-xs">
+                        © 2025 RSGM USU.
+                    </p>
+                </div>
             </div>
         </div>
     )
