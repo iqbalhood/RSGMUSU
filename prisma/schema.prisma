@@ -10,6 +10,7 @@ datasource db {
 model DataDokter {
   id            Int    @id @default(autoincrement())
   nama          String @db.VarChar(300)
+  klinik        String? @db.VarChar(2)  // dari klinikusu.sql (klinik asal)
   jenis_kelamin String @db.VarChar(1)
   nomor_hp      String @db.VarChar(24)
 
