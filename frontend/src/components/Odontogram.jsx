@@ -30,7 +30,7 @@ function Tooth({ number, condition = 'N', onSelect, size = 36 }) {
     const cy = size / 2
 
     return (
-        <g onClick={() => onSelect(number)} style={{ cursor: 'pointer' }}>
+        <g onClick={() => onSelect(number)} className="cursor-pointer">
             {/* Tooth shape */}
             {isMolar ? (
                 <rect x={cx - r + 1} y={cy - r + 1} width={(r - 1) * 2} height={(r - 1) * 2}
@@ -60,7 +60,7 @@ function ToothRow({ numbers, teeth, onSelect, label, align = 'row' }) {
     const GAP = 2
     const totalW = numbers.length * (SIZE + GAP)
     return (
-        <svg width={totalW} height={SIZE + 16} style={{ overflow: 'visible' }}>
+        <svg width={totalW} height={SIZE + 16} className="overflow-visible">
             {numbers.map((n, i) => (
                 <g key={n} transform={`translate(${i * (SIZE + GAP)}, 8)`}>
                     <Tooth number={n} condition={teeth[n] || 'N'} onSelect={onSelect} size={SIZE} />

@@ -24,7 +24,7 @@ export default function AdminDashboard() {
     }, [])
 
     return (
-        <div className="animate-fadeIn">
+        <div className="min-w-0 p-6">
             <PageHeader
                 title="Dashboard"
                 subtitle="Selamat pagi. Pantau performa operasional rumah sakit hari ini."
@@ -35,9 +35,8 @@ export default function AdminDashboard() {
                 }
             />
 
-            <div className="p-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <StatCard
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+                <StatCard
                         label="Pasien Terdaftar"
                         value={counts.pasien}
                         icon={Users}
@@ -67,7 +66,6 @@ export default function AdminDashboard() {
                         variant="neutral"
                     />
                 </div>
-            </div>
         </div>
     )
 }

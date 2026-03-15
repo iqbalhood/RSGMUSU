@@ -12,33 +12,33 @@ export default function AdminLayanan() {
     }, [])
 
     return (
-        <div className="p-6 space-y-4 animate-fadeIn">
-            <div>
-                <h2 className="text-2xl font-bold text-white flex items-center gap-2"><Hospital size={22} /> Data Layanan</h2>
-                <p className="text-slate-400 text-sm mt-1">Master layanan per klinik</p>
+        <div className="p-6 space-y-6 min-w-0">
+            <div className="min-w-0">
+                <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2"><Hospital size={22} className="text-teal-600" /> Data Layanan</h2>
+                <p className="text-slate-600 text-sm mt-1">Master layanan per klinik</p>
             </div>
 
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+            <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden min-w-0">
                 <table className="w-full text-sm">
-                    <thead><tr className="border-b border-slate-800 text-slate-400">
-                        <th className="text-left px-4 py-3 font-medium">Layanan</th>
-                        <th className="text-left px-4 py-3 font-medium">Klinik</th>
-                        <th className="text-left px-4 py-3 font-medium">Harga Koas</th>
-                        <th className="text-left px-4 py-3 font-medium">Harga Drg</th>
-                        <th className="text-left px-4 py-3 font-medium">Harga Drg Sp</th>
+                    <thead><tr className="border-b border-slate-200 bg-slate-50">
+                        <th className="text-left px-6 py-4 font-semibold text-slate-600 text-xs uppercase">Layanan</th>
+                        <th className="text-left px-6 py-4 font-semibold text-slate-600 text-xs uppercase">Klinik</th>
+                        <th className="text-left px-6 py-4 font-semibold text-slate-600 text-xs uppercase">Harga Koas</th>
+                        <th className="text-left px-6 py-4 font-semibold text-slate-600 text-xs uppercase">Harga Drg</th>
+                        <th className="text-left px-6 py-4 font-semibold text-slate-600 text-xs uppercase">Harga Drg Sp</th>
                     </tr></thead>
                     <tbody>
                         {loading ? (
-                            <tr><td colSpan={5} className="text-center py-8 text-slate-500"><Loader2 className="animate-spin inline" /></td></tr>
+                            <tr><td colSpan={5} className="text-center py-8 text-slate-600"><Loader2 className="animate-spin inline" /></td></tr>
                         ) : data.length === 0 ? (
-                            <tr><td colSpan={5} className="text-center py-8 text-slate-500">Tidak ada layanan</td></tr>
+                            <tr><td colSpan={5} className="text-center py-8 text-slate-400">Tidak ada layanan</td></tr>
                         ) : data.map(l => (
-                            <tr key={l.id} className="border-b border-slate-800/50 hover:bg-slate-800/30 transition-colors">
-                                <td className="px-4 py-3 text-white font-medium">{l.layanan}</td>
-                                <td className="px-4 py-3 text-slate-400">{l.idklinik}</td>
-                                <td className="px-4 py-3 text-emerald-400 font-mono">{formatCurrency(l.harga_koas)}</td>
-                                <td className="px-4 py-3 text-emerald-400 font-mono">{formatCurrency(l.harga_drg)}</td>
-                                <td className="px-4 py-3 text-emerald-400 font-mono">{formatCurrency(l.harga_drgsp)}</td>
+                            <tr key={l.id} className="border-b border-slate-200 hover:bg-slate-50 transition-colors">
+                                <td className="px-6 py-3 text-slate-900 font-medium min-w-0">{l.layanan}</td>
+                                <td className="px-6 py-3 text-slate-600 min-w-0">{l.idklinik}</td>
+                                <td className="px-6 py-3 text-slate-600 font-mono min-w-0">{formatCurrency(l.harga_koas)}</td>
+                                <td className="px-6 py-3 text-slate-600 font-mono min-w-0">{formatCurrency(l.harga_drg)}</td>
+                                <td className="px-6 py-3 text-slate-600 font-mono min-w-0">{formatCurrency(l.harga_drgsp)}</td>
                             </tr>
                         ))}
                     </tbody>

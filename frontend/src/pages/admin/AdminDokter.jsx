@@ -46,7 +46,7 @@ export default function AdminDokter() {
     }
 
     const columns = [
-        { header: 'Nama Lengkap', key: 'nama', cellClassName: 'font-medium text-slate-900' },
+        { header: 'Nama Lengkap', key: 'nama', cellClassName: 'font-medium text-slate-900 min-w-0' },
         {
             header: 'Jenis Kelamin',
             key: 'jenis_kelamin',
@@ -83,18 +83,18 @@ export default function AdminDokter() {
     ]
 
     return (
-        <div className="animate-fadeIn">
+        <div className="min-w-0 p-6">
             <PageHeader
                 title="Data Dokter"
                 subtitle="Daftar seluruh dokter spesialis yang terregistrasi di RSGM USU."
                 actions={
-                    <Button icon={Plus} size="sm" onClick={openNew}>
+                    <Button icon={Plus} size="sm" variant="primary" onClick={openNew}>
                         Tambah Dokter
                     </Button>
                 }
             />
 
-            <div className="p-6">
+            <div className="mt-6 min-w-0">
                 <DataTable
                     columns={columns}
                     data={data}

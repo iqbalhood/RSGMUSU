@@ -34,15 +34,11 @@ export default function Login() {
     }
 
     return (
-        <div className="min-h-screen flex bg-slate-50">
+        <div className="min-h-screen flex bg-slate-100">
             {/* Left Column: Atmospheric Visuals */}
-            <div className="hidden lg:flex lg:w-1/2 bg-slate-900 relative items-center justify-center p-12 overflow-hidden">
-                <div className="absolute inset-0 bg-[linear-gradient(to_bottom_right,rgba(13,148,136,0.1),transparent)]" />
-                <div className="absolute -top-12 -left-12 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl"></div>
-                <div className="absolute -bottom-12 -right-12 w-64 h-64 bg-teal-500/5 rounded-full blur-3xl"></div>
-
-                <div className="relative text-center max-w-md animate-fadeIn">
-                    <div className="inline-flex items-center justify-center w-20 h-20 bg-teal-600 rounded-3xl mb-6 shadow-2xl shadow-teal-600/30">
+            <div className="hidden lg:flex lg:w-1/2 bg-slate-900 text-slate-300 relative items-center justify-center p-12 overflow-hidden min-w-0">
+                <div className="relative text-center max-w-md min-w-0">
+                    <div className="inline-flex items-center justify-center w-20 h-20 bg-teal-600 rounded-xl mb-6">
                         <Stethoscope size={40} className="text-white" />
                     </div>
                     <h1 className="text-4xl font-bold text-white tracking-tight mb-4">
@@ -52,24 +48,24 @@ export default function Login() {
                         Rumah Sakit Gigi dan Mulut terintegrasi yang melayani dengan standar akademik dan profesionalisme terbaik demi senyuman sehat Indonesia.
                     </p>
                 </div>
-                <p className="absolute bottom-8 left-12 text-xs text-slate-500 font-medium">
+                <p className="absolute bottom-8 left-12 text-xs text-slate-400 font-medium">
                     © 2025 RSGM USU. All rights reserved.
                 </p>
             </div>
 
             {/* Right Column: Form Panel */}
-            <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 animate-fadeIn">
-                <div className="w-full max-w-sm space-y-8">
-                    <div className="text-center lg:text-left">
-                        <div className="lg:hidden inline-flex items-center justify-center w-14 h-14 bg-teal-600 rounded-2xl mb-4 shadow-xl shadow-teal-600/20">
+            <div className="w-full lg:w-1/2 flex items-center justify-center p-6 min-w-0">
+                <div className="w-full max-w-sm space-y-6 min-w-0">
+                    <div className="text-center lg:text-left min-w-0">
+                        <div className="lg:hidden inline-flex items-center justify-center w-14 h-14 bg-teal-600 rounded-xl mb-4">
                             <Stethoscope size={28} className="text-white" />
                         </div>
                         <h2 className="text-3xl font-bold text-slate-900 leading-none">Selamat Datang</h2>
-                        <p className="text-slate-400 text-sm mt-2">Masuk ke Sistem Informasi RSGM USU</p>
+                        <p className="text-slate-600 text-sm mt-2">Masuk ke Sistem Informasi RSGM USU</p>
                     </div>
 
                     {error && (
-                        <div className="p-4 bg-red-50 border border-red-100 rounded-2xl text-red-600 text-xs font-medium flex gap-2 items-center">
+                        <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm font-medium flex gap-2 items-center">
                             <span>{error}</span>
                         </div>
                     )}
@@ -109,7 +105,7 @@ export default function Login() {
                             type="submit"
                             variant="primary"
                             loading={loading}
-                            className="w-full py-3 mt-2 font-semibold tracking-wide"
+                            className="w-full py-2.5 mt-2 font-medium"
                         >
                             Masuk
                         </Button>

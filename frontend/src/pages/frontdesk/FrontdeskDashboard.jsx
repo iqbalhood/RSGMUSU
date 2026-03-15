@@ -1,21 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Users, Hospital, Clock, CheckCircle, Loader2, Activity } from 'lucide-react'
 import api from '@/lib/api'
 import { getUser } from '@/lib/auth'
-
-function StatCard({ label, value, icon: Icon, color }) {
-    return (
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex items-center gap-4">
-            <div className={`w-12 h-12 rounded-xl ${color} flex items-center justify-center flex-shrink-0`}>
-                <Icon size={22} className="text-white" />
-            </div>
-            <div>
-                <p className="text-2xl font-bold text-white">{value ?? '-'}</p>
-                <p className="text-slate-400 text-sm">{label}</p>
-            </div>
-        </div>
-    )
-}
+import StatCard from '@/components/ui/StatCard'
 
 export default function FrontdeskDashboard() {
     const user = getUser()
@@ -30,44 +18,44 @@ export default function FrontdeskDashboard() {
     }, [])
 
     return (
-        <div className="p-6 space-y-6 animate-fadeIn">
+        <div className="p-6 space-y-6 min-w-0">
             {/* Header */}
-            <div>
-                <h2 className="text-2xl font-bold text-white">Selamat datang, {user?.username}!</h2>
-                <p className="text-slate-400 mt-1">Frontdesk — Dashboard Antrian</p>
+            <div className="min-w-0">
+                <h2 className="text-2xl font-bold text-slate-900">Selamat datang, {user?.username}!</h2>
+                <p className="text-slate-600 mt-1">Frontdesk — Dashboard Antrian</p>
             </div>
 
             {/* Stats */}
             {loading ? (
-                <div className="flex items-center gap-2 text-slate-500">
+                <div className="flex items-center gap-2 text-slate-600">
                     <Loader2 size={18} className="animate-spin" /> Memuat data...
                 </div>
             ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <StatCard label="IKGP" value={stats?.ikgp} icon={Hospital} color="bg-blue-600" />
-                    <StatCard label="Periodonsia" value={stats?.PERIODONSIA} icon={Activity} color="bg-emerald-600" />
-                    <StatCard label="Konservasi" value={stats?.konservasi} icon={Clock} color="bg-amber-600" />
-                    <StatCard label="Total Pasien" value={stats?.datapasien} icon={Users} color="bg-violet-600" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <StatCard label="IKGP" value={stats?.ikgp} icon={Hospital} variant="primary" />
+                    <StatCard label="Periodonsia" value={stats?.PERIODONSIA} icon={Activity} variant="success" />
+                    <StatCard label="Konservasi" value={stats?.konservasi} icon={Clock} variant="warning" />
+                    <StatCard label="Total Pasien" value={stats?.datapasien} icon={Users} variant="neutral" />
                 </div>
             )}
 
             {/* Quick links */}
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
-                <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
-                    <CheckCircle size={18} className="text-blue-400" /> Aksi Cepat
+            <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 hover:shadow-md transition-shadow min-w-0">
+                <h3 className="text-slate-900 font-semibold mb-4 flex items-center gap-2">
+                    <CheckCircle size={18} className="text-teal-600" /> Aksi Cepat
                 </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 min-w-0">
                     {[
                         { label: 'Daftar Pasien Baru', to: '/frontdesk/pasien' },
                         { label: 'Daftar ke Klinik', to: '/frontdesk/kunjungan' },
                     ].map((item) => (
-                        <a
+                        <Link
                             key={item.label}
-                            href={item.to}
-                            className="flex items-center gap-2 px-4 py-3 bg-slate-800 hover:bg-slate-700 rounded-xl text-sm text-slate-300 hover:text-white transition-all"
+                            to={item.to}
+                            className="flex items-center gap-2 px-4 py-3 bg-teal-600 hover:bg-teal-700 text-white rounded-lg text-sm font-medium transition-all min-w-0"
                         >
                             {item.label}
-                        </a>
+                        </Link>
                     ))}
                 </div>
             </div>

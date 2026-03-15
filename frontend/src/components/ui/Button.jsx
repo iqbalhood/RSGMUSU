@@ -13,13 +13,13 @@ export default function Button({
     iconClassName,
     ...props
 }) {
-    const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-150 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed active:scale-[0.98]'
+    const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-150 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed'
 
     const variants = {
-        primary: 'bg-teal-600 hover:bg-teal-500 text-white focus:ring-teal-500 shadow-sm hover:shadow',
-        secondary: 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 focus:ring-slate-400 shadow-sm',
+        primary: 'bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 focus:ring-teal-500',
+        secondary: 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 focus:ring-slate-400',
         ghost: 'bg-transparent hover:bg-slate-100 text-slate-600 focus:ring-slate-400',
-        danger: 'bg-red-600 hover:bg-red-500 text-white focus:ring-red-500 shadow-sm',
+        danger: 'bg-red-600 hover:bg-red-700 text-white focus:ring-red-500 px-4 py-2',
     }
 
     const sizes = {

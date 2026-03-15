@@ -97,47 +97,49 @@ export default function FrontdeskDaftarKlinik() {
         setSubmitted(null)
     }
 
+    const inputCls = 'w-full border border-slate-300 rounded-lg px-4 py-2.5 text-slate-900 text-sm focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none placeholder:text-slate-400'
+
     return (
-        <div className="p-6 space-y-6 animate-fadeIn">
-            <div>
-                <h2 className="text-2xl font-bold text-white flex items-center gap-2"><ClipboardList size={22} className="text-blue-400" /> Daftar ke Klinik</h2>
-                <p className="text-slate-400 text-sm mt-1">Daftarkan pasien ke antrian klinik</p>
+        <div className="p-6 space-y-6 min-w-0">
+            <div className="min-w-0">
+                <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2"><ClipboardList size={22} className="text-teal-600" /> Daftar ke Klinik</h2>
+                <p className="text-slate-600 text-sm mt-1">Daftarkan pasien ke antrian klinik</p>
             </div>
 
             {/* Progress steps */}
-            <div className="flex items-center gap-2 text-sm">
+            <div className="flex items-center gap-2 text-sm flex-wrap min-w-0">
                 {['Cari Pasien', 'Pilih Klinik & Dokter', 'Konfirmasi'].map((s, i) => (
                     <React.Fragment key={s}>
-                        <div className={`flex items-center gap-1.5 ${step > i + 1 ? 'text-emerald-400' : step === i + 1 ? 'text-white' : 'text-slate-600'}`}>
-                            <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${step > i + 1 ? 'bg-emerald-500' : step === i + 1 ? 'bg-blue-600' : 'bg-slate-800'}`}>
+                        <div className={`flex items-center gap-1.5 min-w-0 ${step > i + 1 ? 'text-teal-600' : step === i + 1 ? 'text-slate-900' : 'text-slate-400'}`}>
+                            <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${step > i + 1 ? 'bg-teal-600 text-white' : step === i + 1 ? 'bg-teal-600 text-white' : 'bg-slate-200 text-slate-500'}`}>
                                 {step > i + 1 ? '✓' : i + 1}
                             </span>
                             <span className="hidden sm:inline">{s}</span>
                         </div>
-                        {i < 2 && <ChevronRight size={14} className="text-slate-700 flex-shrink-0" />}
+                        {i < 2 && <ChevronRight size={14} className="text-slate-400 flex-shrink-0" />}
                     </React.Fragment>
                 ))}
             </div>
 
             {/* Step 1: Search Pasien */}
             {step === 1 && (
-                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
-                    <h3 className="text-white font-semibold flex items-center gap-2"><User size={18} className="text-blue-400" /> Cari Pasien</h3>
-                    <div className="flex gap-2">
-                        <div className="relative flex-1">
-                            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
+                <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-6 min-w-0">
+                    <h3 className="text-slate-900 font-semibold flex items-center gap-2"><User size={18} className="text-teal-600" /> Cari Pasien</h3>
+                    <div className="flex gap-6 min-w-0 flex-wrap">
+                        <div className="relative flex-1 min-w-0">
+                            <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
                             <input
                                 value={keyword}
                                 onChange={e => setKeyword(e.target.value)}
                                 onKeyDown={e => e.key === 'Enter' && searchPasien()}
                                 placeholder="Cari nama atau no. rekam medis..."
-                                className="w-full bg-slate-800 border border-slate-700 rounded-xl pl-9 pr-4 py-2.5 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-slate-600"
+                                className={inputCls + ' pl-11'}
                             />
                         </div>
                         <button
                             onClick={searchPasien}
                             disabled={searching}
-                            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-all disabled:opacity-60"
+                            className="flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all disabled:opacity-60 flex-shrink-0"
                         >
                             {searching ? <Loader2 size={15} className="animate-spin" /> : <Search size={15} />}
                             Cari
@@ -145,53 +147,56 @@ export default function FrontdeskDaftarKlinik() {
                     </div>
 
                     {pasienList.length > 0 && (
-                        <div className="border border-slate-800 rounded-xl overflow-hidden">
+                        <div className="border border-slate-200 rounded-xl overflow-hidden min-w-0">
                             {pasienList.map((p, i) => (
                                 <button
                                     key={p.id}
                                     onClick={() => selectPasien(p)}
-                                    className={`w-full flex items-center gap-4 px-4 py-3 hover:bg-slate-800 transition-colors text-left ${i > 0 ? 'border-t border-slate-800' : ''}`}
+                                    className={`w-full flex items-center gap-4 px-4 py-3 hover:bg-slate-50 transition-colors text-left min-w-0 ${i > 0 ? 'border-t border-slate-200' : ''}`}
                                 >
-                                    <div className="w-9 h-9 rounded-full bg-blue-600/20 flex items-center justify-center text-blue-400 text-sm font-bold flex-shrink-0">
+                                    <div className="w-9 h-9 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 text-sm font-bold flex-shrink-0">
                                         {p.nama?.charAt(0)}
                                     </div>
                                     <div className="flex-1 min-w-0">
-                                        <p className="text-white font-medium truncate">{p.nama}</p>
-                                        <p className="text-slate-500 text-xs font-mono">{p.no_rekam_medis}</p>
+                                        <p className="text-slate-900 font-medium truncate">{p.nama}</p>
+                                        <p className="text-slate-600 text-xs font-mono truncate">{p.no_rekam_medis}</p>
                                     </div>
-                                    <span className="text-xs text-slate-500 flex-shrink-0">{p.cara_bayar}</span>
-                                    <ChevronRight size={16} className="text-slate-600 flex-shrink-0" />
+                                    <span className="text-xs text-slate-400 flex-shrink-0">{p.cara_bayar}</span>
+                                    <ChevronRight size={16} className="text-slate-400 flex-shrink-0" />
                                 </button>
                             ))}
                         </div>
                     )}
                     {!searching && pasienList.length === 0 && keyword && (
-                        <p className="text-slate-500 text-sm text-center py-4">Pasien tidak ditemukan. <a href="/frontdesk/pasien" className="text-blue-400 hover:underline">Tambah pasien baru?</a></p>
+                        <p className="text-slate-600 text-sm text-center py-4">Pasien tidak ditemukan. <a href="/frontdesk/pasien" className="text-teal-600 hover:underline font-medium">Tambah pasien baru?</a></p>
                     )}
                 </div>
             )}
 
             {/* Step 2: Pilih Klinik + Dokter */}
             {step === 2 && selectedPasien && (
-                <div className="space-y-4">
+                <div className="space-y-6 min-w-0">
                     {/* Pasien info */}
-                    <div className="bg-blue-600/10 border border-blue-600/30 rounded-2xl p-4 flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-blue-600/20 flex items-center justify-center text-blue-400 font-bold">
+                    <div className="bg-teal-50 border border-teal-200 rounded-xl p-4 flex items-center gap-3 min-w-0">
+                        <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 font-bold flex-shrink-0">
                             {selectedPasien.nama?.charAt(0)}
                         </div>
-                        <div>
-                            <p className="text-white font-semibold">{selectedPasien.nama}</p>
-                            <p className="text-slate-400 text-xs font-mono">{selectedPasien.no_rekam_medis} · {selectedPasien.cara_bayar}</p>
+                        <div className="min-w-0">
+                            <p className="text-slate-900 font-semibold truncate">{selectedPasien.nama}</p>
+                            <p className="text-slate-600 text-xs font-mono">{selectedPasien.no_rekam_medis} · {selectedPasien.cara_bayar}</p>
                         </div>
                     </div>
 
                     {/* Pilih klinik */}
-                    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-3">
-                        <h3 className="text-white font-semibold flex items-center gap-2"><Hospital size={18} className="text-emerald-400" /> Pilih Klinik</h3>
-                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-3 min-w-0">
+                        <h3 className="text-slate-900 font-semibold flex items-center gap-2"><Hospital size={18} className="text-teal-600" /> Pilih Klinik</h3>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 min-w-0">
                             {KLINIK_LIST.map(k => (
-                                <button key={k.id} onClick={() => setSelectedKlinik(k)}
-                                    className={`px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-left ${selectedKlinik?.id === k.id ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/20' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white'}`}>
+                                <button
+                                    key={k.id}
+                                    onClick={() => setSelectedKlinik(k)}
+                                    className={`px-3 py-2.5 rounded-lg text-sm font-medium transition-all text-left min-w-0 ${selectedKlinik?.id === k.id ? 'bg-teal-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200 border border-slate-200'}`}
+                                >
                                     {k.label}
                                 </button>
                             ))}
@@ -199,49 +204,52 @@ export default function FrontdeskDaftarKlinik() {
                     </div>
 
                     {/* Pilih dokter */}
-                    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-3">
-                        <h3 className="text-white font-semibold flex items-center gap-2"><Stethoscope size={18} className="text-violet-400" /> Pilih Dokter</h3>
+                    <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-3 min-w-0">
+                        <h3 className="text-slate-900 font-semibold flex items-center gap-2"><Stethoscope size={18} className="text-teal-600" /> Pilih Dokter</h3>
                         {dokterList.length === 0 ? (
-                            <p className="text-slate-500 text-sm">Tidak ada dokter tersedia</p>
+                            <p className="text-slate-600 text-sm">Tidak ada dokter tersedia</p>
                         ) : (
-                            <div className="grid gap-2">
+                            <div className="grid gap-3 min-w-0">
                                 {dokterList.map(d => (
-                                    <button key={d.id} onClick={() => setSelectedDokter(d)}
-                                        className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-left ${selectedDokter?.id === d.id ? 'bg-violet-600 text-white shadow-lg shadow-violet-600/20' : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white'}`}>
-                                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${selectedDokter?.id === d.id ? 'bg-white/20' : 'bg-slate-700'}`}>
+                                    <button
+                                        key={d.id}
+                                        onClick={() => setSelectedDokter(d)}
+                                        className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm transition-all text-left min-w-0 ${selectedDokter?.id === d.id ? 'bg-teal-600 text-white' : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'}`}
+                                    >
+                                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${selectedDokter?.id === d.id ? 'bg-white/20' : 'bg-slate-200'}`}>
                                             {d.nama?.charAt(0)}
                                         </div>
-                                        <div>
-                                            <p className="font-medium">{d.nama}</p>
-                                            <p className={`text-xs ${selectedDokter?.id === d.id ? 'text-white/70' : 'text-slate-500'}`}>drg.</p>
+                                        <div className="min-w-0">
+                                            <p className="font-medium truncate">{d.nama}</p>
+                                            <p className={`text-xs ${selectedDokter?.id === d.id ? 'text-white/80' : 'text-slate-500'}`}>drg.</p>
                                         </div>
                                     </button>
                                 ))}
                             </div>
                         )}
 
-                        <div className="mt-4">
-                            <label className="block text-xs font-medium text-slate-400 mb-1">Dokter Pendamping (opsional)</label>
+                        <div className="mt-4 min-w-0">
+                            <label className="block text-xs font-medium text-slate-600 mb-1">Dokter Pendamping (opsional)</label>
                             <input
                                 value={dokterPendamping}
                                 onChange={e => setDokterPendamping(e.target.value)}
                                 placeholder="Nama dokter pendamping..."
-                                className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-slate-600"
+                                className={inputCls}
                             />
                         </div>
                     </div>
 
-                    <div className="flex gap-3">
-                        <button onClick={() => setStep(1)} className="flex-1 bg-slate-800 hover:bg-slate-700 text-white py-3 rounded-xl text-sm font-medium transition-all">
+                    <div className="flex gap-6 min-w-0 flex-wrap">
+                        <button onClick={() => setStep(1)} className="flex-1 min-w-0 bg-slate-200 hover:bg-slate-300 text-slate-700 py-2.5 rounded-lg text-sm font-medium transition-all">
                             ← Kembali
                         </button>
                         <button
                             onClick={handleSubmit}
                             disabled={!selectedKlinik || !selectedDokter || submitting}
-                            className="flex-2 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed text-white px-8 py-3 rounded-xl text-sm font-semibold transition-all shadow-lg shadow-blue-600/20"
+                            className="flex-1 min-w-0 flex items-center justify-center gap-2 bg-teal-600 hover:bg-teal-700 disabled:opacity-50 disabled:cursor-not-allowed text-white px-6 py-2.5 rounded-lg text-sm font-medium transition-all"
                         >
                             {submitting ? <Loader2 size={16} className="animate-spin" /> : null}
-                            {submitting ? 'Mendaftarkan...' : 'Dafter ke Klinik →'}
+                            {submitting ? 'Mendaftarkan...' : 'Daftar ke Klinik →'}
                         </button>
                     </div>
                 </div>
@@ -249,12 +257,12 @@ export default function FrontdeskDaftarKlinik() {
 
             {/* Step 3: Sukses */}
             {step === 3 && submitted && (
-                <div className="bg-slate-900 border border-emerald-600/30 rounded-2xl p-8 text-center space-y-4 animate-fadeIn">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-500/10 rounded-full mb-2">
-                        <CheckCircle size={36} className="text-emerald-400" />
+                <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-8 text-center space-y-6 min-w-0">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-teal-100 rounded-full mb-2">
+                        <CheckCircle size={36} className="text-teal-600" />
                     </div>
-                    <h3 className="text-xl font-bold text-white">Pendaftaran Berhasil!</h3>
-                    <div className="bg-slate-800 rounded-xl p-4 text-left space-y-2 max-w-sm mx-auto">
+                    <h3 className="text-xl font-bold text-slate-900">Pendaftaran Berhasil!</h3>
+                    <div className="bg-slate-50 rounded-xl p-4 text-left space-y-2 max-w-sm mx-auto border border-slate-200 min-w-0">
                         <Row label="Pasien" value={submitted.pasien.nama} />
                         <Row label="No. RM" value={submitted.pasien.no_rekam_medis} mono />
                         <Row label="Klinik" value={submitted.klinik.label} />
@@ -263,7 +271,7 @@ export default function FrontdeskDaftarKlinik() {
                         <Row label="No. Kunjungan" value={submitted.idKunjungan} mono />
                     </div>
                     <div className="flex gap-3 justify-center pt-2">
-                        <button onClick={reset} className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2.5 rounded-xl text-sm font-semibold transition-all">
+                        <button onClick={reset} className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all">
                             Daftar Lagi
                         </button>
                     </div>
@@ -275,9 +283,9 @@ export default function FrontdeskDaftarKlinik() {
 
 function Row({ label, value, mono, highlight }) {
     return (
-        <div className="flex items-center justify-between gap-4">
-            <span className="text-slate-500 text-sm flex-shrink-0">{label}</span>
-            <span className={`text-sm font-medium truncate ${highlight ? 'text-emerald-400' : 'text-white'} ${mono ? 'font-mono' : ''}`}>{value}</span>
+        <div className="flex items-center justify-between gap-4 min-w-0">
+            <span className="text-slate-600 text-sm flex-shrink-0">{label}</span>
+            <span className={`text-sm font-medium truncate min-w-0 ${highlight ? 'text-teal-600' : 'text-slate-900'} ${mono ? 'font-mono' : ''}`}>{value}</span>
         </div>
     )
 }

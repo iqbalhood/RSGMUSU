@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 html,
@@ -13,26 +13,14 @@ body,
   padding: 0;
   height: 100%;
   width: 100%;
-  box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
 }
 
 body {
   font-family: system-ui, -apple-system, sans-serif;
-  background-color: #F8FAFC;
-  /* bg-slate-50 equivalent */
-  color: #0F172A;
-  /* text-slate-900 equivalent */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Common sizing reset */
 main {
   display: block;
 }
