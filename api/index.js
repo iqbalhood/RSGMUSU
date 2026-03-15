@@ -76,8 +76,4 @@ app.all('/api/search', wrap(require('../backend/search/index')));
 app.all('/api/users', wrap(require('../backend/users/index')));
 app.all('/api/users/:id', wrap(require('../backend/users/[id]')));
 
-app.all('*', (req, res) => {
-    res.status(404).json({ message: 'Endpoint not found' });
-});
-
 module.exports = app;
